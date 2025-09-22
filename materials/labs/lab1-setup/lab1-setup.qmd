@@ -199,7 +199,7 @@ For now, we'll make a 'group sandbox' that you can play in during our next class
 
 **Accept an assignment in GitHub Classroom**
 
-1.  Follow the link to accept the [group-sandbox assignment](https://classroom.github.com/a/kC0QIWFR). Since it's a group assignment, you will be prompted to join a team.
+1.  Follow the link to accept the [group-sandbox assignment](https://classroom.github.com/a/9Lb2OJv9). Since it's a group assignment, you will be prompted to join a team.
 2.  Join the team for the table you sat at during last class meeting. If you don't remember, check your attendance form receipt.
 
 You should be directed to a team repository on github.com. You may need to refresh your browser. Keep this window open; you will need the URL.
