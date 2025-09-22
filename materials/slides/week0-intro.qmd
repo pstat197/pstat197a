@@ -1,21 +1,23 @@
 ---
 title: "Course orientation"
-subtitle: "PSTAT197A/CMPSC190DD Fall 2022"
-author: "Trevor Ruiz"
+subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
+author: "Dr. Coburn"
 institute: 'UCSB'
 format: 
   revealjs:
     incremental: true
-    # footer: 'PSTAT197A/CMPSC190DD Fall 2022'
-    # logo: 'img/ucsbds_hex.png'
+    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    logo: 'img/ucsbds_hex.png'
     slide-number: true
 ---
 
 ## Before we begin...
 
-1.  Confer with your table and choose a word of the day. Agree on spelling.
+1.  Pick up a name tag and write your preferred name on it (neatly).
 
-2.  Please sign in using the attendance reporting form found here:
+2.  Choose a table at which to sit for the quarter and note the number.
+
+3.  Sign in using the attendance reporting form found here:
 
     [https://pstat197.github.io/pstat197a/about/links.html](https://pstat197.github.io/pstat197a/about/links.html#sec-class-forms)
 
@@ -37,7 +39,7 @@ Most students are preparing for capstone projects in winter and spring. Course f
 -   Projects are collaborative ➜ emphasize teamwork and discussion
 -   Projects are specialized ➜ practice independent learning based on use cases
 
-Read about past projects at <https://centralcoastdatascience.org/projects>
+Read about past projects at <https://pstat197.github.io/>
 
 ## Continuing in capstones
 
@@ -104,9 +106,9 @@ The module datasets are currently as follows:
 
 ## Group assignments
 
-Each module you will be assigned a working group.
+Your working group for this quarter will consist of the students at your table.
 
-Your group's objective is to produce an analysis of the dataset:
+For each module, your group's objective is to produce an analysis of the dataset:
 
 -   **Reproduce** analysis presented/discussed in class meeting
 
@@ -118,7 +120,7 @@ Your group's objective is to produce an analysis of the dataset:
 
 ## Vignettes
 
-At the end of the class in place of a fifth module you will create a *vignette* (short demonstration) on a topic of interest.
+At the end of the class, in place of a fifth module, you will create a *vignette* (short demonstration) on a topic of interest.
 
 -   present a use case
 
@@ -128,7 +130,7 @@ At the end of the class in place of a fifth module you will create a *vignette* 
 
 ## Expectations and assessments
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 Students are expected to:
 
@@ -150,7 +152,7 @@ Students are assessed on:
 
 -   oral interview/presentation.
 :::
-:::
+:::::
 
 # Looking ahead
 
@@ -170,6 +172,6 @@ Complete all of the following [***before***]{.underline} our next meeting.
 
 1.  Review all content in the about section of the course webpage.
 2.  Install [course software](https://pstat197.github.io/pstat197a/about/links.html) and create a GitHub account.
-3.  Fill out [capstone project intake form](https://forms.gle/zQT8jc85Y71BKYV48).
+3.  Fill out [capstone project intake form](https://forms.gle/ZedC6ZMHi5KhsDNH7).
 4.  Read [Peng, R. D., & Parker, H. S. (2022). Perspective on data science. *Annual Review of Statistics and Its Application*, *9*, 1-20.](https://doi.org/10.1146/annurev-statistics-040220-013917) (access online via UCSB library).
 5.  Prepare a [reading response](https://forms.gle/n2GpNGMVXVaAXSWf9).

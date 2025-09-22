@@ -47,7 +47,7 @@
     "href": "about/links.html",
     "title": "Links",
     "section": "",
-    "text": "Attendance reporting form; fill out once per class meeting.\nCapstone project intake form; fill out by October 3rd, 2025.",
+    "text": "Attendance reporting form; fill out once per class meeting.\nCapstone project intake form; fill out by September 30th, 2025.",
     "crumbs": [
       "About",
       "Links"
@@ -58,7 +58,7 @@
     "href": "about/links.html#sec-class-forms",
     "title": "Links",
     "section": "",
-    "text": "Attendance reporting form; fill out once per class meeting.\nCapstone project intake form; fill out by October 3rd, 2025.",
+    "text": "Attendance reporting form; fill out once per class meeting.\nCapstone project intake form; fill out by September 30th, 2025.",
     "crumbs": [
       "About",
       "Links"
@@ -191,7 +191,7 @@
     "href": "materials/slides/week0-intro.html#before-we-begin",
     "title": "Course orientation",
     "section": "Before we begin…",
-    "text": "Before we begin…\n\nConfer with your table and choose a word of the day. Agree on spelling.\nPlease sign in using the attendance reporting form found here:\nhttps://pstat197.github.io/pstat197a/about/links.html"
+    "text": "Before we begin…\n\nPick up a name tag and write your preferred name on it (neatly).\nChoose a table at which to sit for the quarter and note the number.\nSign in using the attendance reporting form found here:\nhttps://pstat197.github.io/pstat197a/about/links.html"
   },
   {
     "objectID": "materials/slides/week0-intro.html#welcome",
@@ -205,7 +205,7 @@
     "href": "materials/slides/week0-intro.html#capstone-projects",
     "title": "Course orientation",
     "section": "Capstone projects",
-    "text": "Capstone projects\nMost students are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://centralcoastdatascience.org/projects"
+    "text": "Capstone projects\nMost students are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
   },
   {
     "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
@@ -254,14 +254,14 @@
     "href": "materials/slides/week0-intro.html#group-assignments",
     "title": "Course orientation",
     "section": "Group assignments",
-    "text": "Group assignments\nEach module you will be assigned a working group.\nYour group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+    "text": "Group assignments\nYour working group for this quarter will consist of the students at your table.\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
   },
   {
     "objectID": "materials/slides/week0-intro.html#vignettes",
     "href": "materials/slides/week0-intro.html#vignettes",
     "title": "Course orientation",
     "section": "Vignettes",
-    "text": "Vignettes\nAt the end of the class in place of a fifth module you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
   },
   {
     "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
