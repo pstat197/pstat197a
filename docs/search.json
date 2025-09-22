@@ -1,0 +1,308 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data science capstone preparation",
+    "section": "",
+    "text": "PSTAT197A/CMPSC190DD is the first course in UC Santa Barbara’s yearlong data science capstone sequence. The course aims to provide preparation and training to undergraduate students of any discipline with a basic background in data science for an independent research or project experience.\nMost students take this course to prepare for their work on sponsored team projects during the remainder of the capstone sequence (PSTAT197B-C/CMPSC190DE-DF). However, some may elect to take the course for other reasons, such as an upcoming faculty-supervised research project or internship.\nThis site hosts course information and resources for currently enrolled students.",
+    "crumbs": [
+      "Data science capstone preparation"
+    ]
+  },
+  {
+    "objectID": "about/technology.html",
+    "href": "about/technology.html",
+    "title": "Technology",
+    "section": "",
+    "text": "Computing in PSTAT197A will be shown in R, and codes and other materials will be shared via GitHub. The following software will be required to access course materials:\n\nR version 4.5.1+\nRStudio version 2024.12.1+\nGit version 2.51.0+\nGitHub Desktop (or another visual GitHub client; this is not required, as you can use Git via terminal, but especially recommended for those new to Git)\n\nInstallations and basic functionality will be covered in the first section meeting.\nWhile PSTAT197A is not language-agnostic and some instruction in R is provided, it is also not a course especially designed to emphasize programming technique in R. Students are free to use or experiment with other software at their discretion, provided it does not interfere with their participation in the class, but are expected to submit work and collaborate using RStudio-supported files.\nCapstone projects for the subsequent quarters (PSTAT 197B and 197C) may use a variety of programming languages, at the discretion of project mentors.",
+    "crumbs": [
+      "About",
+      "Technology"
+    ]
+  },
+  {
+    "objectID": "about/technology.html#sec-software",
+    "href": "about/technology.html#sec-software",
+    "title": "Technology",
+    "section": "",
+    "text": "Computing in PSTAT197A will be shown in R, and codes and other materials will be shared via GitHub. The following software will be required to access course materials:\n\nR version 4.5.1+\nRStudio version 2024.12.1+\nGit version 2.51.0+\nGitHub Desktop (or another visual GitHub client; this is not required, as you can use Git via terminal, but especially recommended for those new to Git)\n\nInstallations and basic functionality will be covered in the first section meeting.\nWhile PSTAT197A is not language-agnostic and some instruction in R is provided, it is also not a course especially designed to emphasize programming technique in R. Students are free to use or experiment with other software at their discretion, provided it does not interfere with their participation in the class, but are expected to submit work and collaborate using RStudio-supported files.\nCapstone projects for the subsequent quarters (PSTAT 197B and 197C) may use a variety of programming languages, at the discretion of project mentors.",
+    "crumbs": [
+      "About",
+      "Technology"
+    ]
+  },
+  {
+    "objectID": "about/technology.html#sec-github",
+    "href": "about/technology.html#sec-github",
+    "title": "Technology",
+    "section": "GitHub",
+    "text": "GitHub\nStudents will learn and practice basic functionality of Git and GitHub for version control and collaboration by accessing course materials via GitHub repositories and submitting work via repository contributions.\nWe have a GitHub classroom for the data science capstone. Materials will be deployed via direct links. Students will be asked to submit work by contributing to team repositories; any such contributions will remain visible to course staff and team contributors, and so are not strictly private.\nTo access GitHub Classroom materials students will need to create a GitHub account if they do not already have one. Here is some advice on choosing a username.",
+    "crumbs": [
+      "About",
+      "Technology"
+    ]
+  },
+  {
+    "objectID": "about/links.html",
+    "href": "about/links.html",
+    "title": "Links",
+    "section": "",
+    "text": "Attendance reporting form; fill out once per class meeting.\nCapstone project intake form; fill out by October 3rd, 2025.",
+    "crumbs": [
+      "About",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "about/links.html#sec-class-forms",
+    "href": "about/links.html#sec-class-forms",
+    "title": "Links",
+    "section": "",
+    "text": "Attendance reporting form; fill out once per class meeting.\nCapstone project intake form; fill out by October 3rd, 2025.",
+    "crumbs": [
+      "About",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "about/links.html#resources",
+    "href": "about/links.html#resources",
+    "title": "Links",
+    "section": "Resources",
+    "text": "Resources\nTextbooks:\n\nModern Data Science with R by Baumer, Kaplan, and Horton.\nIntroduction to Statistical Learning with Applications in R by James et al.\nFundamentals of Data Visualization by Claus Wilke.\nR for Data Science by Wickham and Grolemund.\nDeep Learning by Goodfellow, Bengio, and Courville.\n\nDocumentation:\n\nTidyverse and tidymodels packages\nGitHub Docs",
+    "crumbs": [
+      "About",
+      "Links"
+    ]
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#before-we-begin",
+    "href": "materials/slides/week0-intro.html#before-we-begin",
+    "title": "Course orientation",
+    "section": "Before we begin…",
+    "text": "Before we begin…\n\nConfer with your table and choose a word of the day. Agree on spelling.\nPlease sign in using the attendance reporting form found here:\nhttps://pstat197.github.io/pstat197a/about/links.html"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#welcome",
+    "href": "materials/slides/week0-intro.html#welcome",
+    "title": "Course orientation",
+    "section": "Welcome",
+    "text": "Welcome\nPSTAT197A/CMPSC190DD is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#capstone-projects",
+    "href": "materials/slides/week0-intro.html#capstone-projects",
+    "title": "Course orientation",
+    "section": "Capstone projects",
+    "text": "Capstone projects\nMost students are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://centralcoastdatascience.org/projects"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "title": "Course orientation",
+    "section": "Continuing in capstones",
+    "text": "Continuing in capstones\nContinuation in PSTAT197B-C/CMPSC190DE-DF during winter and spring:\n\nstudents admitted to this course in spring have a seat;\nstudents admitted from the waitlist are on the waitlist."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#outcomes",
+    "href": "materials/slides/week0-intro.html#outcomes",
+    "title": "Course orientation",
+    "section": "Outcomes",
+    "text": "Outcomes\nI hope to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#classroom-environment",
+    "href": "materials/slides/week0-intro.html#classroom-environment",
+    "title": "Course orientation",
+    "section": "Classroom environment",
+    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#resources",
+    "href": "materials/slides/week0-intro.html#resources",
+    "title": "Course orientation",
+    "section": "Resources",
+    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#modules",
+    "href": "materials/slides/week0-intro.html#modules",
+    "title": "Course orientation",
+    "section": "Modules",
+    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#module-content",
+    "href": "materials/slides/week0-intro.html#module-content",
+    "title": "Course orientation",
+    "section": "Module content",
+    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#group-assignments",
+    "href": "materials/slides/week0-intro.html#group-assignments",
+    "title": "Course orientation",
+    "section": "Group assignments",
+    "text": "Group assignments\nEach module you will be assigned a working group.\nYour group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#vignettes",
+    "href": "materials/slides/week0-intro.html#vignettes",
+    "title": "Course orientation",
+    "section": "Vignettes",
+    "text": "Vignettes\nAt the end of the class in place of a fifth module you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "title": "Course orientation",
+    "section": "Expectations and assessments",
+    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#next-time",
+    "href": "materials/slides/week0-intro.html#next-time",
+    "title": "Course orientation",
+    "section": "Next time",
+    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#checklist",
+    "href": "materials/slides/week0-intro.html#checklist",
+    "title": "Course orientation",
+    "section": "Checklist",
+    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html",
+    "href": "materials/labs/lab1-setup/lab1-setup.html",
+    "title": "Course technology overview",
+    "section": "",
+    "text": "Read this and complete all instructions in the ‘action’ boxes during your lab section. Your TA will walk you through the activity and help to troubleshoot issues and answer any questions along the way.\nObjectives:"
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
+    "title": "Course technology overview",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nTo complete the activity you’ll need to:\n\nhave all of the software listed on the course technology page installed;\nfind (or create) your GitHub account credentials (if you are creating an account for the first time, see advice on choosing a username).\n\n\n\n\n\n\n\nImportantAction\n\n\n\nPreparations:\n\nLog in to your GitHub account.\nOpen your GitHub client.\nOpen a new session in RStudio.\nCreate a class folder for PSTAT197 somewhere on your machine, e.g., ~/documents/pstat197."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
+    "title": "Course technology overview",
+    "section": "RStudio projects",
+    "text": "RStudio projects\nFirst we’ll get acquainted with the basic functionality of the RStudio IDE and the use of projects as a means of organizing files. If you’ve already used RStudio, great – this will still serve to introduce you to how we’ll use RStudio projects in this class.\n\nRStudio Setup\n\nYour TA will briefly review the (default) layout of the RStudio IDE. You should be able to identify/find the following:\n\nconsole\nterminal\nfile navigator\nenvironment\nhistory\n\nWe’ll use several R packages throughout the quarter. Some of these we will install on the go, but we can install several that we’ll rely on now.\n\n\n\n\n\n\nImportantAction\n\n\n\nInstall packages\nNavigate to the console and copy-paste the following commands. You only need to do this once. This will take a minute or two to complete.\n\n\n\n# package install list \nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/scripts/package-installs.R'\nsource(url)\n\n# clear environment\nrm(list = ls())\n\n\n\nCreate a local project\nProjects are a means of keeping your work organized. When you create a project in a directory on your local machine, RStudio keeps track of project metadata, history, and the working environment so that every time you open the project you see whatever you had open when you last closed it.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a new project:\n\nSelect File &gt; New project\nCreate the project in a new directory as a subdirectory of your class folder\nName it example-project\n\nComment: when naming files it’s good practice to avoid spaces, special characters, and the like. A naming convention we try to follow: choose a descriptive name comprising 1-3 words or common abbreviations separated by hyphens.\n\n\nTake a moment to observe the file navigator. It should consist of a single example-project.Rproj file.\n\n\nAdd content\nWe may as well populate the project with a few files – so let’s add a dataset and write a short script, as if we’re just starting a data analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nRetrieve data and store a local copy\n\nOpen a new script: File &gt; New File &gt; R Script\nIn the navigator, create a folder called data and a folder called scripts\nCopy and paste the code chunk below into your script.\nExecute once, then save in the scripts folder as data-retrieval.R and close\n\n\n\n\nlibrary(tidyverse)\n\n# retrieve pollution data\nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/labs/lab1-setup/data/pollution.csv'\npollution &lt;- read_csv(url)\n\n# write as csv to file\nwrite_csv(pollution, file = 'data/pollution.csv')\n\n# clear environment\nrm(list = ls())\n\n\nNext, we’ll do a simple regression analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a script\n\nCreate a new script as before\nCopy-paste the code chunk below into your script\nExecute once and examine the results\nSave in the scripts folder as slr-analysis.R\n\n\n\n\nlibrary(tidyverse)\n\n# load data\npollution &lt;- read_csv('data/pollution.csv')\n\n# examine scatterplot with SLR fit\nggplot(pollution,\n       aes(x = log(SO2), y = Mort)) +\n  geom_point() +\n  geom_smooth(method = 'lm')\n\n\n\n\n\n\n\n# compute SLR fit\nfit &lt;- lm(Mort ~ log(SO2), data = pollution)\nbroom::tidy(fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    887.      17.6      50.4  1.37e-49\n2 log(SO2)        16.7      4.99      3.35 1.40e- 3\n\n# interpret\nfit_ci &lt;- confint(fit, parm = 'log(SO2)')*log(1.2)\n\npaste('With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between', \n      round(fit_ci[1], 2), \n      'and', \n      round(fit_ci[2], 2), \n      'per 100k', sep = ' ') %&gt;% \n  print()\n\n[1] \"With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between 1.23 and 4.87 per 100k\"\n\n\n\nCongrats on your first project! You can close the RStudio session now.\nWe’ll be using projects structured much like what you just set up, but with one catch: we’ll link up our RStudio projects with shared repositories so that we can all collaborate on the same set of project files."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
+    "title": "Course technology overview",
+    "section": "GitHub repositories",
+    "text": "GitHub repositories\n\nWe will be distributing course assignments as repositories via GitHub Classroom. A repository is simply a storage space.\nHere we’ll walk you through how to access and copy the files in a repository just as you will for course assignments. The first step is to accept an assignment through a link we’ve given to you – this will create a repository for you with the files we intend for you to have.\nFor now, we’ll make a ‘group sandbox’ that you can play in during our next class meeting.\n\n\n\n\n\n\nImportantAction\n\n\n\nAccept an assignment in GitHub Classroom\n\nFollow the link to accept the group-sandbox assignment. Since it’s a group assignment, you will be prompted to join a team.\nJoin the team for the table you sat at during last class meeting. If you don’t remember, check your attendance form receipt.\n\nYou should be directed to a team repository on github.com. You may need to refresh your browser. Keep this window open; you will need the URL.\n\n\n\nGit and GitHub\nAt some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. So, Git and GitHub are two different things.\nGit is version control software that enables you to systematically track and control file changes within a repository – a collection of files possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)\nGitHub is an online platform for hosting repositories remotely. Anyone with access to a repository can make changes to files in the repository, and this enables multiple people to collaborate on code.\n\n\nlocal &lt;&gt; remote\nUsually remote repositories are not updated directly because contributors need to execute codes to test their changes and the remote server that hosts the repository is not equipped to do this.\nInstead, contributors will prepare changes on their own machine where they can test them, and then update the remote repository once their changes are complete.\nThis process of implementing file changes in a repository involves communicating information between local and remote locations. For this purpose a local copy of the remote repository is needed.\n\n\nCloning a repository\nIn Git lingo, a clone is a local copy of a remote repository. Creating a clone copies files and establishes the link between local and remote repositories so that changes can be sent to and received from the remote repository. You only need to create a clone once.\nTo clone a repository, all one needs is:\n\nthe remote location URL;\nthe local destination where the clone will be created;\npermission from the repository owner, if private.\n\nHere you’ll clone the group sandbox repository you just created/joined. You will need the URL; if you happened to close the page when you accepted the assignment earlier, you should be able to find the repository from your home page on github.com.\n\n\n\n\n\n\n\nImportantAction\n\n\n\nClone the sandbox repository:\n\nOpen your GitHub client (GitKracken or GitHub Desktop or similar) and ensure you are logged in to your GitHub account.\nLook for a ‘Clone Repo’ menu item or similar and simply input the URL and the place you’d like to clone it; proceed through any prompts.\nCheck your file navigator to confirm that the repository files were copied.\n\n\n\n\nAn alternative possibility is to create the clone using a terminal command. In the terminal, navigate to the desired destination, and input:\ngit clone https://github.com/USERNAME/REPONAME\n\n\n\n\n\n\nNoteRemarks\n\n\n\nOn terminal commands:\n\nIt’s recommended to manage Git actions through a visual client, as it’s much easier to see and understand what’s happening.\nHowever, if you know exactly what you’re doing, executing simple actions via Git bash in the terminal can be more efficient at times.\nFor example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.\nTry experimenting with terminal commands from RStudio after you have a little experience with basic Git actions."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#checklist",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#checklist",
+    "title": "Course technology overview",
+    "section": "Checklist",
+    "text": "Checklist\nHave you completed all of the activity action items?\n\nInstall software: R, RStudio, Git, and a GitHub client\nCreate a GitHub account\nInstall R packages that will be used frequently\nCreate a local project in RStudio\nAccept the group sandbox assignment on GitHub Classroom\nClone the group sandbox repo"
+  },
+  {
+    "objectID": "materials/course-materials.html",
+    "href": "materials/course-materials.html",
+    "title": "Course materials",
+    "section": "",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments due by next class meeting:\n\ninstall course software and create github account;\nfill out intake form\nread Peng and Parker (2022);\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]",
+    "crumbs": [
+      "Course materials"
+    ]
+  },
+  {
+    "objectID": "materials/course-materials.html#introductory-module",
+    "href": "materials/course-materials.html#introductory-module",
+    "title": "Course materials",
+    "section": "",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments due by next class meeting:\n\ninstall course software and create github account;\nfill out intake form\nread Peng and Parker (2022);\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]",
+    "crumbs": [
+      "Course materials"
+    ]
+  },
+  {
+    "objectID": "about/outcomes.html",
+    "href": "about/outcomes.html",
+    "title": "Learning outcomes",
+    "section": "",
+    "text": "This course emphasizes collaborative, interactive, and hands-on learning. Instruction in PSTAT197A will support all students in:\n\nusing modern technology and version control to collaborate efficiently on programming for data science projects;\nrecognizing and articulating problem patterns based on data semantics and one or more research questions;\nidentifying and accessing resources to aid in learning independently about methodology and/or application domains pertinent to a problem of interest;\ncommunicating data analysis and/or research findings in a project team setting and to a small audience of peers.\n\nCourse staff are committed to creating an inclusive learning environment. Data science involves a combination of computing, statistics and probability, and domain expertise, as well as use of technology and narrative communication and storytelling, and no one person should expect to be an expert in all of these areas. Course staff recognize this fact that core competencies vary considerably, acknowledge that each student has particular strengths and weaknesses and interests, and make their best effort to avoid promoting one skill set over others in the practice of data science.",
+    "crumbs": [
+      "About",
+      "Learning outcomes"
+    ]
+  },
+  {
+    "objectID": "about/syllabus.html",
+    "href": "about/syllabus.html",
+    "title": "Course syllabus",
+    "section": "",
+    "text": "Concurrent course listing: PSTAT197A and CMPSC190DD are held concurrently; enrollment is by instructor consent and admitted students may enroll under either listing. The course content, expectations, assessments, and course policies are identical for students enrolled in either course.\nCatalog description: Introduction to research skills. Discussion of current research trends, writing literature reviews, etc. Students will be required to present materials reflecting their interests, which will be critically appraised for both content and presentation. Emphasis will be placed on aiding students to acquire a high-level of professionalism. Prerequisite: PSTAT126.",
+    "crumbs": [
+      "About",
+      "Course syllabus"
+    ]
+  },
+  {
+    "objectID": "about/syllabus.html#meetings",
+    "href": "about/syllabus.html#meetings",
+    "title": "Course syllabus",
+    "section": "Meetings",
+    "text": "Meetings\nClass meetings are held from 2pm – 3:15pm Tuesdays and Thursdays in Ellison 2617.\nSection meetings are held on Wednesdays:\n\n2pm – 2:50pm in Girvetz 2115 with Josh;\n3pm – 3:50pm in Girvetz 2116 with Erika;\n4pm – 4:50pm in North Hall 1109 with Megan.",
+    "crumbs": [
+      "About",
+      "Course syllabus"
+    ]
+  },
+  {
+    "objectID": "about/syllabus.html#staff",
+    "href": "about/syllabus.html#staff",
+    "title": "Course syllabus",
+    "section": "Staff",
+    "text": "Staff\nInstructor:\n\nDr. Coburn Lecturer and instructor for 2025-2026 capstone projects.\n\nTeaching assistants:\n\nErika McPhillips. MS/PhD student and capstone project mentor in 2021-2022.\nJoshua Bang. MS/PhD student and capstone project mentor in 2021-2022.\nMeghan Elcheikhali. PhD student and capstone project mentor in 2021-2022.",
+    "crumbs": [
+      "About",
+      "Course syllabus"
+    ]
+  },
+  {
+    "objectID": "about/syllabus.html#expectations-and-assessments",
+    "href": "about/syllabus.html#expectations-and-assessments",
+    "title": "Course syllabus",
+    "section": "Expectations and assessments",
+    "text": "Expectations and assessments\nMuch of the course is designed around group activity and discussion. Students are therefore expected to:\n\nprepare for class meetings in advance by completing any assigned reading or activity;\nattend and actively participate in class meetings and section meetings;\nprovide meaningful, timely, and concrete contributions to group activities.\n\nStudents having any difficulty in meeting these expectations should raise the issue(s) promptly with the instructor.\nQualitative feedback is emphasized over numerical scores. Students are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview.",
+    "crumbs": [
+      "About",
+      "Course syllabus"
+    ]
+  },
+  {
+    "objectID": "about/syllabus.html#policies",
+    "href": "about/syllabus.html#policies",
+    "title": "Course syllabus",
+    "section": "Policies",
+    "text": "Policies\nAttendance. Regular attendance is expected. Each student can miss two sessions without notice; further absences may impact course grades. Students are responsible for material discussed in their absence and should review posted session notes and consult a classmate.\nDeadlines. Students are expected to meet assignment deadlines in a timely manner. All deadlines have a 24-hour grace period. Late or amended work may not be accepted.\nEmail. Course staff will make their best effort to reply to email within 48 weekday hours. However, due to high volume, staff cannot guarantee that all messages will receive replies.\nIllness. Students who are ill are required to stay home. Students ill with COVID-19 must comply with university policy regarding reporting and quarantine. Accommodations will be made to ensure that students absent due to illness do not fall behind.\nAccommodations. Reasonable accommodations will be made for any student with a qualifying disability. Such requests should be made through the Disabled Students Program (DSP). More information, instructions on how to access accommodations, and information on related resources can be found on the DSP website. Note: In this class, there are no timed assessments.\nLetter grades. Letter grades are assigned based only on the assessments identified above and according to university guidelines, with the relative weighting of assessments determined at the discretion of the instructor. While grade calculations will not be disclosed, students are entitled to an explanation of the criteria used to determine their grades if desired. Grades will not be changed except in the case of clerical errors. If students feel their grade has been unfairly assigned, they are entitled to contest it following UCSB procedure for contesting grades.\nConduct. All course participants are expected to maintain respectful and honorable conduct consistent with UCSB ethical standards. Students uncomfortable with the behavior of another course participant for any reason should notify the instructor, course staff, or, if the complaint relates to course staff conduct, an administrative or departmental officer. Evidence of academic dishonesty will be reported to the Office of Student Conduct (OSC); evidence of problematic behavior will be addressed on a case-by-case basis in accord with university policies.",
+    "crumbs": [
+      "About",
+      "Course syllabus"
+    ]
+  },
+  {
+    "objectID": "about/schedule.html",
+    "href": "about/schedule.html",
+    "title": "Course schedule",
+    "section": "",
+    "text": "This schedule is tentative and may be adjusted at the discretion of the instructor. Check back for updates.\n\n\n\n\n\n\n\n\n\n\nWeek\nTheme\nTuesday meeting\nThursday meeting\nSection meeting\n\n\n\n\n0\nModule 0: Introductions\nNO CLASS\nCourse orientation\nNO LAB\n\n\n1\nModule 0: Introductions\n0.1 Lecture:\n\non research projects in(volving) data science\n\n0.2 Activity:\n\ncollaboration using GitHub\n\nSoftware and technology overview\n\n\n2\nModule 0: Introductions\n0.3 Lecture/discussion:\n\nintroducing class survey data\n\n0.4 Activity:\n\nexploratory and descriptive analysis\n\ntidyverse\n\n\n3\nModule 1: biomarkers\n1.1 Discussion/lecture:\n\nsharing results of survey data analysis;\nintroducing biomarker data\n\n1.2 Lecture:\n\non prediction\n\ntidymodels\n\n\n4\nModule 1: biomarkers\n1.3 Lecture:\n\non classification\n\n1.4 Lecture/discussion:\n\non variable selection;\nreview published analysis of biomarker data\n\nclassification\n\n\n5\nModule 2: web fraud\n2.1 Lecture/discussion:\n\nsharing analysis of soil temperature data;\nintroducing web fraud data\n\n2.2 Lecture:\n\non text as data\n\ntext processing\n\n\n6\nModule 2: web fraud\n2.3 Lecture:\n\non multiclass classification\n\n2.4 Activity:\n\nmeasuring classification accuracy\n\nkeras\n\n\n7\nModule 3: soil temperature\nNO CLASS (VETERANS DAY)\n3.1 Discussion/lecture:\n\ntime series analysis\nsharing results of biomarker analysis;\nintroducing soil temperature data\n\n3.2 Lecture:\n\non time\n\n\n\n\n8\nModule 3: soil temperature\n3.3 Lecture:\n\non space\n\n3.4 Discussion: results\nspatial analysis\n\n\n9\nModule 4: vignettes\n4.1 Activity:\n\nworkshopping vignettes\n\nNO CLASS (THANKSGIVING HOLIDAY)\nNO LAB\n\n\n10\nModule 4: vignettes\n4.2 Activity:\n\nteaching exchange\n\n4.3 Activity/discussion:\n\nteaching exchange;\nclosing\n\nNO LAB",
+    "crumbs": [
+      "About",
+      "Course schedule"
+    ]
+  }
+]

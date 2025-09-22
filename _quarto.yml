@@ -1,13 +1,31 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "pstat197a"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  title: "PSTAT 197A"
+  page-footer: "Site content..."
+  repo-url: "https://github.com/pstat197/pstat197a"
+  sidebar:
+    title: "Data Science Capstone Preparation"
+    style: "docked"
+    search: true
+    logo: "img/ucsbds_hex.png"
+    tools:
+      - icon: github
+        href: https://github.com/pstat197/pstat197a
+      - icon: slack
+        href: https://ucsbdscapstone25-26.slack.com
+    contents:
+      - index.qmd
+      - section: "About"
+        contents:
+          - about/syllabus.qmd
+          - about/outcomes.qmd
+          - about/schedule.qmd
+          - about/technology.qmd
+          - about/links.qmd
+      - materials/course-materials.qmd
 
 format:
   html:
