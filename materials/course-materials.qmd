@@ -71,9 +71,13 @@ bibliography: slides/refs.bib
 <!-- ### Week 4 -->
 
 <!-- -   ***Tuesday meeting:*** random forests cont'd; logistic regression \[[slides](slides/week4-logistic.qmd)\] -->
+
 <!-- -   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\] -->
+
 <!-- -   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\] -->
+
 <!-- -   ***Assignments:*** -->
+
 <!--     -   second group assignment due ***Friday, October 28, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/YmfzBeRn)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1rkPDeIrd6zhFB7wnVpbU6HYs1aM1RGz9ulU6ypaQrwU/edit?usp=sharing)\] -->
 
 <!-- ## Module 2: fraud claims -->
@@ -107,8 +111,11 @@ bibliography: slides/refs.bib
 <!-- -   ***Assignments:*** -->
 
 <!--     -   Midquarter assessments \[[form](https://forms.gle/v7xUk83EfxiFEKVS9)\] -->
+
 <!--     -   Request winter add code \[[form](https://forms.gle/S8j2MPcnunU6Kzek9)\] -->
+
 <!--     -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/FSAStof9zNCLBM578) -->
+
 <!--     -   third group assignment ***due Monday, November 14, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/jHAX1yAx)\] \[[group assignments](https://docs.google.com/spreadsheets/d/15hqIKKFG00LoFy1i0JBwSzZI3U66fKe9N3FDoH7pq2o/edit?usp=sharing)\] -->
 
 <!-- -   Optional further reading: -->
@@ -132,6 +139,7 @@ bibliography: slides/refs.bib
 <!-- -   Optional further reading (available through UCSB library) -->
 
 <!--     -   Sections 1.1, 1.2, and 2.3 in @shumway2017time -->
+
 <!--     -   @perperoglou2019review -->
 
 <!-- ### Week 8 -->

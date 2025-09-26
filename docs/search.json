@@ -122,7 +122,7 @@
     "href": "materials/activities/github-basics.html#merge-conflicts",
     "title": "GitHub basics",
     "section": "Merge conflicts",
-    "text": "Merge conflicts\nGit is pretty clever at merging changes when you pull, push, or merge branches via pull request. However, occasionally commits will conflict in such a way that can’t be resolved automatically. These are known as merge conflicts.\nMerge conflicts happen when:\n\ntwo commits differ on the same line of the same file;\nfiles are moved or deleted in conflicting ways.\n\nHere you’ll create an artificial merge conflict to see what this looks like and how to fix it.\n\n\n\n\n\n\nImportantAction (group)\n\n\n\nCreate a merge conflict\nEnsure the workstation at your table is up to date with the remote repository. Then:\n\nHave someone at your table open the README file and add the group members’ names in a list on one line, e.g.,\ngroup: trevor ruiz, yan lashchev\nCommit and push changes\nThen on the main screen, without pulling new changes, create a commit with the names shown differently somehow, such as last, first, or initials, or spanning multiple lines with one name per line.\nAttempt to push the commit. Your client will detect ‘upstream’ changes on the remote repository and prompt you to pull changes.\nAttempt to pull the changes. The client will then report a merge conflict and prompt you to resolve the conflict and commit changes. GitHub Desktop in particular will prompt you to open RStudio to resolve the conflict. Go ahead and follow the prompt.\n\nResolve a merge conflict\nYou will see a version of the file with the conflict that shows &lt;&lt;&lt;&lt;HEAD … &gt;&gt;&gt;&gt; followed by a long alphanumeric string. Within the angle brackets the two conflicting versions of the file will be shown, separated by ===== .\n\nAgree with your table on one version of the README file (or another representation of your names).\nCommit and push the change.\n\n\n\nWhen detected, merge conflicts must be resolved with a commit that takes precedence over the conflicting commits. You can read more about resolving merge conflicts here."
+    "text": "Merge conflicts\nGit is pretty clever at merging changes when you pull, push, or merge branches via pull request. However, occasionally commits will conflict in such a way that can’t be resolved automatically. These are known as merge conflicts.\nMerge conflicts happen when:\n\ntwo commits differ on the same line of the same file;\nfiles are moved or deleted in conflicting ways.\n\nHere you’ll create an artificial merge conflict to see what this looks like and how to fix it.\n\n\n\n\n\n\nImportantAction (group)\n\n\n\nCreate a merge conflict\nEnsure the workstation at your table is up to date with the remote repository. Then:\n\nHave someone at your table open the README file and add the group members’ names in a list on one line, e.g.,\ngroup: person a, person b, person c\nCommit and push changes\nThen on the main screen, without pulling new changes, create a commit with the names shown differently somehow, such as last, first, or initials, or spanning multiple lines with one name per line.\nAttempt to push the commit. Your client will detect ‘upstream’ changes on the remote repository and prompt you to pull changes.\nAttempt to pull the changes. The client will then report a merge conflict and prompt you to resolve the conflict and commit changes. GitHub Desktop in particular will prompt you to open RStudio to resolve the conflict. Go ahead and follow the prompt.\n\nResolve a merge conflict\nYou will see a version of the file with the conflict that shows &lt;&lt;&lt;&lt;HEAD … &gt;&gt;&gt;&gt; followed by a long alphanumeric string. Within the angle brackets the two conflicting versions of the file will be shown, separated by ===== .\n\nAgree with your table on one version of the README file (or another representation of your names).\nCommit and push the change.\n\n\n\nWhen detected, merge conflicts must be resolved with a commit that takes precedence over the conflicting commits. You can read more about resolving merge conflicts here."
   },
   {
     "objectID": "materials/activities/github-basics.html#checklist",
@@ -130,6 +130,279 @@
     "title": "GitHub basics",
     "section": "Checklist",
     "text": "Checklist\n\nOn github.com, your group-sandbox repository has a directory called class-activity containing a copy of this activity and one markdown file for each group member with two fun facts about them.\nThe repository has only one open branch.\nThe README file lists each group member’s name.\nEach group member has an up-to-date local copy of the repository."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#announcementsreminders",
+    "href": "materials/slides/week1-perspectives.html#announcementsreminders",
+    "title": "On data science",
+    "section": "Announcements/reminders",
+    "text": "Announcements/reminders\n\nJoin Slack workspace, monitor channel #25f-pstat197a for announcements.\nSubmit intake form and reading response.\nFill out attendance form.\nInstall course software and bring your laptop to section meetings. Remember your table number from today."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#google-trends-data-science",
+    "href": "materials/slides/week1-perspectives.html#google-trends-data-science",
+    "title": "On data science",
+    "section": "Google trends: data science",
+    "text": "Google trends: data science\n\n\nData science emerged as a term of art in the last decade\nInterest exploded in the last five years"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#origins-data-analysis",
+    "href": "materials/slides/week1-perspectives.html#origins-data-analysis",
+    "title": "On data science",
+    "section": "Origins: ‘data analysis’",
+    "text": "Origins: ‘data analysis’\nTukey advocated for ‘data analysis’ as a broader field than statistics (Tukey 1962), including:\n\nstatistical theory and methodology;\nvisualization and data display techniques;\ncomputation and scalability;\nbreadth of application.\n\n\nLook famililar? Tukey’s ‘data analysis’ is proto-modern data science."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#early-data-analysis-concepts",
+    "href": "materials/slides/week1-perspectives.html#early-data-analysis-concepts",
+    "title": "On data science",
+    "section": "Early data analysis concepts",
+    "text": "Early data analysis concepts\nIn the 1960’s and 1970’s, these concepts meant very different things.\n\nvisualization meant drawing\ncomputation meant data re-expression by hand\n\n\nBut the ideas were still somewhat radical. At the time most relied on highly reductive numerical results to interpret data:\n\nANOVA tables\nregression tables\np-values"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#example-boxplots",
+    "href": "materials/slides/week1-perspectives.html#example-boxplots",
+    "title": "On data science",
+    "section": "Example: boxplots",
+    "text": "Example: boxplots\n\nFigure from (Tukey et al. 1977)"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#early-data-analysis-concepts-1",
+    "href": "materials/slides/week1-perspectives.html#early-data-analysis-concepts-1",
+    "title": "On data science",
+    "section": "Early data analysis concepts",
+    "text": "Early data analysis concepts\nThe new techniques allowed for iterative investigation:\n\nformulate a question\nexamine data graphics and summaries\nadjust computations and graphics to hone in on content of interest\nrefine the question"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#birth-to-death-ratio-by-state",
+    "href": "materials/slides/week1-perspectives.html#birth-to-death-ratio-by-state",
+    "title": "On data science",
+    "section": "Birth-to-death ratio by state",
+    "text": "Birth-to-death ratio by state\nSuppose we want to explain variation in birth-to-death ratios in the U.S. 1\n\nInitial question: is population density an associated factor?\n\nThis example follows (Tukey et al. 1977)"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#first-iteration",
+    "href": "materials/slides/week1-perspectives.html#first-iteration",
+    "title": "On data science",
+    "section": "First iteration",
+    "text": "First iteration\n\nA first attempt"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#first-iteration-1",
+    "href": "materials/slides/week1-perspectives.html#first-iteration-1",
+    "title": "On data science",
+    "section": "First iteration",
+    "text": "First iteration\n\nWhat if we adjust the computation?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#second-iteration",
+    "href": "materials/slides/week1-perspectives.html#second-iteration",
+    "title": "On data science",
+    "section": "Second iteration",
+    "text": "Second iteration\n\nWhat about median age instead?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#second-iteration-1",
+    "href": "materials/slides/week1-perspectives.html#second-iteration-1",
+    "title": "On data science",
+    "section": "Second iteration",
+    "text": "Second iteration\n\nAdjust computations for easy linear approximation"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#third-iteration",
+    "href": "materials/slides/week1-perspectives.html#third-iteration",
+    "title": "On data science",
+    "section": "Third iteration",
+    "text": "Third iteration\n\nAre there outliers?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#fourth-iteration",
+    "href": "materials/slides/week1-perspectives.html#fourth-iteration",
+    "title": "On data science",
+    "section": "Fourth iteration",
+    "text": "Fourth iteration\n\nAre outliers spatially correlated?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#a-bit-of-history",
+    "href": "materials/slides/week1-perspectives.html#a-bit-of-history",
+    "title": "On data science",
+    "section": "A bit of history",
+    "text": "A bit of history\nIt’s worth noting that in the first half of the 20th century, much of statistics focused on methodology and theory for the analysis of small iid samples, and in particular:\n\ninference on means and inference on tables;\nanalysis of variance;\ntests of distribution.\n\n\nThe inferential framework brought to bear on these ‘simpler’ problems largely carried over when the field began to specialize."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#contrasting-approaches",
+    "href": "materials/slides/week1-perspectives.html#contrasting-approaches",
+    "title": "On data science",
+    "section": "Contrasting approaches",
+    "text": "Contrasting approaches\nFrom 1960-2010, adopters of the ‘data analysis as a field’ view were largely industry practitioners and applied statisticians who advocated for training and practice that included empirical methods and computation in addition to statistical inference (Donoho 2017).\n\nTheir ideas evolved into an alternative approach to working with data:\n\ndata-driven rather than theory-driven;\niterative rather than conclusive."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#confirmatory-approach",
+    "href": "materials/slides/week1-perspectives.html#confirmatory-approach",
+    "title": "On data science",
+    "section": "Confirmatory approach",
+    "text": "Confirmatory approach\nThe “confirmatory” approach of the classical inferential framework.\n\n\n\n\n\n\n\nconfirm\n\n\ncluster_1\n\ndata generation\n\n\ncluster_2\n\ndata analysis\n\n\ncluster_3\n\ndecision\n\n\n\nsci\n\ndomain \nknowledge\n\n\n\nhyp\n\nhypotheses\n\n\n\nsci-&gt;hyp\n\n\n\n\n\nexp\n\ndesigned \nexperiment\n\n\n\nhyp-&gt;exp\n\n\n\n\n\nmdl\n\nstatistical \nmodel\n\n\n\nexp-&gt;mdl\n\n\n\n\n\ndat\n\ndata\n\n\n\nexp-&gt;dat\n\n\n\n\n\nyay\n\nsupporting \nevidence\n\n\n\nmdl-&gt;yay\n\n\n\n\n\nnay\n\nopposing \nevidence\n\n\n\nmdl-&gt;nay\n\n\n\n\n\ndat-&gt;yay\n\n\n\n\n\ndat-&gt;nay\n\n\n\n\n\n\n\n\n\n\n\noutput is a decision\nstatistical model determined by experimental design\nanalysis based on statistical theory"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#exploratory-approach",
+    "href": "materials/slides/week1-perspectives.html#exploratory-approach",
+    "title": "On data science",
+    "section": "Exploratory approach",
+    "text": "Exploratory approach\nThe “exploratory” approach of iterative modern data analysis.\n\n\n\n\n\n\n\nexplore\n\n\ncluster_1\n\ndata analysis\n\n\ncluster_2\n\nfindings\n\n\n\nsci\n\ndomain \nknowledge\n\n\n\nq\n\nquestion \nformulation\n\n\n\nsci-&gt;q\n\n\n\n\n\ndat\n\ndata\n\n\n\nq-&gt;dat\n\n\n\n\n\nmdl\n\nstatistical \nmodel\n\n\n\ndat-&gt;mdl\n\n\n\n\n\nmdl-&gt;q\n\n\n\n\n\nf1\n\nfinding 1\n\n\n\nmdl-&gt;f1\n\n\n\n\n\nf2\n\nfinding 2\n\n\n\nmdl-&gt;f2\n\n\n\n\n\ndots\n\n⋮\n\n\n\n\n\n\n\n\n\noutputs are findings\nstatistical model determined by data\nanalysis techniques include empirical methods"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#drivers-of-change",
+    "href": "materials/slides/week1-perspectives.html#drivers-of-change",
+    "title": "On data science",
+    "section": "Drivers of change",
+    "text": "Drivers of change\nIn the 2000s and especially after 2010, the iterative approach enjoys broader applicability than it used to:\n\ndue to automated and/or scalable data collection\n\nobservational data is widely available across domains\nand includes large numbers of variables\n\nhighly specialized data problems evade methodology with theoretical support\nmore accessible to analysts without advanced statistical training"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#machine-learning",
+    "href": "materials/slides/week1-perspectives.html#machine-learning",
+    "title": "On data science",
+    "section": "Machine learning",
+    "text": "Machine learning\nMachine learning was largely advanced by computer scientists through 2010 and later (Emmert-Streib et al. 2020), most notably:\n\nneural networks and deep learning\noptimization\nalgorithmic analysis\n\n\nThis was a major driver in advancing modern predictive modeling, and engaging with these tools required going beyond statistics."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#a-theory-about-data-science",
+    "href": "materials/slides/week1-perspectives.html#a-theory-about-data-science",
+    "title": "On data science",
+    "section": "A theory about data science",
+    "text": "A theory about data science\n\nAround mid-century, it was proposed that specialists should be trained in computational as well as statistical methods\nOver time practitioners developed iterative processes for data-driven problem solving that was more flexible than the classical inferential framework\nComputer scientists advanced the field of machine learning substantially\nIterative problem solving together with applied machine learning was well-suited to meet the demands of modern data, but the area was not codified in an academic discipline"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#what-is-research",
+    "href": "materials/slides/week1-perspectives.html#what-is-research",
+    "title": "On data science",
+    "section": "What is research?",
+    "text": "What is research?\nResearch is systematic investigation undertaken in order to establish or discover facts.\n\nWhat are facts in data science?\n\nmethod M outperforms method M’ at task T\nwe analyzed data D and reached the conclusion that…"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#the-research-landscape",
+    "href": "materials/slides/week1-perspectives.html#the-research-landscape",
+    "title": "On data science",
+    "section": "The research landscape",
+    "text": "The research landscape\nFormal communities – i.e., journals, departments, conferences – have not coalesced around data science research to date.\n\nRelevant research largely occurs in statistics, computer science, and application domains, and can be divided broadly into:\n\nmethodology – creating new techniques to analyze data\napplications – applying existing methods to generate new findings"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#methodological-research",
+    "href": "materials/slides/week1-perspectives.html#methodological-research",
+    "title": "On data science",
+    "section": "Methodological research",
+    "text": "Methodological research\nMethodological research might involve:\n\ndesigning a faster algorithm for solving a particular problem\nproposing a new technique for analyzing a particular type of data\ngeneralizing a technique to a broader range of problems"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#applied-research",
+    "href": "materials/slides/week1-perspectives.html#applied-research",
+    "title": "On data science",
+    "section": "Applied research",
+    "text": "Applied research\nApplied research might involve:\n\nanalyzing a specific dataset or producing a novel analysis of existing data\ncreating ad-hoc methods for a domain-specific problem\nimporting methodology from another area to bear on a domain-specific problem"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#data-science-capstones",
+    "href": "materials/slides/week1-perspectives.html#data-science-capstones",
+    "title": "On data science",
+    "section": "Data science capstones",
+    "text": "Data science capstones\nMost of the time, our data science capstones fall pretty squarely in the applied domain:\n\nsponsor provides data and high-level goals\nstudent team works on producing an analysis or analyses\nmentor advises on methodology"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#relevant-skills",
+    "href": "materials/slides/week1-perspectives.html#relevant-skills",
+    "title": "On data science",
+    "section": "Relevant skills",
+    "text": "Relevant skills\nThere are a few avenues to prepare for this sort of work.\n\nWe’ll focus on:\n\nrecognizing problem patterns\ndeveloping a functional view of methodology\ncollaborating efficiently\nindependent learning strategies\nengaging with literature constructively\n\n\n\nIt won’t provide you with exhaustive methodological preparation, but should support you in learning ‘on the job’."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#reading-responses",
+    "href": "materials/slides/week1-perspectives.html#reading-responses",
+    "title": "On data science",
+    "section": "Reading responses",
+    "text": "Reading responses\nQuestions on the perspectives paper (Peng and Parker 2022) to review:\n\nWhat is meant by a ‘systems approach’ to data science?\nWhat is meant by ‘design thinking’ in data science?\n(Why) Are these useful concepts?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#systems-approach",
+    "href": "materials/slides/week1-perspectives.html#systems-approach",
+    "title": "On data science",
+    "section": "Systems approach",
+    "text": "Systems approach\n\n\n\n\nSeveral systems affect the relationship between expected and actual results. Where would you locate them on the figure?\n\nData analytic\nSoftware\nScientific"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#example-systems-for-data-cleaning",
+    "href": "materials/slides/week1-perspectives.html#example-systems-for-data-cleaning",
+    "title": "On data science",
+    "section": "Example systems for data cleaning",
+    "text": "Example systems for data cleaning\n\n\nHow might this diagram help an analyst?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#design-thinking",
+    "href": "materials/slides/week1-perspectives.html#design-thinking",
+    "title": "On data science",
+    "section": "Design thinking",
+    "text": "Design thinking\nThe design thinking framework might be summed up:\n\ndata scientists trade in data analyses\na data analysis is a designed product\nthinking about design principles can help make a better product\n\n\nMany of you focused on how design principles are a response to project constraints. Are there other ways a design perspective might be useful?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#scenario-1",
+    "href": "materials/slides/week1-perspectives.html#scenario-1",
+    "title": "On data science",
+    "section": "Scenario 1",
+    "text": "Scenario 1\nYou’re working at a news organization and developing a recommender system for targeted article previews to deploy on the organization’s website. It will show users article previews based on their behavior. Assume you don’t have any significant resource constraints, and can access users’ profiles in full and log interactions in near-real-time.\n\nGoal: show previews most likely to attract interest.\n\n\nConsiderations:\n\nwhat material should be shown in the preview? headlines? images? text?\nwhat behavior can/should be leveraged for the recommender system?\nwhat are a few relevant design aspects of how the system should behave?\nare there ethical concerns?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#scenario-2",
+    "href": "materials/slides/week1-perspectives.html#scenario-2",
+    "title": "On data science",
+    "section": "Scenario 2",
+    "text": "Scenario 2\nYou’re working on a research team studying ecological impacts of land use. The team has access to longitudinal species surveys at locations of interest across the U.S., quarterly county-level land allocation statistics, satellite images, and state budget information for sustainability, restoration, and conservation initiatives.\n\nGoal: identify intervention opportunities that are most likely to positively impact ecological diversity.\n\n\nConsiderations:\n\nwhat data would you use and how would you combine data sources?\nare there external data that might be useful?\nwhat analysis outputs would be most important for identifying intervention opportunities?\ncan you think of other design features that might be useful for the data analysis?"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#a-few-design-principles",
+    "href": "materials/slides/week1-perspectives.html#a-few-design-principles",
+    "title": "On data science",
+    "section": "A few design principles",
+    "text": "A few design principles\nLet’s look at some design principles from (McGowan, Peng, and Hicks 2021)."
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#design-principles-matchedness",
+    "href": "materials/slides/week1-perspectives.html#design-principles-matchedness",
+    "title": "On data science",
+    "section": "Design principles: matchedness",
+    "text": "Design principles: matchedness"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#design-principles-exhuastiveness",
+    "href": "materials/slides/week1-perspectives.html#design-principles-exhuastiveness",
+    "title": "On data science",
+    "section": "Design principles: exhuastiveness",
+    "text": "Design principles: exhuastiveness"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#design-principles-transparency",
+    "href": "materials/slides/week1-perspectives.html#design-principles-transparency",
+    "title": "On data science",
+    "section": "Design principles: transparency",
+    "text": "Design principles: transparency"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#design-principles-reproducibility",
+    "href": "materials/slides/week1-perspectives.html#design-principles-reproducibility",
+    "title": "On data science",
+    "section": "Design principles: reproducibility",
+    "text": "Design principles: reproducibility"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#next-time",
+    "href": "materials/slides/week1-perspectives.html#next-time",
+    "title": "On data science",
+    "section": "Next time",
+    "text": "Next time\nWe’ll do a github icebreaker activity.\n\nComplete lab activity from Wednesday section meeting\nBring laptops"
+  },
+  {
+    "objectID": "materials/slides/week1-perspectives.html#references",
+    "href": "materials/slides/week1-perspectives.html#references",
+    "title": "On data science",
+    "section": "References",
+    "text": "References\n\n\n\n\nDonoho, David. 2017. “50 Years of Data Science.” Journal of Computational and Graphical Statistics 26 (4): 745–66.\n\n\nEmmert-Streib, Frank, Zhen Yang, Han Feng, Shailesh Tripathi, and Matthias Dehmer. 2020. “An Introductory Review of Deep Learning for Prediction Models with Big Data.” Frontiers in Artificial Intelligence 3: 4.\n\n\nMcGowan, Lucy D’Agostino, Roger D Peng, and Stephanie C Hicks. 2021. “Design Principles for Data Analysis.” arXiv Preprint arXiv:2103.05689.\n\n\nPeng, Roger D, and Hilary S Parker. 2022. “Perspective on Data Science.” Annual Review of Statistics and Its Application 9: 1–20.\n\n\nTukey, John W. 1962. “The Future of Data Analysis.” The Annals of Mathematical Statistics 33 (1): 1–67.\n\n\nTukey, John W et al. 1977. Exploratory Data Analysis. Vol. 2. Reading, MA."
   },
   {
     "objectID": "materials/course-materials.html",
@@ -185,6 +458,48 @@
     "title": "Course technology overview",
     "section": "Checklist",
     "text": "Checklist\nHave you completed all of the activity action items?\n\nInstall software: R, RStudio, Git, and a GitHub client\nCreate a GitHub account\nInstall R packages that will be used frequently\nCreate a local project in RStudio\nAccept the group sandbox assignment on GitHub Classroom\nClone the group sandbox repo"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#announcementsreminders",
+    "href": "materials/slides/week1-github.html#announcementsreminders",
+    "title": "Basic GitHub actions",
+    "section": "Announcements/reminders",
+    "text": "Announcements/reminders\n\nToday, sit at your table from last time.\nFill out attendance form.\nAssignment for next class:\n\nread MDSR 9.1 – 9.2\nprepare a reading response"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#objective-for-today",
+    "href": "materials/slides/week1-github.html#objective-for-today",
+    "title": "Basic GitHub actions",
+    "section": "Objective for today",
+    "text": "Objective for today\nLearn how to interact with GitHub repositories:\n\nretrieve and submit file changes;\nexamine repository updates;\nuse branches for parallel workflow;\nresolve conflicts."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#basic-git-actions",
+    "href": "materials/slides/week1-github.html#basic-git-actions",
+    "title": "Basic GitHub actions",
+    "section": "Basic Git actions",
+    "text": "Basic Git actions\n\nCommunication actions for moving file changes between locations"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#branching-workflow",
+    "href": "materials/slides/week1-github.html#branching-workflow",
+    "title": "Basic GitHub actions",
+    "section": "Branching workflow",
+    "text": "Branching workflow\n\nTypical use of repository branches for development of new features"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#activity-overview",
+    "href": "materials/slides/week1-github.html#activity-overview",
+    "title": "Basic GitHub actions",
+    "section": "Activity overview",
+    "text": "Activity overview\n\nMake individual changes to files and create ‘commits’\nCreate repository branches to enable you to work more efficiently in parallel.\nMerge branches with the main branch via pull request.\nCreate and resolve a merge conflict."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#setup",
+    "href": "materials/slides/week1-github.html#setup",
+    "title": "Basic GitHub actions",
+    "section": "Setup",
+    "text": "Setup\n\nhave everyone open their GitHub client, the sandbox project in RStudio, and the group sandbox repository in the browser on github.com\nchoose one person to operate the table workstation; have them do the same and log in to github using their credentials\non the workstation, create a directory for the class documents/22f-pstat197a and clone the group sandbox repo into this directory"
   },
   {
     "objectID": "materials/slides/week0-intro.html#before-we-begin",

@@ -238,7 +238,7 @@ Ensure the workstation at your table is up to date with the remote repository. T
 
 1.  Have someone at your table open the README file and add the group members' names in a list on one line, *e.g.*,
 
-    group: trevor ruiz, yan lashchev
+    group: person a, person b, person c
 
 2.  Commit and push changes
 
