@@ -26,7 +26,7 @@ execute:
 
 -   Submit [intake form](https://forms.gle/ZedC6ZMHi5KhsDNH7) and [reading response](https://forms.gle/Vcj99WmwsxUbWLeu8).
 
-- Fill out [attendance form](https://forms.gle/yRWgVEkZH38KJhPt9).
+-   Fill out [attendance form](https://forms.gle/yRWgVEkZH38KJhPt9).
 
 -   Install course software and bring your laptop to section meetings. Remember your table number from today.
 
@@ -178,7 +178,8 @@ digraph confirm {
   node [
       shape = rectangle,
       fontsize = "20pt",
-      fontname = "sans-serif"
+      fontname = "sans-serif",
+      style="rounded"
       ]
 
   sci [
