@@ -490,11 +490,12 @@ Suppose we want to summarize the prior coursework in the class.
 
 ```{r}
 # summary of classes taken
+
 classes <- background %>%
-  select(11:29) %>%
-  mutate_all(~factor(.x, levels = c('no', 'yes'))) %>%
-  mutate_all(~as.numeric(.x) - 1) %>%
-  summarize_all(mean) %>%
+  select(11:28) %>%
+  mutate(across(everything(), ~ ifelse(.x == 1, "yes", "no"))) %>%
+  mutate(across(everything(), ~ factor(.x, levels = c("no", "yes")))) %>%
+  summarize(across(everything(), ~ mean(as.numeric(.x) - 1, na.rm = TRUE))) %>%
   gather(class, proportion)
 
 classes

@@ -951,65 +951,64 @@ $short
 <p>Suppose we want to summarize the prior coursework in the class.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary of classes taken</span></span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>classes <span class="ot">&lt;-</span> background <span class="sc">%&gt;%</span></span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">29</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">factor</span>(.x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">'no'</span>, <span class="st">'yes'</span>))) <span class="sc">%&gt;%</span></span>
-<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span><span class="fu">as.numeric</span>(.x) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize_all</span>(mean) <span class="sc">%&gt;%</span></span>
-<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(class, proportion)</span>
-<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>classes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>classes <span class="ot">&lt;-</span> background <span class="sc">%&gt;%</span></span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="dv">11</span><span class="sc">:</span><span class="dv">28</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">ifelse</span>(.x <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"yes"</span>, <span class="st">"no"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">factor</span>(.x, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"no"</span>, <span class="st">"yes"</span>)))) <span class="sc">%&gt;%</span></span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">mean</span>(<span class="fu">as.numeric</span>(.x) <span class="sc">-</span> <span class="dv">1</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(class, proportion)</span>
+<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a>classes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 19 × 2
+<pre><code># A tibble: 18 × 2
    class    proportion
    &lt;chr&gt;         &lt;dbl&gt;
- 1 PSTAT131         NA
- 2 PSTAT160         NA
- 3 PSTAT174         NA
- 4 CS9              NA
- 5 CS16             NA
- 6 LING104          NA
- 7 LING110          NA
- 8 LING111          NA
- 9 CS130            NA
-10 CS165            NA
-11 ECON145          NA
-12 PSTAT127         NA
-13 PSTAT134         NA
-14 CS5              NA
-15 ECE180           NA
-16 LING105          NA
-17 PSTAT175         NA
-18 CS174            NA
-19 rsrch            NA</code></pre>
+ 1 PSTAT131     0.426 
+ 2 PSTAT160     0.611 
+ 3 PSTAT174     0.333 
+ 4 CS9          0.741 
+ 5 CS16         0.426 
+ 6 LING104      0.0370
+ 7 LING110      0.0370
+ 8 LING111      0.0370
+ 9 CS130        0.0926
+10 CS165        0.0741
+11 ECON145      0.0370
+12 PSTAT127     0.0370
+13 PSTAT134     0.111 
+14 CS5          0.0370
+15 ECE180       0.0185
+16 LING105      0.0185
+17 PSTAT175     0.0370
+18 CS174        0.0185</code></pre>
 </div>
 </div>
 <p>We could report the results in a table, in which case perhaps arranging in descending order may be helpful:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>classes <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(proportion))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 19 × 2
+<pre><code># A tibble: 18 × 2
    class    proportion
    &lt;chr&gt;         &lt;dbl&gt;
- 1 PSTAT131         NA
- 2 PSTAT160         NA
- 3 PSTAT174         NA
- 4 CS9              NA
- 5 CS16             NA
- 6 LING104          NA
- 7 LING110          NA
- 8 LING111          NA
- 9 CS130            NA
-10 CS165            NA
-11 ECON145          NA
-12 PSTAT127         NA
-13 PSTAT134         NA
-14 CS5              NA
-15 ECE180           NA
-16 LING105          NA
-17 PSTAT175         NA
-18 CS174            NA
-19 rsrch            NA</code></pre>
+ 1 CS9          0.741 
+ 2 PSTAT160     0.611 
+ 3 PSTAT131     0.426 
+ 4 CS16         0.426 
+ 5 PSTAT174     0.333 
+ 6 PSTAT134     0.111 
+ 7 CS130        0.0926
+ 8 CS165        0.0741
+ 9 LING104      0.0370
+10 LING110      0.0370
+11 LING111      0.0370
+12 ECON145      0.0370
+13 PSTAT127     0.0370
+14 PSTAT175     0.0370
+15 CS5          0.0370
+16 CS174        0.0185
+17 ECE180       0.0185
+18 LING105      0.0185</code></pre>
 </div>
 </div>
 <p>Let’s say we’d rather plot this data. We’ll put the course number on one axis and the proportion of students who took it on the other.</p>

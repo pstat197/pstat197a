@@ -98,13 +98,7 @@ The following questions can help make an assessment of the scope of inference:
 
 -   survey distributed to all students offered enrollment in PSTAT197A fall 2022
 
--   $n = 65$ responses
-
-    -   includes a few students who did not enroll
-
-    -   does not include several students who did not enroll
-
-    -   does not include one student who enrolled late
+-   $n = 60$ responses
 
 -   no random selection
 
