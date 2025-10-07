@@ -779,7 +779,7 @@
     "href": "materials/slides/week2-classdata.html#class-survey-data",
     "title": "Sampling concepts and descriptive analysis",
     "section": "Class survey data",
-    "text": "Class survey data\n\nsurvey distributed to all students offered enrollment in PSTAT197A fall 2022\n\\(n = 60\\) responses\nno random selection"
+    "text": "Class survey data\n\nsurvey distributed to all students offered enrollment in PSTAT197A fall 2025\n\\(n = 60\\) responses\nno random selection"
   },
   {
     "objectID": "materials/slides/week2-classdata.html#can-the-data-support-inference",
@@ -884,7 +884,7 @@
     "href": "materials/slides/week2-classdata.html#clustering",
     "title": "Sampling concepts and descriptive analysis",
     "section": "Clustering",
-    "text": "Clustering\nCan students be grouped based on combinations of preferences and comfort levels?\n\nCentersVisualizationMethodInterpretation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nprog.prof\nmath.prof\nstat.prof\nprog.comf\nmath.comf\nstat.comf\nsize\ncluster\n\n\n\n\n2.357\n2.643\n3.000\n3.643\n3.500\n3.929\n14\n1\n\n\n2.583\n2.708\n2.875\n4.250\n4.708\n4.667\n24\n2\n\n\n2.000\n1.812\n1.812\n3.500\n3.562\n3.188\n16\n3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClustering method, “k means”, groups data by nearest Euclidean distance to each of \\(k\\) centers. \\(k\\) is user-specified; the method finds the centers that minimize within-cluster variance.\n\n\nBased on the centers:\n\nCluster 1: advanced proficiency, very comfortable\nCluster 2: intermediate with less mathematical preparation\nCluster 3: intermediate with less programming preparation"
+    "text": "Clustering\nCan students be grouped based on combinations of preferences and comfort levels?\n\nCentersVisualizationMethodInterpretation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nprog.prof\nmath.prof\nstat.prof\nprog.comf\nmath.comf\nstat.comf\nsize\ncluster\n\n\n\n\n2.357\n2.643\n3.000\n3.643\n3.500\n3.929\n14\n1\n\n\n2.583\n2.708\n2.875\n4.250\n4.708\n4.667\n24\n2\n\n\n2.000\n1.812\n1.812\n3.500\n3.562\n3.188\n16\n3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClustering method, “k means”, groups data by nearest Euclidean distance to each of \\(k\\) centers. \\(k\\) is user-specified; the method finds the centers that minimize within-cluster variance.\n\n\nBased on the centers:\n\nCluster 1: advanced proficiency, very comfortable\nCluster 2: intermediate, strong math/stat background\nCluster 3: intermediate, weaker programming comfort"
   },
   {
     "objectID": "materials/slides/week2-classdata.html#assignment",

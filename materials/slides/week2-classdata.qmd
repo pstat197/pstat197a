@@ -96,7 +96,7 @@ The following questions can help make an assessment of the scope of inference:
 
 ## Class survey data
 
--   survey distributed to all students offered enrollment in PSTAT197A fall 2022
+-   survey distributed to all students offered enrollment in PSTAT197A fall 2025
 
 -   $n = 60$ responses
 
@@ -472,9 +472,9 @@ Based on the centers:
 
 -   Cluster 1: advanced proficiency, very comfortable
 
--   Cluster 2: intermediate with less mathematical preparation
+-   Cluster 2: intermediate, strong math/stat background
 
--   Cluster 3: intermediate with less programming preparation
+-   Cluster 3: intermediate, weaker programming comfort
 :::
 
 ## Assignment
