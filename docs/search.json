@@ -132,6 +132,104 @@
     "text": "Checklist\n\nOn github.com, your group-sandbox repository has a directory called class-activity containing a copy of this activity and one markdown file for each group member with two fun facts about them.\nThe repository has only one open branch.\nThe README file lists each group member’s name.\nEach group member has an up-to-date local copy of the repository."
   },
   {
+    "objectID": "materials/slides/week0-intro.html#before-we-begin",
+    "href": "materials/slides/week0-intro.html#before-we-begin",
+    "title": "Course orientation",
+    "section": "Before we begin…",
+    "text": "Before we begin…\n\nPick up a name tag and write your preferred name on it (neatly).\nChoose a table at which to sit for the quarter and note the number.\nSign in using the attendance reporting form found here:\nhttps://pstat197.github.io/pstat197a/about/links.html"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#welcome",
+    "href": "materials/slides/week0-intro.html#welcome",
+    "title": "Course orientation",
+    "section": "Welcome",
+    "text": "Welcome\nPSTAT197A/CMPSC190DD is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#capstone-projects",
+    "href": "materials/slides/week0-intro.html#capstone-projects",
+    "title": "Course orientation",
+    "section": "Capstone projects",
+    "text": "Capstone projects\nMost students are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "title": "Course orientation",
+    "section": "Continuing in capstones",
+    "text": "Continuing in capstones\nContinuation in PSTAT197B-C/CMPSC190DE-DF during winter and spring:\n\nstudents admitted to this course in spring have a seat;\nstudents admitted from the waitlist are on the waitlist."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#outcomes",
+    "href": "materials/slides/week0-intro.html#outcomes",
+    "title": "Course orientation",
+    "section": "Outcomes",
+    "text": "Outcomes\nI hope to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#classroom-environment",
+    "href": "materials/slides/week0-intro.html#classroom-environment",
+    "title": "Course orientation",
+    "section": "Classroom environment",
+    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#resources",
+    "href": "materials/slides/week0-intro.html#resources",
+    "title": "Course orientation",
+    "section": "Resources",
+    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#modules",
+    "href": "materials/slides/week0-intro.html#modules",
+    "title": "Course orientation",
+    "section": "Modules",
+    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#module-content",
+    "href": "materials/slides/week0-intro.html#module-content",
+    "title": "Course orientation",
+    "section": "Module content",
+    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#group-assignments",
+    "href": "materials/slides/week0-intro.html#group-assignments",
+    "title": "Course orientation",
+    "section": "Group assignments",
+    "text": "Group assignments\nYour working group for this quarter will consist of the students at your table.\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#vignettes",
+    "href": "materials/slides/week0-intro.html#vignettes",
+    "title": "Course orientation",
+    "section": "Vignettes",
+    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "title": "Course orientation",
+    "section": "Expectations and assessments",
+    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#next-time",
+    "href": "materials/slides/week0-intro.html#next-time",
+    "title": "Course orientation",
+    "section": "Next time",
+    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#checklist",
+    "href": "materials/slides/week0-intro.html#checklist",
+    "title": "Course orientation",
+    "section": "Checklist",
+    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
+  },
+  {
     "objectID": "materials/slides/week1-perspectives.html#announcementsreminders",
     "href": "materials/slides/week1-perspectives.html#announcementsreminders",
     "title": "On data science",
@@ -409,7 +507,7 @@
     "href": "materials/course-materials.html",
     "title": "Course materials",
     "section": "",
-    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments due by next class meeting:\n\ninstall course software and create github account;\nfill out intake form\nread Peng and Parker (2022);\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments due by next class meeting:\n\ninstall course software and create github account;\nfill out intake form\nread Peng and Parker (2022);\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: Introducing class intake survey data [slides]",
     "crumbs": [
       "Course materials"
     ]
@@ -419,7 +517,7 @@
     "href": "materials/course-materials.html#introductory-module",
     "title": "Course materials",
     "section": "",
-    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments due by next class meeting:\n\ninstall course software and create github account;\nfill out intake form\nread Peng and Parker (2022);\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments due by next class meeting:\n\ninstall course software and create github account;\nfill out intake form\nread Peng and Parker (2022);\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response\n\n\n\n\n\n\nTuesday meeting: Introducing class intake survey data [slides]",
     "crumbs": [
       "Course materials"
     ]
@@ -502,102 +600,228 @@
     "text": "Setup\n\nhave everyone open their GitHub client, the sandbox project in RStudio, and the group sandbox repository in the browser on github.com\nchoose one person to operate the table workstation; have them do the same and log in to GitHub using their credentials\non the workstation, create a directory for the class documents/25f-pstat197a and clone the group sandbox repo into this directory"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#before-we-begin",
-    "href": "materials/slides/week0-intro.html#before-we-begin",
-    "title": "Course orientation",
-    "section": "Before we begin…",
-    "text": "Before we begin…\n\nPick up a name tag and write your preferred name on it (neatly).\nChoose a table at which to sit for the quarter and note the number.\nSign in using the attendance reporting form found here:\nhttps://pstat197.github.io/pstat197a/about/links.html"
+    "objectID": "materials/slides/week2-workshop.html#today",
+    "href": "materials/slides/week2-workshop.html#today",
+    "title": "Group assignment workshops",
+    "section": "Today",
+    "text": "Today\n\nfinish discussing results from last time\nsetup for first group assignment due next Friday\n\nassignment objectives and instructions\nreview repository\n\nworkshop ideas and plan tasks in groups"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#welcome",
-    "href": "materials/slides/week0-intro.html#welcome",
-    "title": "Course orientation",
-    "section": "Welcome",
-    "text": "Welcome\nPSTAT197A/CMPSC190DD is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
+    "objectID": "materials/slides/week2-workshop.html#assignment-objective",
+    "href": "materials/slides/week2-workshop.html#assignment-objective",
+    "title": "Group assignment workshops",
+    "section": "Assignment objective",
+    "text": "Assignment objective\nYour task: prepare and present a descriptive analysis of the survey responses addressing 2-3 questions or goals of your choosing.\n\nquestions or goals should be of moderate complexity; easy to state and understand but should require a little work to answer\n\ntoo simple: what proportion of students have research experience?\nbetter: are students with research experience more confident/comfortable with technical skills than students without, considering coursework history?"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#capstone-projects",
-    "href": "materials/slides/week0-intro.html#capstone-projects",
-    "title": "Course orientation",
-    "section": "Capstone projects",
-    "text": "Capstone projects\nMost students are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
-    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
-    "title": "Course orientation",
-    "section": "Continuing in capstones",
-    "text": "Continuing in capstones\nContinuation in PSTAT197B-C/CMPSC190DE-DF during winter and spring:\n\nstudents admitted to this course in spring have a seat;\nstudents admitted from the waitlist are on the waitlist."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#outcomes",
-    "href": "materials/slides/week0-intro.html#outcomes",
-    "title": "Course orientation",
+    "objectID": "materials/slides/week2-workshop.html#outcomes",
+    "href": "materials/slides/week2-workshop.html#outcomes",
+    "title": "Group assignment workshops",
     "section": "Outcomes",
-    "text": "Outcomes\nI hope to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
+    "text": "Outcomes\nThe learning outcomes for this assignment are less focused on methodology:\n\nformulate questions and plan a simple analysis\npractice using a GitHub repo in a team project setting\nprepare a report\nlearn one or more new-to-you data manipulation techniques"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#classroom-environment",
-    "href": "materials/slides/week0-intro.html#classroom-environment",
-    "title": "Course orientation",
-    "section": "Classroom environment",
-    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
+    "objectID": "materials/slides/week2-workshop.html#assignment-set-up",
+    "href": "materials/slides/week2-workshop.html#assignment-set-up",
+    "title": "Group assignment workshops",
+    "section": "Assignment set-up",
+    "text": "Assignment set-up\n\naccept GH classroom assignment here; this will create/add your team repo\nclone repo to local\nreview repo contents:\n\ndata with survey responses and metadata\nscripts with preprocessing and in-class analysis\nresults with report template for preparing write-up\nREADME.md with assignment instructions"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#resources",
-    "href": "materials/slides/week0-intro.html#resources",
-    "title": "Course orientation",
+    "objectID": "materials/slides/week2-workshop.html#deliverable",
+    "href": "materials/slides/week2-workshop.html#deliverable",
+    "title": "Group assignment workshops",
+    "section": "Deliverable",
+    "text": "Deliverable\nYour ‘submission’ will be in the form of commits to the group repository, in particular:\n\nan updated results/report.qmd file containing your write-up source\na rendered results/report.html file\n\n\nPlease make final commits by Friday, October 14, 11:59pm PST.\n\n\nRecall there is a 24-hour grace period; any commits submitted after Saturday 11:59pm may not receive review."
+  },
+  {
+    "objectID": "materials/slides/week2-workshop.html#resources",
+    "href": "materials/slides/week2-workshop.html#resources",
+    "title": "Group assignment workshops",
     "section": "Resources",
-    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
+    "text": "Resources\n\nlab 2 and in-class analysis scripts/week2-surveys.R\nslack and course staff OH\nMDSR ch. 4 on data wrangling\nRStudio cheatsheets and tidyverse documentation, esp. dplyr, tidyr, ggplot2"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#modules",
-    "href": "materials/slides/week0-intro.html#modules",
-    "title": "Course orientation",
-    "section": "Modules",
-    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
+    "objectID": "materials/slides/week2-workshop.html#workshopping-today",
+    "href": "materials/slides/week2-workshop.html#workshopping-today",
+    "title": "Group assignment workshops",
+    "section": "Workshopping today",
+    "text": "Workshopping today\nTry to accomplish three goals:\n\npool ideas for questions or themes to explore in the data\npair up, divide work, and assign tasks\nagree on a communication plan for finishing work\n\nslack groupchat or similar\nmeeting outside of class sometime next week"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#module-content",
-    "href": "materials/slides/week0-intro.html#module-content",
-    "title": "Course orientation",
-    "section": "Module content",
-    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
+    "objectID": "materials/slides/week2-classdata.html#lessons-from-last-time",
+    "href": "materials/slides/week2-classdata.html#lessons-from-last-time",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Lessons from last time",
+    "text": "Lessons from last time\n\nadd .DS_Store to .gitignore\nopen repo project in RStudio session (not another project or new session)\nrepo clone directory must be kept intact; can move the entire directory but not individual files\nuse client not terminal, at least to start out\nothers?"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#group-assignments",
-    "href": "materials/slides/week0-intro.html#group-assignments",
-    "title": "Course orientation",
-    "section": "Group assignments",
-    "text": "Group assignments\nYour working group for this quarter will consist of the students at your table.\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+    "objectID": "materials/slides/week2-classdata.html#today",
+    "href": "materials/slides/week2-classdata.html#today",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Today",
+    "text": "Today\n\nreview sampling concepts\nintroduce class survey data\npresent descriptive analysis"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#vignettes",
-    "href": "materials/slides/week0-intro.html#vignettes",
-    "title": "Course orientation",
-    "section": "Vignettes",
-    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+    "objectID": "materials/slides/week2-classdata.html#samples-and-populations",
+    "href": "materials/slides/week2-classdata.html#samples-and-populations",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Samples and populations",
+    "text": "Samples and populations\npopulation: collection of all subjects/units of interest\nsample: subjects/units observed in a study\n\nstatistical methodology strives to account for the possibility that the sample could have been different in order to make reliable inferences about the population based on knowledge of the sampling mechanism"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
-    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
-    "title": "Course orientation",
-    "section": "Expectations and assessments",
-    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
+    "objectID": "materials/slides/week2-classdata.html#what-if-inferences-arent-possible",
+    "href": "materials/slides/week2-classdata.html#what-if-inferences-arent-possible",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "What if inferences aren’t possible?",
+    "text": "What if inferences aren’t possible?\nEven if inference isn’t possible, data still have value and could be used for:\n\ndescriptive analysis of the sample;\nhypothesis generation;\ndeveloping analysis pipelines."
   },
   {
-    "objectID": "materials/slides/week0-intro.html#next-time",
-    "href": "materials/slides/week0-intro.html#next-time",
-    "title": "Course orientation",
+    "objectID": "materials/slides/week2-classdata.html#what-about-prediction",
+    "href": "materials/slides/week2-classdata.html#what-about-prediction",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "What about prediction?",
+    "text": "What about prediction?\nPrediction is a separate goal but still a form of generalization.\n\nsamples must reflect a broader population for predictions to be accurate at the population level\n\n\n\nif an analyst can’t expect sample statistics to provide reliable estimates of population quantities, they shouldn’t expect predictions based on the sample to be reliable either"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#common-problems",
+    "href": "materials/slides/week2-classdata.html#common-problems",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Common problems",
+    "text": "Common problems\nSeveral issues arise very often in practice that compromise or complicate an analyst’s ability to make inferences (or predictions). Among them:\n\nscope of inference from the sample doesn’t match the study population\nsubjects/units are selected haphazardly or by convenience\nresearcher conflates sample size with number of observations, i.e., takes lots of measurements on few subjects/units"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#helpful-questions",
+    "href": "materials/slides/week2-classdata.html#helpful-questions",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Helpful questions",
+    "text": "Helpful questions\nThe following questions can help make an assessment of the scope of inference:\n\n(protocol) how were subjects/units chosen for measurement and how were measurements collected?\n(mechanism) was there any random selection mechanism?\n(exclusion) are there any subjects/units that couldn’t possibly have been chosen?\n(nonresponse) were any subjects/units selected but not measured?"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#class-survey-data",
+    "href": "materials/slides/week2-classdata.html#class-survey-data",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Class survey data",
+    "text": "Class survey data\n\nsurvey distributed to all students offered enrollment in PSTAT197A fall 2022\n\\(n = 65\\) responses\n\nincludes a few students who did not enroll\ndoes not include several students who did not enroll\ndoes not include one student who enrolled late\n\nno random selection"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#can-the-data-support-inference",
+    "href": "materials/slides/week2-classdata.html#can-the-data-support-inference",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Can the data support inference?",
+    "text": "Can the data support inference?\nFrom the reading responses:\n\nIt depends on the question. If you want to draw conclusions about the pstat197a class specifically, this sample is the population and thus will have reliable data. If you want to draw conclusions about the pstat department as a whole, then this is a bad sample because it is likely biased and thus unreliable"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#alternative-perspectives",
+    "href": "materials/slides/week2-classdata.html#alternative-perspectives",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Alternative perspectives",
+    "text": "Alternative perspectives\nThe comment points to two ways to view the data:\n\na census of PSTAT197A enrollees\na convenience sample of…\n\ncapstone applicants OR\nstudents qualified for capstones OR\nstudents interested in data science OR\nall UCSB students???"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#is-there-a-right-answer",
+    "href": "materials/slides/week2-classdata.html#is-there-a-right-answer",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Is there a right answer?",
+    "text": "Is there a right answer?\nEither way – census or convenience sample – excludes inference.\n\ncensus \\(\\longrightarrow\\) no inference needed\nconvenience \\(\\longrightarrow\\) no inference possible\n\n\nSo on a practical level, it won’t make much difference for designing an analysis of the survey data."
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#descriptive-analysis",
+    "href": "materials/slides/week2-classdata.html#descriptive-analysis",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Descriptive analysis",
+    "text": "Descriptive analysis\nAny analysis of survey data should be regarded as descriptive in nature:\n\nsummary statistics and/or models are not reliable measures of any broader population\nresults should be interpreted narrowly in terms of the sample at hand"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#a-general-approach",
+    "href": "materials/slides/week2-classdata.html#a-general-approach",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "A general approach",
+    "text": "A general approach\nStart simple and add complexity gradually.\nFrom simpler to more complex consider questions involving:\n\nSample characteristics\nSingle-variable summaries\nMultivariate summaries\nModel-based outputs (estimates, predictions, etc.)"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#questions-of-interest",
+    "href": "materials/slides/week2-classdata.html#questions-of-interest",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Questions of interest",
+    "text": "Questions of interest\nSample characteristics\n\nIs the proportion of men/women in the class equal (taking into account randomness)?\n\nSingle-variable summaries\n\nAmong the students offered a seat in PSTAT197, what fields of study are the students most interested in?\nWhat level of comfort do students interested in data analysis at UCSB have with mathematics?"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#questions-of-interest-1",
+    "href": "materials/slides/week2-classdata.html#questions-of-interest-1",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Questions of interest",
+    "text": "Questions of interest\nMultivariate summaries\n\nAre students who ranked themselves as strong in statistics, mathematics, and computing more likely or less likely to select an ‘industry’ project as the project type that they want to work on?\n\nModel-based outputs\n\nAre there distinct groups of students in the class defined by self-assessed proficiencies and/or comfort levels with mathematics, statistics, and programming?"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#sample-characteristics",
+    "href": "materials/slides/week2-classdata.html#sample-characteristics",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Sample characteristics",
+    "text": "Sample characteristics\nIs the proportion of men/women in the class equal (taking into account randomness)?\n\nClass standingGenderRaceData sharing\n\n\n\n\n\n\n\nClass Standing\nCount\nPercent\n\n\n\n\nJunior\n9\n15\n\n\nSenior\n51\n85\n\n\n\n\n\n\n\n\n\n\n\n\nGender Identity\nCount\nPercent\n\n\n\n\nFemale\n28\n46.7\n\n\nMale\n32\n53.3\n\n\n\n\n\n\n\n\n\n\n\n\nRace / Ethnicity\nCount\nPercent\n\n\n\n\nAsian\n43\n71.7\n\n\nCaucasian\n13\n21.7\n\n\nMultiracial\n3\n5.0\n\n\nPrefer not to say\n1\n1.7\n\n\n\n\n\n\n\nColumns: consent to share project preferences\nRows: consent to share background and preparation\n\n\n\n\n\n\nNo\nYes\n\n\n\n\nNo\n6\n3\n\n\nYes\n2\n49"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#majors",
+    "href": "materials/slides/week2-classdata.html#majors",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Majors",
+    "text": "Majors"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#response-timing",
+    "href": "materials/slides/week2-classdata.html#response-timing",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Response timing",
+    "text": "Response timing"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#privacy",
+    "href": "materials/slides/week2-classdata.html#privacy",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Privacy",
+    "text": "Privacy\nThe following information have been removed from the dataset distributed to the class:\n\npersonal information from section 1 of the survey\nlong text and free response answers, contain some personal details\nresponses from students who did not consent to share\ntype distinction between research experiences"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#single-variable-summaries",
+    "href": "materials/slides/week2-classdata.html#single-variable-summaries",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Single-variable summaries",
+    "text": "Single-variable summaries\nWhat level of comfort do students interested in data analysis at UCSB have with mathematics?\n\nComfortProficiency (numeric)Proficiency (factor)\n\n\n\n\n\n\n\nvariable\nmax\nmean\nmedian\nmin\n\n\n\n\nmath.comf\n5\n4.055556\n4\n3\n\n\nprog.comf\n5\n3.870370\n4\n2\n\n\nstat.comf\n5\n4.037037\n4\n2\n\n\n\n\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\n\n\n\n\nprog\n2.90\n3\n\n\nmath\n2.79\n3\n\n\nstat\n2.84\n3\n\n\n\n\n\n\n\n\n\n\n\n\nlevel\nmath\nprog\nstat\n\n\n\n\nbeg\n3\n1\n3\n\n\nint\n25\n33\n16\n\n\nadv\n26\n20\n35"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#multivariable-summaries",
+    "href": "materials/slides/week2-classdata.html#multivariable-summaries",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Multivariable summaries",
+    "text": "Multivariable summaries\nAre students who ranked themselves as strong in statistics, mathematics, and computing more likely or less likely to select an ‘industry’ project as the project type that they want to work on?\n\nCountsProportions\n\n\n\n\n\n\n\nmean.proficiency.fac\nboth\nind\nlab\n\n\n\n\n[1,2.33]\n6\n15\n2\n\n\n(2.33,2.67]\n5\n13\n1\n\n\n(2.67,3]\n3\n9\n0\n\n\n\n\n\n\n\n\n\n\n\n\nmean.proficiency.fac\nboth\nind\nlab\nn\n\n\n\n\n[1,2.33]\n0.261\n0.652\n0.087\n23\n\n\n(2.33,2.67]\n0.263\n0.684\n0.053\n19\n\n\n(2.67,3]\n0.250\n0.750\n0.000\n12"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#combinations",
+    "href": "materials/slides/week2-classdata.html#combinations",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Combinations",
+    "text": "Combinations\nConsider the distinct combinations of comfort and proficiency ratings (separately):\n\nProficiencyComfort\n\n\n\n\n\n\n\nprog\nmath\nstat\nn\n\n\n\n\n1\n1\n1\n1\n\n\n2\n1\n2\n2\n\n\n2\n2\n1\n2\n\n\n2\n2\n2\n11\n\n\n2\n2\n3\n4\n\n\n2\n3\n2\n2\n\n\n2\n3\n3\n12\n\n\n3\n2\n2\n1\n\n\n3\n2\n3\n7\n\n\n3\n3\n3\n12\n\n\n\n\n\n\n\n\n\n\n\n\nprog\nmath\nstat\nn\n\n\n\n\n2\n4\n3\n1\n\n\n3\n3\n3\n3\n\n\n3\n3\n4\n2\n\n\n3\n4\n3\n2\n\n\n3\n4\n4\n5\n\n\n3\n5\n4\n1\n\n\n3\n5\n5\n3\n\n\n4\n3\n3\n5\n\n\n4\n3\n4\n3\n\n\n4\n3\n5\n1\n\n\n4\n4\n2\n1\n\n\n4\n4\n3\n1\n\n\n4\n4\n4\n5\n\n\n4\n4\n5\n3\n\n\n4\n5\n4\n3\n\n\n4\n5\n5\n4\n\n\n5\n4\n3\n1\n\n\n5\n4\n4\n3\n\n\n5\n4\n5\n1\n\n\n5\n5\n4\n1\n\n\n5\n5\n5\n5"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#clustering",
+    "href": "materials/slides/week2-classdata.html#clustering",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Clustering",
+    "text": "Clustering\nCan students be grouped based on combinations of preferences and comfort levels?\n\nCentersVisualizationMethodInterpretation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nprog.prof\nmath.prof\nstat.prof\nprog.comf\nmath.comf\nstat.comf\nsize\ncluster\n\n\n\n\n2.357\n2.643\n3.000\n3.643\n3.500\n3.929\n14\n1\n\n\n2.583\n2.708\n2.875\n4.250\n4.708\n4.667\n24\n2\n\n\n2.000\n1.812\n1.812\n3.500\n3.562\n3.188\n16\n3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClustering method, “k means”, groups data by nearest Euclidean distance to each of \\(k\\) centers. \\(k\\) is user-specified; the method finds the centers that minimize within-cluster variance.\n\n\nBased on the centers:\n\nCluster 1: advanced proficiency, very comfortable\nCluster 2: intermediate with less mathematical preparation\nCluster 3: intermediate with less programming preparation"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#assignment",
+    "href": "materials/slides/week2-classdata.html#assignment",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Assignment",
+    "text": "Assignment\nYour task is to extend this analysis with your group by next Tuesday.\n\nHere are some ideas:\n\nexplore variable associations further (e.g., coursework and self-evaluations)\nexperiment with clustering on different variable subsets or using different methods\nsummarize domain or area of interest variables (requires some text manipulation)"
+  },
+  {
+    "objectID": "materials/slides/week2-classdata.html#next-time",
+    "href": "materials/slides/week2-classdata.html#next-time",
+    "title": "Sampling concepts and descriptive analysis",
     "section": "Next time",
-    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#checklist",
-    "href": "materials/slides/week0-intro.html#checklist",
-    "title": "Course orientation",
-    "section": "Checklist",
-    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
+    "text": "Next time\nMost of next meeting we’ll devote to planning your group’s task.\n\nDo a little brainstorming on your own\nCome with a few questions/ideas"
   },
   {
     "objectID": "about/outcomes.html",

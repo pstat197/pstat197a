@@ -34,11 +34,11 @@ bibliography: slides/refs.bib
 
     -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations)
 
-    -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9)
+    -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9) 
 
-<!-- ### Week 2 -->
+### Week 2
 
-<!-- -   ***Tuesday meeting:*** Introducing class intake survey data [\[slides](slides/week2-classdata.qmd)\] -->
+-   ***Tuesday meeting:*** Introducing class intake survey data [\[slides](slides/week2-classdata.qmd)\]
 
 <!-- -   ***Section meeting:*** tidyverse basics [\[activity](labs/lab2-tidyverse/lab2-tidyverse.qmd)\] -->
 
