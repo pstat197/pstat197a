@@ -684,12 +684,24 @@ $short
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sequence of verbs</span></span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'Adv'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'adv'</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg.comf =</span> (math.comf <span class="sc">+</span> prog.comf <span class="sc">+</span> stat.comf)<span class="sc">/</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(avg.comf, rsrch) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 0 × 2
-# ℹ 2 variables: avg.comf &lt;dbl&gt;, rsrch &lt;lgl&gt;</code></pre>
+<pre><code># A tibble: 35 × 2
+   avg.comf rsrch
+      &lt;dbl&gt; &lt;lgl&gt;
+ 1     4.67 TRUE 
+ 2     4.33 TRUE 
+ 3     4    FALSE
+ 4     3.67 FALSE
+ 5     4.33 TRUE 
+ 6     4.33 TRUE 
+ 7     4    FALSE
+ 8     5    TRUE 
+ 9     3.67 TRUE 
+10     4.33 TRUE 
+# ℹ 25 more rows</code></pre>
 </div>
 </div>
 <!--# TA COMMENT: take a moment to describe what this sequence did. the goal is for students to get the concept of chaining together operations to find a subset of data and/or compute new quantities -->
@@ -717,7 +729,7 @@ $short
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a summary</span></span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'Adv'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'adv'</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg.comf =</span> (math.comf <span class="sc">+</span> prog.comf <span class="sc">+</span> stat.comf)<span class="sc">/</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(avg.comf, rsrch) <span class="sc">%&gt;%</span></span>
 <span id="cb96-6"><a href="#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop.rsrch =</span> <span class="fu">mean</span>(rsrch))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -725,23 +737,23 @@ $short
 <pre><code># A tibble: 1 × 1
   prop.rsrch
        &lt;dbl&gt;
-1        NaN</code></pre>
+1      0.714</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># equivalent</span></span>
 <span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'Adv'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'adv'</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg.comf =</span> (math.comf <span class="sc">+</span> prog.comf <span class="sc">+</span> stat.comf)<span class="sc">/</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(avg.comf, rsrch) <span class="sc">%&gt;%</span></span>
 <span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(rsrch) <span class="sc">%&gt;%</span></span>
 <span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] NaN</code></pre>
+<pre><code>[1] 0.7142857</code></pre>
 </div>
 </div>
 <p>The advantage of <code>summarize</code> , however, is that multiple summaries can be computed at once:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'Adv'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(stat.prof <span class="sc">==</span> <span class="st">'adv'</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg.comf =</span> (math.comf <span class="sc">+</span> prog.comf <span class="sc">+</span> stat.comf)<span class="sc">/</span><span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(avg.comf, rsrch) <span class="sc">%&gt;%</span></span>
 <span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">prop.rsrch =</span> <span class="fu">mean</span>(rsrch),</span>
@@ -750,7 +762,7 @@ $short
 <pre><code># A tibble: 1 × 2
   prop.rsrch med.comf
        &lt;dbl&gt;    &lt;dbl&gt;
-1        NaN       NA</code></pre>
+1      0.714     4.33</code></pre>
 </div>
 </div>
 <p>The variant <code>summarize_all</code> computes the same summary across all columns. (Notice the use of the helper verb <code>contains()</code> to select all columns containing a particular string.)</p>

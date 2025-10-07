@@ -345,7 +345,7 @@ These operations can be chained together, for example:
 ```{r}
 # sequence of verbs
 background %>%
-  filter(stat.prof == 'Adv') %>%
+  filter(stat.prof == 'adv') %>%
   mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %>%
   select(avg.comf, rsrch) 
 ```
@@ -367,14 +367,14 @@ background %>%
 ```{r}
 # a summary
 background %>%
-  filter(stat.prof == 'Adv') %>%
+  filter(stat.prof == 'adv') %>%
   mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %>%
   select(avg.comf, rsrch) %>%
   summarize(prop.rsrch = mean(rsrch))
 
 # equivalent
 background %>%
-  filter(stat.prof == 'Adv') %>%
+  filter(stat.prof == 'adv') %>%
   mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %>%
   select(avg.comf, rsrch) %>%
   pull(rsrch) %>%
@@ -385,7 +385,7 @@ The advantage of `summarize` , however, is that multiple summaries can be comput
 
 ```{r}
 background %>%
-  filter(stat.prof == 'Adv') %>%
+  filter(stat.prof == 'adv') %>%
   mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %>%
   select(avg.comf, rsrch) %>%
   summarize(prop.rsrch = mean(rsrch),

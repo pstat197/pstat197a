@@ -1,14 +1,14 @@
 ---
 title: "Sampling concepts and descriptive analysis"
-subtitle: "PSTAT197A/CMPSC190DD Fall 2022"
-author: "Trevor Ruiz"
+subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
+author: "Dr. Coburn"
 institute: 'UCSB'
 bibliography: refs.bib
 format: 
   revealjs:
     incremental: true
-    # footer: 'PSTAT197A/CMPSC190DD Fall 2022'
-    # logo: 'img/ucsbds_hex.png'
+    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    logo: 'img/ucsbds_hex.png'
     fig-width: 4
     fig-height: 2
     fig-align: 'left'
