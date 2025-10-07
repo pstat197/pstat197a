@@ -470,11 +470,11 @@ Clustering method, "k means", groups data by nearest Euclidean distance to each 
 
 Based on the centers:
 
--   Cluster 1: advanced proficiency, very comfortable
+-   Cluster 1: intermediate proficiency, mostly comfortable
 
--   Cluster 2: intermediate, strong math/stat background
+-   Cluster 2: high proficiency, very comfortable
 
--   Cluster 3: intermediate, weaker programming comfort
+-   Cluster 3: building proficiency, less comfortable
 :::
 
 ## Assignment

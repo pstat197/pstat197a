@@ -44,9 +44,9 @@ bibliography: slides/refs.bib
 
 <!-- -   ***Thursday meeting:*** planning group work for analysis of survey data \[[slides](slides/week2-workshop.qmd)\] -->
 
-<!-- -   ***Assignments:*** -->
+-   ***Assignments:***
 
-<!--     -   first team assignment due Friday, October 14, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/d-4iOFtd)\] -->
+    -   first team assignment due Sunday, October 20, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/iG-05GhY)\]
 
 <!-- ## Module 1: biomarker identification -->
 
