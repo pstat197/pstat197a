@@ -46,7 +46,7 @@ bibliography: slides/refs.bib
 
 -   ***Assignments:***
 
-    -   first team assignment due Sunday, October 20, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/iG-05GhY)\]
+    -   first team assignment due Sunday, October 19, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/iG-05GhY)\]
 
 <!-- ## Module 1: biomarker identification -->
 

@@ -77,11 +77,11 @@ Your 'submission' will be in the form of commits to the group repository, in par
 
 . . .
 
-Please make final commits by ***Sunday, October 20, 11:59pm PST.***
+Please make final commits by ***Sunday, October 19, 11:59pm PST.***
 
 . . .
 
-Recall there is a 24-hour grace period; any commits submitted after Monday, October 21st, 11:59pm may not receive review.
+Recall there is a 24-hour grace period; any commits submitted after Monday, October 20th, 11:59pm may not receive review.
 
 ## Resources
 
