@@ -24,7 +24,7 @@ execute:
 
 -   finish discussing results from last time
 
--   setup for first group assignment due next Friday
+-   setup for first group assignment due next Sunday
 
     -   assignment objectives and instructions
 
