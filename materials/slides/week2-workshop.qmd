@@ -1,14 +1,14 @@
 ---
 title: "Group assignment workshops"
-subtitle: "PSTAT197A/CMPSC190DD Fall 2022"
-author: "Trevor Ruiz"
+subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
+author: "Dr Coburn"
 institute: 'UCSB'
 bibliography: refs.bib
 format: 
   revealjs:
     incremental: true
-    # footer: 'PSTAT197A/CMPSC190DD Fall 2022'
-    # logo: 'img/ucsbds_hex.png'
+    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    logo: 'img/ucsbds_hex.png'
     fig-width: 4
     fig-height: 2
     fig-align: 'left'
@@ -56,7 +56,7 @@ The learning outcomes for this assignment are less focused on methodology:
 
 ## Assignment set-up
 
-1.  accept GH classroom assignment [here](https://classroom.github.com/a/d-4iOFtd); this will create/add your team repo
+1.  accept GH classroom assignment [here](https://classroom.github.com/a/iG-05GhY); this will create/add your team repo
 2.  clone repo to local
 3.  review repo contents:
     -   `data` with survey responses and metadata
@@ -77,11 +77,11 @@ Your 'submission' will be in the form of commits to the group repository, in par
 
 . . .
 
-Please make final commits by ***Friday, October 14, 11:59pm PST.***
+Please make final commits by ***Sunday, October 20, 11:59pm PST.***
 
 . . .
 
-Recall there is a 24-hour grace period; any commits submitted after Saturday 11:59pm may not receive review.
+Recall there is a 24-hour grace period; any commits submitted after Monday, October 21st, 11:59pm may not receive review.
 
 ## Resources
 
@@ -95,11 +95,12 @@ Recall there is a 24-hour grace period; any commits submitted after Saturday 11:
 
 ## Workshopping today
 
-Try to accomplish three goals:
+Try to accomplish four goals:
 
-1.  pool ideas for questions or themes to explore in the data
-2.  pair up, divide work, and assign tasks
-3.  agree on a communication plan for finishing work
+1.  clone the repository and create a script file
+2.  pool ideas for questions or themes to explore in the data
+3.  pair up, divide work, and assign tasks
+4.  agree on a communication plan for finishing work
     -   slack groupchat or similar
 
     -   meeting outside of class sometime next week

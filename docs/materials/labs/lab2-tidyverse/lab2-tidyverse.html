@@ -511,7 +511,7 @@ $short
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># print the data frame for inspection in the console</span></span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>background</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51 × 30
+<pre><code># A tibble: 51 × 29
    response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf
          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
  1           1 adv               5 int               4 adv               5
@@ -525,12 +525,11 @@ $short
  9          10 int               4 int               4 adv               4
 10          11 int               4 int               4 beg               3
 # ℹ 41 more rows
-# ℹ 23 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;,
-#   do_you_have_any_preference_regarding_working_on_an_industry_project_or_a_research_lab_project &lt;chr&gt;,
-#   PSTAT100 &lt;dbl&gt;, PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;,
-#   PSTAT126 &lt;dbl&gt;, PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;,
-#   CS16 &lt;dbl&gt;, LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;,
-#   CS165 &lt;dbl&gt;, ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, …</code></pre>
+# ℹ 22 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;, PSTAT100 &lt;dbl&gt;,
+#   PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;, PSTAT126 &lt;dbl&gt;,
+#   PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;, CS16 &lt;dbl&gt;,
+#   LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;, CS165 &lt;dbl&gt;,
+#   ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, rsrch &lt;lgl&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># open as a spreadsheet in a separate viewer</span></span>
 <span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(background)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -598,7 +597,7 @@ $short
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(math.comf <span class="sc">&gt;</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 37 × 30
+<pre><code># A tibble: 37 × 29
    response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf
          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
  1           1 adv               5 int               4 adv               5
@@ -612,12 +611,11 @@ $short
  9          14 adv               4 adv               5 adv               4
 10          17 int               3 adv               5 adv               5
 # ℹ 27 more rows
-# ℹ 23 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;,
-#   do_you_have_any_preference_regarding_working_on_an_industry_project_or_a_research_lab_project &lt;chr&gt;,
-#   PSTAT100 &lt;dbl&gt;, PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;,
-#   PSTAT126 &lt;dbl&gt;, PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;,
-#   CS16 &lt;dbl&gt;, LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;,
-#   CS165 &lt;dbl&gt;, ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, …</code></pre>
+# ℹ 22 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;, PSTAT100 &lt;dbl&gt;,
+#   PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;, PSTAT126 &lt;dbl&gt;,
+#   PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;, CS16 &lt;dbl&gt;,
+#   LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;, CS165 &lt;dbl&gt;,
+#   ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, rsrch &lt;lgl&gt;</code></pre>
 </div>
 </div>
 <p><strong><em>select</em></strong> – select a subset of columns from a data frame</p>
@@ -661,7 +659,7 @@ $short
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
 <span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">avg.comf =</span> (math.comf <span class="sc">+</span> prog.comf <span class="sc">+</span> stat.comf)<span class="sc">/</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51 × 31
+<pre><code># A tibble: 51 × 30
    response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf
          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
  1           1 adv               5 int               4 adv               5
@@ -675,12 +673,12 @@ $short
  9          10 int               4 int               4 adv               4
 10          11 int               4 int               4 beg               3
 # ℹ 41 more rows
-# ℹ 24 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;,
-#   do_you_have_any_preference_regarding_working_on_an_industry_project_or_a_research_lab_project &lt;chr&gt;,
-#   PSTAT100 &lt;dbl&gt;, PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;,
-#   PSTAT126 &lt;dbl&gt;, PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;,
-#   CS16 &lt;dbl&gt;, LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;,
-#   CS165 &lt;dbl&gt;, ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, …</code></pre>
+# ℹ 23 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;, PSTAT100 &lt;dbl&gt;,
+#   PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;, PSTAT126 &lt;dbl&gt;,
+#   PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;, CS16 &lt;dbl&gt;,
+#   LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;, CS165 &lt;dbl&gt;,
+#   ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, rsrch &lt;lgl&gt;,
+#   avg.comf &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <p>These operations can be chained together, for example:</p>
@@ -787,7 +785,7 @@ $short
 <span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>background <span class="sc">%&gt;%</span></span>
 <span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(stat.prof)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 51 × 30
+<pre><code># A tibble: 51 × 29
 # Groups:   stat.prof [3]
    response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf
          &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;
@@ -802,12 +800,11 @@ $short
  9          10 int               4 int               4 adv               4
 10          11 int               4 int               4 beg               3
 # ℹ 41 more rows
-# ℹ 23 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;,
-#   do_you_have_any_preference_regarding_working_on_an_industry_project_or_a_research_lab_project &lt;chr&gt;,
-#   PSTAT100 &lt;dbl&gt;, PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;,
-#   PSTAT126 &lt;dbl&gt;, PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;,
-#   CS16 &lt;dbl&gt;, LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;,
-#   CS165 &lt;dbl&gt;, ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, …</code></pre>
+# ℹ 22 more variables: updv.num &lt;chr&gt;, dom &lt;chr&gt;, PSTAT100 &lt;dbl&gt;,
+#   PSTAT115 &lt;dbl&gt;, PSTAT120 &lt;dbl&gt;, PSTAT122 &lt;dbl&gt;, PSTAT126 &lt;dbl&gt;,
+#   PSTAT131 &lt;dbl&gt;, PSTAT160 &lt;dbl&gt;, PSTAT174 &lt;dbl&gt;, CS9 &lt;dbl&gt;, CS16 &lt;dbl&gt;,
+#   LING104 &lt;dbl&gt;, LING110 &lt;dbl&gt;, LING111 &lt;dbl&gt;, CS130 &lt;dbl&gt;, CS165 &lt;dbl&gt;,
+#   ECON145 &lt;dbl&gt;, PSTAT127 &lt;dbl&gt;, PSTAT134 &lt;dbl&gt;, CS5 &lt;dbl&gt;, rsrch &lt;lgl&gt;</code></pre>
 </div>
 </div>
 <p>Sometimes it can be helpful to simply count the observations in each group:</p>
@@ -968,24 +965,24 @@ $short
 <pre><code># A tibble: 18 × 2
    class    proportion
    &lt;chr&gt;         &lt;dbl&gt;
- 1 PSTAT100     0.373 
- 2 PSTAT115     0.157 
- 3 PSTAT120     0.922 
- 4 PSTAT122     0.784 
- 5 PSTAT126     0.863 
- 6 PSTAT131     0.412 
- 7 PSTAT160     0.588 
- 8 PSTAT174     0.314 
- 9 CS9          0.745 
-10 CS16         0.412 
-11 LING104      0.0392
-12 LING110      0.0392
-13 LING111      0.0392
-14 CS130        0.0980
-15 CS165        0.0784
-16 ECON145      0.0392
-17 PSTAT127     0.0392
-18 PSTAT134     0.118 </code></pre>
+ 1 PSTAT115     0.157 
+ 2 PSTAT120     0.922 
+ 3 PSTAT122     0.784 
+ 4 PSTAT126     0.863 
+ 5 PSTAT131     0.412 
+ 6 PSTAT160     0.588 
+ 7 PSTAT174     0.314 
+ 8 CS9          0.745 
+ 9 CS16         0.412 
+10 LING104      0.0392
+11 LING110      0.0392
+12 LING111      0.0392
+13 CS130        0.0980
+14 CS165        0.0784
+15 ECON145      0.0392
+16 PSTAT127     0.0392
+17 PSTAT134     0.118 
+18 CS5          0.0392</code></pre>
 </div>
 </div>
 <p>We could report the results in a table, in which case perhaps arranging in descending order may be helpful:</p>
@@ -1002,17 +999,17 @@ $short
  5 PSTAT160     0.588 
  6 PSTAT131     0.412 
  7 CS16         0.412 
- 8 PSTAT100     0.373 
- 9 PSTAT174     0.314 
-10 PSTAT115     0.157 
-11 PSTAT134     0.118 
-12 CS130        0.0980
-13 CS165        0.0784
-14 LING104      0.0392
-15 LING110      0.0392
-16 LING111      0.0392
-17 ECON145      0.0392
-18 PSTAT127     0.0392</code></pre>
+ 8 PSTAT174     0.314 
+ 9 PSTAT115     0.157 
+10 PSTAT134     0.118 
+11 CS130        0.0980
+12 CS165        0.0784
+13 LING104      0.0392
+14 LING110      0.0392
+15 LING111      0.0392
+16 ECON145      0.0392
+17 PSTAT127     0.0392
+18 CS5          0.0392</code></pre>
 </div>
 </div>
 <p>Let’s say we’d rather plot this data. We’ll put the course number on one axis and the proportion of students who took it on the other.</p>
