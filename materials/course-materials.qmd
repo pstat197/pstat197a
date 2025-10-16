@@ -58,15 +58,15 @@ bibliography: slides/refs.bib
 
 -   ***Section meeting:*** iteration strategies \[[activity](labs/lab3-iteration/lab3-iteration.qmd)\]
 
-<!-- -   ***Thursday meeting:*** correlation analysis; random forests \[[slides](slides/week3-randomforest.qmd)\] \[[activity](activities/making-trees.qmd)\] -->
+-   ***Thursday meeting:*** correlation analysis; random forests \[[slides](slides/week3-randomforest.qmd)\] \[[activity](activities/making-trees.qmd)\]
 
-<!-- -   ***Assignments*** due by next class meeting: -->
+-   ***Assignments*** due by next class meeting:
 
-<!--     -   read [MDSR 10.1 - 10.2](https://mdsr-book.github.io/mdsr2e/ch-modeling.html) -->
+    -   read [MDSR 10.1 - 10.2](https://mdsr-book.github.io/mdsr2e/ch-modeling.html)
 
-<!--     -   read @hewitson2021blood -->
+    -   read @hewitson2021blood
 
-<!--     -   prepare a [reading response](https://forms.gle/o4QYoPh8tCAYswLt7) -->
+    -   prepare a [reading response](https://forms.gle/Ya6ugnW8F1ndXDvS8)
 
 <!-- ### Week 4 -->
 
