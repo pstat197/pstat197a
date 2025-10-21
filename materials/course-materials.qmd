@@ -76,9 +76,9 @@ bibliography: slides/refs.bib
 
 <!-- -   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\] -->
 
-<!-- -   ***Assignments:*** -->
+-   ***Assignments:***
 
-<!--     -   second group assignment due ***Friday, October 28, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/YmfzBeRn)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1rkPDeIrd6zhFB7wnVpbU6HYs1aM1RGz9ulU6ypaQrwU/edit?usp=sharing)\] -->
+    -   second group assignment due ***Friday, October 31, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/7cnheCWR)\]
 
 <!-- ## Module 2: fraud claims -->
 

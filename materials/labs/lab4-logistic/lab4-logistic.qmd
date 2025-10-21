@@ -81,7 +81,7 @@ Copy-paste the code chunk below into your script and execute once.
 
 ```{r}
 # for reproducibility
-set.seed(102022)
+set.seed(102025)
 
 # partition data
 partitions <- biomarker %>%
@@ -291,7 +291,7 @@ The `yardstick` package also supplies functions for computing [class probability
 
 ```{r}
 pred_df %>%
-  roc_curve(truth = group, estimate = pred)
+  roc_curve(truth = group, pred)
 ```
 
 This can be used to plot the ROC curve:
@@ -299,7 +299,7 @@ This can be used to plot the ROC curve:
 ```{r}
 pred_df %>%
   roc_curve(truth = group, 
-            estimate = pred,
+            pred,
             event_level = 'second') %>%
   ggplot(aes(y = sensitivity, x = 1 - specificity)) +
   geom_path() +
@@ -312,7 +312,7 @@ The area under the ROC curve is also easy to compute:
 
 ```{r}
 pred_df %>% roc_auc(truth = group, 
-                    estimate = pred,
+                    pred,
                     event_level = 'second')
 ```
 
@@ -378,7 +378,7 @@ eval_fn <- function(.df){
 Now let's create 400 random partitions of the data and perform the steps in this lab for every partition. In addition, we'll compute predictions and evaluate accuracy on the training set, which we did not do above and is generally not done.
 
 ```{r}
-set.seed(101922)
+set.seed(102025)
 n_splits <- 400
 out <- tibble(partition = 1:n_splits,
        split = map(partition, ~ initial_split(biomarker, prop = 0.8)),
