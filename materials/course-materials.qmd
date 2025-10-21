@@ -34,7 +34,7 @@ bibliography: slides/refs.bib
 
     -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations)
 
-    -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9) 
+    -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9)
 
 ### Week 2
 
@@ -68,11 +68,11 @@ bibliography: slides/refs.bib
 
     -   prepare a [reading response](https://forms.gle/Ya6ugnW8F1ndXDvS8)
 
-<!-- ### Week 4 -->
+### Week 4
 
-<!-- -   ***Tuesday meeting:*** random forests cont'd; logistic regression \[[slides](slides/week4-logistic.qmd)\] -->
+-   ***Tuesday meeting:*** random forests cont'd; logistic regression \[[slides](slides/week4-logistic.qmd)\]
 
-<!-- -   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\] -->
+-   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\]
 
 <!-- -   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\] -->
 
