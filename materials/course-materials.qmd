@@ -74,7 +74,7 @@ bibliography: slides/refs.bib
 
 -   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\]
 
-<!-- -   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\] -->
+-   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\]
 
 -   ***Assignments:***
 

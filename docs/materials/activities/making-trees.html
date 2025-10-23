@@ -331,13 +331,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # Groups:   workclass [7]
   workclass        `&lt;=50K` `&gt;50K` high.inc
   &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   
-1 ?                     16      0 TRUE    
-2 Federal-gov            4      2 TRUE    
-3 Local-gov              5      6 FALSE   
-4 Private              110     31 TRUE    
-5 Self-emp-inc           1      4 FALSE   
-6 Self-emp-not-inc       9      7 TRUE    
-7 State-gov              3      2 TRUE    </code></pre>
+1 ?                      7      0 TRUE    
+2 Federal-gov            4      0 TRUE    
+3 Local-gov              2      2 FALSE   
+4 Private              115     40 TRUE    
+5 Self-emp-inc           4      5 FALSE   
+6 Self-emp-not-inc      11      5 TRUE    
+7 State-gov              2      3 FALSE   </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pick out categories that are majority high income</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>highinc_categories <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span></span>
@@ -432,27 +432,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">age</td>
-<td style="text-align: left;">23</td>
+<td style="text-align: left;">40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">workclass</td>
-<td style="text-align: left;">Private</td>
+<td style="text-align: left;">Local-gov</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">education</td>
-<td style="text-align: left;">Some-college</td>
+<td style="text-align: left;">Bachelors</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">marital_status</td>
-<td style="text-align: left;">Never-married</td>
+<td style="text-align: left;">Married-civ-spouse</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">occupation</td>
-<td style="text-align: left;">Other-service</td>
+<td style="text-align: left;">Prof-specialty</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">relationship</td>
-<td style="text-align: left;">Not-in-family</td>
+<td style="text-align: left;">Wife</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">race</td>
@@ -472,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">hours_per_week</td>
-<td style="text-align: left;">30</td>
+<td style="text-align: left;">40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">native_country</td>
@@ -480,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td style="text-align: left;">income</td>
-<td style="text-align: left;">&lt;=50K</td>
+<td style="text-align: left;">&gt;50K</td>
 </tr>
 </tbody>
 </table>
