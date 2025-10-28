@@ -639,10 +639,13 @@ Dr Coburn
 <h2>Tokenization</h2>
 <p>Breaking a string of text into subunits is called <strong><em>tokenization.</em></strong></p>
 <div class="fragment">
-<p>Consider this string:</p>
+<p>Consider these strings:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "if you are a dreamer come in if you are a dreamer a wisher a liar a hope er a pray er a magic bean buyer if youre a pretender come sit by my fire for we have some flax golden tales to spin come in come in"</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "this boat that we just built is just fine and dont try to tell us its not the sides and the back are divine its the bottom i guess we forgot"</code></pre>
 </div>
 </div>
 </div>
@@ -651,9 +654,9 @@ Dr Coburn
 <h2>Word tokenization</h2>
 <p>The <code>tokenizers</code> package [<a href="https://github.com/ropensci/tokenizers">docs</a>] contains various tokenization functions. The most elementary method is to treat each word as a token.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">library</span>(tokenizers)</span>
-<span id="cb22-2"><a></a></span>
-<span id="cb22-3"><a></a>invitation_text <span class="sc">%&gt;%</span> <span class="fu">tokenize_words</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="fu">library</span>(tokenizers)</span>
+<span id="cb23-2"><a></a></span>
+<span id="cb23-3"><a></a>invitation_text <span class="sc">%&gt;%</span> <span class="fu">tokenize_words</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
  [1] "if"        "you"       "are"       "a"         "dreamer"   "come"     
@@ -671,7 +674,7 @@ Dr Coburn
 <h2>N-gram tokens</h2>
 <p>Alternatively, one could tokenize by <strong><em>n-grams</em></strong>: unique combinations of <span class="math inline">\(n\)</span> adjacent words.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>invitation_text <span class="sc">%&gt;%</span> <span class="fu">tokenize_ngrams</span>(<span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>invitation_text <span class="sc">%&gt;%</span> <span class="fu">tokenize_ngrams</span>(<span class="at">n =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
  [1] "if you"         "you are"        "are a"          "a dreamer"     
@@ -695,12 +698,12 @@ Dr Coburn
 <div class="fragment">
 <p>In NLP these are treated as <strong><em>stopwords</em></strong>: words that are stopped in text processing.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">library</span>(stopwords)</span>
-<span id="cb26-2"><a></a></span>
-<span id="cb26-3"><a></a><span class="co"># display 10 random stopwords from the 'snowball' dictionary</span></span>
-<span id="cb26-4"><a></a><span class="fu">set.seed</span>(<span class="dv">102725</span>)</span>
-<span id="cb26-5"><a></a><span class="fu">stopwords</span>(<span class="at">language =</span> <span class="st">'en'</span>, <span class="at">source =</span> <span class="st">'snowball'</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-6"><a></a>  <span class="fu">sample</span>(<span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">library</span>(stopwords)</span>
+<span id="cb27-2"><a></a></span>
+<span id="cb27-3"><a></a><span class="co"># display 10 random stopwords from the 'snowball' dictionary</span></span>
+<span id="cb27-4"><a></a><span class="fu">set.seed</span>(<span class="dv">102725</span>)</span>
+<span id="cb27-5"><a></a><span class="fu">stopwords</span>(<span class="at">language =</span> <span class="st">'en'</span>, <span class="at">source =</span> <span class="st">'snowball'</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-6"><a></a>  <span class="fu">sample</span>(<span class="at">size =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "up"      "you're"  "its"     "hasn't"  "whom"    "does"    "was"    
  [8] "between" "him"     "she'd"  </code></pre>
@@ -712,11 +715,11 @@ Dr Coburn
 <h2>Stopword removal</h2>
 <p>In the default stopword list, some stopwords include punctuation. Since this was removed from our string, it should also be removed from the stopword list for effective string matching.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>stopwords_nopunct <span class="ot">&lt;-</span> <span class="fu">stopwords</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb28-2"><a></a>  <span class="fu">str_remove_all</span>(<span class="st">'[[:punct:]]'</span>)</span>
-<span id="cb28-3"><a></a></span>
-<span id="cb28-4"><a></a>invitation_text <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a></a>  <span class="fu">tokenize_words</span>(<span class="at">stopwords =</span> stopwords_nopunct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>stopwords_nopunct <span class="ot">&lt;-</span> <span class="fu">stopwords</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb29-2"><a></a>  <span class="fu">str_remove_all</span>(<span class="st">'[[:punct:]]'</span>)</span>
+<span id="cb29-3"><a></a></span>
+<span id="cb29-4"><a></a>invitation_text <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a></a>  <span class="fu">tokenize_words</span>(<span class="at">stopwords =</span> stopwords_nopunct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
  [1] "dreamer"   "come"      "dreamer"   "wisher"    "liar"      "hope"     
@@ -730,13 +733,13 @@ Dr Coburn
 <h2>Lemmatization</h2>
 <p><strong><em>Lemmatization</em></strong> refers to grouping word inflections into a single form. See <code>textstem</code> [<a href="https://github.com/trinker/textstem">docs</a>].</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">library</span>(textstem)</span>
-<span id="cb30-2"><a></a></span>
-<span id="cb30-3"><a></a>locomotion <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'run'</span>, <span class="st">'running'</span>, <span class="st">'ran'</span>, </span>
-<span id="cb30-4"><a></a>                <span class="st">'boating'</span>, <span class="st">'boat'</span>, </span>
-<span id="cb30-5"><a></a>                <span class="st">'swim'</span>, <span class="st">'swam'</span>, <span class="st">'swimming'</span>, <span class="st">'swum'</span>) </span>
-<span id="cb30-6"><a></a></span>
-<span id="cb30-7"><a></a>locomotion <span class="sc">%&gt;%</span> <span class="fu">lemmatize_words</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a><span class="fu">library</span>(textstem)</span>
+<span id="cb31-2"><a></a></span>
+<span id="cb31-3"><a></a>locomotion <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'run'</span>, <span class="st">'running'</span>, <span class="st">'ran'</span>, </span>
+<span id="cb31-4"><a></a>                <span class="st">'boating'</span>, <span class="st">'boat'</span>, </span>
+<span id="cb31-5"><a></a>                <span class="st">'swim'</span>, <span class="st">'swam'</span>, <span class="st">'swimming'</span>, <span class="st">'swum'</span>) </span>
+<span id="cb31-6"><a></a></span>
+<span id="cb31-7"><a></a>locomotion <span class="sc">%&gt;%</span> <span class="fu">lemmatize_words</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "run"  "run"  "run"  "boat" "boat" "swim" "swim" "swim" "swim"</code></pre>
 </div>
