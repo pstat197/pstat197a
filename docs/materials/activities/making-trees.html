@@ -331,14 +331,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # Groups:   workclass [8]
   workclass        `&lt;=50K` `&gt;50K` high.inc
   &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   
-1 ?                      8      2 TRUE    
-2 Federal-gov            6      2 TRUE    
-3 Local-gov              8      6 TRUE    
-4 Never-worked           1      0 TRUE    
-5 Private              111     24 TRUE    
-6 Self-emp-inc           2      3 FALSE   
-7 Self-emp-not-inc      11      8 TRUE    
-8 State-gov              5      3 TRUE    </code></pre>
+1 ?                     14      0 TRUE    
+2 Federal-gov            7      5 TRUE    
+3 Local-gov              8      4 TRUE    
+4 Private               97     33 TRUE    
+5 Self-emp-inc           4      3 TRUE    
+6 Self-emp-not-inc      12      3 TRUE    
+7 State-gov              8      1 TRUE    
+8 Without-pay            1      0 TRUE    </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pick out categories that are majority high income</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>highinc_categories <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span></span>
@@ -433,11 +433,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">age</td>
-<td style="text-align: left;">30</td>
+<td style="text-align: left;">51</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">workclass</td>
-<td style="text-align: left;">Local-gov</td>
+<td style="text-align: left;">Private</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">education</td>
@@ -445,19 +445,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td style="text-align: left;">marital_status</td>
-<td style="text-align: left;">Never-married</td>
+<td style="text-align: left;">Divorced</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">occupation</td>
-<td style="text-align: left;">Protective-serv</td>
+<td style="text-align: left;">Adm-clerical</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">relationship</td>
-<td style="text-align: left;">Own-child</td>
+<td style="text-align: left;">Not-in-family</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">race</td>
-<td style="text-align: left;">Black</td>
+<td style="text-align: left;">White</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">sex</td>
