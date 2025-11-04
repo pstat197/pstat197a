@@ -100,29 +100,29 @@ bibliography: slides/refs.bib
 
     -   @khan2010review
 
-<!-- ### Week 6 -->
+### Week 6
 
-<!-- -   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\] -->
+-   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\]
 
-<!-- -   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\] -->
+-   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\]
 
-<!-- -   ***Thursday meeting:*** assignment review and planning \[[slides](slides/week6-planning.qmd)\] -->
+-   ***Thursday meeting:*** NO CLASS
 
-<!-- -   ***Assignments:*** -->
+-   ***Assignments:***
 
-<!--     -   Midquarter assessments \[[form](https://forms.gle/v7xUk83EfxiFEKVS9)\] -->
+    -   Midquarter assessments \[[form](https://forms.gle/MttSJWHXUWXWLArPA)\]
 
-<!--     -   Request winter add code \[[form](https://forms.gle/S8j2MPcnunU6Kzek9)\] -->
+    -   Request winter add code \[[form](https://forms.gle/r6tMKRdTwKhUhataA)\]
 
-<!--     -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/FSAStof9zNCLBM578) -->
+    -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/67tXMm1cReS8gyx66)
 
-<!--     -   third group assignment ***due Monday, November 14, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/jHAX1yAx)\] \[[group assignments](https://docs.google.com/spreadsheets/d/15hqIKKFG00LoFy1i0JBwSzZI3U66fKe9N3FDoH7pq2o/edit?usp=sharing)\] -->
+    -   third group assignment ***due Monday, November 14, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/I0qOjBA-)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1lPgpTYq0tC2vU2LEjqoibphw6-CrEOILbFJQa_CkKFk/edit?usp=sharing)\]
 
-<!-- -   Optional further reading: -->
+-   Optional further reading:
 
-<!--     -   @alzubaidi2021review -->
+    -   @alzubaidi2021review
 
-<!--     -   @Goodfellow-et-al-2016 Ch. 6 (advanced) -->
+    -   @Goodfellow-et-al-2016 Ch. 6 (advanced)
 
 <!-- ## Module 3: soil temperatures -->
 

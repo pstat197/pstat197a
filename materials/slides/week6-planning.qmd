@@ -1,0 +1,64 @@
+---
+format: 
+  revealjs:
+    incremental: true
+    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    logo: 'img/ucsbds_hex.png'
+    fig-width: 6
+    fig-height: 4
+    fig-align: 'left'
+    slide-number: true
+execute:
+  message: false
+  warning: false
+  echo: false
+  cache: false
+---
+
+## Today's agenda
+
+1.  Discuss Winter/Spring enrollment
+2.  Demo assignment repository
+
+## Capstone projects
+
+-   project abstracts will be distributed after Thanksgiving
+
+-   interested sponsors will attend a Zoom meeting to present their project ideas to you
+
+-   you get to rank your preferred projects
+
+-   assignments made over Winter break
+
+## Expectations
+
+-   commit to two terms of work
+
+    -   recommend composing and sign a team contract defining project roles and teamwork expectations
+
+-   4 credits per term $\approx$ 12hr/week commitment
+
+    -   one 1.25hr class meeting per week
+
+    -   one 1hr project meeting per week with sponsor and mentor and one 1hr+ student team meeting per week
+
+    -   \~2hr of meeting prep and 'soft' tasks per week
+
+    -   5hr of project work per week
+
+    -   \~2hr flex time
+
+## Timeline
+
+-   *now*: fill out [enrollment request form](https://forms.gle/r6tMKRdTwKhUhataA) (even if you're not sure about commitment right now)
+-   *now*: fill out [midquarter assessment](https://forms.gle/MttSJWHXUWXWLArPA)
+
+-   *end of fall*: review project abstracts and specify preferences
+
+-   *winter break*: receive assignments and develop motivational statement
+
+-   *winter quarter*: develop team contract and begin work
+
+    -   peer review and reflection at midquarter, start of spring, and mid-spring
+
+-   *end of spring*: poster showcase on campus
