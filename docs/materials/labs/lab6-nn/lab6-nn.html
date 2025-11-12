@@ -390,25 +390,25 @@ T &amp;= X\beta
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">epochs =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/10
-14/14 - 8s - loss: 0.6935 - binary_accuracy: 0.4774 - 8s/epoch - 595ms/step
+14/14 - 8s - loss: 0.6928 - binary_accuracy: 0.5023 - 8s/epoch - 599ms/step
 Epoch 2/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.4412 - 40ms/epoch - 3ms/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5701 - 41ms/epoch - 3ms/step
 Epoch 3/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.4842 - 11ms/epoch - 782us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5294 - 11ms/epoch - 780us/step
 Epoch 4/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.4842 - 10ms/epoch - 683us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5520 - 10ms/epoch - 693us/step
 Epoch 5/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.4932 - 10ms/epoch - 683us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5452 - 9ms/epoch - 661us/step
 Epoch 6/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.4864 - 9ms/epoch - 664us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5814 - 9ms/epoch - 676us/step
 Epoch 7/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.4977 - 9ms/epoch - 627us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5226 - 9ms/epoch - 630us/step
 Epoch 8/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.5023 - 8ms/epoch - 588us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5249 - 8ms/epoch - 605us/step
 Epoch 9/10
-14/14 - 0s - loss: 0.6935 - binary_accuracy: 0.5023 - 8ms/epoch - 600us/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5271 - 8ms/epoch - 594us/step
 Epoch 10/10
-14/14 - 0s - loss: 0.6934 - binary_accuracy: 0.5045 - 8ms/epoch - 591us/step</code></pre>
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5158 - 8ms/epoch - 582us/step</code></pre>
 </div>
 </div>
 <p>The following commands will retrieve weights, evaluated loss ans specified metrics, and predictions.</p>
@@ -417,40 +417,40 @@ Epoch 10/10
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>keras<span class="sc">::</span><span class="fu">get_weights</span>(model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-              [,1]
- [1,] -0.231988847
- [2,] -0.379048437
- [3,] -0.087285809
- [4,] -0.399066746
- [5,]  0.322438776
- [6,]  0.442395151
- [7,] -0.488042206
- [8,] -0.438005447
- [9,]  0.538612723
-[10,]  0.008345246
+             [,1]
+ [1,]  0.17305417
+ [2,] -0.01252600
+ [3,]  0.44333377
+ [4,]  0.30317539
+ [5,]  0.25621048
+ [6,] -0.08975695
+ [7,]  0.25558415
+ [8,]  0.66105342
+ [9,] -0.19292657
+[10,]  0.03174940
 
 [[2]]
-[1] -0.01012966</code></pre>
+[1] -0.01193201</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># evaluate on specified data</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">evaluate</span>(model, x_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>14/14 - 0s - loss: 0.6934 - binary_accuracy: 0.5045 - 304ms/epoch - 22ms/step</code></pre>
+<pre><code>14/14 - 0s - loss: 0.6927 - binary_accuracy: 0.5158 - 310ms/epoch - 22ms/step</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           loss binary_accuracy 
-      0.6934065       0.5045249 </code></pre>
+      0.6927304       0.5158371 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute predictions</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">model</span>(x_train) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tf.Tensor(
-[[0.49640468]
- [0.49727637]
- [0.49695626]
- [0.4982159 ]
- [0.49537408]
- [0.4974676 ]], shape=(6, 1), dtype=float32)</code></pre>
+[[0.50442713]
+ [0.497239  ]
+ [0.49739847]
+ [0.49682778]
+ [0.49821496]
+ [0.49701703]], shape=(6, 1), dtype=float32)</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
@@ -524,105 +524,105 @@ ________________________________________________________________________________
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">epochs =</span> <span class="dv">50</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/50
-14/14 - 0s - loss: 0.6933 - binary_accuracy: 0.4661 - 406ms/epoch - 29ms/step
+14/14 - 0s - loss: 0.6933 - binary_accuracy: 0.4819 - 439ms/epoch - 31ms/step
 Epoch 2/50
-14/14 - 0s - loss: 0.6932 - binary_accuracy: 0.4955 - 21ms/epoch - 2ms/step
+14/14 - 0s - loss: 0.6933 - binary_accuracy: 0.4932 - 18ms/epoch - 1ms/step
 Epoch 3/50
-14/14 - 0s - loss: 0.6931 - binary_accuracy: 0.5023 - 19ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6932 - binary_accuracy: 0.4887 - 20ms/epoch - 1ms/step
 Epoch 4/50
-14/14 - 0s - loss: 0.6930 - binary_accuracy: 0.5136 - 18ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6932 - binary_accuracy: 0.5045 - 19ms/epoch - 1ms/step
 Epoch 5/50
-14/14 - 0s - loss: 0.6930 - binary_accuracy: 0.5226 - 18ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6931 - binary_accuracy: 0.5023 - 19ms/epoch - 1ms/step
 Epoch 6/50
-14/14 - 0s - loss: 0.6929 - binary_accuracy: 0.5226 - 19ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6931 - binary_accuracy: 0.4955 - 22ms/epoch - 2ms/step
 Epoch 7/50
-14/14 - 0s - loss: 0.6929 - binary_accuracy: 0.5226 - 17ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6930 - binary_accuracy: 0.4977 - 21ms/epoch - 1ms/step
 Epoch 8/50
-14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5249 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6930 - binary_accuracy: 0.5023 - 20ms/epoch - 1ms/step
 Epoch 9/50
-14/14 - 0s - loss: 0.6927 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6929 - binary_accuracy: 0.4977 - 23ms/epoch - 2ms/step
 Epoch 10/50
-14/14 - 0s - loss: 0.6927 - binary_accuracy: 0.5249 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6929 - binary_accuracy: 0.5090 - 21ms/epoch - 2ms/step
 Epoch 11/50
-14/14 - 0s - loss: 0.6926 - binary_accuracy: 0.5271 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5090 - 21ms/epoch - 1ms/step
 Epoch 12/50
-14/14 - 0s - loss: 0.6926 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5045 - 25ms/epoch - 2ms/step
 Epoch 13/50
-14/14 - 0s - loss: 0.6926 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6928 - binary_accuracy: 0.5090 - 21ms/epoch - 2ms/step
 Epoch 14/50
-14/14 - 0s - loss: 0.6924 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6927 - binary_accuracy: 0.5068 - 19ms/epoch - 1ms/step
 Epoch 15/50
-14/14 - 0s - loss: 0.6924 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6927 - binary_accuracy: 0.5090 - 22ms/epoch - 2ms/step
 Epoch 16/50
-14/14 - 0s - loss: 0.6924 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6926 - binary_accuracy: 0.5068 - 19ms/epoch - 1ms/step
 Epoch 17/50
-14/14 - 0s - loss: 0.6923 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6927 - binary_accuracy: 0.5113 - 17ms/epoch - 1ms/step
 Epoch 18/50
-14/14 - 0s - loss: 0.6923 - binary_accuracy: 0.5204 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6926 - binary_accuracy: 0.5090 - 17ms/epoch - 1ms/step
 Epoch 19/50
-14/14 - 0s - loss: 0.6922 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6925 - binary_accuracy: 0.5068 - 16ms/epoch - 1ms/step
 Epoch 20/50
-14/14 - 0s - loss: 0.6921 - binary_accuracy: 0.5317 - 17ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6925 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 21/50
-14/14 - 0s - loss: 0.6922 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6924 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 22/50
-14/14 - 0s - loss: 0.6920 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6925 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 23/50
-14/14 - 0s - loss: 0.6921 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6924 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 24/50
-14/14 - 0s - loss: 0.6919 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6924 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 25/50
-14/14 - 0s - loss: 0.6920 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6923 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 26/50
-14/14 - 0s - loss: 0.6918 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6923 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 27/50
-14/14 - 0s - loss: 0.6918 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6923 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 28/50
-14/14 - 0s - loss: 0.6918 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6922 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 29/50
-14/14 - 0s - loss: 0.6917 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6922 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 30/50
-14/14 - 0s - loss: 0.6917 - binary_accuracy: 0.5317 - 17ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6921 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 31/50
-14/14 - 0s - loss: 0.6916 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6921 - binary_accuracy: 0.5090 - 16ms/epoch - 1ms/step
 Epoch 32/50
-14/14 - 0s - loss: 0.6915 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6921 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 33/50
-14/14 - 0s - loss: 0.6916 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6920 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 34/50
-14/14 - 0s - loss: 0.6914 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6920 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 35/50
-14/14 - 0s - loss: 0.6913 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6919 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 36/50
-14/14 - 0s - loss: 0.6913 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6919 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 37/50
-14/14 - 0s - loss: 0.6913 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6919 - binary_accuracy: 0.5090 - 15ms/epoch - 1ms/step
 Epoch 38/50
-14/14 - 0s - loss: 0.6912 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6918 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 39/50
-14/14 - 0s - loss: 0.6911 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6918 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 40/50
-14/14 - 0s - loss: 0.6911 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6917 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 41/50
-14/14 - 0s - loss: 0.6911 - binary_accuracy: 0.5294 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6917 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 42/50
-14/14 - 0s - loss: 0.6911 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6917 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 43/50
-14/14 - 0s - loss: 0.6909 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6917 - binary_accuracy: 0.5113 - 16ms/epoch - 1ms/step
 Epoch 44/50
-14/14 - 0s - loss: 0.6909 - binary_accuracy: 0.5317 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6916 - binary_accuracy: 0.5113 - 17ms/epoch - 1ms/step
 Epoch 45/50
-14/14 - 0s - loss: 0.6909 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6916 - binary_accuracy: 0.5113 - 16ms/epoch - 1ms/step
 Epoch 46/50
-14/14 - 0s - loss: 0.6908 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6916 - binary_accuracy: 0.5113 - 16ms/epoch - 1ms/step
 Epoch 47/50
-14/14 - 0s - loss: 0.6907 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6915 - binary_accuracy: 0.5113 - 16ms/epoch - 1ms/step
 Epoch 48/50
-14/14 - 0s - loss: 0.6907 - binary_accuracy: 0.5294 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6915 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 49/50
-14/14 - 0s - loss: 0.6907 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6915 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step
 Epoch 50/50
-14/14 - 0s - loss: 0.6906 - binary_accuracy: 0.5317 - 15ms/epoch - 1ms/step</code></pre>
+14/14 - 0s - loss: 0.6914 - binary_accuracy: 0.5113 - 15ms/epoch - 1ms/step</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -650,25 +650,25 @@ Epoch 50/50
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">epochs =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/10
-14/14 - 2s - loss: 0.6885 - binary_accuracy: 0.5928 - 2s/epoch - 144ms/step
+14/14 - 2s - loss: 0.6901 - binary_accuracy: 0.5995 - 2s/epoch - 152ms/step
 Epoch 2/10
-14/14 - 0s - loss: 0.6748 - binary_accuracy: 0.8235 - 19ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6788 - binary_accuracy: 0.8710 - 24ms/epoch - 2ms/step
 Epoch 3/10
-14/14 - 0s - loss: 0.6605 - binary_accuracy: 0.8846 - 17ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6674 - binary_accuracy: 0.9140 - 27ms/epoch - 2ms/step
 Epoch 4/10
-14/14 - 0s - loss: 0.6452 - binary_accuracy: 0.9299 - 17ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6544 - binary_accuracy: 0.9186 - 24ms/epoch - 2ms/step
 Epoch 5/10
-14/14 - 0s - loss: 0.6284 - binary_accuracy: 0.9434 - 20ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6400 - binary_accuracy: 0.9276 - 24ms/epoch - 2ms/step
 Epoch 6/10
-14/14 - 0s - loss: 0.6104 - binary_accuracy: 0.9480 - 19ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6239 - binary_accuracy: 0.9367 - 24ms/epoch - 2ms/step
 Epoch 7/10
-14/14 - 0s - loss: 0.5916 - binary_accuracy: 0.9525 - 18ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.6063 - binary_accuracy: 0.9457 - 21ms/epoch - 2ms/step
 Epoch 8/10
-14/14 - 0s - loss: 0.5714 - binary_accuracy: 0.9502 - 16ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.5878 - binary_accuracy: 0.9525 - 20ms/epoch - 1ms/step
 Epoch 9/10
-14/14 - 0s - loss: 0.5507 - binary_accuracy: 0.9525 - 17ms/epoch - 1ms/step
+14/14 - 0s - loss: 0.5679 - binary_accuracy: 0.9525 - 27ms/epoch - 2ms/step
 Epoch 10/10
-14/14 - 0s - loss: 0.5295 - binary_accuracy: 0.9525 - 16ms/epoch - 1ms/step</code></pre>
+14/14 - 0s - loss: 0.5476 - binary_accuracy: 0.9548 - 22ms/epoch - 2ms/step</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -707,45 +707,45 @@ Epoch 10/10
 <span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">validation_split =</span> <span class="fl">0.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Epoch 1/20
-12/12 - 1s - loss: 0.6913 - binary_accuracy: 0.5269 - val_loss: 0.6885 - val_binary_accuracy: 0.6629 - 718ms/epoch - 60ms/step
+12/12 - 1s - loss: 0.6922 - binary_accuracy: 0.5014 - val_loss: 0.6904 - val_binary_accuracy: 0.5506 - 714ms/epoch - 60ms/step
 Epoch 2/20
-12/12 - 0s - loss: 0.6783 - binary_accuracy: 0.9433 - val_loss: 0.6841 - val_binary_accuracy: 0.7865 - 35ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6831 - binary_accuracy: 0.7564 - val_loss: 0.6873 - val_binary_accuracy: 0.5843 - 35ms/epoch - 3ms/step
 Epoch 3/20
-12/12 - 0s - loss: 0.6655 - binary_accuracy: 0.9348 - val_loss: 0.6797 - val_binary_accuracy: 0.6966 - 32ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6741 - binary_accuracy: 0.8385 - val_loss: 0.6839 - val_binary_accuracy: 0.6180 - 32ms/epoch - 3ms/step
 Epoch 4/20
-12/12 - 0s - loss: 0.6524 - binary_accuracy: 0.9292 - val_loss: 0.6755 - val_binary_accuracy: 0.6629 - 32ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6641 - binary_accuracy: 0.8980 - val_loss: 0.6801 - val_binary_accuracy: 0.6854 - 32ms/epoch - 3ms/step
 Epoch 5/20
-12/12 - 0s - loss: 0.6387 - binary_accuracy: 0.9207 - val_loss: 0.6703 - val_binary_accuracy: 0.6517 - 32ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6533 - binary_accuracy: 0.9348 - val_loss: 0.6764 - val_binary_accuracy: 0.6742 - 32ms/epoch - 3ms/step
 Epoch 6/20
-12/12 - 0s - loss: 0.6237 - binary_accuracy: 0.9178 - val_loss: 0.6652 - val_binary_accuracy: 0.6517 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6415 - binary_accuracy: 0.9320 - val_loss: 0.6721 - val_binary_accuracy: 0.6854 - 31ms/epoch - 3ms/step
 Epoch 7/20
-12/12 - 0s - loss: 0.6086 - binary_accuracy: 0.9207 - val_loss: 0.6603 - val_binary_accuracy: 0.6517 - 32ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6281 - binary_accuracy: 0.9433 - val_loss: 0.6672 - val_binary_accuracy: 0.6966 - 37ms/epoch - 3ms/step
 Epoch 8/20
-12/12 - 0s - loss: 0.5918 - binary_accuracy: 0.9377 - val_loss: 0.6548 - val_binary_accuracy: 0.6629 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.6138 - binary_accuracy: 0.9377 - val_loss: 0.6621 - val_binary_accuracy: 0.7079 - 33ms/epoch - 3ms/step
 Epoch 9/20
-12/12 - 0s - loss: 0.5744 - binary_accuracy: 0.9518 - val_loss: 0.6483 - val_binary_accuracy: 0.7640 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.5983 - binary_accuracy: 0.9603 - val_loss: 0.6567 - val_binary_accuracy: 0.7528 - 31ms/epoch - 3ms/step
 Epoch 10/20
-12/12 - 0s - loss: 0.5567 - binary_accuracy: 0.9632 - val_loss: 0.6418 - val_binary_accuracy: 0.7865 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.5820 - binary_accuracy: 0.9632 - val_loss: 0.6509 - val_binary_accuracy: 0.7640 - 31ms/epoch - 3ms/step
 Epoch 11/20
-12/12 - 0s - loss: 0.5386 - binary_accuracy: 0.9688 - val_loss: 0.6358 - val_binary_accuracy: 0.8090 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.5648 - binary_accuracy: 0.9660 - val_loss: 0.6445 - val_binary_accuracy: 0.7753 - 30ms/epoch - 2ms/step
 Epoch 12/20
-12/12 - 0s - loss: 0.5203 - binary_accuracy: 0.9717 - val_loss: 0.6295 - val_binary_accuracy: 0.8090 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.5468 - binary_accuracy: 0.9575 - val_loss: 0.6383 - val_binary_accuracy: 0.8090 - 30ms/epoch - 3ms/step
 Epoch 13/20
-12/12 - 0s - loss: 0.5017 - binary_accuracy: 0.9717 - val_loss: 0.6229 - val_binary_accuracy: 0.7978 - 30ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.5287 - binary_accuracy: 0.9603 - val_loss: 0.6317 - val_binary_accuracy: 0.7978 - 31ms/epoch - 3ms/step
 Epoch 14/20
-12/12 - 0s - loss: 0.4832 - binary_accuracy: 0.9745 - val_loss: 0.6166 - val_binary_accuracy: 0.7978 - 30ms/epoch - 2ms/step
+12/12 - 0s - loss: 0.5098 - binary_accuracy: 0.9603 - val_loss: 0.6254 - val_binary_accuracy: 0.7978 - 31ms/epoch - 3ms/step
 Epoch 15/20
-12/12 - 0s - loss: 0.4645 - binary_accuracy: 0.9745 - val_loss: 0.6102 - val_binary_accuracy: 0.7978 - 31ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.4913 - binary_accuracy: 0.9603 - val_loss: 0.6190 - val_binary_accuracy: 0.7753 - 31ms/epoch - 3ms/step
 Epoch 16/20
-12/12 - 0s - loss: 0.4466 - binary_accuracy: 0.9745 - val_loss: 0.6048 - val_binary_accuracy: 0.7978 - 30ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.4734 - binary_accuracy: 0.9688 - val_loss: 0.6130 - val_binary_accuracy: 0.7753 - 31ms/epoch - 3ms/step
 Epoch 17/20
-12/12 - 0s - loss: 0.4287 - binary_accuracy: 0.9745 - val_loss: 0.5991 - val_binary_accuracy: 0.7978 - 30ms/epoch - 2ms/step
+12/12 - 0s - loss: 0.4556 - binary_accuracy: 0.9688 - val_loss: 0.6069 - val_binary_accuracy: 0.7753 - 31ms/epoch - 3ms/step
 Epoch 18/20
-12/12 - 0s - loss: 0.4116 - binary_accuracy: 0.9688 - val_loss: 0.5943 - val_binary_accuracy: 0.7865 - 30ms/epoch - 2ms/step
+12/12 - 0s - loss: 0.4376 - binary_accuracy: 0.9717 - val_loss: 0.6006 - val_binary_accuracy: 0.7753 - 31ms/epoch - 3ms/step
 Epoch 19/20
-12/12 - 0s - loss: 0.3955 - binary_accuracy: 0.9688 - val_loss: 0.5905 - val_binary_accuracy: 0.7978 - 32ms/epoch - 3ms/step
+12/12 - 0s - loss: 0.4198 - binary_accuracy: 0.9688 - val_loss: 0.5937 - val_binary_accuracy: 0.7978 - 30ms/epoch - 3ms/step
 Epoch 20/20
-12/12 - 0s - loss: 0.3789 - binary_accuracy: 0.9688 - val_loss: 0.5848 - val_binary_accuracy: 0.7865 - 31ms/epoch - 3ms/step</code></pre>
+12/12 - 0s - loss: 0.4021 - binary_accuracy: 0.9688 - val_loss: 0.5877 - val_binary_accuracy: 0.8090 - 31ms/epoch - 3ms/step</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
