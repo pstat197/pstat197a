@@ -347,18 +347,18 @@ V_{1:n_{pc}} = \left( v_1 \;\cdots\; v_{n_{pc}}\right)
 <span id="cb4-3"><a></a>end <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb4-4"><a></a>time_ssvd <span class="ot">&lt;-</span> end <span class="sc">-</span> start; time_ssvd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 0.69051 secs</code></pre>
+<pre><code>Time difference of 0.678318 secs</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>start <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb6-2"><a></a>prcomp_out <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(claims_dtm, <span class="at">center =</span> T)</span>
 <span id="cb6-3"><a></a>end <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb6-4"><a></a>time_prcomp <span class="ot">&lt;-</span> end <span class="sc">-</span> start; time_prcomp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 13.17339 secs</code></pre>
+<pre><code>Time difference of 12.80798 secs</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>time_prcomp <span class="sc">-</span> time_ssvd</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 12.48288 secs</code></pre>
+<pre><code>Time difference of 12.12966 secs</code></pre>
 </div>
 </div>
 </div>

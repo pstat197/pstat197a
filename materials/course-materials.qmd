@@ -116,7 +116,7 @@ bibliography: slides/refs.bib
 
     -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/67tXMm1cReS8gyx66)
 
-    -   third group assignment ***due Monday, November 14, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/I0qOjBA-)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1lPgpTYq0tC2vU2LEjqoibphw6-CrEOILbFJQa_CkKFk/edit?usp=sharing)\]
+    -   third group assignment ***due Tuesday, November 18, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/I0qOjBA-)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1lPgpTYq0tC2vU2LEjqoibphw6-CrEOILbFJQa_CkKFk/edit?usp=sharing)\]
 
 -   Optional further reading:
 
@@ -124,57 +124,57 @@ bibliography: slides/refs.bib
 
     -   @Goodfellow-et-al-2016 Ch. 6 (advanced)
 
-<!-- ## Module 3: soil temperatures -->
+## Module 3: soil temperatures
 
-<!-- *Objectives: build a forecasting model; introduce concepts of spatial and temporal correlation; discuss function approximation and curve fitting with regression techniques; fit elementary time series models and regression with AR errors; spatial interpolation.* -->
+*Objectives: build a forecasting model; introduce concepts of spatial and temporal correlation; discuss function approximation and curve fitting with regression techniques; fit elementary time series models and regression with AR errors; spatial interpolation.*
 
-<!-- ### Week 7 -->
+### Week 7
 
-<!-- -   ***Tuesday meeting:*** data introduction; function approximation using basis expansions \[[slides](slides/week7-curvefitting.qmd)\] -->
+-   ***Tuesday meeting:*** NO CLASS; VETERAN'S DAY
 
-<!-- -   ***Section meeting:*** curve fitting \[[activity](labs/lab7-curvefitting/lab7-curvefitting.qmd)\] -->
+-   ***Section meeting:*** curve fitting \[[activity](labs/lab7-curvefitting/lab7-curvefitting.qmd)\]
 
-<!-- -   ***Thursday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\] -->
+-   ***Thursday meeting:*** data introduction; function approximation using basis expansions \[[slides](slides/week7-curvefitting.qmd)\]
 
-<!-- -   Optional further reading (available through UCSB library) -->
+-   Optional further reading (available through UCSB library)
 
-<!--     -   Sections 1.1, 1.2, and 2.3 in @shumway2017time -->
+    -   Sections 1.1, 1.2, and 2.3 in @shumway2017time
 
-<!--     -   @perperoglou2019review -->
+    -   @perperoglou2019review
 
-<!-- ### Week 8 -->
+### Week 8
 
-<!-- -   ***Tuesday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
+<!-- -   ***Tuesday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\] -->
 
 <!-- -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\] -->
 
-<!-- -   ***Thursday meeting:*** NO CLASS -->
+<!-- -   ***Thursday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
 
-<!-- -   Optional further reading: -->
+-   Optional further reading:
 
-<!--     -   8.1 -- 8.3 in @bivand2008applied -->
+    -   8.1 -- 8.3 in @bivand2008applied
 
-<!--     -   Ch. 12 in @dorman2022introduction [[link](http://132.72.155.230:3838/r/spatial-interpolation-of-point-data.html)] -->
+    -   Ch. 12 in @dorman2022introduction [[link](http://132.72.155.230:3838/r/spatial-interpolation-of-point-data.html)]
 
-<!-- ## Module 4: vignettes -->
+## Module 4: vignettes
 
-<!-- *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.* -->
+*Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.*
 
-<!-- ### Week 9 -->
+### Week 9
 
-<!-- -   ***Tuesday meeting:*** discussion on results of claims module; vignette workshopping \[[slides](slides/week9-claimsresults.qmd)\] -->
+-   ***Tuesday meeting:*** discussion on results of claims module; vignette workshopping <!-- \[[slides](slides/week9-claimsresults.qmd)\] -->
 
-<!-- -   ***Section meeting:*** NO SECTION MEETING (Thanksgiving) -->
+-   ***Section meeting:*** NO SECTION MEETING (Thanksgiving)
 
-<!-- -   ***Thursday meeting:*** NO CLASS (Thanksgiving) -->
+-   ***Thursday meeting:*** NO CLASS (Thanksgiving)
 
-<!-- -   ***Assignments:*** vignettes \[[guidelines](vignette-guidelines.qmd)\] -->
+-   ***Assignments:*** vignettes \[[guidelines](vignette-guidelines.qmd)\]
 
-<!--     -   drafts due in class **Thursday, 12/1 2pm PST** -->
+    -   drafts due in class **Thursday, 12/4 3:30pm PST**
 
-<!--     -   final version due **Thursday, 12/8 11:59pm PST** -->
+    -   final version due **Monday, 12/8 11:59pm PST**
 
-<!-- ### Week 10 -->
+### Week 10
 
 <!-- -   ***Tuesday meeting:*** capstone project overviews \[[slides](slides/week10-projects.qmd)\] -->
 
