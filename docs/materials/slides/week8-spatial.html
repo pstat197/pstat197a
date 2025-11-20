@@ -9,8 +9,8 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.24">
 
-  <meta name="author" content="Dr.&nbsp;Coburn">
-  <title>PSTAT 197A – Random forests</title>
+  <meta name="author" content="Dr Coburn">
+  <title>PSTAT 197A – Spatial prediction</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -193,13 +193,13 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Random forests</h1>
+  <h1 class="title">Spatial prediction</h1>
   <p class="subtitle">PSTAT197A/CMPSC190DD Fall 2025</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Dr.&nbsp;Coburn 
+Dr Coburn 
 </div>
         <p class="quarto-title-affiliation">
             UCSB
@@ -210,133 +210,179 @@ Dr.&nbsp;Coburn
 </section>
 <section id="announcementsreminders" class="slide level2">
 <h2>Announcements/reminders</h2>
-<p>Make your final commits for the first group assignment by <strong><em>Sunday 10/19 11:59pm PST</em></strong></p>
 <ul>
-<li class="fragment">should include an updated <code>report.qmd</code> and <code>report.html</code> with your write-up</li>
+<li class="fragment"><p>Next week (Thanksgiving):</p>
+<ul>
+<li class="fragment"><p>we <strong><em>are</em></strong> meeting Tuesday 11/25</p></li>
+<li class="fragment"><p>but there are <strong><em>no Wednesday section meetings</em></strong> on 11/26</p></li>
+</ul></li>
 </ul>
-<div class="fragment">
-<p>Next group assignment to be distributed Tuesday 10/21.</p>
+</section>
+<section id="final-group-assignment" class="slide level2">
+<h2>Final group assignment</h2>
 <ul>
-<li class="fragment">Task: replicate and redesign proteomic analysis</li>
+<li class="fragment"><p>groups posted [<a href="https://docs.google.com/spreadsheets/d/1ss_NodHXciODstgmDfgO-LiG4izYkdQ3u02fRae2V3o/edit?usp=sharing">here</a>]</p></li>
+<li class="fragment"><p>task: create a <em>method vignette</em> on a data science topic or theme</p>
+<ul>
+<li class="fragment"><p>goal: create a reference that you or someone else might use as a starting point next term</p></li>
+<li class="fragment"><p>deliverable: public repository in the <code>pstat197</code> workspace</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="possible-ideas-for-vignette-topics" class="slide level2 smaller">
+<h2>Possible ideas for vignette topics</h2>
+<ul>
+<li class="fragment"><p>clustering methods</p></li>
+<li class="fragment"><p>neural net architecture(s) for … [images, text, time series, spatial data]</p></li>
+<li class="fragment"><p>configuring a database and writing queries in R</p></li>
+<li class="fragment"><p>analysis of network data</p></li>
+<li class="fragment"><p>numerical optimization</p></li>
+<li class="fragment"><p>bootstrapping</p></li>
+<li class="fragment"><p>geospatial data structures</p></li>
+<li class="fragment"><p>anomaly detection</p></li>
+<li class="fragment"><p>functional regression</p></li>
+<li class="fragment"><p>anything you’d like</p></li>
+</ul>
+</section>
+<section id="outputs" class="slide level2">
+<h2>Outputs</h2>
+<p>Your repository should contain:</p>
+<ol type="1">
+<li class="fragment">A brief .README summarizing repo content and listing the best references on your topic for a user to consult after reviewing your vignette if they wish to learn more</li>
+<li class="fragment">A primary vignette document that explains methods and walks through implementation line-by-line (similar to an in-class or lab activity)</li>
+<li class="fragment">At least one example dataset</li>
+<li class="fragment">A script containing commented codes appearing in the vignette</li>
+</ol>
+</section>
+<section id="timeline" class="slide level2">
+<h2>Timeline</h2>
+<ul>
+<li class="fragment"><p>let me know your topic by end of day Tuesday 11/25</p></li>
+<li class="fragment"><p>I will confirm by end of day Wednesday 11/26</p></li>
+<li class="fragment"><p>present your draft in class Thursday 12/4</p></li>
+<li class="fragment"><p>finalize repository by <strong>Thursday 12/11</strong></p></li>
+</ul>
+</section>
+<section id="expectations" class="slide level2 smaller">
+<h2>Expectations</h2>
+<p>You’ll need to yourself learn about the topic and implementation by finding reference materials and code examples.</p>
+<div class="fragment">
+<p>It <strong><em>is okay</em></strong> to borrow closely from other vignettes in creating your own, but you should:</p>
+<ul>
+<li class="fragment"><p>cite them</p></li>
+<li class="fragment"><p>use different data</p></li>
+<li class="fragment"><p>do something new</p></li>
 </ul>
 </div>
-</section>
-<section id="last-time" class="slide level2">
-<h2>Last time</h2>
+<div class="fragment">
+<p>It <strong><em>is not okay</em></strong> to make a collage of reference materials by copying verbatim, or simply rewrite an existing vignette.</p>
 <ul>
-<li class="fragment"><p>introduced ASD proteomic dataset</p></li>
-<li class="fragment"><p>used multiple testing corrections to identify proteins whose serum levels differ significantly between ASD/TD groups</p></li>
-<li class="fragment"><p>discussed the difference between controlling familywise error vs.&nbsp;false discovery</p></li>
+<li class="fragment"><p>the best safeguard against this is to find your own data so you’re forced to translate codes/steps to apply in your particular case</p></li>
+<li class="fragment"><p>we’ll do a brief search and skim your references to ensure sufficient originality</p></li>
 </ul>
-</section>
-<section id="today" class="slide level2">
-<h2>Today</h2>
-<p>We’ll talk about two more approaches to identifying proteins of interest:</p>
-<ul>
-<li class="fragment"><p>correlation-based identification of proteins</p></li>
-<li class="fragment"><p>random forest classifier</p></li>
-</ul>
+</div>
 </section>
 <section>
-<section id="correlation-with-ados" class="title-slide slide level1 center">
-<h1>Correlation with ADOS</h1>
+<section id="wrapping-up-soil-temp-forecasting" class="title-slide slide level1 center">
+<h1>Wrapping up soil temp forecasting</h1>
 
 </section>
-<section id="ados-score" class="slide level2">
-<h2>ADOS score</h2>
-<p>Autism Diagnostic Observation Schedule (ADOS) scores are determined by psychological assessment and measure ASD severity.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>asd <span class="sc">%&gt;%</span> </span>
-<span id="cb1-2"><a></a>  <span class="fu">select</span>(group, ados) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-3"><a></a>  <span class="fu">group_by</span>(group) <span class="sc">%&gt;%</span> </span>
-<span id="cb1-4"><a></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-# Groups:   group [2]
-  group  ados
-  &lt;chr&gt; &lt;dbl&gt;
-1 ASD      23
-2 ASD      17
-3 TD       NA
-4 TD       NA</code></pre>
-</div>
-</div>
-<ul>
-<li class="fragment"><p><code>ados</code> is only measured for the ASD group</p></li>
-<li class="fragment"><p>numerical score between 6 and 23 (at least in this sample)</p></li>
-</ul>
-</section>
-<section id="correlation-approach" class="slide level2">
-<h2>Correlation approach</h2>
-<p>So here’s an idea:</p>
-<ul>
-<li class="fragment"><p>compute correlations of each protein with ADOS;</p></li>
-<li class="fragment"><p>pick the 10 proteins with the strongest correlation</p></li>
-</ul>
-</section>
-<section id="computation" class="slide level2">
-<h2>Computation</h2>
-<p>This is a simple aggregation operation and can be executed in R with <code>summarize()</code> :</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="co"># compute correlations</span></span>
-<span id="cb3-2"><a></a>asd_clean <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>ados,</span>
-<span id="cb3-4"><a></a>               <span class="at">names_to =</span> <span class="st">'protein'</span>,</span>
-<span id="cb3-5"><a></a>               <span class="at">values_to =</span> <span class="st">'level'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a></a>  <span class="fu">group_by</span>(protein) <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(ados, level))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,317 × 2
-   protein                   correlation
-   &lt;chr&gt;                           &lt;dbl&gt;
- 1 14-3-3                         0.0970
- 2 14-3-3 protein beta/alpha      0.0481
- 3 14-3-3 protein theta           0.122 
- 4 14-3-3 protein zeta/delta      0.0735
- 5 14-3-3E                       -0.127 
- 6 17-beta-HSD 1                  0.0969
- 7 3HAO                           0.0773
- 8 3HIDH                          0.0452
- 9 4-1BB                          0.0290
-10 4-1BB ligand                   0.0799
-# ℹ 1,307 more rows</code></pre>
-</div>
+<section id="from-last-time" class="slide level2">
+<h2>From last time</h2>
+<p>We had fit the <em>site-specific</em> model:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y_{i, t} &amp;= f_i (t) + \epsilon_{i, t} \quad\text{(nonlinear regression)} \\
+\epsilon_{i, t} &amp;= \sum_{d = 1}^D \alpha_{i,d}\epsilon_{i, t - d} + \xi_{i, t} \quad\text{(AR(D) errors)}
+\end{aligned}
+\]</span></p>
+<div class="fragment">
+<p>And computed forecasts <span class="math inline">\(\hat{Y}_{i, t+ 1} = \mathbb{E}(Y_{i, t + 1}|Y_{i, t})\)</span></p>
 </div>
 </section>
-<section id="visual-assessment" class="slide level2">
-<h2>Visual assessment</h2>
-
-<img data-src="week3-randomforest_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="480"></section>
-<section id="sort-and-slice" class="slide level2">
-<h2>Sort and slice</h2>
+<section id="fitting-and-forecasts-for-one-site" class="slide level2 scrollable">
+<h2>Fitting and forecasts for one site</h2>
 <div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">List</a></li><li><a href="#tabset-1-2">Visual</a></li></ul>
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Partitions</a></li><li><a href="#tabset-1-2">Fitting</a></li><li><a href="#tabset-1-3">Forecasting</a></li><li><a href="#tabset-1-4">Visualization</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># data partitioning</span></span>
+<span id="cb1-2"><a></a>site15 <span class="ot">&lt;-</span> soil <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span>year, <span class="sc">-</span>elev) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a></a>  <span class="fu">filter</span>(site <span class="sc">==</span> soil<span class="sc">$</span>site[<span class="dv">15</span>]) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a></a>  <span class="fu">arrange</span>(date)</span>
+<span id="cb1-6"><a></a></span>
+<span id="cb1-7"><a></a>train <span class="ot">&lt;-</span> site15 <span class="sc">%&gt;%</span></span>
+<span id="cb1-8"><a></a>  <span class="fu">filter</span>(date <span class="sc">&lt;</span> <span class="fu">ymd</span>(<span class="st">'2018-06-01'</span>))</span>
+<span id="cb1-9"><a></a></span>
+<span id="cb1-10"><a></a>test <span class="ot">&lt;-</span> site15 <span class="sc">%&gt;%</span></span>
+<span id="cb1-11"><a></a>  <span class="fu">filter</span>(date <span class="sc">&gt;=</span> <span class="fu">ymd</span>(<span class="st">'2018-06-01'</span>))</span>
+<span id="cb1-12"><a></a></span>
+<span id="cb1-13"><a></a>train <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   protein          correlation abs.corr  rank
-   &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
- 1 CO8A1                  0.362    0.362  1317
- 2 C5b, 6 Complex        -0.337    0.337     1
- 3 Thrombospondin-1       0.310    0.310  1316
- 4 ILT-2                 -0.309    0.309     2
- 5 TRAIL R4               0.296    0.296  1315
- 6 HCE000414             -0.296    0.296     3
- 7 C1r                   -0.290    0.290     4
- 8 GM-CSF                 0.290    0.290  1314
- 9 Angiogenin            -0.284    0.284     5
-10 HCG                    0.278    0.278  1313</code></pre>
+<pre><code># A tibble: 6 × 7
+  site     day date        temp longitude latitude elevation
+  &lt;chr&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 B21K-1   226 2017-08-14  3.82     -155.     69.6        96
+2 B21K-1   227 2017-08-15  3.72     -155.     69.6        96
+3 B21K-1   228 2017-08-16  3.31     -155.     69.6        96
+4 B21K-1   229 2017-08-17  4.95     -155.     69.6        96
+5 B21K-1   230 2017-08-18  5.46     -155.     69.6        96
+6 B21K-1   231 2017-08-19  5.80     -155.     69.6        96</code></pre>
 </div>
 </div>
 </div>
 <div id="tabset-1-2">
-<div class="cell" data-layout-align="center">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>x_train <span class="ot">&lt;-</span> <span class="fu">pull</span>(train, day) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a></a>  <span class="fu">fourier</span>(<span class="at">nbasis =</span> <span class="dv">4</span>, <span class="at">period =</span> <span class="dv">365</span>)</span>
+<span id="cb3-3"><a></a>y_train <span class="ot">&lt;-</span> <span class="fu">pull</span>(train, temp)</span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a>fit <span class="ot">&lt;-</span> <span class="fu">Arima</span>(y_train, </span>
+<span id="cb3-6"><a></a>      <span class="at">order =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>), </span>
+<span id="cb3-7"><a></a>      <span class="at">xreg =</span> x_train, </span>
+<span id="cb3-8"><a></a>      <span class="at">include.mean =</span> F,</span>
+<span id="cb3-9"><a></a>      <span class="at">method =</span> <span class="st">'ML'</span>)</span>
+<span id="cb3-10"><a></a></span>
+<span id="cb3-11"><a></a>fit</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Series: y_train 
+Regression with ARIMA(2,0,0) errors 
+
+Coefficients:
+         ar1      ar2     const      sin1       cos1     sin2     cos2
+      1.4200  -0.5192  -97.0613  -88.1952  -113.2035  -8.7344   5.5794
+s.e.  0.0497   0.0497   11.5069    9.0469    13.2328   9.5148  12.0896
+
+sigma^2 = 0.7837:  log likelihood = -375.26
+AIC=766.52   AICc=767.03   BIC=795.9</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>x_test <span class="ot">&lt;-</span> <span class="fu">pull</span>(test, day) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a></a>  <span class="fu">fourier</span>(<span class="at">nbasis =</span> <span class="dv">4</span>, <span class="at">period =</span> <span class="dv">365</span>)</span>
+<span id="cb5-3"><a></a></span>
+<span id="cb5-4"><a></a>preds <span class="ot">&lt;-</span> <span class="fu">forecast</span>(fit, <span class="at">h =</span> <span class="fu">nrow</span>(x_test), <span class="at">xreg =</span> x_test)</span>
+<span id="cb5-5"><a></a></span>
+<span id="cb5-6"><a></a><span class="fu">head</span>(preds<span class="sc">$</span>mean)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time Series:
+Start = 292 
+End = 297 
+Frequency = 1 
+[1] -0.2837326 -0.1614655 -0.0189233  0.1355583  0.2962263  0.4592358</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-4">
+<div class="cell">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure>
-<p><img data-src="week3-randomforest_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+<p><img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-5-1.png" width="576"></p>
 </figure>
 </div>
 </div>
@@ -345,247 +391,170 @@ Dr.&nbsp;Coburn
 </div>
 </div>
 </section>
-<section id="slr-coefficients-instead" class="slide level2">
-<h2>SLR coefficients instead?</h2>
-<p><em>Fact:</em> the simple linear regression coefficient estimate is proportional to the correlation coefficient.</p>
-<div class="fragment">
-<p>So it should give similar results to sort the SLR coefficients by significance.</p>
-</div>
-<div class="fragment">
+<section id="now-for-many-sites" class="slide level2 scrollable">
+<h2>Now for many sites</h2>
+<p>Remember the functional programming iteration strategy?</p>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Fitting</a></li><li><a href="#tabset-2-2">Fit</a></li><li><a href="#tabset-2-3">Predictions</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,317 × 3
-   protein          estimate p.value
-   &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;
- 1 CO8A1               0.391 0.00131
- 2 C5b, 6 Complex     -0.401 0.00290
- 3 Thrombospondin-1    0.317 0.00635
- 4 ILT-2              -0.546 0.00664
- 5 TRAIL R4            0.353 0.00933
- 6 HCE000414          -0.278 0.00950
- 7 C1r                -0.341 0.0110 
- 8 GM-CSF              0.345 0.0110 
- 9 Angiogenin         -0.314 0.0130 
-10 HCG                 0.306 0.0149 
-# ℹ 1,307 more rows</code></pre>
+<pre><code># A tibble: 26 × 5
+   site   train              test               fit        pred      
+   &lt;chr&gt;  &lt;list&gt;             &lt;list&gt;             &lt;list&gt;     &lt;list&gt;    
+ 1 C27K-1 &lt;tibble [485 × 3]&gt; &lt;tibble [78 × 3]&gt;  &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 2 F24K-1 &lt;tibble [485 × 3]&gt; &lt;tibble [54 × 3]&gt;  &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 3 G25K-2 &lt;tibble [485 × 3]&gt; &lt;tibble [24 × 3]&gt;  &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 4 G26K-2 &lt;tibble [485 × 3]&gt; &lt;tibble [69 × 3]&gt;  &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 5 G27K-3 &lt;tibble [485 × 3]&gt; &lt;tibble [76 × 3]&gt;  &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 6 M17K-2 &lt;tibble [358 × 3]&gt; &lt;tibble [338 × 3]&gt; &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 7 M18K-5 &lt;tibble [357 × 3]&gt; &lt;tibble [382 × 3]&gt; &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 8 M16K-2 &lt;tibble [354 × 3]&gt; &lt;tibble [323 × 3]&gt; &lt;fr_ARIMA&gt; &lt;forecast&gt;
+ 9 N17K-3 &lt;tibble [353 × 3]&gt; &lt;tibble [357 × 3]&gt; &lt;fr_ARIMA&gt; &lt;forecast&gt;
+10 L16K-1 &lt;tibble [352 × 3]&gt; &lt;tibble [386 × 3]&gt; &lt;fr_ARIMA&gt; &lt;forecast&gt;
+# ℹ 16 more rows</code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="fdr-control" class="slide level2">
-<h2>FDR control</h2>
-<p>If we do the correlation analysis this way, do the identified proteins pass multiple testing significance thresholds?</p>
+<div id="tabset-2-2">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   protein          p.value  p.adj
-   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
- 1 CO8A1            0.00131 0.0145
- 2 C5b, 6 Complex   0.00290 0.0342
- 3 Thrombospondin-1 0.00635 0.112 
- 4 ILT-2            0.00664 0.0641
- 5 TRAIL R4         0.00933 1.29  
- 6 HCE000414        0.00950 0.916 
- 7 C1r              0.0110  0.242 
- 8 GM-CSF           0.0110  0.124 
- 9 Angiogenin       0.0130  0.142 
-10 HCG              0.0149  0.159 </code></pre>
-</div>
-</div>
-<ul>
-<li class="fragment"><p>probably just introducing selection noise</p></li>
-<li class="fragment"><p>but also, this result diverges considerably from the paper (?)</p></li>
-</ul>
-</section>
-<section id="aside-correlation-test" class="slide level2 scrollable">
-<h2>Aside: correlation test</h2>
-<p>The SLR approach is equivalent to sorting the correlations. (Take a moment to check the results.)</p>
-<div class="fragment">
-<p>We could use inference on the population correlation to obtain a <span class="math inline">\(p\)</span>-value associated with each sample correlation coefficient. These match the ones from SLR.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>cor_test <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb8-2"><a></a>  cor_out <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(x, y)</span>
-<span id="cb8-3"><a></a>  <span class="fu">tibble</span>(<span class="at">estimate =</span> cor_out<span class="sc">$</span>estimate,</span>
-<span id="cb8-4"><a></a>         <span class="at">p.value =</span> cor_out<span class="sc">$</span>p.value)</span>
-<span id="cb8-5"><a></a>}</span>
-<span id="cb8-6"><a></a></span>
-<span id="cb8-7"><a></a>asd_clean <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>ados,</span>
-<span id="cb8-9"><a></a>               <span class="at">names_to =</span> <span class="st">'protein'</span>,</span>
-<span id="cb8-10"><a></a>               <span class="at">values_to =</span> <span class="st">'level'</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-11"><a></a>  <span class="fu">group_by</span>(protein) <span class="sc">%&gt;%</span></span>
-<span id="cb8-12"><a></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor_test</span>(ados, level)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-13"><a></a>  <span class="fu">unnest</span>(correlation) <span class="sc">%&gt;%</span></span>
-<span id="cb8-14"><a></a>  <span class="fu">arrange</span>(p.value)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,317 × 3
-   protein          estimate p.value
-   &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;
- 1 CO8A1               0.362 0.00131
- 2 C5b, 6 Complex     -0.337 0.00290
- 3 Thrombospondin-1    0.310 0.00635
- 4 ILT-2              -0.309 0.00664
- 5 TRAIL R4            0.296 0.00933
- 6 HCE000414          -0.296 0.00950
- 7 C1r                -0.290 0.0110 
- 8 GM-CSF              0.290 0.0110 
- 9 Angiogenin         -0.284 0.0130 
-10 HCG                 0.278 0.0149 
-# ℹ 1,307 more rows</code></pre>
-</div>
-</div>
-</div>
-</section></section>
-<section>
-<section id="random-forest-activity" class="title-slide slide level1 center">
-<h1>Random forest activity</h1>
-
-</section>
-<section id="background" class="slide level2">
-<h2>Background</h2>
-<p>A <strong><em>binary tree</em></strong> is a directed graph in which:</p>
-<ul>
-<li class="fragment"><p>there is at most one path between any two nodes</p></li>
-<li class="fragment"><p>each node has at most two outward-directed edges</p></li>
-</ul>
-
-<img data-src="img/binary-tree.png" class="r-stretch"></section>
-<section id="classification-tree" class="slide level2">
-<h2>Classification tree</h2>
-<p>A <strong><em>classification tree</em></strong> is a binary tree in which the paths represent classification rules.</p>
-
-<img data-src="img/silly-tree.png" class="r-stretch quarto-figure-left"><p class="caption">A goofy classification tree.</p></section>
-<section id="example-classifying-high-earners" class="slide level2 scrollable">
-<h2>Example: classifying high earners</h2>
-<p>Say we want to predict income based on captial gains and education level using census data.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-# Groups:   income [2]
-  income educ     capital_gain
-  &lt;fct&gt;  &lt;fct&gt;           &lt;dbl&gt;
-1 &lt;=50K  hs                  0
-2 &lt;=50K  advanced            0
-3 &lt;=50K  college             0
-4 &gt;50K   hs               7688
-5 &gt;50K   hs               7688
-6 &gt;50K   college          5178</code></pre>
-</div>
-</div>
-<div class="fragment">
-<p>We could construct a classification tree by ‘splitting’ based on the values of predictor variables.</p>
-<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure>
-<p><img data-src="week3-randomforest_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<p><img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-7-1.png" width="1152"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
-</section>
-<section id="activity-building-trees" class="slide level2">
-<h2>Activity: building trees</h2>
-<p>To get a sense of the process of tree construction, we’ll do an activity in groups: each group will build a tree ‘by hand’.</p>
-<ul>
-<li class="fragment"><p>first let’s look at the instructions together</p></li>
-<li class="fragment"><p>then take about 15-20 minutes to do it</p></li>
-</ul>
-</section>
-<section id="random-forests" class="slide level2">
-<h2>Random forests</h2>
-<p>A random forest is a classifier based on many trees. It is constructed by:</p>
-<ul>
-<li class="fragment"><p>building some large number of <span class="math inline">\(T\)</span> trees using bootstrap samples and random subsets of predictors (what you just did, repeated many times)</p></li>
-<li class="fragment"><p>taking a majority vote across all trees to determine the classification</p></li>
-</ul>
-<div class="fragment">
-<p>So let’s take a vote using your trees!</p>
-</div>
-</section>
-<section id="variable-importance-scores" class="slide level2">
-<h2>Variable importance scores</h2>
-<p>If the number of trees <span class="math inline">\(T\)</span> is large (as it should be):</p>
-<ul>
-<li class="fragment"><p>trees are built using lots of random subsets of predictors</p></li>
-<li class="fragment"><p>can keep track of which ones are used most often to define splits</p></li>
-</ul>
-<div class="fragment">
-<p><strong><em>Variable importance scores</em></strong> provide a measure of how influential each predictor is in a random forest.</p>
-</div>
-</section>
-<section id="results" class="slide level2 scrollable">
-<h2>Results</h2>
-<p>Back to the proteomics data, the variable importance scores from a random forest provide another means of identifying proteins.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="co"># grow RF</span></span>
-<span id="cb11-2"><a></a><span class="fu">set.seed</span>(<span class="dv">101222</span>)</span>
-<span id="cb11-3"><a></a>rf_out <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(<span class="at">x =</span> asd_preds, <span class="at">y =</span> asd_resp,</span>
-<span id="cb11-4"><a></a>                       <span class="at">mtry =</span> <span class="dv">100</span>, <span class="at">ntree =</span> <span class="dv">1000</span>, </span>
-<span id="cb11-5"><a></a>                       <span class="at">importance =</span> T)</span>
-<span id="cb11-6"><a></a></span>
-<span id="cb11-7"><a></a><span class="co"># variable importance</span></span>
-<span id="cb11-8"><a></a>rf_out<span class="sc">$</span>importance <span class="sc">%&gt;%</span> </span>
-<span id="cb11-9"><a></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-10"><a></a>  <span class="fu">mutate</span>(<span class="at">protein =</span> <span class="fu">rownames</span>(rf_out<span class="sc">$</span>importance)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-11"><a></a>  <span class="fu">slice_max</span>(MeanDecreaseGini, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-12"><a></a>  <span class="fu">select</span>(protein)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 1
-   protein    
-   &lt;chr&gt;      
- 1 DERM       
- 2 IgD        
- 3 MAPK14     
- 4 Notch 1    
- 5 RELT       
- 6 ALCAM      
- 7 ERBB1      
- 8 eIF-4H     
- 9 CK-MB      
-10 TGF-b R III</code></pre>
-</div>
-</div>
-</section>
-<section id="errors" class="slide level2">
-<h2>Errors</h2>
-<p>But how accurate is the predictor?</p>
+<div id="tabset-2-3">
 <div class="cell">
 <div class="cell-output-display">
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">ASD</th>
-<th style="text-align: right;">TD</th>
-<th style="text-align: right;">class.error</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">ASD</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: right;">0.3026316</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">TD</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: right;">59</td>
-<td style="text-align: right;">0.2435897</td>
-</tr>
-</tbody>
-</table>
+<div>
+<figure>
+<p><img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-8-1.png" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="next-week" class="slide level2">
-<h2>Next week</h2>
+<section id="spatial-prediction" class="slide level2">
+<h2>Spatial prediction</h2>
+<p>We could consider our data to be more explicitly spatial:</p>
+<p><span class="math display">\[
+Y_{i, t} = Y_t(s_i)
+\qquad\text{where}\qquad
+s_i = \text{location of site }i
+\]</span></p>
+<div class="fragment">
+<p>In other words, our data at a given time are a realization of a spatial process <span class="math inline">\(Y(s)\)</span> observed at locations <span class="math inline">\(s_1, \dots, s_n\)</span>.</p>
+</div>
+<div class="fragment">
+<p>Can we predict <span class="math inline">\(Y(s_{n + 1})\)</span> based on <span class="math inline">\(Y(s_1), \dots, Y(s_n)\)</span>?</p>
+</div>
+</section>
+<section id="intuition" class="slide level2">
+<h2>Intuition</h2>
+<p>Tobler’s first law of geography:</p>
+<blockquote>
+<p><em>“everything is related to everything else, but near things are more related than distant things”</em></p>
+</blockquote>
+<div class="fragment">
+<p>So a weighted average of some kind makes sense for spatial prediction</p>
+<p><span class="math display">\[
+\hat{Y}(s) = \sum_i w_i Y(s_i)
+\]</span></p>
+<p>where the <em>weights</em> <span class="math inline">\(w_i\)</span> are larger for <span class="math inline">\(s_i\)</span> closer to <span class="math inline">\(s\)</span>.</p>
+</div>
+</section>
+<section id="inverse-distance-weighting" class="slide level2">
+<h2>Inverse distance weighting</h2>
+<p>A simple and fully nonparametric method of spatial prediction is to set <span class="math inline">\(w_i \propto 1/d(s, s_i)\)</span> where <span class="math inline">\(d\)</span> is a distance measure.</p>
+<div class="fragment">
+<p><strong><em>Inverse distance weighting</em></strong> does just that, for <em>powers</em> of distance:</p>
+<p><span class="math display">\[
+\hat{Y}(s) = \sum_i c \times d(s, s_i)^{-p} \times Y(s_i)
+\]</span></p>
+<p>Where <span class="math inline">\(c\)</span> is the normalizing constant <span class="math inline">\(1/\sum_i d(s, s_i)^{-p}\)</span>.</p>
+</div>
+</section>
+<section id="power-parameter" class="slide level2">
+<h2>Power parameter</h2>
+<div class="columns">
+<div class="column" style="width:35%;">
+<p>The power parameter <span class="math inline">\(p\)</span> controls the rate of weight decay with distance:</p>
+<p><span class="math display">\[
+w_i \propto \frac{1}{d(s, s_i)^p}
+\]</span></p>
+</div><div class="column" style="width:65%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-9-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="interpolation" class="slide level2">
+<h2>Interpolation</h2>
+<p>Spatial <strong><em>interpolation</em></strong> refers to ‘filling in’ values between observed locations.</p>
+<ol type="1">
+<li class="fragment">Generate a spatial mesh of with centers <span class="math inline">\(g_1, g_2, \dots, g_m\)</span></li>
+<li class="fragment">Predict <span class="math inline">\(\hat{Y}(g_j)\)</span> for every center <span class="math inline">\(g_j\)</span></li>
+<li class="fragment">Make a raster plot</li>
+</ol>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Mesh</strong></p>
+</div>
+<div class="callout-content">
+<p>For spatial problems, a <strong><em>mesh</em></strong> is a mutually exclusive partitioning of an area into subregions. Subregions could be regular (<em>e.g.</em>, squares, polygons) or irregular (try googling ‘Voronoi tesselation’).</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="map-of-locations" class="slide level2">
+<h2>Map of locations</h2>
+<p>Earlier, I fit models and generated forecasts for 26 sites chosen largely based on having overlapping observation windows.</p>
+
+<img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-10-1.png" width="576" class="r-stretch"></section>
+<section id="forecasts" class="slide level2">
+<h2>Forecasts</h2>
+<p>I also truncated the training data to stop on the same date (April 30, 2018). So we can plot point forecasts for May 1.</p>
+
+<img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-11-1.png" width="672" class="r-stretch"></section>
+<section id="interpolations-using-idw" class="slide level2">
+<h2>Interpolations using IDW</h2>
+<p>So interpolating between forecasts yields spatial forecasts.</p>
+
+<img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-12-1.png" width="672" class="r-stretch"></section>
+<section id="effect-of-idw-parameter-p" class="slide level2">
+<h2>Effect of IDW parameter <span class="math inline">\(p\)</span></h2>
+<p>The power parameter <span class="math inline">\(p\)</span> controls the rate of decay of interpolation weight <span class="math inline">\(w_i\)</span> with distance.</p>
+
+<img data-src="week8-spatial_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
+<section id="considerations" class="slide level2">
+<h2>Considerations</h2>
 <ul>
-<li class="fragment"><p>logistic regression</p></li>
-<li class="fragment"><p>variable selection</p></li>
-<li class="fragment"><p>a design view of the proteomic analysis</p></li>
+<li class="fragment"><p>Choosing <span class="math inline">\(p\)</span> can be done based on optimizing predictions or by hand.</p></li>
+<li class="fragment"><p>Uncertainty quantification?</p>
+<ul>
+<li class="fragment"><p>usually, could use variance of weighted average</p></li>
+<li class="fragment"><p>but also tricky in this case because we are interpolating <em>forecasts</em>, which themselves have some associated uncertainty</p></li>
+</ul></li>
 </ul>
 
 

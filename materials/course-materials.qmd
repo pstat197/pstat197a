@@ -148,7 +148,7 @@ bibliography: slides/refs.bib
 
 -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\]
 
-<!-- -   ***Thursday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
+-   ***Thursday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\]
 
 -   Optional further reading:
 
@@ -172,7 +172,7 @@ bibliography: slides/refs.bib
 
     -   drafts due in class **Thursday, 12/4 3:30pm PST**
 
-    -   final version due **Monday, 12/8 11:59pm PST**
+    -   final version due **Thursday, 12/11 11:59pm PST**
 
 ### Week 10
 
