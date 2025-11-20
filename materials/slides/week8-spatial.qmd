@@ -73,8 +73,6 @@ Your repository should contain:
 
 -   let me know your topic by end of day Tuesday 11/25
 
--   I will confirm by end of day Wednesday 11/26
-
 -   present your draft in class Thursday 12/4
 
 -   finalize repository by **Thursday 12/11**
