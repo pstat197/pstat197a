@@ -380,7 +380,7 @@ For spatial problems, a ***mesh*** is a mutually exclusive partitioning of an ar
 
 ## Map of locations
 
-Earlier, I fit models and generated forecasts for 26 sites chosen largely based on having overlapping observation windows.
+We fit models and generated forecasts for 26 sites chosen largely based on having overlapping observation windows.
 
 ```{r}
 #| fig-width: 6
@@ -412,7 +412,7 @@ fig_sitemap
 
 ## Forecasts
 
-I also truncated the training data to stop on the same date (April 30, 2018). So we can plot point forecasts for May 1.
+We also truncated the training data to stop on the same date (April 30, 2018). So we can plot point forecasts for May 1.
 
 ```{r}
 #| fig-width: 7

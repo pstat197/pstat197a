@@ -162,7 +162,7 @@ bibliography: slides/refs.bib
 
 ### Week 9
 
--   ***Tuesday meeting:*** discussion on results of claims module; vignette workshopping <!-- \[[slides](slides/week9-claimsresults.qmd)\] -->
+-   ***Tuesday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\]
 
 -   ***Section meeting:*** NO SECTION MEETING (Thanksgiving)
 
