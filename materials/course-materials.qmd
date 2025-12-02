@@ -176,14 +176,14 @@ bibliography: slides/refs.bib
 
 ### Week 10
 
-<!-- -   ***Tuesday meeting:*** capstone project overviews \[[slides](slides/week10-projects.qmd)\] -->
+-   ***Tuesday meeting:*** capstone project overviews \[[slides](slides/week10-projects.qmd)\]
 
-<!-- -   ***Section meeting:*** office hours for vignette help -->
+-   ***Section meeting:*** office hours for vignette help
 
-<!-- -   ***Thursday meeting:*** vignette presentation/exchange/feedback \[[feedback form](https://forms.gle/uxQUEJpJv6d6f3pD8)\] -->
+-   ***Thursday meeting:*** vignette presentation/exchange/feedback \[[feedback form](https://forms.gle/1jbeP7B4EZscx1sD9)\]
 
-<!-- -   ***Assignments*** due by Friday, 12/2***:*** -->
+-   ***Assignments*** due by Sunday, 12/14***:***
 
-<!--     -   read [project abstracts](https://drive.google.com/drive/folders/15hOlgQYZs5VLHBICqIo0yupJiTogd-4q?usp=share_link) -->
+    -   read [project abstracts](https://docs.google.com/document/d/126Cb9GGamsRS2DNRGuycJp-blcfoJNyYUHF2IKUoM1c/edit?usp=sharing)
 
-<!--     -   fill out [preference form](https://forms.gle/iYpHQKwREGJCQJcz5) (will be active end of day 11/29) -->
+    -   fill out [preference form](https://forms.gle/JMYg65H7bA2mNLDZ6)

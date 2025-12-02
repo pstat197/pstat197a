@@ -1,0 +1,313 @@
+---
+title: "Capstone projects"
+subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
+author: "Dr Coburn"
+institute: 'UCSB'
+format: 
+  revealjs:
+    incremental: true
+    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    logo: 'img/ucsbds_hex.png'
+    slide-number: true
+    smaller: true
+---
+
+## Announcements/reminders
+
+-   come to class next time prepared to present a draft of your vignette
+
+-   project abstracts are [available to review!](https://docs.google.com/document/d/126Cb9GGamsRS2DNRGuycJp-blcfoJNyYUHF2IKUoM1c/edit?usp=sharing)
+
+-   office hours in place of section meetings this Wednesday
+
+# Capstone projects
+
+## [Blue Alpha](https://www.bluealpha.ai/)
+
+*Category: Industry*
+
+[Blue Alpha](https://www.bluealpha.ai/) develops modern Marketing Mix Modeling (MMM), Bayesian decision frameworks, and applied analytics tools for guiding real-world marketing investment.
+
+. . .
+
+They are submitting **three projects** for this year's capstone cohort.
+
+---
+
+## [Blue Alpha](https://www.bluealpha.ai/) — Project 1
+
+*Category: Industry*
+
+***Project:*** Prior Sensitivity Analysis Framework
+
+- Bayesian MMM models rely on prior specifications that can meaningfully influence ROI estimates and channel contributions  
+- systematically perturbing priors helps identify which results are robust versus sensitive to assumptions  
+- useful for model transparency, validation, and communication with clients
+
+. . .
+
+***Goals:*** construct a reproducible pipeline that perturbs priors, reruns the MMM, and summarizes robustness
+
+- generate sensitivity reports  
+- produce tornado-style diagrams and ranked robustness summaries  
+- highlight where additional data or domain expertise may be required
+
+---
+
+## [Blue Alpha](https://www.bluealpha.ai/) — Project 2
+
+*Category: Industry*
+
+***Project:*** Synthetic MMM Data Generator
+
+- real marketing datasets do not reveal “true” ROI, decay rates, or channel effects  
+- synthetic data with planted ground truth enables controlled benchmarking of MMM models  
+- essential for evaluating whether models recover known effects
+
+. . .
+
+***Goals:*** create a generative simulator that produces realistic marketing datasets with known parameters
+
+- embed true ROIs, adstock decay, seasonality, and noise structure  
+- run recovery experiments to assess model accuracy  
+- provide a reusable simulation framework for validation and educational use
+
+---
+
+## [Blue Alpha](https://www.bluealpha.ai/) — Project 3
+
+*Category: Industry*
+
+***Project:*** Channel Interaction & Synergy Analysis
+
+- MMM often treats marketing channels as independent, but channels can amplify or cannibalize each other  
+- identifying interactions improves interpretability and budget recommendations  
+- examples include TV boosting search activity or overlapping digital platforms cannibalizing reach
+
+. . .
+
+***Goals:*** build a research module that detects and visualizes channel interactions
+
+- estimate pairwise interactions among channels  
+- produce interaction matrices and significance assessments  
+- highlight channel pairs with potential synergy or cannibalization
+
+## [Brian Codding, UCSB Environmental Studies and Geography](https://content.csbs.utah.edu/~codding/) & collaborators
+
+*Category: Academia*
+
+Professor [Brian Codding](https://content.csbs.utah.edu/~codding/) works with Indigenous communities and partners to understand how traditional ecological knowledge and land use shape ecosystems.
+
+. . .
+
+***Project:*** cultural keystone species and Indigenous land stewardship across North America
+
+-   ecosystems across the Americas have been shaped by Indigenous land management decisions for thousands of years
+
+-   public datasets (e.g., GBIF, iNaturalist, federal and provincial data) provide species occurrence records across tribal, federal, state, and private lands
+
+. . .
+
+***Goals:*** compile and harmonize biodiversity and land-tenure datasets, model how cultural keystone species occurrence varies across land types, account for confounds and spatial/temporal autocorrelation, and generate results that can be shared with Indigenous partners to inform conservation and restoration strategies
+
+
+## [CalCOFI](https://calcofi.org/), [California Sea Grant](https://caseagrant.ucsd.edu/), & [Scripps Institution of Oceanography, UCSD](https://scripps.ucsd.edu/)
+
+*Category: Academic & government*
+
+[California Sea Grant](https://caseagrant.ucsd.edu/) partners with [Scripps Institution of Oceanography](https://scripps.ucsd.edu/) and CalCOFI to support coastal and marine science and the annual State of the California Current reporting.
+
+. . .
+
+***Project:*** automated reporting templates for State of the California Current
+
+-   each year, CalCOFI and partners assemble diverse datasets to produce the State of the California Current Report
+
+-   much of the current workflow is manual, making it time-consuming to generate consistent figures and summaries
+
+. . .
+
+***Goals:*** build a standardized, modular reporting pipeline (e.g., R Markdown, Quarto, Shiny, or similar) that ingests heterogeneous CalCOFI-related datasets and automatically produces a core suite of time series, spatial maps, depth profiles, and summary visualizations suitable for annual reporting and web publication
+
+## [CalCOFI](https://calcofi.org/) & [Scripps Institution of Oceanography, UCSD](https://scripps.ucsd.edu/)
+
+*Category: Academic/government partnership*
+
+[CalCOFI](https://calcofi.org/) is a long-term oceanographic monitoring program in the California Current System, jointly run by state and federal agencies and [Scripps Institution of Oceanography](https://scripps.ucsd.edu/).
+
+. . .
+
+***Project:*** interactive visualization and analysis tools for CalCOFI data
+
+-   CalCOFI has decades of physical, chemical, and biological data (e.g., temperature, salinity, oxygen, nutrients, zooplankton)
+
+-   the current data products are powerful but can be hard for non-experts to explore due to size, complexity, and format
+
+. . .
+
+***Goals:*** design and implement an interactive dashboard (and underlying data pipeline) that lets users explore spatial and temporal patterns, visualize trends, compare variables, and apply data science tools (clustering, trend analysis, anomaly detection) to understand long-term changes in the California Current
+
+## [NationBuilder](https://nationbuilder.com/)
+
+*Category: Industry*
+
+[NationBuilder](https://nationbuilder.com/) develops software for community organizing, campaigning, and civic engagement, including tools used by candidates and organizations worldwide.
+
+. . .
+
+***Project:*** district profiles for prospective candidates on Run for Office
+
+-   Run for Office is a platform that helps people identify elected positions they can run for and provides information about those districts
+
+-   candidates need concise, comparable “district briefs” that highlight key demographics, socioeconomic indicators, and contextual information with appropriate handling of uncertainty
+
+. . .
+
+***Goals:*** design and implement a reproducible pipeline that (1) uses Census delineation files to locate a candidate’s eligible districts, (2) aggregates ACS indicators and margins of error, (3) identifies useful comparison frames (e.g., adjacent districts, county, metro area, state), and (4) produces MOE-aware visualizations and written briefs that integrate seamlessly into the Run for Office user flow
+
+
+## [Neuroscience Research Institute](https://www.nri.ucsb.edu/) (UCSB)
+
+*Category: Academia*
+
+The [Neuroscience Research Institute](https://www.nri.ucsb.edu/) (NRI) at UCSB is an interdisciplinary research unit focused on basic and translational neuroscience.
+
+. . .
+
+***Project:*** integrating disclosed and genetic kinship for quality control in large-scale genomic analyses
+
+-   clinical and research teams collect disclosed family relationships (e.g., via PROGENY pedigrees) and also infer genetic kinship from whole-genome sequencing
+
+-   mismatches between disclosed and genetic kinship can indicate sample swaps, unreported relationships, or data entry errors that compromise downstream analyses
+
+. . .
+
+***Goals:*** compute expected kinship coefficients from pedigree data, compare them to observed genetic kinship, quantify mismatches, and develop a QC module that flags inconsistent pairs and integrates clinical diagnostic data to explore inheritance patterns in pedigrees (e.g., early-onset disease with apparent autosomal dominant transmission)
+
+
+## [P3 – Peak Performance Project](https://www.p3.md/)
+
+*Category: Industry*
+
+[P3 – Peak Performance Project](https://www.p3.md/) is a sports science company that collects detailed biomechanics data (3D motion capture, force plates) on NBA and other elite athletes to understand performance and injury risk.
+
+. . .
+
+***Project:*** linking biomechanics to on-court performance and injury outcomes
+
+-   P3’s proprietary biomechanics database captures high-resolution movement and force patterns for a large cohort of elite athletes
+
+-   public NBA data provide season-by-season performance, availability, and injury metrics
+
+-   the goal is to understand how laboratory measures relate to on-court production and injury risk
+
+. . .
+
+***Goals:*** integrate P3 biomechanics with public NBA data and apply modern analytical tools to identify key biomechanical predictors; scrape, clean, and align public NBA performance and injury data, merge with P3 lab-based metrics, build models and visualizations that relate biomechanics to efficiency, availability, and injury outcomes, explore whether specific movement patterns predict performance or injury susceptibility
+
+
+## [San Luis Obispo County Probation Department](https://www.slocounty.ca.gov/departments/probation)
+
+*Category: Government*
+
+[San Luis Obispo County Probation](https://www.slocounty.ca.gov/departments/probation) works with adults and juveniles under community supervision and operates local correctional programs.
+
+. . .
+
+***Project:*** validation study of probation risk and need assessment tools
+
+-   the department uses several structured risk–need tools (e.g., Level of Service/Case Management Inventory, Public Safety Assessment, Static-99, ODARA) to assess risk and inform supervision
+
+-   best practices recommend validating these tools on local populations using outcomes such as new arrests or violations
+
+. . .
+
+***Goals:*** assess predictive validity of multiple tools using local data (e.g., via AUC/ROC analysis), explore performance across demographic groups and cut-points, and produce communication-ready deliverables (including a public-facing summary of the Public Safety Assessment and a poster that also incorporates last year’s YLS/CMI work)
+
+
+## [Scripps Institution of Oceanography, UCSD](https://scripps.ucsd.edu/)
+
+*Category: Academic/government partnership*
+
+This project focuses on light and water clarity in the California Current Ecosystem.
+
+. . .
+
+***Project:*** light attenuation in the CCE — deriving water clarity from PAR, Secchi depth, and satellite data
+
+-   CalCOFI collects in situ photosynthetically active radiation (PAR) and Secchi depth measurements across different oceanographic conditions
+
+-   satellite products provide diffuse attenuation coefficients (e.g., Kd(490)), but the connection to in situ data in the CCE is not fully characterized
+
+. . .
+
+***Goals:*** model Secchi depth from PAR and other in situ variables, link PAR-derived attenuation to satellite Kd(490), and develop a predictive framework that can reduce reliance on labor-intensive Secchi casts while maintaining or improving monitoring of water clarity in the California Current
+
+## [Singularity Solutions](https://www.cavator.ai/)
+
+*Category: Industry*
+
+Singularity Solutions develops tools for simulating and analyzing challenging excavation and drilling problems using Discrete Element Method (DEM) and other numerical approaches.
+
+. . .
+
+***Project:*** identifying a borehole in simulated horizontal directional drilling data
+
+-   horizontal directional drilling simulations produce high-resolution point clouds of soil and tool geometries
+
+-   engineers need to identify the borehole, approximate its boundaries, and export surfaces in formats usable by downstream tools
+
+. . .
+
+***Goals:*** develop multiple algorithms to (1) detect and extract the borehole from a simulated point cloud, (2) fit a piecewise surface describing the hole geometry, and (3) export the resulting surface in STL (or similar) format for use in planning and visualization
+
+
+
+## [Soojin Yi Lab, UCSB](https://yilab.eemb.ucsb.edu/) (UCSB)
+
+*Category: Academia*
+
+Professor [Soojin Yi](https://yilab.eemb.ucsb.edu/) leads the Comparative Genomics & Epigenomics Lab at UCSB, studying how genomic and epigenomic mechanisms shape evolution and phenotypic diversity.
+
+. . .
+
+***Project:*** using sequence composition to understand biological diversity
+
+-   genome sequences and epigenomic patterns differ across taxa in structured ways that can be summarized via sequence composition metrics
+
+-   sequence composition signatures can be linked to evolutionary history, life history traits, and ecological niches
+
+. . .
+
+***Goals:*** develop workflows that extract sequence composition features across species, relate them to phylogeny and trait data, and explore how these patterns help explain biological diversity and potentially identify novel axes of variation
+
+## [Sound Ethics](https://www.soundethics.org/)
+
+*Category: Industry*
+
+[Sound Ethics](https://www.soundethics.org/) works at the intersection of music and AI, advocating for ethical AI practices and protecting artists’ rights as generative tools become more prevalent.
+
+. . .
+
+***Project:*** detecting AI-generated music
+
+-   generative models can now produce music that is difficult to distinguish from human-composed tracks
+
+-   reliable detection of AI-generated audio is important for transparency, licensing, and protecting creative rights
+
+. . .
+
+***Goals:*** build and evaluate a full pipeline that takes audio as input, experiments with different feature representations and model architectures, and outputs explainable predictions about whether music is human- or AI-generated, while pushing forward last year’s capstone work on this problem
+
+## Project Preferences
+
+Please **read abstracts first**, **attend or view the Zoom information session with project mentors**, and then [fill out the preference form](https://forms.gle/JMYg65H7bA2mNLDZ6) by ***Sunday 12/14***.
+
+Abstracts for projects [available here](https://docs.google.com/document/d/126Cb9GGamsRS2DNRGuycJp-blcfoJNyYUHF2IKUoM1c/edit?usp=sharing).
+
+[Zoom information session](https://ucsb.zoom.us/j/6425299662) on **Thursday, December 11th at 12:30 PM**
+Recording will be shared here.
+
+. . .
+
+I'll try my best to accommodate preferences, but I can't guarantee you'll get your top choice.
