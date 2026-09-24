@@ -176,6 +176,7 @@ Complete all of the following [***before***]{.underline} our next meeting.
 
 1.  Review all content in the about section of the course webpage.
 2.  Install [course software](https://pstat197.github.io/pstat197a/about/links.html) and create a GitHub account.
-3.  Fill out [capstone project intake form](https://forms.gle/4WuJ7CB2m7p3ryHE9).
-4.  Read [Peng, R. D., & Parker, H. S. (2022). Perspective on data science. *Annual Review of Statistics and Its Application*, *9*, 1-20.](https://doi.org/10.1146/annurev-statistics-040220-013917) (access online via UCSB library).
-5.  Prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9).
+3.  Submit your GitHub username via the GitHub assignment on Canvas.
+4.  Fill out [capstone project intake form](https://forms.gle/4WuJ7CB2m7p3ryHE9).
+5.  Read [Peng, R. D., & Parker, H. S. (2022). Perspective on data science. *Annual Review of Statistics and Its Application*, *9*, 1-20.](https://doi.org/10.1146/annurev-statistics-040220-013917) (access online via UCSB library).
+6.  Prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9).

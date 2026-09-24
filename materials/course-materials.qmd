@@ -16,13 +16,13 @@ bibliography: slides/refs.bib
 
     -   install course software and create GitHub account
     
-    -   submit GitHub username in Canvas assignment (due by **11:59 PM, Tuesday, September 29th**)
+    -   submit GitHub username in Canvas assignment (due by **11:59 PM, Monday, September 28th**)
 
-    -   fill out [intake form](https://forms.gle/4WuJ7CB2m7p3ryHE9)
+    -   fill out [intake form](https://forms.gle/4WuJ7CB2m7p3ryHE9) (due by **11:59 PM, Sunday, October 4th**)
 
     -   read @peng2022perspective;
 
-    -   prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9)
+    -   prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9) (due by *11:59 PM, Monday, September 28th)
 
 ### Week 1 {#sec-week-1}
 

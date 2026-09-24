@@ -17,9 +17,9 @@ Read this and complete all instructions in the 'action' boxes during your lab se
 
 -   install packages
 
--   accept a GitHub classroom team assignment
+-   create a public repository in our GitHub organization
 
--   clone a repository
+-   clone your group's sandbox repository
 
 ## Prerequisites
 
@@ -276,7 +276,7 @@ git clone https://github.com/ORGANIZATION/REPONAME
 For example:
 
 ```bash
-git clone https://github.com/pstat197-2026-27/sandbox-group-01
+git clone https://github.com/pstat-197a-fall2026/sandbox-group-01
 ```
 
 ::: callout-note
