@@ -9,8 +9,6 @@ published-title: "Updated"
 editor: visual
 ---
 
-***Concurrent course listing:*** PSTAT197A and CMPSC190DD are held concurrently; enrollment is by instructor consent and admitted students may enroll under either listing. The course content, expectations, assessments, and course policies are identical for students enrolled in either course.
-
 ***Catalog description:*** Introduction to research skills. Discussion of current research trends, writing literature reviews, etc. Students will be required to present materials reflecting their interests, which will be critically appraised for both content and presentation. Emphasis will be placed on aiding students to acquire a high-level of professionalism. *Prerequisite: PSTAT126.*
 
 ## Meetings
@@ -19,23 +17,23 @@ Class meetings are held from 3:30pm -- 4:45pm Tuesdays and Thursdays in South Ha
 
 Section meetings are held on Wednesdays:
 
--   2pm -- 2:50pm in HSSB (Humanities and Social Sciences Building) 1207 with Olivier;
+-   2pm -- 2:50pm in HSSB (Humanities and Social Sciences Building) 1228 with Ronaldas;
 
--   3pm -- 3:50pm in HSSB 1227 with Olivier;
+-   3pm -- 3:50pm in HSSB 1231 with Shruthi;
 
--   4pm -- 4:50pm in HSSB 1233 with Tianhong.
+-   4pm -- 4:50pm in HSSB 1223 with Shruthi.
 
 ## Staff
 
 ***Instructor**:*
 
--   *Dr. Coburn* Lecturer and instructor for 2025-2026 capstone projects.
+-   *Dr. Tony Coburn.* Instructor for 2026-2027 capstone projects. Email: [tony_w_coburn\@ucsb.edu](mailto:tony_w_coburn@ucsb.edu)
 
 ***Teaching assistants:***
 
--   *Olivier Mulkin.* Email: omulkin\@ucsb.edu
+-   *Ronaldas Lencevicius.* Email: [ronaldas\@ucsb.edu](mailto:ronaldas@ucsb.edu)
 
--   *Tianhong Liu.* Email: tianhongliu\@ucsb.edu
+-   *Shruthi Ravindra Bharadwaj.* Email: [sbharadwaj\@ucsb.edu](mailto:sbharadwaj@ucsb.edu)
 
 ## Expectations and assessments
 
@@ -61,7 +59,9 @@ Qualitative feedback is emphasized over numerical scores. Students are assessed 
 
 ## Policies
 
-***Attendance.*** Regular attendance is expected. Each student can miss two sessions without notice; further absences may impact course grades. Students are responsible for material discussed in their absence and should review posted session notes and consult a classmate.
+***Progression.*** Progression to the next courses in the sequence (PSTAT 197BC) is **not guaranteed**. Whether or not you receive an add code for the next course (PSTAT 197B) primarily depends on *your* *performance* in PSTAT 197A (measured in terms of attendance, participation, and quality of work). We recommend keeping this in mind, as enrollment in PSTAT 197BC is necessary to participate in the capstone.
+
+***Attendance.*** Regular attendance is expected. Attendance will be taken by your instructor once per class, at any time during the course period. Each student can miss **two** classes without notice; any further absences may impact course grades. Students are responsible for all material discussed in their absence and should review posted session notes and consult a classmate.
 
 ***Deadlines.*** Students are expected to meet assignment deadlines in a timely manner. All deadlines have a 24-hour grace period. Late or amended work may not be accepted.
 

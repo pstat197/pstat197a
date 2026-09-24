@@ -12,15 +12,17 @@ bibliography: slides/refs.bib
 
 -   ***Thursday meeting:*** Course orientation [\[slides](slides/week0-intro.qmd)\]
 
--   ***Assignments*** due by next class meeting:
+-   ***Assignments***:
 
-    -   install course software and create github account;
+    -   install course software and create GitHub account
+    
+    -   submit GitHub username in Canvas assignment (due by **11:59 PM, Tuesday, September 29th**)
 
-    -   fill out [intake form](https://forms.gle/ZedC6ZMHi5KhsDNH7)
+    -   fill out [intake form](https://forms.gle/4WuJ7CB2m7p3ryHE9)
 
     -   read @peng2022perspective;
 
-    -   prepare a [reading response](https://forms.gle/Vcj99WmwsxUbWLeu8)
+    -   prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9)
 
 ### Week 1 {#sec-week-1}
 
@@ -28,162 +30,162 @@ bibliography: slides/refs.bib
 
 -   ***Section meeting:*** software and technology overview [\[activity](labs/lab1-setup/lab1-setup.qmd)\]
 
--   ***Thursday meeting:*** basic GitHub actions [\[activity](activities/github-basics.qmd)\] [\[slides](slides/week1-github.qmd)\]
+<!-- -   ***Thursday meeting:*** basic GitHub actions [\[activity](activities/github-basics.qmd)\] [\[slides](slides/week1-github.qmd)\] -->
 
--   ***Assignments*** due by next class meeting:
+<!-- -   ***Assignments*** due by next class meeting: -->
 
-    -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations)
+<!--     -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations) -->
 
-    -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9)
+<!--     -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9) -->
 
-### Week 2
+<!-- ### Week 2 -->
 
--   ***Tuesday meeting:*** Introducing class intake survey data [\[slides](slides/week2-classdata.qmd)\]
+<!-- -   ***Tuesday meeting:*** Introducing class intake survey data [\[slides](slides/week2-classdata.qmd)\] -->
 
--   ***Section meeting:*** tidyverse basics [\[activity](labs/lab2-tidyverse/lab2-tidyverse.qmd)\]
+<!-- -   ***Section meeting:*** tidyverse basics [\[activity](labs/lab2-tidyverse/lab2-tidyverse.qmd)\] -->
 
--   ***Thursday meeting:*** planning group work for analysis of survey data \[[slides](slides/week2-workshop.qmd)\]
+<!-- -   ***Thursday meeting:*** planning group work for analysis of survey data \[[slides](slides/week2-workshop.qmd)\] -->
 
--   ***Assignments:***
+<!-- -   ***Assignments:*** -->
 
-    -   first team assignment due Sunday, October 19, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/iG-05GhY)\]
+<!--     -   first team assignment due Sunday, October 19, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/iG-05GhY)\] -->
 
-## Module 1: biomarker identification
+<!-- ## Module 1: biomarker identification -->
 
-*Objectives: introduce variable selection, classification, and multiple testing problems; discuss classification accuracy metrics and data partitioning; fit logistic regression and random forest classifiers in R; learn to implement multiple testing corrections for FDR control (Benjamini-Hochberg and Benjamini-Yekutieli); discuss selection via penalized estimation. Data from @hewitson2021blood .*
+<!-- *Objectives: introduce variable selection, classification, and multiple testing problems; discuss classification accuracy metrics and data partitioning; fit logistic regression and random forest classifiers in R; learn to implement multiple testing corrections for FDR control (Benjamini-Hochberg and Benjamini-Yekutieli); discuss selection via penalized estimation. Data from @hewitson2021blood .* -->
 
-### Week 3
+<!-- ### Week 3 -->
 
--   ***Tuesday meeting:*** introducing biomarker data; multiple testing \[[slides](slides/week3-biomarkers.qmd)\]
+<!-- -   ***Tuesday meeting:*** introducing biomarker data; multiple testing \[[slides](slides/week3-biomarkers.qmd)\] -->
 
--   ***Section meeting:*** iteration strategies \[[activity](labs/lab3-iteration/lab3-iteration.qmd)\]
+<!-- -   ***Section meeting:*** iteration strategies \[[activity](labs/lab3-iteration/lab3-iteration.qmd)\] -->
 
--   ***Thursday meeting:*** correlation analysis; random forests \[[slides](slides/week3-randomforest.qmd)\] \[[activity](activities/making-trees.qmd)\]
+<!-- -   ***Thursday meeting:*** correlation analysis; random forests \[[slides](slides/week3-randomforest.qmd)\] \[[activity](activities/making-trees.qmd)\] -->
 
--   ***Assignments*** due by next class meeting:
+<!-- -   ***Assignments*** due by next class meeting: -->
 
-    -   read [MDSR 10.1 - 10.2](https://mdsr-book.github.io/mdsr2e/ch-modeling.html)
+<!--     -   read [MDSR 10.1 - 10.2](https://mdsr-book.github.io/mdsr2e/ch-modeling.html) -->
 
-    -   read @hewitson2021blood
+<!--     -   read @hewitson2021blood -->
 
-    -   prepare a [reading response](https://forms.gle/Ya6ugnW8F1ndXDvS8)
+<!--     -   prepare a [reading response](https://forms.gle/Ya6ugnW8F1ndXDvS8) -->
 
-### Week 4
+<!-- ### Week 4 -->
 
--   ***Tuesday meeting:*** random forests cont'd; logistic regression \[[slides](slides/week4-logistic.qmd)\]
+<!-- -   ***Tuesday meeting:*** random forests cont'd; logistic regression \[[slides](slides/week4-logistic.qmd)\] -->
 
--   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\]
+<!-- -   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\] -->
 
--   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\]
+<!-- -   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\] -->
 
--   ***Assignments:***
+<!-- -   ***Assignments:*** -->
 
-    -   second group assignment due ***Friday, October 31, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/7cnheCWR)\]
+<!--     -   second group assignment due ***Friday, October 31, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/7cnheCWR)\] -->
 
-## Module 2: fraud claims
+<!-- ## Module 2: fraud claims -->
 
-*Objectives: introduce NLP techniques for converting text to data and web scraping tools in R; discuss dimension reduction techniques; introduce multiclass classification; learn to process text, fit multinomial logistic regression models, and train neural networks in R.*
+<!-- *Objectives: introduce NLP techniques for converting text to data and web scraping tools in R; discuss dimension reduction techniques; introduce multiclass classification; learn to process text, fit multinomial logistic regression models, and train neural networks in R.* -->
 
-### Week 5
+<!-- ### Week 5 -->
 
--   ***Tuesday meeting:*** data introduction and basic NLP techniques \[[slides](slides/week5-text.qmd)\]
+<!-- -   ***Tuesday meeting:*** data introduction and basic NLP techniques \[[slides](slides/week5-text.qmd)\] -->
 
--   ***Section meeting:*** string manipulation and text processing in R \[[activity](labs/lab5-text/lab5-text.qmd)\]
+<!-- -   ***Section meeting:*** string manipulation and text processing in R \[[activity](labs/lab5-text/lab5-text.qmd)\] -->
 
--   ***Thursday meeting:*** dimension reduction; multinomial logistic regression \[[slides](slides/week5-multinomial.qmd)\] \[[activity](activities/multinomial-logit.qmd)\]
+<!-- -   ***Thursday meeting:*** dimension reduction; multinomial logistic regression \[[slides](slides/week5-multinomial.qmd)\] \[[activity](activities/multinomial-logit.qmd)\] -->
 
--   Optional further reading:
+<!-- -   Optional further reading: -->
 
-    -   MDSR [Ch. 19](https://mdsr-book.github.io/mdsr2e/ch-text.html)
+<!--     -   MDSR [Ch. 19](https://mdsr-book.github.io/mdsr2e/ch-text.html) -->
 
-    -   @cambria2014jumping
+<!--     -   @cambria2014jumping -->
 
-    -   @khan2010review
+<!--     -   @khan2010review -->
 
-### Week 6
+<!-- ### Week 6 -->
 
--   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\]
+<!-- -   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\] -->
 
--   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\]
+<!-- -   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\] -->
 
--   ***Thursday meeting:*** NO CLASS
+<!-- -   ***Thursday meeting:*** NO CLASS -->
 
--   ***Assignments:***
+<!-- -   ***Assignments:*** -->
 
-    -   Midquarter assessments \[[form](https://forms.gle/MttSJWHXUWXWLArPA)\]
+<!--     -   Midquarter assessments \[[form](https://forms.gle/MttSJWHXUWXWLArPA)\] -->
 
-    -   Request winter add code \[[form](https://forms.gle/r6tMKRdTwKhUhataA)\]
+<!--     -   Request winter add code \[[form](https://forms.gle/r6tMKRdTwKhUhataA)\] -->
 
-    -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/67tXMm1cReS8gyx66)
+<!--     -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/67tXMm1cReS8gyx66) -->
 
-    -   third group assignment ***due Tuesday, November 18, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/I0qOjBA-)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1lPgpTYq0tC2vU2LEjqoibphw6-CrEOILbFJQa_CkKFk/edit?usp=sharing)\]
+<!--     -   third group assignment ***due Tuesday, November 18, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/I0qOjBA-)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1lPgpTYq0tC2vU2LEjqoibphw6-CrEOILbFJQa_CkKFk/edit?usp=sharing)\] -->
 
--   Optional further reading:
+<!-- -   Optional further reading: -->
 
-    -   @alzubaidi2021review
+<!--     -   @alzubaidi2021review -->
 
-    -   @Goodfellow-et-al-2016 Ch. 6 (advanced)
+<!--     -   @Goodfellow-et-al-2016 Ch. 6 (advanced) -->
 
-## Module 3: soil temperatures
+<!-- ## Module 3: soil temperatures -->
 
-*Objectives: build a forecasting model; introduce concepts of spatial and temporal correlation; discuss function approximation and curve fitting with regression techniques; fit elementary time series models and regression with AR errors; spatial interpolation.*
+<!-- *Objectives: build a forecasting model; introduce concepts of spatial and temporal correlation; discuss function approximation and curve fitting with regression techniques; fit elementary time series models and regression with AR errors; spatial interpolation.* -->
 
-### Week 7
+<!-- ### Week 7 -->
 
--   ***Tuesday meeting:*** NO CLASS; VETERAN'S DAY
+<!-- -   ***Tuesday meeting:*** NO CLASS; VETERAN'S DAY -->
 
--   ***Section meeting:*** curve fitting \[[activity](labs/lab7-curvefitting/lab7-curvefitting.qmd)\]
+<!-- -   ***Section meeting:*** curve fitting \[[activity](labs/lab7-curvefitting/lab7-curvefitting.qmd)\] -->
 
--   ***Thursday meeting:*** data introduction; function approximation using basis expansions \[[slides](slides/week7-curvefitting.qmd)\]
+<!-- -   ***Thursday meeting:*** data introduction; function approximation using basis expansions \[[slides](slides/week7-curvefitting.qmd)\] -->
 
--   Optional further reading (available through UCSB library)
+<!-- -   Optional further reading (available through UCSB library) -->
 
-    -   Sections 1.1, 1.2, and 2.3 in @shumway2017time
+<!--     -   Sections 1.1, 1.2, and 2.3 in @shumway2017time -->
 
-    -   @perperoglou2019review
+<!--     -   @perperoglou2019review -->
 
-### Week 8
+<!-- ### Week 8 -->
 
--   ***Tuesday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\]
+<!-- -   ***Tuesday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\] -->
 
--   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\]
+<!-- -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\] -->
 
--   ***Thursday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\]
+<!-- -   ***Thursday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
 
--   Optional further reading:
+<!-- -   Optional further reading: -->
 
-    -   8.1 -- 8.3 in @bivand2008applied
+<!--     -   8.1 -- 8.3 in @bivand2008applied -->
 
-    -   Ch. 12 in @dorman2022introduction [[link](http://132.72.155.230:3838/r/spatial-interpolation-of-point-data.html)]
+<!--     -   Ch. 12 in @dorman2022introduction [[link](http://132.72.155.230:3838/r/spatial-interpolation-of-point-data.html)] -->
 
-## Module 4: vignettes
+<!-- ## Module 4: vignettes -->
 
-*Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.*
+<!-- *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.* -->
 
-### Week 9
+<!-- ### Week 9 -->
 
--   ***Tuesday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\]
+<!-- -   ***Tuesday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\] -->
 
--   ***Section meeting:*** NO SECTION MEETING (Thanksgiving)
+<!-- -   ***Section meeting:*** NO SECTION MEETING (Thanksgiving) -->
 
--   ***Thursday meeting:*** NO CLASS (Thanksgiving)
+<!-- -   ***Thursday meeting:*** NO CLASS (Thanksgiving) -->
 
--   ***Assignments:*** vignettes \[[guidelines](vignette-guidelines.qmd)\]
+<!-- -   ***Assignments:*** vignettes \[[guidelines](vignette-guidelines.qmd)\] -->
 
-    -   drafts due in class **Thursday, 12/4 3:30pm PST**
+<!--     -   drafts due in class **Thursday, 12/4 3:30pm PST** -->
 
-    -   final version due **Thursday, 12/11 11:59pm PST**
+<!--     -   final version due **Thursday, 12/11 11:59pm PST** -->
 
-### Week 10
+<!-- ### Week 10 -->
 
--   ***Tuesday meeting:*** capstone project overviews \[[slides](slides/week10-projects.qmd)\]
+<!-- -   ***Tuesday meeting:*** capstone project overviews \[[slides](slides/week10-projects.qmd)\] -->
 
--   ***Section meeting:*** office hours for vignette help
+<!-- -   ***Section meeting:*** office hours for vignette help -->
 
--   ***Thursday meeting:*** vignette presentation/exchange/feedback \[[feedback form](https://forms.gle/1jbeP7B4EZscx1sD9)\]
+<!-- -   ***Thursday meeting:*** vignette presentation/exchange/feedback \[[feedback form](https://forms.gle/1jbeP7B4EZscx1sD9)\] -->
 
--   ***Assignments*** due by Sunday, 12/14***:***
+<!-- -   ***Assignments*** due by Sunday, 12/14***:*** -->
 
-    -   read [project abstracts](https://docs.google.com/document/d/126Cb9GGamsRS2DNRGuycJp-blcfoJNyYUHF2IKUoM1c/edit?usp=sharing)
+<!--     -   read [project abstracts](https://docs.google.com/document/d/126Cb9GGamsRS2DNRGuycJp-blcfoJNyYUHF2IKUoM1c/edit?usp=sharing) -->
 
-    -   fill out [preference form](https://forms.gle/JMYg65H7bA2mNLDZ6)
+<!--     -   fill out [preference form](https://forms.gle/JMYg65H7bA2mNLDZ6) -->

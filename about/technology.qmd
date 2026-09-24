@@ -19,7 +19,7 @@ Installations and basic functionality will be covered in the first section meeti
 
 While PSTAT197A is not language-agnostic and some instruction in R is provided, it is also not a course especially designed to emphasize programming technique in R. Students are free to use or experiment with other software at their discretion, provided it does not interfere with their participation in the class, but are expected to submit work and collaborate using RStudio-supported files.
 
-Capstone projects for the subsequent quarters (PSTAT 197B and 197C) may use a variety of programming languages, at the discretion of project mentors.
+Capstone projects for the subsequent quarters (PSTAT 197B and 197C) may use a variety of programming languages, at the discretion of project sponsors.
 
 ## GitHub {#sec-github}
 

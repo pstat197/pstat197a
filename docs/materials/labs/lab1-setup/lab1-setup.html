@@ -132,6 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#git-and-github" id="toc-git-and-github" class="nav-link" data-scroll-target="#git-and-github">Git and GitHub</a></li>
   <li><a href="#local-remote" id="toc-local-remote" class="nav-link" data-scroll-target="#local-remote">local &lt;&gt; remote</a></li>
   <li><a href="#cloning-a-repository" id="toc-cloning-a-repository" class="nav-link" data-scroll-target="#cloning-a-repository">Cloning a repository</a></li>
+  <li><a href="#repositories-for-course-modules" id="toc-repositories-for-course-modules" class="nav-link" data-scroll-target="#repositories-for-course-modules">Repositories for course modules</a></li>
   </ul></li>
   <li><a href="#checklist" id="toc-checklist" class="nav-link" data-scroll-target="#checklist">Checklist</a></li>
   </ul>
@@ -190,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Log in to your GitHub account.</li>
 <li>Open your GitHub client.</li>
 <li>Open a new session in RStudio.</li>
-<li>Create a class folder for PSTAT197 somewhere on your machine, <em>e.g.,</em> <code>~/documents/pstat197</code>.</li>
+<li>Create a class folder for PSTAT197A somewhere on your machine, <em>e.g.,</em> <code>~/documents/pstat197a</code>.</li>
 </ol>
 </div>
 </div>
@@ -362,9 +363,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="github-repositories" class="level2">
 <h2 class="anchored" data-anchor-id="github-repositories">GitHub repositories</h2>
 <!--# TA COMMENT: you could either talk through this section or have students read it and clone the repo themselves. either way, show the use of the client, the local copy, and the remote location (on github.com). the goal here is for students to understand the distinction between local and remote and that the client provides a means of communication -->
-<p>We will be distributing course assignments as <em>repositories</em> via GitHub Classroom. A repository is simply a storage space.</p>
-<p>Here we’ll walk you through how to access and copy the files in a repository just as you will for course assignments. The first step is to accept an assignment through a link we’ve given to you – this will create a repository for you with the files we intend for you to have.</p>
-<p>For now, we’ll make a ‘group sandbox’ that you can play in during our next class meeting.</p>
+<p>We will be using <em>repositories</em> on GitHub throughout the course. A repository is simply a storage space for the files associated with a project.</p>
+<p>For the activities in PSTAT 197A, you will work with several different groups over the course of the quarter. Each group will use a shared GitHub repository for the module you are completing together.</p>
+<p>All course repositories should be created within the <strong>PSTAT 197 course GitHub organization</strong> rather than under an individual student’s personal GitHub account.</p>
+<p>Before completing this activity, you should have received and accepted an invitation to join the course GitHub organization.</p>
+<p>For now, your group will create a <strong>group sandbox repository</strong> that you can use to practice working collaboratively with Git and GitHub during our next class meeting.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -375,37 +378,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Accept an assignment in GitHub Classroom</strong></p>
+<p><strong>Create your group’s sandbox repository</strong></p>
 <ol type="1">
-<li>Follow the link to accept the <a href="https://classroom.github.com/a/9Lb2OJv9">group-sandbox assignment</a>. Since it’s a group assignment, you will be prompted to join a team.</li>
-<li>Join the team for the table you sat at during last class meeting. If you don’t remember, check your attendance form receipt.</li>
+<li>Go to the PSTAT 197 course organization on GitHub.</li>
+<li>One person at your table should create a new repository in the organization.</li>
+<li>Name the repository according to the naming convention provided by your instructor, such as <code>sandbox-group-01</code>.</li>
+<li>Set the repository to <strong>Public</strong>.</li>
+<li>Do not initialize it with any additional files unless instructed to do so.</li>
+<li>After creating the repository, add the other members of your table group as collaborators with permission to contribute to the repository.</li>
+<li>Each group member should confirm that they can access the repository on github.com.</li>
 </ol>
-<p>You should be directed to a team repository on github.com. You may need to refresh your browser. Keep this window open; you will need the URL.</p>
+<p>Keep the repository page open; you will need its URL shortly.</p>
 </div>
 </div>
+<!--# TA COMMENT: make sure only ONE student per group creates the repository. The other students should be added to that repository rather than creating additional copies. -->
 <section id="git-and-github" class="level3">
 <h3 class="anchored" data-anchor-id="git-and-github">Git and GitHub</h3>
-<p>At some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. So, Git and GitHub are two different things.</p>
-<p><strong>Git is version control software</strong> that enables you to systematically track and control file changes within a <em>repository</em> – a collection of files possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)</p>
-<p><strong>GitHub is an online platform</strong> for hosting repositories remotely. Anyone with access to a repository can make changes to files in the repository, and this enables multiple people to collaborate on code.</p>
+<p>At some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. Git and GitHub are two different things.</p>
+<p><strong>Git is version control software</strong> that enables you to systematically track and control file changes within a <em>repository</em> – a collection of files, possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)</p>
+<p><strong>GitHub is an online platform</strong> for hosting repositories remotely. A public repository can be viewed by anyone, but only people with appropriate permissions can directly contribute changes to it.</p>
+<p>This allows multiple members of a group to collaborate on the same collection of files while Git keeps track of the changes that are made.</p>
 </section>
 <section id="local-remote" class="level3">
 <h3 class="anchored" data-anchor-id="local-remote">local &lt;&gt; remote</h3>
-<p>Usually remote repositories are not updated directly because contributors need to execute codes to test their changes and the remote server that hosts the repository is not equipped to do this.</p>
-<p>Instead, contributors will prepare changes on their own machine where they can test them, and then update the remote repository once their changes are complete.</p>
-<p>This process of implementing file changes in a repository involves communicating information between <em>local</em> and <em>remote</em> locations. For this purpose a local copy of the remote repository is needed.</p>
+<p>Usually remote repositories are not updated by directly editing files on github.com. Contributors generally need to execute code and test their changes on their own computers before sharing those changes with the rest of the group.</p>
+<p>Instead, contributors prepare changes on their own machines, where they can run and test their code, and then update the remote repository once their changes are ready.</p>
+<p>This process involves communicating information between <em>local</em> and <em>remote</em> locations. For this purpose, each contributor needs a local copy of the remote repository.</p>
 </section>
 <section id="cloning-a-repository" class="level3">
 <h3 class="anchored" data-anchor-id="cloning-a-repository">Cloning a repository</h3>
-<p>In Git lingo, a <em>clone</em> is a local copy of a remote repository. Creating a clone copies files and establishes the link between local and remote repositories so that changes can be sent to and received from the remote repository. <strong><em>You only need to create a clone once.</em></strong></p>
+<p>In Git terminology, a <em>clone</em> is a local copy of a remote repository. Creating a clone copies the repository files to your computer and establishes the connection between the local and remote repositories so that changes can be sent to and received from GitHub.</p>
+<p><strong><em>You only need to create a clone once for each repository.</em></strong></p>
 <p>To clone a repository, all one needs is:</p>
 <ul>
-<li><p>the remote location URL;</p></li>
-<li><p>the local destination where the clone will be created;</p></li>
-<li><p>permission from the repository owner, if private.</p></li>
+<li>the remote repository URL;</li>
+<li>the local destination where the clone will be created;</li>
+<li>permission to access the repository, if the repository is private.</li>
 </ul>
-<p>Here you’ll clone the group sandbox repository you just created/joined. You will need the URL; if you happened to close the page when you accepted the assignment earlier, you should be able to find the repository from your home page on github.com.</p>
-<!--# TA COMMENT: you may need to show students how they can navigate to the repository if they happened to close it; it should be visible among their github repositories -->
+<p>Here you’ll clone the group sandbox repository your group just created. You will need its URL. If you happened to close the page, you can find the repository by returning to the PSTAT 197 organization on github.com.</p>
+<!--# TA COMMENT: show students how to navigate to the organization and find their group's repository if necessary. Emphasize that every member of the group clones the SAME remote repository. -->
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -416,17 +427,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Clone the sandbox repository:</strong></p>
+<p><strong>Clone the sandbox repository</strong></p>
 <ol type="1">
-<li>Open your GitHub client (GitKracken or GitHub Desktop or similar) and ensure you are logged in to your GitHub account.</li>
-<li>Look for a ‘Clone Repo’ menu item or similar and simply input the URL and the place you’d like to clone it; proceed through any prompts.</li>
-<li>Check your file navigator to confirm that the repository files were copied.</li>
+<li>Open your GitHub client (GitKraken, GitHub Desktop, or similar) and ensure you are logged in to your GitHub account.</li>
+<li>Find the option to clone a repository.</li>
+<li>Select or enter the URL of your group’s sandbox repository.</li>
+<li>Choose the location on your computer where you would like the local copy to be stored.</li>
+<li>Complete the cloning process.</li>
+<li>Check your file navigator to confirm that the repository was copied to your computer.</li>
 </ol>
+<p>Every member of the group should clone the same repository onto their own computer.</p>
 </div>
 </div>
 <!--# TA COMMENT: remind students we'll use this repository next class meeting, so DON'T delete the clone -->
-<p>An alternative possibility is to create the clone using a terminal command. In the terminal, navigate to the desired destination, and input:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/USERNAME/REPONAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>An alternative is to create the clone using a terminal command. In the terminal, navigate to the desired destination and enter:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/ORGANIZATION/REPONAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/pstat197-2026-27/sandbox-group-01</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -439,13 +456,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="callout-body-container callout-body">
 <p><strong>On terminal commands:</strong></p>
 <ul>
-<li><p>It’s recommended to manage Git actions through a visual client, as it’s much easier to see and understand what’s happening.</p></li>
-<li><p>However, if you know exactly what you’re doing, executing simple actions via Git bash in the terminal can be more efficient at times.</p></li>
-<li><p>For example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.</p></li>
-<li><p>Try experimenting with terminal commands from RStudio after you have a little experience with basic Git actions.</p></li>
+<li>It’s recommended to manage Git actions through a visual client at first, as it’s much easier to see and understand what’s happening.</li>
+<li>However, if you know exactly what you’re doing, executing simple actions via Git in the terminal can be more efficient at times.</li>
+<li>For example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.</li>
+<li>Try experimenting with terminal commands from RStudio after you have a little experience with basic Git actions.</li>
 </ul>
 </div>
 </div>
+</section>
+<section id="repositories-for-course-modules" class="level3">
+<h3 class="anchored" data-anchor-id="repositories-for-course-modules">Repositories for course modules</h3>
+<p>You will follow essentially the same process for each of the five PSTAT 197A modules.</p>
+<p>For each module:</p>
+<ol type="1">
+<li>You will be assigned to a group for that module.</li>
+<li>One member of the group will create a new <strong>public repository</strong> within the PSTAT 197 organization.</li>
+<li>That student will add the other members of the group as collaborators.</li>
+<li>Every group member will clone the same repository to their own computer.</li>
+<li>The group will use that repository for its work on that module.</li>
+</ol>
+<p>Your groups may change from one module to another. A new repository should therefore be created for each module rather than continuing to use a repository belonging to a previous group.</p>
+<p>These module groups are for practicing the skills you will need later in the capstone sequence; they are <strong>not your final capstone project groups</strong>.</p>
 </section>
 </section>
 <section id="checklist" class="level2">
@@ -454,10 +485,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Install software: R, RStudio, Git, and a GitHub client</li>
 <li>Create a GitHub account</li>
+<li>Accept the invitation to join the PSTAT 197 GitHub organization</li>
 <li>Install R packages that will be used frequently</li>
 <li>Create a local project in RStudio</li>
-<li>Accept the group sandbox assignment on GitHub Classroom</li>
-<li>Clone the group sandbox repo</li>
+<li>Create or join your group’s sandbox repository</li>
+<li>Clone the group sandbox repository</li>
 </ol>
 
 

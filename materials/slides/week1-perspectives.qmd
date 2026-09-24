@@ -1,13 +1,13 @@
 ---
 title: "On data science"
-subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
-author: "Dr. Coburn"
+subtitle: "PSTAT197A Fall 2026"
+author: "Dr. Tony Coburn"
 institute: 'UCSB'
 bibliography: refs.bib
 format: 
   revealjs:
     incremental: true
-    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    footer: 'PSTAT197A Fall 2026'
     logo: 'img/ucsbds_hex.png'
     fig-width: 4
     fig-height: 2
@@ -24,9 +24,9 @@ execute:
 
 -   [Join Slack workspace](https://join.slack.com/t/ucsbdscapstone25-26/shared_invite/zt-3dzxum6id-X1AY6U5X2nJo1DSDdZoncQ), monitor channel #25f-pstat197a for announcements.
 
--   Submit [intake form](https://forms.gle/ZedC6ZMHi5KhsDNH7) and [reading response](https://forms.gle/Vcj99WmwsxUbWLeu8).
+-   Submit [intake form](https://forms.gle/4WuJ7CB2m7p3ryHE9).
 
--   Fill out [attendance form](https://forms.gle/yRWgVEkZH38KJhPt9).
+-   Your course instructor will walk around the room to record attendance at a random time during each class.
 
 -   Install course software and bring your laptop to section meetings. Remember your table number from today.
 
