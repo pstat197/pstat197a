@@ -250,7 +250,7 @@ Ensure the workstation at your table is up to date with the remote repository. T
 
 **Resolve a merge conflict**
 
-You will see a version of the file with the conflict that shows `<<<<HEAD … >>>>` followed by a long alphanumeric string. Within the angle brackets the two conflicting versions of the file will be shown, separated by `=====` .
+You will see a version of the file with the conflict that shows `<<<<HEAD … >>>>` followed by a long alphanumeric string. Within the angle brackets the two conflicting versions of the file will be shown, separated by `=====`.
 
 1.  Agree with your table on one version of the README file (or another representation of your names).
 2.  Commit and push the change.
