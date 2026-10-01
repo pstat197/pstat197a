@@ -14,16 +14,18 @@ This activity introduces GitHub repositories and basic Git actions; students wil
 
 -   resolve simple merge conflicts.
 
-**Prerequisites:** completion of lab 1, particularly cloning the group sandbox repository.
+**Prerequisites:** completion of lab 1, including joining the PSTAT 197 GitHub organization, creating your group's repository from the course template, and cloning that repository to your computer.
 
 ::: callout-important
 ## Action
 
 **Preparations**
 
--   log into your github account and open your github client and the group sandbox repository in the browser
+-   log into your github account and open your github client and your group's repository in the PSTAT 197 GitHub organization in the browser
 
--   open RStudio and navigate to the group sandbox project
+-   open RStudio and navigate to your local clone of the group repository
+
+-   do not change the repository's access settings; all members of the PSTAT 197 GitHub organization already have permission to contribute to course repositories
 :::
 
 # Background
@@ -60,9 +62,7 @@ Sometimes contributors take different or additional actions; the complexity of t
 
 # In-class activity
 
-Open your GitHub client and RStudio. In RStudio, open the project associated with your clone of the group sandbox repository.
-
-<!--# INSTRUCTOR ACTION: upload this activity .qmd file into a directory called class-activity on each group's repository -->
+Open your GitHub client and RStudio. In RStudio, open the project associated with your local clone of your group's repository.
 
 ## Basic Git actions
 
@@ -77,16 +77,16 @@ The first step to making a change is ensuring you have the most up-to-date versi
 
 **Pull changes from the remote repository.**
 
--   In your GitHub client, open the group sandbox repository and then look for a 'Pull' menu item.
+-   In your GitHub client, open your group's repository and then look for a 'Pull' menu item.
 
 -   If you are using GitHub desktop, you can alternatively 'fetch origin' first via a toolbar button. This will retrieve changes but without modifying local files, and if changes are detected, a button will appear in the main screen of the client to pull changes.
 
 -   In the terminal: navigate to the root directory of the repository and `git pull`
 :::
 
-Now check the repository history to see what changes you just pulled. In GitHub Desktop, there is a history tab on the left-hand side that lists commits chronologically. Select a commit to view line-by-line differences for every file that was altered.
+Now check the repository history. In GitHub Desktop, there is a history tab on the left-hand side that lists commits chronologically. Select a commit to view line-by-line differences for every file that was altered.
 
-You should see two changes: that there is now a `class-activity` folder containing a copy of this activity; and the README file has been updated. Look at the differences on the readme file.
+If another member of your group has made changes since you cloned the repository, those changes should now appear in your local copy. If your local repository is already up to date, Git may report that there are no new changes to pull; that is fine.
 
 ::: callout-note
 ## Remark
@@ -132,7 +132,7 @@ A *commit* is a bundle of changes that will be submitted to the repository along
 
 -   Once you have staged changes, look for a menu item to commit changes. Add a message and commit the changes. In GitHub Desktop, this appears at the bottom of the 'Changes' menu.
 
-    -   Or in the terminal: `git add -m "your message here"`
+    -   Or in the terminal: `git commit -m "your message here"`
 :::
 
 Often these actions are performed together. However, in some workflows it may make sense to stage changes incrementally and create commits that bundle several changes at once. For example, if you need to make an update that requires modifying files A, B, and C, it may make sense to edit and stage changes to A first, followed by B, followed by C, and create the commit only once the full update has been implemented.
@@ -205,7 +205,7 @@ Once you are ready to integrate changes you've developed on a branch you can ope
 -   Specify the pull request from your branch to the main branch and submit.
 :::
 
-Once a pull request is opened, usually a collaborator with maintain privileges must be the one to merge changes and close the request. However, the rules for this depend on repository settings. For this repository, all contributors can merge and close pull requests.
+Once a pull request is opened, a collaborator with sufficient repository permissions can review and merge the changes into the main branch. All members of the PSTAT 197 GitHub organization have write access to course repositories, which allows them to merge pull requests.
 
 ::: callout-important
 ## Action (in pairs)
@@ -260,7 +260,7 @@ When detected, merge conflicts must be resolved with a commit that takes precede
 
 ## Checklist
 
-1.  On github.com, your group-sandbox repository has a directory called `class-activity` containing a copy of this activity and one markdown file for each group member with two fun facts about them.
-2.  The repository has only one open branch.
+1.  On github.com, your group repository in the PSTAT 197 GitHub organization has a directory called `class-activity` containing a copy of this activity and one markdown file for each group member with two fun facts about them.
+2.  The repository has only the `main` branch remaining.
 3.  The README file lists each group member's name.
 4.  Each group member has an up-to-date local copy of the repository.

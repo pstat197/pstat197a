@@ -140,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>create branches and pull requests;</p></li>
 <li><p>resolve simple merge conflicts.</p></li>
 </ul>
-<p><strong>Prerequisites:</strong> completion of lab 1, particularly cloning the group sandbox repository.</p>
+<p><strong>Prerequisites:</strong> completion of lab 1, including joining the PSTAT 197 GitHub organization, creating your group’s repository from the course template, and cloning that repository to your computer.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -153,8 +153,9 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p><strong>Preparations</strong></p>
 <ul>
-<li><p>log into your github account and open your github client and the group sandbox repository in the browser</p></li>
-<li><p>open RStudio and navigate to the group sandbox project</p></li>
+<li><p>log into your github account and open your github client and your group’s repository in the PSTAT 197 GitHub organization in the browser</p></li>
+<li><p>open RStudio and navigate to your local clone of the group repository</p></li>
+<li><p>do not change the repository’s access settings; all members of the PSTAT 197 GitHub organization already have permission to contribute to course repositories</p></li>
 </ul>
 </div>
 </div>
@@ -186,8 +187,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="in-class-activity" class="level1">
 <h1>In-class activity</h1>
-<p>Open your GitHub client and RStudio. In RStudio, open the project associated with your clone of the group sandbox repository.</p>
-<!--# INSTRUCTOR ACTION: upload this activity .qmd file into a directory called class-activity on each group's repository -->
+<p>Open your GitHub client and RStudio. In RStudio, open the project associated with your local clone of your group’s repository.</p>
 <section id="basic-git-actions" class="level2">
 <h2 class="anchored" data-anchor-id="basic-git-actions">Basic Git actions</h2>
 <p>Here you’ll make a local change and then push that change to the remote repository.</p>
@@ -206,14 +206,14 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p><strong>Pull changes from the remote repository.</strong></p>
 <ul>
-<li><p>In your GitHub client, open the group sandbox repository and then look for a ‘Pull’ menu item.</p></li>
+<li><p>In your GitHub client, open your group’s repository and then look for a ‘Pull’ menu item.</p></li>
 <li><p>If you are using GitHub desktop, you can alternatively ‘fetch origin’ first via a toolbar button. This will retrieve changes but without modifying local files, and if changes are detected, a button will appear in the main screen of the client to pull changes.</p></li>
 <li><p>In the terminal: navigate to the root directory of the repository and <code>git pull</code></p></li>
 </ul>
 </div>
 </div>
-<p>Now check the repository history to see what changes you just pulled. In GitHub Desktop, there is a history tab on the left-hand side that lists commits chronologically. Select a commit to view line-by-line differences for every file that was altered.</p>
-<p>You should see two changes: that there is now a <code>class-activity</code> folder containing a copy of this activity; and the README file has been updated. Look at the differences on the readme file.</p>
+<p>Now check the repository history. In GitHub Desktop, there is a history tab on the left-hand side that lists commits chronologically. Select a commit to view line-by-line differences for every file that was altered.</p>
+<p>If another member of your group has made changes since you cloned the repository, those changes should now appear in your local copy. If your local repository is already up to date, Git may report that there are no new changes to pull; that is fine.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -278,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Once you have staged changes, look for a menu item to commit changes. Add a message and commit the changes. In GitHub Desktop, this appears at the bottom of the ‘Changes’ menu.</p>
 <ul>
-<li>Or in the terminal: <code>git add -m "your message here"</code></li>
+<li>Or in the terminal: <code>git commit -m "your message here"</code></li>
 </ul></li>
 </ul>
 </div>
@@ -382,7 +382,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </div>
 </div>
-<p>Once a pull request is opened, usually a collaborator with maintain privileges must be the one to merge changes and close the request. However, the rules for this depend on repository settings. For this repository, all contributors can merge and close pull requests.</p>
+<p>Once a pull request is opened, a collaborator with sufficient repository permissions can review and merge the changes into the main branch. All members of the PSTAT 197 GitHub organization have write access to course repositories, which allows them to merge pull requests.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -443,8 +443,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="checklist" class="level2">
 <h2 class="anchored" data-anchor-id="checklist">Checklist</h2>
 <ol type="1">
-<li>On github.com, your group-sandbox repository has a directory called <code>class-activity</code> containing a copy of this activity and one markdown file for each group member with two fun facts about them.</li>
-<li>The repository has only one open branch.</li>
+<li>On github.com, your group repository in the PSTAT 197 GitHub organization has a directory called <code>class-activity</code> containing a copy of this activity and one markdown file for each group member with two fun facts about them.</li>
+<li>The repository has only the <code>main</code> branch remaining.</li>
 <li>The README file lists each group member’s name.</li>
 <li>Each group member has an up-to-date local copy of the repository.</li>
 </ol>
