@@ -1,13 +1,13 @@
 ---
 title: "Basic GitHub actions"
-subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
+subtitle: "PSTAT197A Fall 2026"
 author: "Dr. Coburn"
 institute: 'UCSB'
 bibliography: refs.bib
 format: 
   revealjs:
     incremental: true
-    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    footer: 'PSTAT197A Fall 2026'
     logo: 'img/ucsbds_hex.png'
     fig-width: 4
     fig-height: 2
@@ -24,13 +24,11 @@ execute:
 
 -   Today, sit at your table from last time.
 
--   Fill out [attendance form](https://forms.gle/yRWgVEkZH38KJhPt9).
-
 -   ***Assignment for next class:***
 
     -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations)
 
-    -   prepare a [reading response](https://forms.gle/t5tn6uyQzarpp6rR9)
+    -   prepare a [reading response](https://forms.gle/vUDh2DpNfNGdPHpE6)
 
 ## Objective for today
 
@@ -61,8 +59,10 @@ Learn how to interact with GitHub repositories:
 
 ## Setup
 
--   have everyone open their GitHub client, the sandbox project in RStudio, and the group sandbox repository in the browser on github.com
+-   everyone should work from their own laptop
 
--   choose one person to operate the table workstation; have them do the same and log in to GitHub using their credentials
+-   have everyone open their GitHub client, the group repository in RStudio, and the group repository in the browser on github.com
 
--   on the workstation, create a directory for the class `documents/25f-pstat197a` and clone the group sandbox repo into this directory
+-   make sure everyone in the group is working with the same repository in the PSTAT 197 GitHub organization
+
+-   make sure each group member has cloned the group repository to their own computer
