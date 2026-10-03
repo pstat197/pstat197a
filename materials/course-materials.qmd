@@ -22,7 +22,7 @@ bibliography: slides/refs.bib
 
     -   read @peng2022perspective;
 
-    -   prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9) (due by *11:59 PM, Monday, September 28th)
+    -   prepare a [reading response](https://forms.gle/TVYXHTK83W9UJrJN9) (due by **11:59 PM, Monday, September 28th**)
 
 ### Week 1 {#sec-week-1}
 
@@ -36,7 +36,7 @@ bibliography: slides/refs.bib
 
     -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations)
 
-    -   prepare a [reading response](https://forms.gle/vUDh2DpNfNGdPHpE6)
+    -   prepare a [reading response](https://forms.gle/vUDh2DpNfNGdPHpE6) (due by **11:59 PM Monday, October 5th**)
     
     -   read (and follow along with) the [\[tutorial for connecting Git to RStudio](activities/connecting-github-rstudio.qmd)\]
 
