@@ -147,14 +147,14 @@
     "href": "materials/activities/making-trees.html#building-a-tree",
     "title": "Activity: making trees",
     "section": "Building a tree",
-    "text": "Building a tree\n\nStep 1: resample the data\nFirst, draw a sample with replacement from the observations. This is known as a bootstrap sample. We’ll keep this relatively small to simplify matters.\n\n\n\n\n\n\nImportantAction\n\n\n\nDraw a bootstrap sample\nCopy the code chunk below and execute once.\n\n# resample data\ncensus_boot &lt;- census %&gt;%\n  sample_n(size = 200, replace = T)\n\n\n\nYou will build your tree using this data.\n\n\nStep 2: select predictors at random\nNext draw a set of predictors at random. We’ll also keep this set small so that you can develop the tree ‘by hand’.\n\n\n\n\n\n\nImportantAction\n\n\n\nSelect two random predictors\nCopy and paste the code chunk below into your script and execute once without modification.\n\n# retrieve column names\npossible_predictors &lt;- census %&gt;% \n  select(-income) %&gt;%\n  colnames()\n\n# grab 2 columns at random\npredictors &lt;- sample(possible_predictors,\n                     size = 2, \n                     replace = F)\n\n# select these columns from the bootstrap sample\ntrain &lt;- census_boot %&gt;% \n  select(c(income, any_of(predictors)))\n\n\n\nYou will build your tree using only these predictors from the bootstrap sample as training data.\n\n\nStep 3a: find your first split\nNow your job is to choose exactly one of the predictors to make a binary split of the data.\n\nfor categorical variables, determine which categories you will classify as high-income vs. low-income\nfor continuous variables, choose a cutoff value so that any observation greater/less than the cutoff is classified as a high/low (or vice-versa) earner\n\nYou do not need to make quantitatively rigorous choices. Try to make a choice that you think is reasonable, but don’t agonize over it. The code below might help you decide which variable to use and how to make the split: use it to inspect each of the two variables and decide which one better distinguishes the income groups.\n\n# comment out -- don't overwrite your bootstrap sample!\ncensus_boot &lt;- census %&gt;% \n  sample_n(size = 200, replace = T)\n\n# for continuous variables\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name \n             y = income)) +\n  geom_jitter(height = 0.1) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name\n           y = ..density..)) +\n  geom_density(aes(color = income, fill = income),\n               alpha = 0.5) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncutoff &lt;- 35\n\n# for categorical variables\ncensus_boot %&gt;%\n  group_by(workclass, income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &gt; `&gt;50K`)\n\n# A tibble: 7 × 4\n# Groups:   workclass [7]\n  workclass        `&lt;=50K` `&gt;50K` high.inc\n  &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   \n1 ?                      8      0 TRUE    \n2 Federal-gov            3      2 TRUE    \n3 Local-gov             12      3 TRUE    \n4 Private              101     37 TRUE    \n5 Self-emp-inc           2      7 FALSE   \n6 Self-emp-not-inc      10      4 TRUE    \n7 State-gov              8      3 TRUE    \n\n# pick out categories that are majority high income\nhighinc_categories &lt;- census_boot %&gt;%\n  group_by(workclass, # replace with predictor name\n           income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &lt; `&gt;50K`) %&gt;%\n  filter(high.inc == T) %&gt;%\n  pull(workclass) # replace with predictor name\n\n\n\n\n\n\n\nImportantAction\n\n\n\nMake your first split\n\nChoose whichever of the two predictors you think best distinguishes the high income and low income groups.\nFind a cutoff value if the variable is continuous, or the categories that you will classify as high income if the variable is categorical.\nIf categorical, store a vector of the category names that are classified as high income (see code above). If continuous, store the cutoff value.\nWrite down the rule.\n\n\n\n\n\nStep 3b: find your second split\nNow filter the data to just those rows classified as (but not necessarily actually) high income based on your first split.\n\n# continuous case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(age &gt; cutoff)\n\n# categorical case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(workclass %in% highinc_categories)\n\n\n\n\n\n\n\nImportantAction\n\n\n\nFind a second split\n\nRepeat step 3a but with the filtered data census_boot_sub instead of the full bootstrap sample.\nWrite down the rule.\n\n\n\n\n\nStep 4: draw the tree\nWe could in theory keep creating binary splits until all observations are correctly classified. However, since we’re doing this by hand and just for illustration purposes, we’ll stop after two splits – it’ll be more of a sapling than a fully grown tree.\n\n\n\n\n\n\nImportantAction\n\n\n\nMake a diagram\nDraw your tree on your group’s whiteboard. It should have just one ‘root’ node and just three ‘leaf’ nodes."
+    "text": "Building a tree\n\nStep 1: resample the data\nFirst, draw a sample with replacement from the observations. This is known as a bootstrap sample. We’ll keep this relatively small to simplify matters.\n\n\n\n\n\n\nImportantAction\n\n\n\nDraw a bootstrap sample\nCopy the code chunk below and execute once.\n\n# resample data\ncensus_boot &lt;- census %&gt;%\n  sample_n(size = 200, replace = T)\n\n\n\nYou will build your tree using this data.\n\n\nStep 2: select predictors at random\nNext draw a set of predictors at random. We’ll also keep this set small so that you can develop the tree ‘by hand’.\n\n\n\n\n\n\nImportantAction\n\n\n\nSelect two random predictors\nCopy and paste the code chunk below into your script and execute once without modification.\n\n# retrieve column names\npossible_predictors &lt;- census %&gt;% \n  select(-income) %&gt;%\n  colnames()\n\n# grab 2 columns at random\npredictors &lt;- sample(possible_predictors,\n                     size = 2, \n                     replace = F)\n\n# select these columns from the bootstrap sample\ntrain &lt;- census_boot %&gt;% \n  select(c(income, any_of(predictors)))\n\n\n\nYou will build your tree using only these predictors from the bootstrap sample as training data.\n\n\nStep 3a: find your first split\nNow your job is to choose exactly one of the predictors to make a binary split of the data.\n\nfor categorical variables, determine which categories you will classify as high-income vs. low-income\nfor continuous variables, choose a cutoff value so that any observation greater/less than the cutoff is classified as a high/low (or vice-versa) earner\n\nYou do not need to make quantitatively rigorous choices. Try to make a choice that you think is reasonable, but don’t agonize over it. The code below might help you decide which variable to use and how to make the split: use it to inspect each of the two variables and decide which one better distinguishes the income groups.\n\n# comment out -- don't overwrite your bootstrap sample!\ncensus_boot &lt;- census %&gt;% \n  sample_n(size = 200, replace = T)\n\n# for continuous variables\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name \n             y = income)) +\n  geom_jitter(height = 0.1) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name\n           y = ..density..)) +\n  geom_density(aes(color = income, fill = income),\n               alpha = 0.5) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncutoff &lt;- 35\n\n# for categorical variables\ncensus_boot %&gt;%\n  group_by(workclass, income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &gt; `&gt;50K`)\n\n# A tibble: 7 × 4\n# Groups:   workclass [7]\n  workclass        `&lt;=50K` `&gt;50K` high.inc\n  &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   \n1 ?                     14      1 TRUE    \n2 Federal-gov            2      1 TRUE    \n3 Local-gov              8      2 TRUE    \n4 Private              119     30 TRUE    \n5 Self-emp-inc           3      3 FALSE   \n6 Self-emp-not-inc       9      3 TRUE    \n7 State-gov              4      1 TRUE    \n\n# pick out categories that are majority high income\nhighinc_categories &lt;- census_boot %&gt;%\n  group_by(workclass, # replace with predictor name\n           income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &lt; `&gt;50K`) %&gt;%\n  filter(high.inc == T) %&gt;%\n  pull(workclass) # replace with predictor name\n\n\n\n\n\n\n\nImportantAction\n\n\n\nMake your first split\n\nChoose whichever of the two predictors you think best distinguishes the high income and low income groups.\nFind a cutoff value if the variable is continuous, or the categories that you will classify as high income if the variable is categorical.\nIf categorical, store a vector of the category names that are classified as high income (see code above). If continuous, store the cutoff value.\nWrite down the rule.\n\n\n\n\n\nStep 3b: find your second split\nNow filter the data to just those rows classified as (but not necessarily actually) high income based on your first split.\n\n# continuous case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(age &gt; cutoff)\n\n# categorical case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(workclass %in% highinc_categories)\n\n\n\n\n\n\n\nImportantAction\n\n\n\nFind a second split\n\nRepeat step 3a but with the filtered data census_boot_sub instead of the full bootstrap sample.\nWrite down the rule.\n\n\n\n\n\nStep 4: draw the tree\nWe could in theory keep creating binary splits until all observations are correctly classified. However, since we’re doing this by hand and just for illustration purposes, we’ll stop after two splits – it’ll be more of a sapling than a fully grown tree.\n\n\n\n\n\n\nImportantAction\n\n\n\nMake a diagram\nDraw your tree on your group’s whiteboard. It should have just one ‘root’ node and just three ‘leaf’ nodes."
   },
   {
     "objectID": "materials/activities/making-trees.html#classifying-a-new-observation",
     "href": "materials/activities/making-trees.html#classifying-a-new-observation",
     "title": "Activity: making trees",
     "section": "Classifying a new observation",
-    "text": "Classifying a new observation\nUse your tree to determine how to classify the following observation:\n\ncensus %&gt;%\n  sample_n(size = 1) %&gt;%\n  t() %&gt;%\n  knitr::kable()\n\n\n\n\nage\n27\n\n\nworkclass\n?\n\n\neducation\nSome-college\n\n\nmarital_status\nDivorced\n\n\noccupation\n?\n\n\nrelationship\nNot-in-family\n\n\nrace\nWhite\n\n\nsex\nMale\n\n\ncapital_gain\n0\n\n\ncapital_loss\n0\n\n\nhours_per_week\n30\n\n\nnative_country\nUnited-States\n\n\nincome\n&lt;=50K"
+    "text": "Classifying a new observation\nUse your tree to determine how to classify the following observation:\n\ncensus %&gt;%\n  sample_n(size = 1) %&gt;%\n  t() %&gt;%\n  knitr::kable()\n\n\n\n\nage\n39\n\n\nworkclass\nSelf-emp-inc\n\n\neducation\nHS-grad\n\n\nmarital_status\nMarried-civ-spouse\n\n\noccupation\nCraft-repair\n\n\nrelationship\nHusband\n\n\nrace\nWhite\n\n\nsex\nMale\n\n\ncapital_gain\n0\n\n\ncapital_loss\n0\n\n\nhours_per_week\n50\n\n\nnative_country\nUnited-States\n\n\nincome\n&lt;=50K"
   },
   {
     "objectID": "materials/activities/making-trees.html#algorithmic-considerations",
@@ -164,199 +164,249 @@
     "text": "Algorithmic considerations\nYou just did a loose version of what’s known as recursive partitioning – repeatedly splitting the data. That’s a specific method of constructing a tree.\nHow did you decide which of your two variables to use? Could you write code to make the same choice automatically? This, it turns out, is the main challenge in fully automating the process. The recursive partitioning algorithm requires two things:\n\na criterion by which one split is considered ‘better’ than another\na stopping rule\n\nIt is fairly simple to compute the best cutoff (or categorical mapping) for a given predictor – one can do a brute-force search for the split that minimizes misclassifications. However, when there are many possible variables to split on, a criterion is needed to determine the best choice. You can read about how this is done in MDSR 11.1.1."
   },
   {
-    "objectID": "materials/slides/week0-intro.html#welcome",
-    "href": "materials/slides/week0-intro.html#welcome",
-    "title": "Course orientation",
-    "section": "Welcome",
-    "text": "Welcome\nPSTAT197A is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#capstone-projects",
-    "href": "materials/slides/week0-intro.html#capstone-projects",
-    "title": "Course orientation",
-    "section": "Capstone projects",
-    "text": "Capstone projects\nStudents are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
-    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
-    "title": "Course orientation",
-    "section": "Continuing in capstones",
-    "text": "Continuing in capstones\nContinuation in PSTAT197B-C during winter and spring:\n\nstudents admitted to this course in spring are not guaranteed a seat\nprogress to subsequent courses in the sequence will be based on your performance in this course"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#outcomes",
-    "href": "materials/slides/week0-intro.html#outcomes",
-    "title": "Course orientation",
-    "section": "Outcomes",
-    "text": "Outcomes\nI aim to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#classroom-environment",
-    "href": "materials/slides/week0-intro.html#classroom-environment",
-    "title": "Course orientation",
-    "section": "Classroom environment",
-    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#resources",
-    "href": "materials/slides/week0-intro.html#resources",
-    "title": "Course orientation",
-    "section": "Resources",
-    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#modules",
-    "href": "materials/slides/week0-intro.html#modules",
-    "title": "Course orientation",
-    "section": "Modules",
-    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#module-content",
-    "href": "materials/slides/week0-intro.html#module-content",
-    "title": "Course orientation",
-    "section": "Module content",
-    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#group-assignments",
-    "href": "materials/slides/week0-intro.html#group-assignments",
-    "title": "Course orientation",
-    "section": "Group assignments",
-    "text": "Group assignments\nYour working group for the first module will consist of the students currently at your table.\nGo around your table. Take turns answering the following:\n\nYour preferred name\nYour major\nA hobby you enjoy\nA fun fact about yourself\n\nFor the subsequent modules, your groups will be created via random assignment by the instructor."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#module-work",
-    "href": "materials/slides/week0-intro.html#module-work",
-    "title": "Course orientation",
-    "section": "Module Work",
-    "text": "Module Work\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#vignettes",
-    "href": "materials/slides/week0-intro.html#vignettes",
-    "title": "Course orientation",
-    "section": "Vignettes",
-    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
-    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
-    "title": "Course orientation",
-    "section": "Expectations and assessments",
-    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#next-time",
-    "href": "materials/slides/week0-intro.html#next-time",
-    "title": "Course orientation",
-    "section": "Next time",
-    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#checklist",
-    "href": "materials/slides/week0-intro.html#checklist",
-    "title": "Course orientation",
-    "section": "Checklist",
-    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nSubmit your GitHub username via the GitHub assignment on Canvas.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
-  },
-  {
-    "objectID": "materials/slides/week1-github.html#announcementsreminders",
-    "href": "materials/slides/week1-github.html#announcementsreminders",
-    "title": "Basic GitHub actions",
-    "section": "Announcements/reminders",
-    "text": "Announcements/reminders\n\nToday, sit at your table from last time.\nAssignment for next class:\n\nread MDSR 9.1 – 9.2\nprepare a reading response"
-  },
-  {
-    "objectID": "materials/slides/week1-github.html#objective-for-today",
-    "href": "materials/slides/week1-github.html#objective-for-today",
-    "title": "Basic GitHub actions",
+    "objectID": "materials/activities/connecting-github-rstudio.html#objective-for-today",
+    "href": "materials/activities/connecting-github-rstudio.html#objective-for-today",
+    "title": "Connecting GitHub to RStudio",
     "section": "Objective for today",
-    "text": "Objective for today\nLearn how to interact with GitHub repositories:\n\nretrieve and submit file changes;\nexamine repository updates;\nuse branches for parallel workflow;\nresolve conflicts."
+    "text": "Objective for today\nConnect your existing GitHub account to Git/RStudio so that you can:\n\nclone a GitHub repository as an RStudio project;\npull changes from GitHub;\nstage and commit changes in RStudio;\npush your commits back to GitHub.\n\nBy the end, you should be able to add your own about file to the class repository."
   },
   {
-    "objectID": "materials/slides/week1-github.html#basic-git-actions",
-    "href": "materials/slides/week1-github.html#basic-git-actions",
-    "title": "Basic GitHub actions",
-    "section": "Basic Git actions",
-    "text": "Basic Git actions\n\nCommunication actions for moving file changes between locations"
+    "objectID": "materials/activities/connecting-github-rstudio.html#the-class-repository",
+    "href": "materials/activities/connecting-github-rstudio.html#the-class-repository",
+    "title": "Connecting GitHub to RStudio",
+    "section": "The class repository",
+    "text": "The class repository\nFor this walkthrough, we will use:\ngithub.com/pstat-197a-fall2026/github-basics-template\nYour goal is to add:\nclass-activity/YOURGITHUBUSERNAME-about.md\nto this repository."
   },
   {
-    "objectID": "materials/slides/week1-github.html#branching-workflow",
-    "href": "materials/slides/week1-github.html#branching-workflow",
-    "title": "Basic GitHub actions",
-    "section": "Branching workflow",
-    "text": "Branching workflow\n\nTypical use of repository branches for development of new features"
+    "objectID": "materials/activities/connecting-github-rstudio.html#what-does-connect-github-to-rstudio-mean",
+    "href": "materials/activities/connecting-github-rstudio.html#what-does-connect-github-to-rstudio-mean",
+    "title": "Connecting GitHub to RStudio",
+    "section": "What does “connect GitHub to RStudio” mean?",
+    "text": "What does “connect GitHub to RStudio” mean?\nThere are three separate pieces:\n\nGit tracks changes on your own computer.\nGitHub hosts the remote copy of the repository online.\nRStudio gives you buttons for common Git actions such as commit, pull, and push.\n\nRStudio does not have a separate GitHub account that you log into.\nTo send changes to GitHub, Git needs a way to authenticate you."
   },
   {
-    "objectID": "materials/slides/week1-github.html#activity-overview",
-    "href": "materials/slides/week1-github.html#activity-overview",
-    "title": "Basic GitHub actions",
-    "section": "Activity overview",
-    "text": "Activity overview\n\nMake individual changes to files and create ‘commits’\nCreate repository branches to enable you to work more efficiently in parallel.\nMerge branches with the main branch via pull request.\nCreate and resolve a merge conflict."
+    "objectID": "materials/activities/connecting-github-rstudio.html#before-you-start",
+    "href": "materials/activities/connecting-github-rstudio.html#before-you-start",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Before you start",
+    "text": "Before you start\nYou should already have:\n\na GitHub account;\nGit installed on your computer;\nRStudio installed;\naccess to the pstat-197a-fall2026 GitHub organization;\nthe URL of the repository you want to use.\n\nFor this activity:\nhttps://github.com/pstat-197a-fall2026/github-basics-template"
   },
   {
-    "objectID": "materials/slides/week1-github.html#setup",
-    "href": "materials/slides/week1-github.html#setup",
-    "title": "Basic GitHub actions",
-    "section": "Setup",
-    "text": "Setup\n\neveryone should work from their own laptop\nhave everyone open their GitHub client, the group repository in RStudio, and the group repository in the browser on github.com\nmake sure everyone in the group is working with the same repository in the PSTAT 197 GitHub organization\nmake sure each group member has cloned the group repository to their own computer"
+    "objectID": "materials/activities/connecting-github-rstudio.html#first-make-sure-rstudio-can-see-git",
+    "href": "materials/activities/connecting-github-rstudio.html#first-make-sure-rstudio-can-see-git",
+    "title": "Connecting GitHub to RStudio",
+    "section": "First: make sure RStudio can see Git",
+    "text": "First: make sure RStudio can see Git\nIn RStudio:\nTools &gt; Global Options &gt; Git/SVN\nYou should see a path next to Git executable.\nIf you see one, Git is installed and RStudio can find it.\n\nRStudio Git/SVN settings. Source: Posit RStudio User Guide."
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html",
-    "href": "materials/labs/lab1-setup/lab1-setup.html",
-    "title": "Course technology overview",
-    "section": "",
-    "text": "Read this and complete all instructions in the ‘action’ boxes during your lab section. Your TA will walk you through the activity and help to troubleshoot issues and answer any questions along the way.\nObjectives:"
+    "objectID": "materials/activities/connecting-github-rstudio.html#create-an-rstudio-project-from-the-github-repository",
+    "href": "materials/activities/connecting-github-rstudio.html#create-an-rstudio-project-from-the-github-repository",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Create an RStudio project from the GitHub repository",
+    "text": "Create an RStudio project from the GitHub repository\nIn RStudio:\n\nFile &gt; New Project\nChoose Version Control\nChoose Git\nPaste the repository URL:\n\nhttps://github.com/pstat-197a-fall2026/github-basics-template\n\nChoose where you want the project saved on your computer.\nClick Create Project.\n\nRStudio will clone the repository and open the local copy as a project."
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
-    "title": "Course technology overview",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nTo complete the activity you’ll need to:\n\nhave all of the software listed on the course technology page installed;\nfind (or create) your GitHub account credentials (if you are creating an account for the first time, see advice on choosing a username).\n\n\n\n\n\n\n\nImportantAction\n\n\n\nPreparations:\n\nLog in to your GitHub account.\nOpen your GitHub client.\nOpen a new session in RStudio.\nCreate a class folder for PSTAT197A somewhere on your machine, e.g., ~/documents/pstat197a."
+    "objectID": "materials/activities/connecting-github-rstudio.html#if-you-are-already-staring-at-this-popup",
+    "href": "materials/activities/connecting-github-rstudio.html#if-you-are-already-staring-at-this-popup",
+    "title": "Connecting GitHub to RStudio",
+    "section": "If you are already staring at this popup…",
+    "text": "If you are already staring at this popup…\nMany of you are currently at a popup asking for your GitHub username.\nThat is okay. You are in the right place.\nWhen Git asks for a username:\n\nenter your GitHub username;\nuse the username for the account you submitted for this course;\ndo not enter your UCSB NetID unless that also happens to be your GitHub username.\n\nThe next prompt may ask for a password or personal access token."
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
-    "title": "Course technology overview",
-    "section": "RStudio projects",
-    "text": "RStudio projects\nFirst we’ll get acquainted with the basic functionality of the RStudio IDE and the use of projects as a means of organizing files. If you’ve already used RStudio, great – this will still serve to introduce you to how we’ll use RStudio projects in this class.\n\nRStudio Setup\n\nYour TA will briefly review the (default) layout of the RStudio IDE. You should be able to identify/find the following:\n\nconsole\nterminal\nfile navigator\nenvironment\nhistory\n\nWe’ll use several R packages throughout the quarter. Some of these we will install on the go, but we can install several that we’ll rely on now.\n\n\n\n\n\n\nImportantAction\n\n\n\nInstall packages\nNavigate to the console and copy-paste the following commands. You only need to do this once. This will take a minute or two to complete.\n\n\n\n# package install list \nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/scripts/package-installs.R'\nsource(url)\n\n# clear environment\nrm(list = ls())\n\n\n\nCreate a local project\nProjects are a means of keeping your work organized. When you create a project in a directory on your local machine, RStudio keeps track of project metadata, history, and the working environment so that every time you open the project you see whatever you had open when you last closed it.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a new project:\n\nSelect File &gt; New project\nCreate the project in a new directory as a subdirectory of your class folder\nName it example-project\n\nComment: when naming files it’s good practice to avoid spaces, special characters, and the like. A naming convention we try to follow: choose a descriptive name comprising 1-3 words or common abbreviations separated by hyphens.\n\n\nTake a moment to observe the file navigator. It should consist of a single example-project.Rproj file.\n\n\nAdd content\nWe may as well populate the project with a few files – so let’s add a dataset and write a short script, as if we’re just starting a data analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nRetrieve data and store a local copy\n\nOpen a new script: File &gt; New File &gt; R Script\nIn the navigator, create a folder called data and a folder called scripts\nCopy and paste the code chunk below into your script.\nExecute once, then save in the scripts folder as data-retrieval.R and close\n\n\n\n\nlibrary(tidyverse)\n\n# retrieve pollution data\nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/labs/lab1-setup/data/pollution.csv'\npollution &lt;- read_csv(url)\n\n# write as csv to file\nwrite_csv(pollution, file = 'data/pollution.csv')\n\n# clear environment\nrm(list = ls())\n\n\nNext, we’ll do a simple regression analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a script\n\nCreate a new script as before\nCopy-paste the code chunk below into your script\nExecute once and examine the results\nSave in the scripts folder as slr-analysis.R\n\n\n\n\nlibrary(tidyverse)\n\n# load data\npollution &lt;- read_csv('data/pollution.csv')\n\n# examine scatterplot with SLR fit\nggplot(pollution,\n       aes(x = log(SO2), y = Mort)) +\n  geom_point() +\n  geom_smooth(method = 'lm')\n\n\n\n\n\n\n\n# compute SLR fit\nfit &lt;- lm(Mort ~ log(SO2), data = pollution)\nbroom::tidy(fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    887.      17.6      50.4  1.37e-49\n2 log(SO2)        16.7      4.99      3.35 1.40e- 3\n\n# interpret\nfit_ci &lt;- confint(fit, parm = 'log(SO2)')*log(1.2)\n\npaste('With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between', \n      round(fit_ci[1], 2), \n      'and', \n      round(fit_ci[2], 2), \n      'per 100k', sep = ' ') %&gt;% \n  print()\n\n[1] \"With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between 1.23 and 4.87 per 100k\"\n\n\n\nCongrats on your first project! You can close the RStudio session now.\nWe’ll be using projects structured much like what you just set up, but with one catch: we’ll link up our RStudio projects with shared repositories so that we can all collaborate on the same set of project files."
+    "objectID": "materials/activities/connecting-github-rstudio.html#what-is-a-pat",
+    "href": "materials/activities/connecting-github-rstudio.html#what-is-a-pat",
+    "title": "Connecting GitHub to RStudio",
+    "section": "What is a PAT?",
+    "text": "What is a PAT?\nPAT = Personal Access Token\nA PAT is a special string generated by GitHub that can authenticate Git operations on your behalf.\nThink of it as a replaceable, limited-purpose password for Git.\nA PAT:\n\nis generated from your GitHub account;\ncan be limited to particular kinds of access;\ncan expire;\ncan be revoked without changing your GitHub password."
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
-    "title": "Course technology overview",
-    "section": "GitHub repositories",
-    "text": "GitHub repositories\n\nWe will be using repositories on GitHub throughout the course. A repository is simply a storage space for the files associated with a project.\nFor the activities in PSTAT 197A, you will work with several different groups over the course of the quarter. Each group will use a shared GitHub repository for the module you are completing together.\nAll course repositories should be created within the PSTAT 197 course GitHub organization rather than under an individual student’s personal GitHub account.\nBefore completing this activity, you should have received and accepted an invitation to join the course GitHub organization.\nFor now, your group will create a group sandbox repository that you can use to practice working collaboratively with Git and GitHub during our next class meeting.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate your group’s sandbox repository\n\nGo to the PSTAT 197 course organization on GitHub.\nOne person at your table should create a new repository in the organization.\nName the repository according to the naming convention provided by your instructor, such as sandbox-group-01.\nSet the repository to Public.\nDo not initialize it with any additional files unless instructed to do so.\nAfter creating the repository, add the other members of your table group as collaborators with permission to contribute to the repository.\nEach group member should confirm that they can access the repository on github.com.\n\nKeep the repository page open; you will need its URL shortly.\n\n\n\n\nGit and GitHub\nAt some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. Git and GitHub are two different things.\nGit is version control software that enables you to systematically track and control file changes within a repository – a collection of files, possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)\nGitHub is an online platform for hosting repositories remotely. A public repository can be viewed by anyone, but only people with appropriate permissions can directly contribute changes to it.\nThis allows multiple members of a group to collaborate on the same collection of files while Git keeps track of the changes that are made.\n\n\nlocal &lt;&gt; remote\nUsually remote repositories are not updated by directly editing files on github.com. Contributors generally need to execute code and test their changes on their own computers before sharing those changes with the rest of the group.\nInstead, contributors prepare changes on their own machines, where they can run and test their code, and then update the remote repository once their changes are ready.\nThis process involves communicating information between local and remote locations. For this purpose, each contributor needs a local copy of the remote repository.\n\n\nCloning a repository\nIn Git terminology, a clone is a local copy of a remote repository. Creating a clone copies the repository files to your computer and establishes the connection between the local and remote repositories so that changes can be sent to and received from GitHub.\nYou only need to create a clone once for each repository.\nTo clone a repository, all one needs is:\n\nthe remote repository URL;\nthe local destination where the clone will be created;\npermission to access the repository, if the repository is private.\n\nHere you’ll clone the group sandbox repository your group just created. You will need its URL. If you happened to close the page, you can find the repository by returning to the PSTAT 197 organization on github.com.\n\n\n\n\n\n\n\nImportantAction\n\n\n\nClone the sandbox repository\n\nOpen your GitHub client (GitKraken, GitHub Desktop, or similar) and ensure you are logged in to your GitHub account.\nFind the option to clone a repository.\nSelect or enter the URL of your group’s sandbox repository.\nChoose the location on your computer where you would like the local copy to be stored.\nComplete the cloning process.\nCheck your file navigator to confirm that the repository was copied to your computer.\n\nEvery member of the group should clone the same repository onto their own computer.\n\n\n\nAn alternative is to create the clone using a terminal command. In the terminal, navigate to the desired destination and enter:\ngit clone https://github.com/ORGANIZATION/REPONAME\nFor example:\ngit clone https://github.com/pstat-197a-fall2026/sandbox-group-01\n\n\n\n\n\n\nNoteRemarks\n\n\n\nOn terminal commands:\n\nIt’s recommended to manage Git actions through a visual client at first, as it’s much easier to see and understand what’s happening.\nHowever, if you know exactly what you’re doing, executing simple actions via Git in the terminal can be more efficient at times.\nFor example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.\nTry experimenting with terminal commands from RStudio after you have a little experience with basic Git actions.\n\n\n\n\n\nRepositories for course modules\nYou will follow essentially the same process for each of the five PSTAT 197A modules.\nFor each module:\n\nYou will be assigned to a group for that module.\nOne member of the group will create a new public repository within the PSTAT 197 organization.\nThat student will add the other members of the group as collaborators.\nEvery group member will clone the same repository to their own computer.\nThe group will use that repository for its work on that module.\n\nYour groups may change from one module to another. A new repository should therefore be created for each module rather than continuing to use a repository belonging to a previous group.\nThese module groups are for practicing the skills you will need later in the capstone sequence; they are not your final capstone project groups."
+    "objectID": "materials/activities/connecting-github-rstudio.html#why-am-i-being-asked-for-a-pat-instead-of-my-password",
+    "href": "materials/activities/connecting-github-rstudio.html#why-am-i-being-asked-for-a-pat-instead-of-my-password",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Why am I being asked for a PAT instead of my password?",
+    "text": "Why am I being asked for a PAT instead of my password?\nGitHub does not accept your normal account password for Git operations over HTTPS.\nWhen Git or RStudio asks for a password while connecting to GitHub:\npaste your PAT instead of your GitHub password.\nYour normal GitHub password will not work for this.\n\n\n\n\n\n\nImportant\n\n\nNever paste your PAT into an R script, Quarto document, GitHub repository, Canvas submission, or class chat."
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#checklist",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#checklist",
-    "title": "Course technology overview",
+    "objectID": "materials/activities/connecting-github-rstudio.html#create-a-pat-navigate-to-the-settings",
+    "href": "materials/activities/connecting-github-rstudio.html#create-a-pat-navigate-to-the-settings",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Create a PAT: navigate to the settings",
+    "text": "Create a PAT: navigate to the settings\nOn github.com:\n\nClick your profile picture in the upper-right corner.\nClick Settings.\nScroll to the bottom of the left sidebar.\nClick Developer settings.\nClick Personal access tokens.\nClick Tokens (classic).\nChoose Generate new token &gt; Generate new token (classic).\n\nGitHub may ask you to confirm your password or two-factor authentication."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#create-a-pat-name-and-expiration",
+    "href": "materials/activities/connecting-github-rstudio.html#create-a-pat-name-and-expiration",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Create a PAT: name and expiration",
+    "text": "Create a PAT: name and expiration\nFor Note, enter something descriptive, such as:\nPSTAT 197A RStudio\nFor Expiration:\n\nchoose an expiration that lasts at least through the course;\n90 days will be more than enough for this quarter;\ndo not choose an unnecessarily long expiration.\n\nIf the token expires later, you can simply make a new one."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#create-a-pat-choose-the-scope",
+    "href": "materials/activities/connecting-github-rstudio.html#create-a-pat-choose-the-scope",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Create a PAT: choose the scope",
+    "text": "Create a PAT: choose the scope\nUnder Select scopes, select:\npublic_repo\nYou do not need full access to private repositories for this course.\npublic_repo allows the token to work with public repositories that your GitHub account has permission to modify.\nThe PSTAT 197A course repositories are public.\n\n\n\n\n\n\nImportant\n\n\nDo not select permissions simply because they sound useful. For this course, public_repo is sufficient."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#generate-and-copy-the-pat",
+    "href": "materials/activities/connecting-github-rstudio.html#generate-and-copy-the-pat",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Generate and COPY the PAT",
+    "text": "Generate and COPY the PAT\nScroll to the bottom and click Generate token.\nGitHub will display the token.\nCopy it immediately.\nGitHub will not show you the complete token again after you leave the page.\n\nExample of the GitHub token display after creation. Source: GitHub Docs."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#treat-the-pat-like-a-password",
+    "href": "materials/activities/connecting-github-rstudio.html#treat-the-pat-like-a-password",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Treat the PAT like a password",
+    "text": "Treat the PAT like a password\nYour token will look something like:\nghp_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\nDo not:\n\nshow it to another student;\nemail it to anyone;\nput it in an R file;\ncommit it to GitHub;\ninclude it in a screenshot.\n\nIf you accidentally expose it, revoke it on GitHub and create a new one."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#go-back-to-rstudio",
+    "href": "materials/activities/connecting-github-rstudio.html#go-back-to-rstudio",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Go back to RStudio",
+    "text": "Go back to RStudio\nReturn to the authentication popup.\nWhen asked for:\nUsername\nyour GitHub username\nWhen asked for:\nPassword / Personal Access Token\npaste the PAT you just created\nThe PAT goes in the password field.\nDo not enter your normal GitHub password."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#will-i-have-to-enter-the-pat-every-time",
+    "href": "materials/activities/connecting-github-rstudio.html#will-i-have-to-enter-the-pat-every-time",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Will I have to enter the PAT every time?",
+    "text": "Will I have to enter the PAT every time?\nUsually, no.\nGit can store the credential using your computer’s credential system so that RStudio can reuse it.\nIf your computer keeps asking for the PAT every time you pull or push, run this in the R Console:\ninstall.packages(\"gitcreds\")\ngitcreds::gitcreds_set()\nWhen prompted, paste your PAT.\nThis stores the credential through Git’s credential system rather than putting the PAT in your R code."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#git-identity-is-a-different-thing",
+    "href": "materials/activities/connecting-github-rstudio.html#git-identity-is-a-different-thing",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Git identity is a different thing",
+    "text": "Git identity is a different thing\nAuthentication answers:\n\nAre you allowed to push to this GitHub repository?\n\nYour Git identity answers:\n\nWhose name and email should appear on this commit?\n\nThese are separate settings.\nIn the RStudio Terminal, run:\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"YOUR_GITHUB_EMAIL\"\nUse the email address associated with your GitHub account."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#check-your-git-identity",
+    "href": "materials/activities/connecting-github-rstudio.html#check-your-git-identity",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Check your Git identity",
+    "text": "Check your Git identity\nIn the RStudio Terminal:\ngit config --global user.name\ngit config --global user.email\nYou should see your own name and email.\nYou generally only need to configure these once on your computer."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#check-that-you-are-connected-to-the-correct-repository",
+    "href": "materials/activities/connecting-github-rstudio.html#check-that-you-are-connected-to-the-correct-repository",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Check that you are connected to the correct repository",
+    "text": "Check that you are connected to the correct repository\nIn the RStudio Terminal, run:\ngit remote -v\nYou should see:\norigin  https://github.com/pstat-197a-fall2026/github-basics-template (fetch)\norigin  https://github.com/pstat-197a-fall2026/github-basics-template (push)\nIf the URL points somewhere else, stop before pushing."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#the-git-pane-in-rstudio",
+    "href": "materials/activities/connecting-github-rstudio.html#the-git-pane-in-rstudio",
+    "title": "Connecting GitHub to RStudio",
+    "section": "The Git pane in RStudio",
+    "text": "The Git pane in RStudio\nOnce you are inside an RStudio project connected to a Git repository, you should see a Git tab.\n\nThe Git interface in RStudio. Source: Posit RStudio User Guide.This is where you can stage files, commit, pull, push, and inspect changes."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#create-your-about-file",
+    "href": "materials/activities/connecting-github-rstudio.html#create-your-about-file",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Create your about file",
+    "text": "Create your about file\nIn RStudio:\nFile &gt; New File &gt; Markdown File\nAdd a heading and a fun fact about yourself.\nFor example:\n# About Me\n\nI have two cats.\nSave the file inside the class-activity folder as:\nYOURGITHUBUSERNAME-about.md"
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#pull-before-you-push",
+    "href": "materials/activities/connecting-github-rstudio.html#pull-before-you-push",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Pull before you push",
+    "text": "Pull before you push\nMany people are working on this repository at the same time.\nBefore sending your changes to GitHub, pull first.\nIn the Git pane, click the Pull arrow.\nOr in the Terminal:\ngit pull\nThis updates your local copy with changes that other students have already pushed."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#stage-your-file",
+    "href": "materials/activities/connecting-github-rstudio.html#stage-your-file",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Stage your file",
+    "text": "Stage your file\nIn the Git tab, find:\nYOURGITHUBUSERNAME-about.md\nCheck the box next to the file.\nThis stages the file: you are telling Git that you want to include that change in your next commit.\n\nExample of the Git tab in RStudio. Source: Posit RStudio User Guide."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#commit-your-file",
+    "href": "materials/activities/connecting-github-rstudio.html#commit-your-file",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Commit your file",
+    "text": "Commit your file\nClick Commit.\nIn the Review Changes window:\n\nconfirm that your about file is staged;\nenter a short commit message, such as:\n\nAdd about-me file\n\nclick Commit.\n\n\nRStudio’s Review Changes window. Source: Posit RStudio User Guide."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#commit-does-not-mean-upload",
+    "href": "materials/activities/connecting-github-rstudio.html#commit-does-not-mean-upload",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Commit does NOT mean upload",
+    "text": "Commit does NOT mean upload\nA commit records the change in the Git repository on your computer.\nIt does not automatically send anything to GitHub.\nTo send the commit to the remote repository, you still need to:\npush\nSo the basic sequence is:\npull -&gt; edit -&gt; stage -&gt; commit -&gt; push"
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#push-your-commit",
+    "href": "materials/activities/connecting-github-rstudio.html#push-your-commit",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Push your commit",
+    "text": "Push your commit\nImmediately before pushing, it is a good idea to Pull again because many students may be updating the repository.\nThen click Push in RStudio.\nIf Git asks for authentication:\n\nusername = your GitHub username;\npassword = your PAT.\n\nIf the push succeeds, your commit is now on GitHub."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#if-your-push-is-rejected-because-the-remote-changed",
+    "href": "materials/activities/connecting-github-rstudio.html#if-your-push-is-rejected-because-the-remote-changed",
+    "title": "Connecting GitHub to RStudio",
+    "section": "If your push is rejected because the remote changed",
+    "text": "If your push is rejected because the remote changed\nThis is likely to happen if many people may be pushing at once.\nIf you see a message that your branch is behind the remote:\n\nPull again.\nLet Git incorporate the new commits.\nPush again.\n\nBecause everyone is creating a different USERNAME-about.md file, these updates should not conflict with one another."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#verify-on-github",
+    "href": "materials/activities/connecting-github-rstudio.html#verify-on-github",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Verify on GitHub",
+    "text": "Verify on GitHub\nOpen:\ngithub.com/pstat-197a-fall2026/github-basics-template\nNavigate to:\nclass-activity/\nYou should see:\nYOURGITHUBUSERNAME-about.md\nIf you can see the file on github.com, your local Git/RStudio setup is successfully communicating with GitHub."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#troubleshooting-authentication-failed",
+    "href": "materials/activities/connecting-github-rstudio.html#troubleshooting-authentication-failed",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Troubleshooting: authentication failed",
+    "text": "Troubleshooting: authentication failed\nIf GitHub rejects your authentication, check:\n\nDid you enter your GitHub username?\nDid you paste the PAT, not your GitHub password?\nIs the PAT still active and unexpired?\nDid you give the classic PAT the public_repo scope?\nHave you accepted the invitation to the pstat-197a-fall2026 organization?\n\nA public repository can be viewed and cloned by anyone, but pushing directly requires write permission."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#troubleshooting-no-git-tab-in-rstudio",
+    "href": "materials/activities/connecting-github-rstudio.html#troubleshooting-no-git-tab-in-rstudio",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Troubleshooting: no Git tab in RStudio",
+    "text": "Troubleshooting: no Git tab in RStudio\nFirst make sure you opened the RStudio project created from the repository, not an unrelated RStudio session.\nThen check:\nTools &gt; Global Options &gt; Git/SVN\nMake sure:\n\nEnable version control interface for RStudio projects is checked;\nRStudio shows a Git executable.\n\nYou can also run in the Terminal:\ngit status"
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#troubleshooting-wrong-repository",
+    "href": "materials/activities/connecting-github-rstudio.html#troubleshooting-wrong-repository",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Troubleshooting: wrong repository",
+    "text": "Troubleshooting: wrong repository\nRun:\ngit remote -v\nFor this activity, origin should point to:\nhttps://github.com/pstat-197a-fall2026/github-basics-template\nDo not push until you know which remote repository your project is connected to."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#if-you-are-not-yet-a-member-of-the-organization",
+    "href": "materials/activities/connecting-github-rstudio.html#if-you-are-not-yet-a-member-of-the-organization",
+    "title": "Connecting GitHub to RStudio",
+    "section": "If you are not yet a member of the organization",
+    "text": "If you are not yet a member of the organization\nYou can view and clone the public repository, but you cannot push directly to it without write access.\nIf you have not yet been added to the course organization:\n\ncomplete the Git/RStudio/PAT setup;\ndo not worry if the final direct push is rejected;\nfollow the alternate fork/pull-request instructions provided by the instructor.\n\nOnce your organization invitation is accepted, the normal push workflow will work."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#the-workflow-to-remember",
+    "href": "materials/activities/connecting-github-rstudio.html#the-workflow-to-remember",
+    "title": "Connecting GitHub to RStudio",
+    "section": "The workflow to remember",
+    "text": "The workflow to remember\nFor routine work:\nPULL\n  |\nEDIT FILES\n  |\nSTAGE\n  |\nCOMMIT\n  |\nPULL AGAIN IF NEEDED\n  |\nPUSH\nAuthentication with your PAT is what allows the final communication with GitHub."
+  },
+  {
+    "objectID": "materials/activities/connecting-github-rstudio.html#checklist",
+    "href": "materials/activities/connecting-github-rstudio.html#checklist",
+    "title": "Connecting GitHub to RStudio",
     "section": "Checklist",
-    "text": "Checklist\nHave you completed all of the activity action items?\n\nInstall software: R, RStudio, Git, and a GitHub client\nCreate a GitHub account\nAccept the invitation to join the PSTAT 197 GitHub organization\nInstall R packages that will be used frequently\nCreate a local project in RStudio\nCreate or join your group’s sandbox repository\nClone the group sandbox repository"
+    "text": "Checklist\nBefore you are finished, confirm that:\n\nGitHub recognizes your account when Git/RStudio asks for credentials.\nYou created a PAT and used it instead of your GitHub password.\nYour Git name and email are configured.\ngit remote -v points to the correct course repository.\nYou can see the Git tab in RStudio.\nYou created and committed YOURGITHUBUSERNAME-about.md.\nYou pushed the file and can see it on github.com."
   },
   {
-    "objectID": "materials/course-materials.html",
-    "href": "materials/course-materials.html",
-    "title": "Course materials",
-    "section": "",
-    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by *11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response",
-    "crumbs": [
-      "Course materials"
-    ]
-  },
-  {
-    "objectID": "materials/course-materials.html#introductory-module",
-    "href": "materials/course-materials.html#introductory-module",
-    "title": "Course materials",
-    "section": "",
-    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by *11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response",
-    "crumbs": [
-      "Course materials"
-    ]
+    "objectID": "materials/activities/connecting-github-rstudio.html#official-documentation",
+    "href": "materials/activities/connecting-github-rstudio.html#official-documentation",
+    "title": "Connecting GitHub to RStudio",
+    "section": "Official documentation",
+    "text": "Official documentation\n\nGitHub: Managing personal access tokens\nGitHub: About remote repositories and HTTPS authentication\nPosit: Version Control in RStudio\nusethis: Managing Git(Hub) credentials"
   },
   {
     "objectID": "materials/slides/week1-perspectives.html#announcementsreminders",
@@ -632,6 +682,201 @@
     "text": "References\n\n\n\n\nDonoho, David. 2017. “50 Years of Data Science.” Journal of Computational and Graphical Statistics 26 (4): 745–66.\n\n\nEmmert-Streib, Frank, Zhen Yang, Han Feng, Shailesh Tripathi, and Matthias Dehmer. 2020. “An Introductory Review of Deep Learning for Prediction Models with Big Data.” Frontiers in Artificial Intelligence 3: 4.\n\n\nMcGowan, Lucy D’Agostino, Roger D Peng, and Stephanie C Hicks. 2021. “Design Principles for Data Analysis.” arXiv Preprint arXiv:2103.05689.\n\n\nPeng, Roger D, and Hilary S Parker. 2022. “Perspective on Data Science.” Annual Review of Statistics and Its Application 9: 1–20.\n\n\nTukey, John W. 1962. “The Future of Data Analysis.” The Annals of Mathematical Statistics 33 (1): 1–67.\n\n\nTukey, John W et al. 1977. Exploratory Data Analysis. Vol. 2. Reading, MA."
   },
   {
+    "objectID": "materials/course-materials.html",
+    "href": "materials/course-materials.html",
+    "title": "Course materials",
+    "section": "",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by *11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response\nread (and follow along with) the [tutorial for connecting Git to RStudio]",
+    "crumbs": [
+      "Course materials"
+    ]
+  },
+  {
+    "objectID": "materials/course-materials.html#introductory-module",
+    "href": "materials/course-materials.html#introductory-module",
+    "title": "Course materials",
+    "section": "",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by *11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response\nread (and follow along with) the [tutorial for connecting Git to RStudio]",
+    "crumbs": [
+      "Course materials"
+    ]
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html",
+    "href": "materials/labs/lab1-setup/lab1-setup.html",
+    "title": "Course technology overview",
+    "section": "",
+    "text": "Read this and complete all instructions in the ‘action’ boxes during your lab section. Your TA will walk you through the activity and help to troubleshoot issues and answer any questions along the way.\nObjectives:"
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
+    "title": "Course technology overview",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nTo complete the activity you’ll need to:\n\nhave all of the software listed on the course technology page installed;\nfind (or create) your GitHub account credentials (if you are creating an account for the first time, see advice on choosing a username).\n\n\n\n\n\n\n\nImportantAction\n\n\n\nPreparations:\n\nLog in to your GitHub account.\nOpen your GitHub client.\nOpen a new session in RStudio.\nCreate a class folder for PSTAT197A somewhere on your machine, e.g., ~/documents/pstat197a."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
+    "title": "Course technology overview",
+    "section": "RStudio projects",
+    "text": "RStudio projects\nFirst we’ll get acquainted with the basic functionality of the RStudio IDE and the use of projects as a means of organizing files. If you’ve already used RStudio, great – this will still serve to introduce you to how we’ll use RStudio projects in this class.\n\nRStudio Setup\n\nYour TA will briefly review the (default) layout of the RStudio IDE. You should be able to identify/find the following:\n\nconsole\nterminal\nfile navigator\nenvironment\nhistory\n\nWe’ll use several R packages throughout the quarter. Some of these we will install on the go, but we can install several that we’ll rely on now.\n\n\n\n\n\n\nImportantAction\n\n\n\nInstall packages\nNavigate to the console and copy-paste the following commands. You only need to do this once. This will take a minute or two to complete.\n\n\n\n# package install list \nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/scripts/package-installs.R'\nsource(url)\n\n# clear environment\nrm(list = ls())\n\n\n\nCreate a local project\nProjects are a means of keeping your work organized. When you create a project in a directory on your local machine, RStudio keeps track of project metadata, history, and the working environment so that every time you open the project you see whatever you had open when you last closed it.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a new project:\n\nSelect File &gt; New project\nCreate the project in a new directory as a subdirectory of your class folder\nName it example-project\n\nComment: when naming files it’s good practice to avoid spaces, special characters, and the like. A naming convention we try to follow: choose a descriptive name comprising 1-3 words or common abbreviations separated by hyphens.\n\n\nTake a moment to observe the file navigator. It should consist of a single example-project.Rproj file.\n\n\nAdd content\nWe may as well populate the project with a few files – so let’s add a dataset and write a short script, as if we’re just starting a data analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nRetrieve data and store a local copy\n\nOpen a new script: File &gt; New File &gt; R Script\nIn the navigator, create a folder called data and a folder called scripts\nCopy and paste the code chunk below into your script.\nExecute once, then save in the scripts folder as data-retrieval.R and close\n\n\n\n\nlibrary(tidyverse)\n\n# retrieve pollution data\nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/labs/lab1-setup/data/pollution.csv'\npollution &lt;- read_csv(url)\n\n# write as csv to file\nwrite_csv(pollution, file = 'data/pollution.csv')\n\n# clear environment\nrm(list = ls())\n\n\nNext, we’ll do a simple regression analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a script\n\nCreate a new script as before\nCopy-paste the code chunk below into your script\nExecute once and examine the results\nSave in the scripts folder as slr-analysis.R\n\n\n\n\nlibrary(tidyverse)\n\n# load data\npollution &lt;- read_csv('data/pollution.csv')\n\n# examine scatterplot with SLR fit\nggplot(pollution,\n       aes(x = log(SO2), y = Mort)) +\n  geom_point() +\n  geom_smooth(method = 'lm')\n\n\n\n\n\n\n\n# compute SLR fit\nfit &lt;- lm(Mort ~ log(SO2), data = pollution)\nbroom::tidy(fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    887.      17.6      50.4  1.37e-49\n2 log(SO2)        16.7      4.99      3.35 1.40e- 3\n\n# interpret\nfit_ci &lt;- confint(fit, parm = 'log(SO2)')*log(1.2)\n\npaste('With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between', \n      round(fit_ci[1], 2), \n      'and', \n      round(fit_ci[2], 2), \n      'per 100k', sep = ' ') %&gt;% \n  print()\n\n[1] \"With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between 1.23 and 4.87 per 100k\"\n\n\n\nCongrats on your first project! You can close the RStudio session now.\nWe’ll be using projects structured much like what you just set up, but with one catch: we’ll link up our RStudio projects with shared repositories so that we can all collaborate on the same set of project files."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
+    "title": "Course technology overview",
+    "section": "GitHub repositories",
+    "text": "GitHub repositories\n\nWe will be using repositories on GitHub throughout the course. A repository is simply a storage space for the files associated with a project.\nFor the activities in PSTAT 197A, you will work with several different groups over the course of the quarter. Each group will use a shared GitHub repository for the module you are completing together.\nAll course repositories should be created within the PSTAT 197 course GitHub organization rather than under an individual student’s personal GitHub account.\nBefore completing this activity, you should have received and accepted an invitation to join the course GitHub organization.\nFor now, your group will create a group sandbox repository that you can use to practice working collaboratively with Git and GitHub during our next class meeting.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate your group’s sandbox repository\n\nGo to the PSTAT 197 course organization on GitHub.\nOne person at your table should create a new repository in the organization.\nName the repository according to the naming convention provided by your instructor, such as sandbox-group-01.\nSet the repository to Public.\nDo not initialize it with any additional files unless instructed to do so.\nAfter creating the repository, add the other members of your table group as collaborators with permission to contribute to the repository.\nEach group member should confirm that they can access the repository on github.com.\n\nKeep the repository page open; you will need its URL shortly.\n\n\n\n\nGit and GitHub\nAt some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. Git and GitHub are two different things.\nGit is version control software that enables you to systematically track and control file changes within a repository – a collection of files, possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)\nGitHub is an online platform for hosting repositories remotely. A public repository can be viewed by anyone, but only people with appropriate permissions can directly contribute changes to it.\nThis allows multiple members of a group to collaborate on the same collection of files while Git keeps track of the changes that are made.\n\n\nlocal &lt;&gt; remote\nUsually remote repositories are not updated by directly editing files on github.com. Contributors generally need to execute code and test their changes on their own computers before sharing those changes with the rest of the group.\nInstead, contributors prepare changes on their own machines, where they can run and test their code, and then update the remote repository once their changes are ready.\nThis process involves communicating information between local and remote locations. For this purpose, each contributor needs a local copy of the remote repository.\n\n\nCloning a repository\nIn Git terminology, a clone is a local copy of a remote repository. Creating a clone copies the repository files to your computer and establishes the connection between the local and remote repositories so that changes can be sent to and received from GitHub.\nYou only need to create a clone once for each repository.\nTo clone a repository, all one needs is:\n\nthe remote repository URL;\nthe local destination where the clone will be created;\npermission to access the repository, if the repository is private.\n\nHere you’ll clone the group sandbox repository your group just created. You will need its URL. If you happened to close the page, you can find the repository by returning to the PSTAT 197 organization on github.com.\n\n\n\n\n\n\n\nImportantAction\n\n\n\nClone the sandbox repository\n\nOpen your GitHub client (GitKraken, GitHub Desktop, or similar) and ensure you are logged in to your GitHub account.\nFind the option to clone a repository.\nSelect or enter the URL of your group’s sandbox repository.\nChoose the location on your computer where you would like the local copy to be stored.\nComplete the cloning process.\nCheck your file navigator to confirm that the repository was copied to your computer.\n\nEvery member of the group should clone the same repository onto their own computer.\n\n\n\nAn alternative is to create the clone using a terminal command. In the terminal, navigate to the desired destination and enter:\ngit clone https://github.com/ORGANIZATION/REPONAME\nFor example:\ngit clone https://github.com/pstat-197a-fall2026/sandbox-group-01\n\n\n\n\n\n\nNoteRemarks\n\n\n\nOn terminal commands:\n\nIt’s recommended to manage Git actions through a visual client at first, as it’s much easier to see and understand what’s happening.\nHowever, if you know exactly what you’re doing, executing simple actions via Git in the terminal can be more efficient at times.\nFor example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.\nTry experimenting with terminal commands from RStudio after you have a little experience with basic Git actions.\n\n\n\n\n\nRepositories for course modules\nYou will follow essentially the same process for each of the five PSTAT 197A modules.\nFor each module:\n\nYou will be assigned to a group for that module.\nOne member of the group will create a new public repository within the PSTAT 197 organization.\nThat student will add the other members of the group as collaborators.\nEvery group member will clone the same repository to their own computer.\nThe group will use that repository for its work on that module.\n\nYour groups may change from one module to another. A new repository should therefore be created for each module rather than continuing to use a repository belonging to a previous group.\nThese module groups are for practicing the skills you will need later in the capstone sequence; they are not your final capstone project groups."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#checklist",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#checklist",
+    "title": "Course technology overview",
+    "section": "Checklist",
+    "text": "Checklist\nHave you completed all of the activity action items?\n\nInstall software: R, RStudio, Git, and a GitHub client\nCreate a GitHub account\nAccept the invitation to join the PSTAT 197 GitHub organization\nInstall R packages that will be used frequently\nCreate a local project in RStudio\nCreate or join your group’s sandbox repository\nClone the group sandbox repository"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#announcementsreminders",
+    "href": "materials/slides/week1-github.html#announcementsreminders",
+    "title": "Basic GitHub actions",
+    "section": "Announcements/reminders",
+    "text": "Announcements/reminders\n\nToday, sit at your table from last time.\nAssignment for next class:\n\nread MDSR 9.1 – 9.2\nprepare a reading response"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#objective-for-today",
+    "href": "materials/slides/week1-github.html#objective-for-today",
+    "title": "Basic GitHub actions",
+    "section": "Objective for today",
+    "text": "Objective for today\nLearn how to interact with GitHub repositories:\n\nretrieve and submit file changes;\nexamine repository updates;\nuse branches for parallel workflow;\nresolve conflicts."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#basic-git-actions",
+    "href": "materials/slides/week1-github.html#basic-git-actions",
+    "title": "Basic GitHub actions",
+    "section": "Basic Git actions",
+    "text": "Basic Git actions\n\nCommunication actions for moving file changes between locations"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#branching-workflow",
+    "href": "materials/slides/week1-github.html#branching-workflow",
+    "title": "Basic GitHub actions",
+    "section": "Branching workflow",
+    "text": "Branching workflow\n\nTypical use of repository branches for development of new features"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#activity-overview",
+    "href": "materials/slides/week1-github.html#activity-overview",
+    "title": "Basic GitHub actions",
+    "section": "Activity overview",
+    "text": "Activity overview\n\nMake individual changes to files and create ‘commits’\nCreate repository branches to enable you to work more efficiently in parallel.\nMerge branches with the main branch via pull request.\nCreate and resolve a merge conflict."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#setup",
+    "href": "materials/slides/week1-github.html#setup",
+    "title": "Basic GitHub actions",
+    "section": "Setup",
+    "text": "Setup\n\neveryone should work from their own laptop\nhave everyone open their GitHub client, the group repository in RStudio, and the group repository in the browser on github.com\nmake sure everyone in the group is working with the same repository in the PSTAT 197 GitHub organization\nmake sure each group member has cloned the group repository to their own computer"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#welcome",
+    "href": "materials/slides/week0-intro.html#welcome",
+    "title": "Course orientation",
+    "section": "Welcome",
+    "text": "Welcome\nPSTAT197A is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#capstone-projects",
+    "href": "materials/slides/week0-intro.html#capstone-projects",
+    "title": "Course orientation",
+    "section": "Capstone projects",
+    "text": "Capstone projects\nStudents are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "title": "Course orientation",
+    "section": "Continuing in capstones",
+    "text": "Continuing in capstones\nContinuation in PSTAT197B-C during winter and spring:\n\nstudents admitted to this course in spring are not guaranteed a seat\nprogress to subsequent courses in the sequence will be based on your performance in this course"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#outcomes",
+    "href": "materials/slides/week0-intro.html#outcomes",
+    "title": "Course orientation",
+    "section": "Outcomes",
+    "text": "Outcomes\nI aim to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#classroom-environment",
+    "href": "materials/slides/week0-intro.html#classroom-environment",
+    "title": "Course orientation",
+    "section": "Classroom environment",
+    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#resources",
+    "href": "materials/slides/week0-intro.html#resources",
+    "title": "Course orientation",
+    "section": "Resources",
+    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#modules",
+    "href": "materials/slides/week0-intro.html#modules",
+    "title": "Course orientation",
+    "section": "Modules",
+    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#module-content",
+    "href": "materials/slides/week0-intro.html#module-content",
+    "title": "Course orientation",
+    "section": "Module content",
+    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#group-assignments",
+    "href": "materials/slides/week0-intro.html#group-assignments",
+    "title": "Course orientation",
+    "section": "Group assignments",
+    "text": "Group assignments\nYour working group for the first module will consist of the students currently at your table.\nGo around your table. Take turns answering the following:\n\nYour preferred name\nYour major\nA hobby you enjoy\nA fun fact about yourself\n\nFor the subsequent modules, your groups will be created via random assignment by the instructor."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#module-work",
+    "href": "materials/slides/week0-intro.html#module-work",
+    "title": "Course orientation",
+    "section": "Module Work",
+    "text": "Module Work\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#vignettes",
+    "href": "materials/slides/week0-intro.html#vignettes",
+    "title": "Course orientation",
+    "section": "Vignettes",
+    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "title": "Course orientation",
+    "section": "Expectations and assessments",
+    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#next-time",
+    "href": "materials/slides/week0-intro.html#next-time",
+    "title": "Course orientation",
+    "section": "Next time",
+    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#checklist",
+    "href": "materials/slides/week0-intro.html#checklist",
+    "title": "Course orientation",
+    "section": "Checklist",
+    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nSubmit your GitHub username via the GitHub assignment on Canvas.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
+  },
+  {
     "objectID": "materials/activities/github-basics.html",
     "href": "materials/activities/github-basics.html",
     "title": "GitHub basics",
@@ -678,7 +923,7 @@
     "href": "materials/activities/github-basics.html#merge-conflicts",
     "title": "GitHub basics",
     "section": "Merge conflicts",
-    "text": "Merge conflicts\nGit is pretty clever at merging changes when you pull, push, or merge branches via pull request. However, occasionally commits will conflict in such a way that can’t be resolved automatically. These are known as merge conflicts.\nMerge conflicts happen when:\n\ntwo commits differ on the same line of the same file;\nfiles are moved or deleted in conflicting ways.\n\nHere you’ll create an artificial merge conflict to see what this looks like and how to fix it.\n\n\n\n\n\n\nImportantAction (group)\n\n\n\nCreate a merge conflict\nEnsure the workstation at your table is up to date with the remote repository. Then:\n\nHave someone at your table open the README file and add the group members’ names in a list on one line, e.g.,\ngroup: person a, person b, person c\nCommit and push changes\nThen on the main screen, without pulling new changes, create a commit with the names shown differently somehow, such as last, first, or initials, or spanning multiple lines with one name per line.\nAttempt to push the commit. Your client will detect ‘upstream’ changes on the remote repository and prompt you to pull changes.\nAttempt to pull the changes. The client will then report a merge conflict and prompt you to resolve the conflict and commit changes. GitHub Desktop in particular will prompt you to open RStudio to resolve the conflict. Go ahead and follow the prompt.\n\nResolve a merge conflict\nYou will see a version of the file with the conflict that shows &lt;&lt;&lt;&lt;HEAD … &gt;&gt;&gt;&gt; followed by a long alphanumeric string. Within the angle brackets the two conflicting versions of the file will be shown, separated by ===== .\n\nAgree with your table on one version of the README file (or another representation of your names).\nCommit and push the change.\n\n\n\nWhen detected, merge conflicts must be resolved with a commit that takes precedence over the conflicting commits. You can read more about resolving merge conflicts here."
+    "text": "Merge conflicts\nGit is pretty clever at merging changes when you pull, push, or merge branches via pull request. However, occasionally commits will conflict in such a way that can’t be resolved automatically. These are known as merge conflicts.\nMerge conflicts happen when:\n\ntwo commits differ on the same line of the same file;\nfiles are moved or deleted in conflicting ways.\n\nHere you’ll create an artificial merge conflict to see what this looks like and how to fix it.\n\n\n\n\n\n\nImportantAction (group)\n\n\n\nCreate a merge conflict\nEnsure the workstation at your table is up to date with the remote repository. Then:\n\nHave someone at your table open the README file and add the group members’ names in a list on one line, e.g.,\ngroup: person a, person b, person c\nCommit and push changes\nThen on the main screen, without pulling new changes, create a commit with the names shown differently somehow, such as last, first, or initials, or spanning multiple lines with one name per line.\nAttempt to push the commit. Your client will detect ‘upstream’ changes on the remote repository and prompt you to pull changes.\nAttempt to pull the changes. The client will then report a merge conflict and prompt you to resolve the conflict and commit changes. GitHub Desktop in particular will prompt you to open RStudio to resolve the conflict. Go ahead and follow the prompt.\n\nResolve a merge conflict\nYou will see a version of the file with the conflict that shows &lt;&lt;&lt;&lt;HEAD … &gt;&gt;&gt;&gt; followed by a long alphanumeric string. Within the angle brackets the two conflicting versions of the file will be shown, separated by =====.\n\nAgree with your table on one version of the README file (or another representation of your names).\nCommit and push the change.\n\n\n\nWhen detected, merge conflicts must be resolved with a commit that takes precedence over the conflicting commits. You can read more about resolving merge conflicts here."
   },
   {
     "objectID": "materials/activities/github-basics.html#checklist",

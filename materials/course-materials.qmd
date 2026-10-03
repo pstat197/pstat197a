@@ -37,6 +37,8 @@ bibliography: slides/refs.bib
     -   read [MDSR 9.1 -- 9.2](https://mdsr-book.github.io/mdsr2e/ch-foundations.html#samples-and-populations)
 
     -   prepare a [reading response](https://forms.gle/vUDh2DpNfNGdPHpE6)
+    
+    -   read (and follow along with) the [\[tutorial for connecting Git to RStudio](activities/connecting-github-rstudio.qmd)\]
 
 <!-- ### Week 2 -->
 
