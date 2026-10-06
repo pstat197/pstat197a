@@ -147,14 +147,14 @@
     "href": "materials/activities/making-trees.html#building-a-tree",
     "title": "Activity: making trees",
     "section": "Building a tree",
-    "text": "Building a tree\n\nStep 1: resample the data\nFirst, draw a sample with replacement from the observations. This is known as a bootstrap sample. We’ll keep this relatively small to simplify matters.\n\n\n\n\n\n\nImportantAction\n\n\n\nDraw a bootstrap sample\nCopy the code chunk below and execute once.\n\n# resample data\ncensus_boot &lt;- census %&gt;%\n  sample_n(size = 200, replace = T)\n\n\n\nYou will build your tree using this data.\n\n\nStep 2: select predictors at random\nNext draw a set of predictors at random. We’ll also keep this set small so that you can develop the tree ‘by hand’.\n\n\n\n\n\n\nImportantAction\n\n\n\nSelect two random predictors\nCopy and paste the code chunk below into your script and execute once without modification.\n\n# retrieve column names\npossible_predictors &lt;- census %&gt;% \n  select(-income) %&gt;%\n  colnames()\n\n# grab 2 columns at random\npredictors &lt;- sample(possible_predictors,\n                     size = 2, \n                     replace = F)\n\n# select these columns from the bootstrap sample\ntrain &lt;- census_boot %&gt;% \n  select(c(income, any_of(predictors)))\n\n\n\nYou will build your tree using only these predictors from the bootstrap sample as training data.\n\n\nStep 3a: find your first split\nNow your job is to choose exactly one of the predictors to make a binary split of the data.\n\nfor categorical variables, determine which categories you will classify as high-income vs. low-income\nfor continuous variables, choose a cutoff value so that any observation greater/less than the cutoff is classified as a high/low (or vice-versa) earner\n\nYou do not need to make quantitatively rigorous choices. Try to make a choice that you think is reasonable, but don’t agonize over it. The code below might help you decide which variable to use and how to make the split: use it to inspect each of the two variables and decide which one better distinguishes the income groups.\n\n# comment out -- don't overwrite your bootstrap sample!\ncensus_boot &lt;- census %&gt;% \n  sample_n(size = 200, replace = T)\n\n# for continuous variables\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name \n             y = income)) +\n  geom_jitter(height = 0.1) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name\n           y = ..density..)) +\n  geom_density(aes(color = income, fill = income),\n               alpha = 0.5) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncutoff &lt;- 35\n\n# for categorical variables\ncensus_boot %&gt;%\n  group_by(workclass, income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &gt; `&gt;50K`)\n\n# A tibble: 7 × 4\n# Groups:   workclass [7]\n  workclass        `&lt;=50K` `&gt;50K` high.inc\n  &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   \n1 ?                     13      2 TRUE    \n2 Federal-gov            3      3 FALSE   \n3 Local-gov              8      3 TRUE    \n4 Private              114     27 TRUE    \n5 Self-emp-inc           2      5 FALSE   \n6 Self-emp-not-inc       7      8 FALSE   \n7 State-gov              5      0 TRUE    \n\n# pick out categories that are majority high income\nhighinc_categories &lt;- census_boot %&gt;%\n  group_by(workclass, # replace with predictor name\n           income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &lt; `&gt;50K`) %&gt;%\n  filter(high.inc == T) %&gt;%\n  pull(workclass) # replace with predictor name\n\n\n\n\n\n\n\nImportantAction\n\n\n\nMake your first split\n\nChoose whichever of the two predictors you think best distinguishes the high income and low income groups.\nFind a cutoff value if the variable is continuous, or the categories that you will classify as high income if the variable is categorical.\nIf categorical, store a vector of the category names that are classified as high income (see code above). If continuous, store the cutoff value.\nWrite down the rule.\n\n\n\n\n\nStep 3b: find your second split\nNow filter the data to just those rows classified as (but not necessarily actually) high income based on your first split.\n\n# continuous case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(age &gt; cutoff)\n\n# categorical case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(workclass %in% highinc_categories)\n\n\n\n\n\n\n\nImportantAction\n\n\n\nFind a second split\n\nRepeat step 3a but with the filtered data census_boot_sub instead of the full bootstrap sample.\nWrite down the rule.\n\n\n\n\n\nStep 4: draw the tree\nWe could in theory keep creating binary splits until all observations are correctly classified. However, since we’re doing this by hand and just for illustration purposes, we’ll stop after two splits – it’ll be more of a sapling than a fully grown tree.\n\n\n\n\n\n\nImportantAction\n\n\n\nMake a diagram\nDraw your tree on your group’s whiteboard. It should have just one ‘root’ node and just three ‘leaf’ nodes."
+    "text": "Building a tree\n\nStep 1: resample the data\nFirst, draw a sample with replacement from the observations. This is known as a bootstrap sample. We’ll keep this relatively small to simplify matters.\n\n\n\n\n\n\nImportantAction\n\n\n\nDraw a bootstrap sample\nCopy the code chunk below and execute once.\n\n# resample data\ncensus_boot &lt;- census %&gt;%\n  sample_n(size = 200, replace = T)\n\n\n\nYou will build your tree using this data.\n\n\nStep 2: select predictors at random\nNext draw a set of predictors at random. We’ll also keep this set small so that you can develop the tree ‘by hand’.\n\n\n\n\n\n\nImportantAction\n\n\n\nSelect two random predictors\nCopy and paste the code chunk below into your script and execute once without modification.\n\n# retrieve column names\npossible_predictors &lt;- census %&gt;% \n  select(-income) %&gt;%\n  colnames()\n\n# grab 2 columns at random\npredictors &lt;- sample(possible_predictors,\n                     size = 2, \n                     replace = F)\n\n# select these columns from the bootstrap sample\ntrain &lt;- census_boot %&gt;% \n  select(c(income, any_of(predictors)))\n\n\n\nYou will build your tree using only these predictors from the bootstrap sample as training data.\n\n\nStep 3a: find your first split\nNow your job is to choose exactly one of the predictors to make a binary split of the data.\n\nfor categorical variables, determine which categories you will classify as high-income vs. low-income\nfor continuous variables, choose a cutoff value so that any observation greater/less than the cutoff is classified as a high/low (or vice-versa) earner\n\nYou do not need to make quantitatively rigorous choices. Try to make a choice that you think is reasonable, but don’t agonize over it. The code below might help you decide which variable to use and how to make the split: use it to inspect each of the two variables and decide which one better distinguishes the income groups.\n\n# comment out -- don't overwrite your bootstrap sample!\ncensus_boot &lt;- census %&gt;% \n  sample_n(size = 200, replace = T)\n\n# for continuous variables\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name \n             y = income)) +\n  geom_jitter(height = 0.1) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncensus_boot %&gt;%\n  ggplot(aes(x = age, # replace with predictor name\n           y = ..density..)) +\n  geom_density(aes(color = income, fill = income),\n               alpha = 0.5) +\n  geom_vline(xintercept = 35) # adjust cutoff\n\n\n\n\n\n\n\ncutoff &lt;- 35\n\n# for categorical variables\ncensus_boot %&gt;%\n  group_by(workclass, income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &gt; `&gt;50K`)\n\n# A tibble: 7 × 4\n# Groups:   workclass [7]\n  workclass        `&lt;=50K` `&gt;50K` high.inc\n  &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   \n1 ?                      9      0 TRUE    \n2 Federal-gov            4      5 FALSE   \n3 Local-gov              8      4 TRUE    \n4 Private              110     33 TRUE    \n5 Self-emp-inc           1      1 FALSE   \n6 Self-emp-not-inc      10      3 TRUE    \n7 State-gov              7      5 TRUE    \n\n# pick out categories that are majority high income\nhighinc_categories &lt;- census_boot %&gt;%\n  group_by(workclass, # replace with predictor name\n           income) %&gt;%\n  count() %&gt;%\n  spread(income, n) %&gt;%\n  mutate_all(~ replace_na(.x, 0)) %&gt;%\n  mutate(high.inc = `&lt;=50K` &lt; `&gt;50K`) %&gt;%\n  filter(high.inc == T) %&gt;%\n  pull(workclass) # replace with predictor name\n\n\n\n\n\n\n\nImportantAction\n\n\n\nMake your first split\n\nChoose whichever of the two predictors you think best distinguishes the high income and low income groups.\nFind a cutoff value if the variable is continuous, or the categories that you will classify as high income if the variable is categorical.\nIf categorical, store a vector of the category names that are classified as high income (see code above). If continuous, store the cutoff value.\nWrite down the rule.\n\n\n\n\n\nStep 3b: find your second split\nNow filter the data to just those rows classified as (but not necessarily actually) high income based on your first split.\n\n# continuous case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(age &gt; cutoff)\n\n# categorical case -- example\ncensus_boot_sub &lt;- census_boot %&gt;%\n  filter(workclass %in% highinc_categories)\n\n\n\n\n\n\n\nImportantAction\n\n\n\nFind a second split\n\nRepeat step 3a but with the filtered data census_boot_sub instead of the full bootstrap sample.\nWrite down the rule.\n\n\n\n\n\nStep 4: draw the tree\nWe could in theory keep creating binary splits until all observations are correctly classified. However, since we’re doing this by hand and just for illustration purposes, we’ll stop after two splits – it’ll be more of a sapling than a fully grown tree.\n\n\n\n\n\n\nImportantAction\n\n\n\nMake a diagram\nDraw your tree on your group’s whiteboard. It should have just one ‘root’ node and just three ‘leaf’ nodes."
   },
   {
     "objectID": "materials/activities/making-trees.html#classifying-a-new-observation",
     "href": "materials/activities/making-trees.html#classifying-a-new-observation",
     "title": "Activity: making trees",
     "section": "Classifying a new observation",
-    "text": "Classifying a new observation\nUse your tree to determine how to classify the following observation:\n\ncensus %&gt;%\n  sample_n(size = 1) %&gt;%\n  t() %&gt;%\n  knitr::kable()\n\n\n\n\nage\n56\n\n\nworkclass\nPrivate\n\n\neducation\nSome-college\n\n\nmarital_status\nMarried-civ-spouse\n\n\noccupation\nExec-managerial\n\n\nrelationship\nHusband\n\n\nrace\nWhite\n\n\nsex\nMale\n\n\ncapital_gain\n0\n\n\ncapital_loss\n0\n\n\nhours_per_week\n40\n\n\nnative_country\nUnited-States\n\n\nincome\n&gt;50K"
+    "text": "Classifying a new observation\nUse your tree to determine how to classify the following observation:\n\ncensus %&gt;%\n  sample_n(size = 1) %&gt;%\n  t() %&gt;%\n  knitr::kable()\n\n\n\n\nage\n46\n\n\nworkclass\nPrivate\n\n\neducation\nMasters\n\n\nmarital_status\nMarried-civ-spouse\n\n\noccupation\nExec-managerial\n\n\nrelationship\nHusband\n\n\nrace\nWhite\n\n\nsex\nMale\n\n\ncapital_gain\n0\n\n\ncapital_loss\n0\n\n\nhours_per_week\n55\n\n\nnative_country\nUnited-States\n\n\nincome\n&gt;50K"
   },
   {
     "objectID": "materials/activities/making-trees.html#algorithmic-considerations",
@@ -407,6 +407,285 @@
     "title": "Connecting GitHub to RStudio",
     "section": "Official documentation",
     "text": "Official documentation\n\nGitHub: Managing personal access tokens\nGitHub: About remote repositories and HTTPS authentication\nPosit: Version Control in RStudio\nusethis: Managing Git(Hub) credentials"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#welcome",
+    "href": "materials/slides/week0-intro.html#welcome",
+    "title": "Course orientation",
+    "section": "Welcome",
+    "text": "Welcome\nPSTAT197A is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#capstone-projects",
+    "href": "materials/slides/week0-intro.html#capstone-projects",
+    "title": "Course orientation",
+    "section": "Capstone projects",
+    "text": "Capstone projects\nStudents are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
+    "title": "Course orientation",
+    "section": "Continuing in capstones",
+    "text": "Continuing in capstones\nContinuation in PSTAT197B-C during winter and spring:\n\nstudents admitted to this course in spring are not guaranteed a seat\nprogress to subsequent courses in the sequence will be based on your performance in this course"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#outcomes",
+    "href": "materials/slides/week0-intro.html#outcomes",
+    "title": "Course orientation",
+    "section": "Outcomes",
+    "text": "Outcomes\nI aim to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#classroom-environment",
+    "href": "materials/slides/week0-intro.html#classroom-environment",
+    "title": "Course orientation",
+    "section": "Classroom environment",
+    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#resources",
+    "href": "materials/slides/week0-intro.html#resources",
+    "title": "Course orientation",
+    "section": "Resources",
+    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#modules",
+    "href": "materials/slides/week0-intro.html#modules",
+    "title": "Course orientation",
+    "section": "Modules",
+    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#module-content",
+    "href": "materials/slides/week0-intro.html#module-content",
+    "title": "Course orientation",
+    "section": "Module content",
+    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#group-assignments",
+    "href": "materials/slides/week0-intro.html#group-assignments",
+    "title": "Course orientation",
+    "section": "Group assignments",
+    "text": "Group assignments\nYour working group for the first module will consist of the students currently at your table.\nGo around your table. Take turns answering the following:\n\nYour preferred name\nYour major\nA hobby you enjoy\nA fun fact about yourself\n\nFor the subsequent modules, your groups will be created via random assignment by the instructor."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#module-work",
+    "href": "materials/slides/week0-intro.html#module-work",
+    "title": "Course orientation",
+    "section": "Module Work",
+    "text": "Module Work\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#vignettes",
+    "href": "materials/slides/week0-intro.html#vignettes",
+    "title": "Course orientation",
+    "section": "Vignettes",
+    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
+    "title": "Course orientation",
+    "section": "Expectations and assessments",
+    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#next-time",
+    "href": "materials/slides/week0-intro.html#next-time",
+    "title": "Course orientation",
+    "section": "Next time",
+    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
+  },
+  {
+    "objectID": "materials/slides/week0-intro.html#checklist",
+    "href": "materials/slides/week0-intro.html#checklist",
+    "title": "Course orientation",
+    "section": "Checklist",
+    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nSubmit your GitHub username via the GitHub assignment on Canvas.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#announcementsreminders",
+    "href": "materials/slides/week1-github.html#announcementsreminders",
+    "title": "Basic GitHub actions",
+    "section": "Announcements/reminders",
+    "text": "Announcements/reminders\n\nToday, sit at your table from last time.\nAssignment for next class:\n\nread MDSR 9.1 – 9.2\nprepare a reading response"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#objective-for-today",
+    "href": "materials/slides/week1-github.html#objective-for-today",
+    "title": "Basic GitHub actions",
+    "section": "Objective for today",
+    "text": "Objective for today\nLearn how to interact with GitHub repositories:\n\nretrieve and submit file changes;\nexamine repository updates;\nuse branches for parallel workflow;\nresolve conflicts."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#basic-git-actions",
+    "href": "materials/slides/week1-github.html#basic-git-actions",
+    "title": "Basic GitHub actions",
+    "section": "Basic Git actions",
+    "text": "Basic Git actions\n\nCommunication actions for moving file changes between locations"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#branching-workflow",
+    "href": "materials/slides/week1-github.html#branching-workflow",
+    "title": "Basic GitHub actions",
+    "section": "Branching workflow",
+    "text": "Branching workflow\n\nTypical use of repository branches for development of new features"
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#activity-overview",
+    "href": "materials/slides/week1-github.html#activity-overview",
+    "title": "Basic GitHub actions",
+    "section": "Activity overview",
+    "text": "Activity overview\n\nMake individual changes to files and create ‘commits’\nCreate repository branches to enable you to work more efficiently in parallel.\nMerge branches with the main branch via pull request.\nCreate and resolve a merge conflict."
+  },
+  {
+    "objectID": "materials/slides/week1-github.html#setup",
+    "href": "materials/slides/week1-github.html#setup",
+    "title": "Basic GitHub actions",
+    "section": "Setup",
+    "text": "Setup\n\neveryone should work from their own laptop\nhave everyone open their GitHub client, the group repository in RStudio, and the group repository in the browser on github.com\nmake sure everyone in the group is working with the same repository in the PSTAT 197 GitHub organization\nmake sure each group member has cloned the group repository to their own computer"
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html",
+    "title": "Tidyverse basics",
+    "section": "",
+    "text": "Read through the R Basics section and then complete all actions in the Tidyverse basics section. This lab is for your own benefit and no submission is expected.\nObjectives:"
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#data-types",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#data-types",
+    "title": "Tidyverse basics",
+    "section": "Data types",
+    "text": "Data types\nWe will focus on four common atomic data types in R and one important class for categorical data: factors.\nNumeric data represent real numbers and are normally stored as double-precision floating-point values in R. Numeric data are abbreviated num and by default are stored as double-precision floating point.\n\n# a number\n4.5\n\n[1] 4.5\n\n# check structure\nstr(4.5)\n\n num 4.5\n\n# stored as double\nis.double(4.5)\n\n[1] TRUE\n\n\nInteger data are integers. For the most part they behave like numeric data, except occupy less memory, which can in some cases be convenient. To distinguish integers from doubles, R uses a trailing L after values; the data type is abbreviated int.\n\n# an integer\n4L\n\n[1] 4\n\n# check structure\nstr(4L)\n\n int 4\n\n\nLogical data are binary and represented in R as having values TRUE and FALSE. They are abbreviated logi in R. Often they are automatically coerced to integer data with values 0 (false) and 1 (true) to perform arithmetic and other operations.\n\n# logical value\nTRUE\n\n[1] TRUE\n\n# check structure\nstr(TRUE)\n\n logi TRUE\n\n# arithmetic\nTRUE + FALSE\n\n[1] 1\n\n# check structure\nstr(FALSE + FALSE)\n\n int 0\n\n\nCharacter data represent strings of text and are sometimes called ‘strings’. They are abbreviated chr in R and values are surrounded by quotation marks; this distinguishes, for example, the character 4 from the number 4. Single quotations can be used to input strings as well as double quotations. Arithmetic is not possible with strings for obvious reasons.\n\n# a character string\n'yay'\n\n[1] \"yay\"\n\n# check structure\nstr('yay')\n\n chr \"yay\"\n\n# string arithmetic won't work\n# '4' + '1'\n\n# but can be performed after converting character strings to numbers\nas.numeric('4') + as.numeric('1')\n\n[1] 5\n\n\nFactors represent categorical variables. A factor is an object class built on an integer vector, rather than a separate atomic data type. In R these are encoded numerically according to the number of ‘levels’ of the factor, which represent the unique values of the categorical variable, and each level is labeled. R will print the labels, not the levels, of factors; the data type is abbreviated fct.\n\n# a factor\nfactor(1, levels = c(1, 2), labels = c('blue', 'red'))\n\n[1] blue\nLevels: blue red\n\n# less verbose definition\nfactor('blue', levels = c('blue', 'red'))\n\n[1] blue\nLevels: blue red\n\n# check structure\nstr(factor('blue', levels = c('blue', 'red')))\n\n Factor w/ 2 levels \"blue\",\"red\": 1\n\n\nCSV files do not preserve factor definitions. In this lab, read_csv() imports proficiency labels as character data, and we explicitly convert them to ordered factors. The levels and labels of factors can be manipulated using a variety of helper functions."
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#object-classes",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#object-classes",
+    "title": "Tidyverse basics",
+    "section": "Object classes",
+    "text": "Object classes\nThe most basic type of object in R is a vector. Vectors are concatenations of data values of the same type. They are defined using the concatenation operator c() and are indexed by consecutive integers; subvectors can be retrieved by specifying the indices between square brackets.\n\n# numeric vector\nc(1, 4, 7)\n\n[1] 1 4 7\n\n# character vector\nc('blue', 'red')\n\n[1] \"blue\" \"red\" \n\n# indexing\nc(1, 4, 7)[1]\n\n[1] 1\n\nc(1, 4, 7)[2]\n\n[1] 4\n\nc(1, 4, 7)[3]\n\n[1] 7\n\nc(1, 4, 7)[2:3]\n\n[1] 4 7\n\nc(1, 4, 7)[c(1, 3)]\n\n[1] 1 7\n\n\nUsually objects are assigned names for easy retrieval. Vectors will not show any special object class if the structure is examined; str() will simply return the data type, index range, and the values.\n\n# assign a name\nmy_vec &lt;- c(1, 4, 7)\n\n# check structure\nstr(my_vec)\n\n num [1:3] 1 4 7\n\n\nNext up in complexity are arrays. These are blocks of data values of the same type indexed along one or more dimensions. For arrays, str() will return the data type, index structure, and data values; when printed directly, data values are arranged according to the indexing.\n\n# an array\nmy_ary &lt;- array(data = c(1, 2, 3, 4, 5, 6, 7, 8), \n           dim = c(2, 4))\n\nmy_ary\n\n     [,1] [,2] [,3] [,4]\n[1,]    1    3    5    7\n[2,]    2    4    6    8\n\nstr(my_ary)\n\n num [1:2, 1:4] 1 2 3 4 5 6 7 8\n\n# another array\nmy_oth_ary &lt;- array(data = c(1, 2, 3, 4, 5, 6, 7, 8), \n           dim = c(2, 2, 2))\n\nmy_oth_ary\n\n, , 1\n\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n, , 2\n\n     [,1] [,2]\n[1,]    5    7\n[2,]    6    8\n\nstr(my_oth_ary)\n\n num [1:2, 1:2, 1:2] 1 2 3 4 5 6 7 8\n\n\nFor arrays, elements can be retrieved by index coordinates, and slices can be retrieved by leaving index positions blank, which will return all elements along the corresponding indices.\n\n# one element\nmy_ary[1, 2]\n\n[1] 3\n\n# one element\nmy_oth_ary[1, 2, 1]\n\n[1] 3\n\n# a slice (second row)\nmy_ary[2, ]\n\n[1] 2 4 6 8\n\n# a slice (first layer)\nmy_oth_ary[ , , 1]\n\n     [,1] [,2]\n[1,]    1    3\n[2,]    2    4\n\n\nNext there are lists, which are perhaps the most flexible data structure. A list is an indexed collection of any objects.\n\n# a list\nlist('cat', c(1, 4, 7), TRUE)\n\n[[1]]\n[1] \"cat\"\n\n[[2]]\n[1] 1 4 7\n\n[[3]]\n[1] TRUE\n\n# a named list\nlist(animal = 'cat',\n     numbers = c(1, 4, 7),\n     short = TRUE)\n\n$animal\n[1] \"cat\"\n\n$numbers\n[1] 1 4 7\n\n$short\n[1] TRUE\n\n\nList elements can be retrieved by index in double square brackets, or by name.\n\n# assign a name\nmy_lst &lt;- list(animal = 'cat',\n               numbers = c(1, 4, 7),\n               short = TRUE)\n\n# check structure\nstr(my_lst)\n\nList of 3\n $ animal : chr \"cat\"\n $ numbers: num [1:3] 1 4 7\n $ short  : logi TRUE\n\n# retrieve an element\nmy_lst[[1]]\n\n[1] \"cat\"\n\n# equivalent\nmy_lst$animal\n\n[1] \"cat\"\n\n\nFinally, data frames are type-heterogeneous lists of vectors of equal length. More informally, they are 2D arrays with columns of differing data types. str() will essentially show the list structure; but when printed, data frames will appear arranged in a table.\n\n# a data frame\nmy_df &lt;- data.frame(animal = c('cat', 'hare', 'tortoise'),\n                    has.fur = c(TRUE, TRUE, FALSE),\n                    weight.lbs = c(9.1, 8.2, 22.7))\n\nstr(my_df)\n\n'data.frame':   3 obs. of  3 variables:\n $ animal    : chr  \"cat\" \"hare\" \"tortoise\"\n $ has.fur   : logi  TRUE TRUE FALSE\n $ weight.lbs: num  9.1 8.2 22.7\n\nmy_df\n\n    animal has.fur weight.lbs\n1      cat    TRUE        9.1\n2     hare    TRUE        8.2\n3 tortoise   FALSE       22.7\n\n\nThe data frame is the standard object type for representing datasets in R. For the most part, modern computing in R is designed around the data frame."
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#packages",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#packages",
+    "title": "Tidyverse basics",
+    "section": "Packages",
+    "text": "Packages\nR packages are add-ons that can include special functions, datasets, object classes, and the like. They are published software and can be installed using install.packages('PACKAGE NAME') and, once installed, loaded via library('PACKAGE NAME') or require('PACKAGE NAME')."
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#concepts",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#concepts",
+    "title": "Tidyverse basics",
+    "section": "Concepts",
+    "text": "Concepts\nThe tidyverse is a collection of packages for data manipulation, visualization, and statistical modeling. Some are specialized, such as forcats or lubridate, which contain functions for manipulating factors and dates and times, respectively. The packages share some common underlying principles.\n\nPackages are built around the data frame\nFunctions are designed to work with the pipe operator %&gt;%\nPackages facilitate readable code\n\nThe tidyverse facilitates programming in readable sequences of steps that are performed on data frames. For example:\n\nmy_df %&gt;% STEP1() %&gt;% STEP2() %&gt;% STEP3()\n\nIf it helps, imagine that step 1 is defining a new variable, step 2 is selecting a subset of columns, and step 3 is fitting a model of some kind."
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#tibbles",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#tibbles",
+    "title": "Tidyverse basics",
+    "section": "Tibbles",
+    "text": "Tibbles\ntidyverse packages use a slight generalization of the data frame called a tibble. For the most part, tibbles behave as data frames do, but they are slightly more flexible in ways you’ll encounter later.\nFor now, think of a tibble as just another name for a data frame."
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#the-pipe-operator",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#the-pipe-operator",
+    "title": "Tidyverse basics",
+    "section": "The pipe operator %>%",
+    "text": "The pipe operator %&gt;%\nIn short, x %&gt;% f(y) is equivalent to f(x, y) .\nIn other words, the pipe operator ‘pipes’ the result of the left-hand operation into the first argument of the right-hand function.\n\n# a familiar example\nmy_vec &lt;- c(1, 2, 5) \nstr(my_vec)\n\n num [1:3] 1 2 5\n\n# use the pipe operator instead\nmy_vec %&gt;% str()\n\n num [1:3] 1 2 5"
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#dplyr-verbs",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#dplyr-verbs",
+    "title": "Tidyverse basics",
+    "section": "dplyr verbs",
+    "text": "dplyr verbs\nThe dplyr package contains functions for manipulating data frames (tibbles). The functions are named with verbs that describe common operations.\n\nCore verbs\n\n\n\n\n\n\nImportantAction\n\n\n\nFor each verb listed below, copy the code chunk into your script and execute.\nGo through the list with your neighbor and check your understanding by describing what the code example accomplishes.\n\n\nfilter – filter the rows of a data frame according to a condition and return a subset of rows meeting that condition\n\n# filter rows\nbackground %&gt;%\n  filter(math.comf &gt; 3)\n\n# A tibble: 38 × 11\n   response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf\n         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt;\n 1        1001 int               4 int               4 adv               5\n 2        1004 adv               4 adv               5 adv               5\n 3        1005 adv               4 int               4 adv               5\n 4        1008 int               3 int               4 adv               4\n 5        1009 int               4 adv               4 adv               4\n 6        1010 int               4 int               5 adv               5\n 7        1013 adv               4 adv               4 adv               4\n 8        1014 int               3 adv               4 adv               4\n 9        1015 int               3 int               4 adv               4\n10        1016 adv               5 adv               4 adv               5\n# ℹ 28 more rows\n# ℹ 4 more variables: upper_div_courses &lt;chr&gt;, courses &lt;chr&gt;,\n#   domain_specialization &lt;chr&gt;, research &lt;chr&gt;\n\n\nselect – select a subset of columns from a data frame\n\n# select a column\nbackground %&gt;%\n  select(math.comf)\n\n# A tibble: 51 × 1\n   math.comf\n       &lt;dbl&gt;\n 1         4\n 2         3\n 3         3\n 4         5\n 5         4\n 6         2\n 7         3\n 8         4\n 9         4\n10         5\n# ℹ 41 more rows\n\n\npull – extract a single column from a data frame\n\n# pull a column\nbackground %&gt;%\n  pull(research)\n\n [1] \"No\"     \"Yes\"    \"No\"     \"No\"     \"No\"     \"No\"     \"Yes\"    \"Unsure\"\n [9] \"Yes\"    \"Yes\"    \"Unsure\" \"No\"     \"Yes\"    \"Unsure\" \"Yes\"    \"No\"    \n[17] \"No\"     \"No\"     \"Yes\"    \"No\"     \"No\"     \"No\"     \"No\"     \"Yes\"   \n[25] \"Yes\"    \"Yes\"    \"No\"     \"Yes\"    \"No\"     \"Yes\"    \"No\"     \"Unsure\"\n[33] \"Yes\"    \"No\"     \"No\"     \"Yes\"    \"No\"     \"Yes\"    \"Yes\"    \"No\"    \n[41] \"Yes\"    \"Yes\"    \"No\"     \"Yes\"    \"Yes\"    \"No\"     \"No\"     \"Yes\"   \n[49] \"Yes\"    \"No\"     \"Yes\"   \n\n\nmutate – define a new column as a function of existing columns\n\n# define a new variable\nbackground %&gt;%\n  mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3)\n\n# A tibble: 51 × 12\n   response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf\n         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt;\n 1        1001 int               4 int               4 adv               5\n 2        1002 int               4 int               3 int               5\n 3        1003 beg               3 int               3 adv               4\n 4        1004 adv               4 adv               5 adv               5\n 5        1005 adv               4 int               4 adv               5\n 6        1006 int               4 int               2 adv               4\n 7        1007 int               3 int               3 int               3\n 8        1008 int               3 int               4 adv               4\n 9        1009 int               4 adv               4 adv               4\n10        1010 int               4 int               5 adv               5\n# ℹ 41 more rows\n# ℹ 5 more variables: upper_div_courses &lt;chr&gt;, courses &lt;chr&gt;,\n#   domain_specialization &lt;chr&gt;, research &lt;chr&gt;, avg.comf &lt;dbl&gt;\n\n\nThese operations can be chained together, for example:\n\n# sequence of verbs\nbackground %&gt;%\n  filter(stat.prof == 'adv') %&gt;%\n  mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %&gt;%\n  select(avg.comf, research) \n\n# A tibble: 33 × 2\n   avg.comf research\n      &lt;dbl&gt; &lt;chr&gt;   \n 1     4.33 No      \n 2     3.33 No      \n 3     4.67 No      \n 4     4.33 No      \n 5     3.33 No      \n 6     3.67 Unsure  \n 7     4    Yes     \n 8     4.67 Yes     \n 9     3    No      \n10     4    Yes     \n# ℹ 23 more rows\n\n\n\n\n\n\n\n\n\nImportantAction\n\n\n\n\nWrite a chain of verbs to find the proficiency ratings of respondents with research == 'Yes' and upper_div_courses == '6-8'.\nRepeat for respondents with research == 'No' in the same course-count category. Keep Unsure distinct from No.\nCompare results and discuss with your neighbor: do these suggest any patterns?\n\n\n\n\n\nSummaries\nSummaries reduce rows to summary values using summarize(). For example, among respondents who rated their statistics proficiency as advanced, what proportion reported research experience? research == 'Yes' creates a logical vector whose mean is the proportion of TRUE values. Here the denominator includes all advanced respondents with a nonmissing research response, including those who answered Unsure.\n\n# a summary\nbackground %&gt;%\n  filter(stat.prof == 'adv') %&gt;%\n  mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %&gt;%\n  select(avg.comf, research) %&gt;%\n  summarize(prop.research = mean(research == 'Yes', na.rm = TRUE))\n\n# A tibble: 1 × 1\n  prop.research\n          &lt;dbl&gt;\n1         0.394\n\n# equivalent\nbackground %&gt;%\n  filter(stat.prof == 'adv') %&gt;%\n  mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %&gt;%\n  select(avg.comf, research) %&gt;%\n  pull(research) %&gt;%\n  {mean(. == 'Yes', na.rm = TRUE)}\n\n[1] 0.3939394\n\n\nThe advantage of summarize , however, is that multiple summaries can be computed at once:\n\nbackground %&gt;%\n  filter(stat.prof == 'adv') %&gt;%\n  mutate(avg.comf = (math.comf + prog.comf + stat.comf)/3) %&gt;%\n  select(avg.comf, research) %&gt;%\n  summarize(prop.research = mean(research == 'Yes', na.rm = TRUE),\n            med.comf = median(avg.comf, na.rm = TRUE))\n\n# A tibble: 1 × 2\n  prop.research med.comf\n          &lt;dbl&gt;    &lt;dbl&gt;\n1         0.394     4.33\n\n\nUse across() inside summarize() to apply the same summary to several columns. The helper ends_with() selects columns with a particular suffix.\n\n# average comfort levels across shared background respondents\nbackground %&gt;%\n  summarise(across(ends_with('.comf'), ~ mean(.x, na.rm = TRUE)))\n\n# A tibble: 1 × 3\n  prog.comf math.comf stat.comf\n      &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1      3.71      3.94      4.14\n\n\nGrouped summaries are summaries computed separately among subsets of observations. To define a grouping structure using an existing column, use group_by() . Notice the ‘groups’ attribute printed with the output.\n\n# create a grouping\nbackground %&gt;%\n  group_by(stat.prof)\n\n# A tibble: 51 × 11\n# Groups:   stat.prof [2]\n   response_id prog.prof prog.comf math.prof math.comf stat.prof stat.comf\n         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt; &lt;ord&gt;         &lt;dbl&gt;\n 1        1001 int               4 int               4 adv               5\n 2        1002 int               4 int               3 int               5\n 3        1003 beg               3 int               3 adv               4\n 4        1004 adv               4 adv               5 adv               5\n 5        1005 adv               4 int               4 adv               5\n 6        1006 int               4 int               2 adv               4\n 7        1007 int               3 int               3 int               3\n 8        1008 int               3 int               4 adv               4\n 9        1009 int               4 adv               4 adv               4\n10        1010 int               4 int               5 adv               5\n# ℹ 41 more rows\n# ℹ 4 more variables: upper_div_courses &lt;chr&gt;, courses &lt;chr&gt;,\n#   domain_specialization &lt;chr&gt;, research &lt;chr&gt;\n\n\nSometimes it can be helpful to simply count the observations in each group:\n\n# count observations\nbackground %&gt;%\n  group_by(stat.prof) %&gt;%\n  count()\n\n# A tibble: 2 × 2\n# Groups:   stat.prof [2]\n  stat.prof     n\n  &lt;ord&gt;     &lt;int&gt;\n1 int          18\n2 adv          33\n\n\nTo compute a grouped summary, first group the data frame and then specify the summary of interest:\n\n# a grouped summary\nbackground %&gt;%\n  group_by(stat.prof) %&gt;%\n  summarise(across(ends_with('.comf'), ~ mean(.x, na.rm = TRUE)),\n            .groups = 'drop')\n\n# A tibble: 2 × 4\n  stat.prof prog.comf math.comf stat.comf\n  &lt;ord&gt;         &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;\n1 int            3.67      3.61      3.67\n2 adv            3.73      4.12      4.39\n\n\n\n\n\n\n\n\nImportantAction\n\n\n\nGrouped summaries\n\nCompute the median comfort level of shared background respondents in each subject area.\nCompute the median comfort level of shared background respondents in each subject area after grouping by upper_div_courses. Treat this as an ordered category, not an exact numeric count.\nCompare and discuss with your neighbor: do you notice any interesting patterns?"
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#joining-the-two-survey-sections",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#joining-the-two-survey-sections",
+    "title": "Tidyverse basics",
+    "section": "Joining the two survey sections",
+    "text": "Joining the two survey sections\ninner_join() matches rows using a shared identifier. Use response_id, because the two files have different row counts and cannot be combined by row position.\n\njoint &lt;- background %&gt;%\n  inner_join(interest, by = 'response_id')\n\nnrow(joint)\n\n[1] 49\n\njoint %&gt;%\n  count(type)\n\n# A tibble: 3 × 2\n  type      n\n  &lt;chr&gt; &lt;int&gt;\n1 both     11\n2 ind      32\n3 lab       6\n\n\nThe join contains 49 respondents who consented to both sections. The type codes are ind for industry, lab for research lab, and both for no preference. The last code does not mean that a respondent requested both types of project.\n\n\n\n\n\n\nImportantAction\n\n\n\nCalculate mean programming comfort within each project-preference category. Which respondents are included in this summary? Why is the denominator different from a summary of the full background file?"
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#tidyr-verbs",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#tidyr-verbs",
+    "title": "Tidyverse basics",
+    "section": "tidyr verbs",
+    "text": "tidyr verbs\nThe tidyr package reshapes data frames. We will use pivot_longer(), separate(), and pivot_wider() to make a summary table, then separate_rows() to work with course selections.\nSuppose we calculate multiple summaries of multiple variables. The initial output has one row and one column for each variable/statistic combination:\n\n# many variables, many summaries\ncomf_sum &lt;- background %&gt;%\n  summarise(across(\n    ends_with('.comf'),\n    list(mean = ~ mean(.x, na.rm = TRUE),\n         median = ~ median(.x, na.rm = TRUE),\n         min = ~ min(.x, na.rm = TRUE),\n         max = ~ max(.x, na.rm = TRUE)),\n    .names = '{.col}_{.fn}'\n  ))\n\ncomf_sum\n\n# A tibble: 1 × 12\n  prog.comf_mean prog.comf_median prog.comf_min prog.comf_max math.comf_mean\n           &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;          &lt;dbl&gt;\n1           3.71                4             2             5           3.94\n# ℹ 7 more variables: math.comf_median &lt;dbl&gt;, math.comf_min &lt;dbl&gt;,\n#   math.comf_max &lt;dbl&gt;, stat.comf_mean &lt;dbl&gt;, stat.comf_median &lt;dbl&gt;,\n#   stat.comf_min &lt;dbl&gt;, stat.comf_max &lt;dbl&gt;\n\n\npivot_longer() collects the columns into a long table. One column contains the original column name and another contains its value:\n\ncomf_sum %&gt;%\n  pivot_longer(everything(), names_to = 'stat', values_to = 'val')\n\n# A tibble: 12 × 2\n   stat               val\n   &lt;chr&gt;            &lt;dbl&gt;\n 1 prog.comf_mean    3.71\n 2 prog.comf_median  4   \n 3 prog.comf_min     2   \n 4 prog.comf_max     5   \n 5 math.comf_mean    3.94\n 6 math.comf_median  4   \n 7 math.comf_min     2   \n 8 math.comf_max     5   \n 9 stat.comf_mean    4.14\n10 stat.comf_median  4   \n11 stat.comf_min     3   \n12 stat.comf_max     5   \n\n\nseparate() splits the original column name at the underscore, giving us the survey variable and the summary statistic:\n\ncomf_sum %&gt;%\n  pivot_longer(everything(), names_to = 'stat', values_to = 'val') %&gt;%\n  separate(stat, into = c('variable', 'stat'), sep = '_')\n\n# A tibble: 12 × 3\n   variable  stat     val\n   &lt;chr&gt;     &lt;chr&gt;  &lt;dbl&gt;\n 1 prog.comf mean    3.71\n 2 prog.comf median  4   \n 3 prog.comf min     2   \n 4 prog.comf max     5   \n 5 math.comf mean    3.94\n 6 math.comf median  4   \n 7 math.comf min     2   \n 8 math.comf max     5   \n 9 stat.comf mean    4.14\n10 stat.comf median  4   \n11 stat.comf min     3   \n12 stat.comf max     5   \n\n\npivot_wider() then makes one column per summary statistic. The result has three rows, one for each subject, and four summary columns plus the variable-name column:\n\ncomf_sum %&gt;%\n  pivot_longer(everything(), names_to = 'stat', values_to = 'val') %&gt;%\n  separate(stat, into = c('variable', 'stat'), sep = '_') %&gt;%\n  pivot_wider(names_from = stat, values_from = val)\n\n# A tibble: 3 × 5\n  variable   mean median   min   max\n  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 prog.comf  3.71      4     2     5\n2 math.comf  3.94      4     2     5\n3 stat.comf  4.14      4     3     5\n\n\n\n\n\n\n\n\nImportantAction\n\n\n\nExplain what one row represents after each reshaping step. Which step changes the number of rows, and which splits an existing column?"
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#ggplot2",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#ggplot2",
+    "title": "Tidyverse basics",
+    "section": "ggplot2",
+    "text": "ggplot2\nThe ggplot2 package is for data visualization. The syntax takes some getting used to if you haven’t seen it before. We’ll just look at one example.\nSuppose we want to summarize prior coursework among the shared background respondents. The new data store course selections in a single courses column. First use separate_rows() to give each selected course its own row:\n\ncourse_responses &lt;- background %&gt;%\n  select(response_id, courses) %&gt;%\n  separate_rows(courses, sep = ',\\\\s*') %&gt;%\n  mutate(courses = str_trim(courses)) %&gt;%\n  filter(!is.na(courses), courses != '') %&gt;%\n  distinct(response_id, courses)\n\ncourse_responses\n\n# A tibble: 356 × 2\n   response_id courses  \n         &lt;dbl&gt; &lt;chr&gt;    \n 1        1001 PSTAT 115\n 2        1001 PSTAT 120\n 3        1001 PSTAT 122\n 4        1001 PSTAT 126\n 5        1001 PSTAT 127\n 6        1001 PSTAT 131\n 7        1001 PSTAT 160\n 8        1001 CS 9     \n 9        1002 PSTAT 120\n10        1002 PSTAT 126\n# ℹ 346 more rows\n\n\nOne respondent can now appear on several rows. distinct() ensures that a respondent is counted at most once per course.\n\n# count respondents selecting each course\nclasses &lt;- course_responses %&gt;%\n  count(courses, name = 'n') %&gt;%\n  rename(class = courses) %&gt;%\n  mutate(proportion = n / nrow(background))\n\nclasses\n\n# A tibble: 18 × 3\n   class         n proportion\n   &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;\n 1 CS 130        1     0.0196\n 2 CS 16        11     0.216 \n 3 CS 5          5     0.0980\n 4 CS 9         40     0.784 \n 5 GEOG 186      1     0.0196\n 6 LING 104      1     0.0196\n 7 LING 110      2     0.0392\n 8 PSTAT 100    28     0.549 \n 9 PSTAT 115     7     0.137 \n10 PSTAT 120    49     0.961 \n11 PSTAT 122    43     0.843 \n12 PSTAT 126    50     0.980 \n13 PSTAT 127     7     0.137 \n14 PSTAT 131    46     0.902 \n15 PSTAT 134    13     0.255 \n16 PSTAT 160    34     0.667 \n17 PSTAT 174    12     0.235 \n18 PSTAT 175     6     0.118 \n\n\nThe denominator is 51 shared background respondents, not 55 total survey responses or the number of rows in course_responses. There are no missing course responses in the supplied background file. A course-series selection means at least one course in that series, and courses selected by nobody do not appear in this table. Proportions need not sum to one because respondents selected multiple courses.\nWe could report the results in a table, in which case perhaps arranging in descending order may be helpful:\n\nclasses %&gt;% arrange(desc(proportion))\n\n# A tibble: 18 × 3\n   class         n proportion\n   &lt;chr&gt;     &lt;int&gt;      &lt;dbl&gt;\n 1 PSTAT 126    50     0.980 \n 2 PSTAT 120    49     0.961 \n 3 PSTAT 131    46     0.902 \n 4 PSTAT 122    43     0.843 \n 5 CS 9         40     0.784 \n 6 PSTAT 160    34     0.667 \n 7 PSTAT 100    28     0.549 \n 8 PSTAT 134    13     0.255 \n 9 PSTAT 174    12     0.235 \n10 CS 16        11     0.216 \n11 PSTAT 115     7     0.137 \n12 PSTAT 127     7     0.137 \n13 PSTAT 175     6     0.118 \n14 CS 5          5     0.0980\n15 LING 110      2     0.0392\n16 CS 130        1     0.0196\n17 GEOG 186      1     0.0196\n18 LING 104      1     0.0196\n\n\nLet’s say we’d rather plot this data. We’ll put the course number on one axis and the proportion of students who took it on the other.\n\n# plot it\nclasses %&gt;%\n  ggplot(aes(x = proportion, y = class)) +\n  geom_point()\n\n\n\n\n\n\n\n\nThese commands work by defining plot layers. In the chunk above, the first argument to ggplot() is the data. Then, aes() defines an ‘aesthetic mapping’ of the columns of the input data frame to graphical elements. This defines a set of axes. Then, a layer of points is added to the plot with geom_point() ; no arguments are needed because the geometric object (‘geom’) inherits attributes (x and y coordinates) from the aesthetic mapping.\nAgain we might prefer to arrange the classes by descending order in proportion.\n\nfig &lt;- classes %&gt;%\n  ggplot(aes(x = proportion, y = reorder(class, proportion))) +\n  geom_point()\n\nfig\n\n\n\n\n\n\n\n\nAnd perhaps fix the plot labels:\n\n# adjust labels\nfig + labs(x = 'Proportion of shared background respondents', y = '')\n\n\n\n\n\n\n\n\nNotice that ggplot allows for a plot to be stored by name and then further modified with additional layers."
+  },
+  {
+    "objectID": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#checklist",
+    "href": "materials/labs/lab2-tidyverse/lab2-tidyverse.html#checklist",
+    "title": "Tidyverse basics",
+    "section": "Checklist",
+    "text": "Checklist\n\nAll actions were completed.\nAll code chunks were copied into your script.\nYour script is saved as lab2-tidyverse.R in the repository root, beside the data folder.\nYou can explain why background-only summaries use 51 respondents and analyses joining both sections use 49.\nYou can explain why course proportions use respondents, rather than course-selection rows, as the denominator.\n\nWhen extending the group analysis, consult survey-metadata.csv before parsing other multiple-selection columns. In particular, areas contains option labels with internal commas, such as Predictive modeling, generally. Splitting that column at every comma would break the labels. Use complete option labels with str_detect() and fixed() instead."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html",
+    "href": "materials/labs/lab1-setup/lab1-setup.html",
+    "title": "Course technology overview",
+    "section": "",
+    "text": "Read this and complete all instructions in the ‘action’ boxes during your lab section. Your TA will walk you through the activity and help to troubleshoot issues and answer any questions along the way.\nObjectives:"
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
+    "title": "Course technology overview",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nTo complete the activity you’ll need to:\n\nhave all of the software listed on the course technology page installed;\nfind (or create) your GitHub account credentials (if you are creating an account for the first time, see advice on choosing a username).\n\n\n\n\n\n\n\nImportantAction\n\n\n\nPreparations:\n\nLog in to your GitHub account.\nOpen your GitHub client.\nOpen a new session in RStudio.\nCreate a class folder for PSTAT197A somewhere on your machine, e.g., ~/documents/pstat197a."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
+    "title": "Course technology overview",
+    "section": "RStudio projects",
+    "text": "RStudio projects\nFirst we’ll get acquainted with the basic functionality of the RStudio IDE and the use of projects as a means of organizing files. If you’ve already used RStudio, great – this will still serve to introduce you to how we’ll use RStudio projects in this class.\n\nRStudio Setup\n\nYour TA will briefly review the (default) layout of the RStudio IDE. You should be able to identify/find the following:\n\nconsole\nterminal\nfile navigator\nenvironment\nhistory\n\nWe’ll use several R packages throughout the quarter. Some of these we will install on the go, but we can install several that we’ll rely on now.\n\n\n\n\n\n\nImportantAction\n\n\n\nInstall packages\nNavigate to the console and copy-paste the following commands. You only need to do this once. This will take a minute or two to complete.\n\n\n\n# package install list \nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/scripts/package-installs.R'\nsource(url)\n\n# clear environment\nrm(list = ls())\n\n\n\nCreate a local project\nProjects are a means of keeping your work organized. When you create a project in a directory on your local machine, RStudio keeps track of project metadata, history, and the working environment so that every time you open the project you see whatever you had open when you last closed it.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a new project:\n\nSelect File &gt; New project\nCreate the project in a new directory as a subdirectory of your class folder\nName it example-project\n\nComment: when naming files it’s good practice to avoid spaces, special characters, and the like. A naming convention we try to follow: choose a descriptive name comprising 1-3 words or common abbreviations separated by hyphens.\n\n\nTake a moment to observe the file navigator. It should consist of a single example-project.Rproj file.\n\n\nAdd content\nWe may as well populate the project with a few files – so let’s add a dataset and write a short script, as if we’re just starting a data analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nRetrieve data and store a local copy\n\nOpen a new script: File &gt; New File &gt; R Script\nIn the navigator, create a folder called data and a folder called scripts\nCopy and paste the code chunk below into your script.\nExecute once, then save in the scripts folder as data-retrieval.R and close\n\n\n\n\nlibrary(tidyverse)\n\n# retrieve pollution data\nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/labs/lab1-setup/data/pollution.csv'\npollution &lt;- read_csv(url)\n\n# write as csv to file\nwrite_csv(pollution, file = 'data/pollution.csv')\n\n# clear environment\nrm(list = ls())\n\n\nNext, we’ll do a simple regression analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a script\n\nCreate a new script as before\nCopy-paste the code chunk below into your script\nExecute once and examine the results\nSave in the scripts folder as slr-analysis.R\n\n\n\n\nlibrary(tidyverse)\n\n# load data\npollution &lt;- read_csv('data/pollution.csv')\n\n# examine scatterplot with SLR fit\nggplot(pollution,\n       aes(x = log(SO2), y = Mort)) +\n  geom_point() +\n  geom_smooth(method = 'lm')\n\n\n\n\n\n\n\n# compute SLR fit\nfit &lt;- lm(Mort ~ log(SO2), data = pollution)\nbroom::tidy(fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    887.      17.6      50.4  1.37e-49\n2 log(SO2)        16.7      4.99      3.35 1.40e- 3\n\n# interpret\nfit_ci &lt;- confint(fit, parm = 'log(SO2)')*log(1.2)\n\npaste('With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between', \n      round(fit_ci[1], 2), \n      'and', \n      round(fit_ci[2], 2), \n      'per 100k', sep = ' ') %&gt;% \n  print()\n\n[1] \"With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between 1.23 and 4.87 per 100k\"\n\n\n\nCongrats on your first project! You can close the RStudio session now.\nWe’ll be using projects structured much like what you just set up, but with one catch: we’ll link up our RStudio projects with shared repositories so that we can all collaborate on the same set of project files."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
+    "title": "Course technology overview",
+    "section": "GitHub repositories",
+    "text": "GitHub repositories\n\nWe will be using repositories on GitHub throughout the course. A repository is simply a storage space for the files associated with a project.\nFor the activities in PSTAT 197A, you will work with several different groups over the course of the quarter. Each group will use a shared GitHub repository for the module you are completing together.\nAll course repositories should be created within the PSTAT 197 course GitHub organization rather than under an individual student’s personal GitHub account.\nBefore completing this activity, you should have received and accepted an invitation to join the course GitHub organization.\nFor now, your group will create a group sandbox repository that you can use to practice working collaboratively with Git and GitHub during our next class meeting.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate your group’s sandbox repository\n\nGo to the PSTAT 197 course organization on GitHub.\nOne person at your table should create a new repository in the organization.\nName the repository according to the naming convention provided by your instructor, such as sandbox-group-01.\nSet the repository to Public.\nDo not initialize it with any additional files unless instructed to do so.\nAfter creating the repository, add the other members of your table group as collaborators with permission to contribute to the repository.\nEach group member should confirm that they can access the repository on github.com.\n\nKeep the repository page open; you will need its URL shortly.\n\n\n\n\nGit and GitHub\nAt some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. Git and GitHub are two different things.\nGit is version control software that enables you to systematically track and control file changes within a repository – a collection of files, possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)\nGitHub is an online platform for hosting repositories remotely. A public repository can be viewed by anyone, but only people with appropriate permissions can directly contribute changes to it.\nThis allows multiple members of a group to collaborate on the same collection of files while Git keeps track of the changes that are made.\n\n\nlocal &lt;&gt; remote\nUsually remote repositories are not updated by directly editing files on github.com. Contributors generally need to execute code and test their changes on their own computers before sharing those changes with the rest of the group.\nInstead, contributors prepare changes on their own machines, where they can run and test their code, and then update the remote repository once their changes are ready.\nThis process involves communicating information between local and remote locations. For this purpose, each contributor needs a local copy of the remote repository.\n\n\nCloning a repository\nIn Git terminology, a clone is a local copy of a remote repository. Creating a clone copies the repository files to your computer and establishes the connection between the local and remote repositories so that changes can be sent to and received from GitHub.\nYou only need to create a clone once for each repository.\nTo clone a repository, all one needs is:\n\nthe remote repository URL;\nthe local destination where the clone will be created;\npermission to access the repository, if the repository is private.\n\nHere you’ll clone the group sandbox repository your group just created. You will need its URL. If you happened to close the page, you can find the repository by returning to the PSTAT 197 organization on github.com.\n\n\n\n\n\n\n\nImportantAction\n\n\n\nClone the sandbox repository\n\nOpen your GitHub client (GitKraken, GitHub Desktop, or similar) and ensure you are logged in to your GitHub account.\nFind the option to clone a repository.\nSelect or enter the URL of your group’s sandbox repository.\nChoose the location on your computer where you would like the local copy to be stored.\nComplete the cloning process.\nCheck your file navigator to confirm that the repository was copied to your computer.\n\nEvery member of the group should clone the same repository onto their own computer.\n\n\n\nAn alternative is to create the clone using a terminal command. In the terminal, navigate to the desired destination and enter:\ngit clone https://github.com/ORGANIZATION/REPONAME\nFor example:\ngit clone https://github.com/pstat-197a-fall2026/sandbox-group-01\n\n\n\n\n\n\nNoteRemarks\n\n\n\nOn terminal commands:\n\nIt’s recommended to manage Git actions through a visual client at first, as it’s much easier to see and understand what’s happening.\nHowever, if you know exactly what you’re doing, executing simple actions via Git in the terminal can be more efficient at times.\nFor example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.\nTry experimenting with terminal commands from RStudio after you have a little experience with basic Git actions.\n\n\n\n\n\nRepositories for course modules\nYou will follow essentially the same process for each of the five PSTAT 197A modules.\nFor each module:\n\nYou will be assigned to a group for that module.\nOne member of the group will create a new public repository within the PSTAT 197 organization.\nThat student will add the other members of the group as collaborators.\nEvery group member will clone the same repository to their own computer.\nThe group will use that repository for its work on that module.\n\nYour groups may change from one module to another. A new repository should therefore be created for each module rather than continuing to use a repository belonging to a previous group.\nThese module groups are for practicing the skills you will need later in the capstone sequence; they are not your final capstone project groups."
+  },
+  {
+    "objectID": "materials/labs/lab1-setup/lab1-setup.html#checklist",
+    "href": "materials/labs/lab1-setup/lab1-setup.html#checklist",
+    "title": "Course technology overview",
+    "section": "Checklist",
+    "text": "Checklist\nHave you completed all of the activity action items?\n\nInstall software: R, RStudio, Git, and a GitHub client\nCreate a GitHub account\nAccept the invitation to join the PSTAT 197 GitHub organization\nInstall R packages that will be used frequently\nCreate a local project in RStudio\nCreate or join your group’s sandbox repository\nClone the group sandbox repository"
+  },
+  {
+    "objectID": "materials/course-materials.html",
+    "href": "materials/course-materials.html",
+    "title": "Course materials",
+    "section": "",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by 11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response (due by 11:59 PM Monday, October 5th)\nread (and follow along with) the [tutorial for connecting Git to RStudio]\n\n\n\n\n\n\nTuesday meeting: Introducing class intake survey data [slides]\nSection meeting: tidyverse basics [activity]\n\n\n\nAssignments:\n\nfirst team assignment due Tuesday, October 13, 11:59 PM PST. [Click here to see group memberships.] The [assignment module is available here.].",
+    "crumbs": [
+      "Course materials"
+    ]
+  },
+  {
+    "objectID": "materials/course-materials.html#introductory-module",
+    "href": "materials/course-materials.html#introductory-module",
+    "title": "Course materials",
+    "section": "",
+    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by 11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response (due by 11:59 PM Monday, October 5th)\nread (and follow along with) the [tutorial for connecting Git to RStudio]\n\n\n\n\n\n\nTuesday meeting: Introducing class intake survey data [slides]\nSection meeting: tidyverse basics [activity]\n\n\n\nAssignments:\n\nfirst team assignment due Tuesday, October 13, 11:59 PM PST. [Click here to see group memberships.] The [assignment module is available here.].",
+    "crumbs": [
+      "Course materials"
+    ]
   },
   {
     "objectID": "materials/slides/week1-perspectives.html#announcementsreminders",
@@ -682,199 +961,179 @@
     "text": "References\n\n\n\n\nDonoho, David. 2017. “50 Years of Data Science.” Journal of Computational and Graphical Statistics 26 (4): 745–66.\n\n\nEmmert-Streib, Frank, Zhen Yang, Han Feng, Shailesh Tripathi, and Matthias Dehmer. 2020. “An Introductory Review of Deep Learning for Prediction Models with Big Data.” Frontiers in Artificial Intelligence 3: 4.\n\n\nMcGowan, Lucy D’Agostino, Roger D Peng, and Stephanie C Hicks. 2021. “Design Principles for Data Analysis.” arXiv Preprint arXiv:2103.05689.\n\n\nPeng, Roger D, and Hilary S Parker. 2022. “Perspective on Data Science.” Annual Review of Statistics and Its Application 9: 1–20.\n\n\nTukey, John W. 1962. “The Future of Data Analysis.” The Annals of Mathematical Statistics 33 (1): 1–67.\n\n\nTukey, John W et al. 1977. Exploratory Data Analysis. Vol. 2. Reading, MA."
   },
   {
-    "objectID": "materials/course-materials.html",
-    "href": "materials/course-materials.html",
-    "title": "Course materials",
-    "section": "",
-    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by 11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response (due by 11:59 PM Monday, October 5th)\nread (and follow along with) the [tutorial for connecting Git to RStudio]",
-    "crumbs": [
-      "Course materials"
-    ]
+    "objectID": "materials/slides/week2-classdata.html#today",
+    "href": "materials/slides/week2-classdata.html#today",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Today",
+    "text": "Today\n\nreview sampling concepts\nintroduce class survey data\npresent descriptive analysis"
   },
   {
-    "objectID": "materials/course-materials.html#introductory-module",
-    "href": "materials/course-materials.html#introductory-module",
-    "title": "Course materials",
-    "section": "",
-    "text": "Objectives: set expectations; explore data science raison d’etre; introduce systems and design thinking; introduce software tools and collaborative coding; conduct exploratory/descriptive analysis of class background and interests.\n\n\n\nThursday meeting: Course orientation [slides]\nAssignments:\n\ninstall course software and create GitHub account\nsubmit GitHub username in Canvas assignment (due by 11:59 PM, Monday, September 28th)\nfill out intake form (due by 11:59 PM, Sunday, October 4th)\nread Peng and Parker (2022);\nprepare a reading response (due by 11:59 PM, Monday, September 28th)\n\n\n\n\n\n\nTuesday meeting: On projects in(volving) data science [slides]\nSection meeting: software and technology overview [activity]\nThursday meeting: basic GitHub actions [activity] [slides]\nAssignments due by next class meeting:\n\nread MDSR 9.1 – 9.2\nprepare a reading response (due by 11:59 PM Monday, October 5th)\nread (and follow along with) the [tutorial for connecting Git to RStudio]",
-    "crumbs": [
-      "Course materials"
-    ]
+    "objectID": "materials/slides/week2-classdata.html#samples-and-populations",
+    "href": "materials/slides/week2-classdata.html#samples-and-populations",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Samples and populations",
+    "text": "Samples and populations\npopulation: collection of all subjects/units of interest\nsample: subjects/units observed in a study\n\nstatistical methodology strives to account for the possibility that the sample could have been different in order to make reliable inferences about the population based on knowledge of the sampling mechanism"
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html",
-    "href": "materials/labs/lab1-setup/lab1-setup.html",
-    "title": "Course technology overview",
-    "section": "",
-    "text": "Read this and complete all instructions in the ‘action’ boxes during your lab section. Your TA will walk you through the activity and help to troubleshoot issues and answer any questions along the way.\nObjectives:"
+    "objectID": "materials/slides/week2-classdata.html#what-if-inferences-arent-possible",
+    "href": "materials/slides/week2-classdata.html#what-if-inferences-arent-possible",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "What if inferences aren’t possible?",
+    "text": "What if inferences aren’t possible?\nEven if inference isn’t possible, data still have value and could be used for:\n\ndescriptive analysis of the sample;\nhypothesis generation;\ndeveloping analysis pipelines."
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#prerequisites",
-    "title": "Course technology overview",
-    "section": "Prerequisites",
-    "text": "Prerequisites\n\nTo complete the activity you’ll need to:\n\nhave all of the software listed on the course technology page installed;\nfind (or create) your GitHub account credentials (if you are creating an account for the first time, see advice on choosing a username).\n\n\n\n\n\n\n\nImportantAction\n\n\n\nPreparations:\n\nLog in to your GitHub account.\nOpen your GitHub client.\nOpen a new session in RStudio.\nCreate a class folder for PSTAT197A somewhere on your machine, e.g., ~/documents/pstat197a."
+    "objectID": "materials/slides/week2-classdata.html#what-about-prediction",
+    "href": "materials/slides/week2-classdata.html#what-about-prediction",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "What about prediction?",
+    "text": "What about prediction?\nPrediction is a separate goal but still a form of generalization.\n\nsamples must reflect a broader population for predictions to be accurate at the population level\n\n\n\nif an analyst can’t expect sample statistics to provide reliable estimates of population quantities, they shouldn’t expect predictions based on the sample to be reliable either"
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#rstudio-projects",
-    "title": "Course technology overview",
-    "section": "RStudio projects",
-    "text": "RStudio projects\nFirst we’ll get acquainted with the basic functionality of the RStudio IDE and the use of projects as a means of organizing files. If you’ve already used RStudio, great – this will still serve to introduce you to how we’ll use RStudio projects in this class.\n\nRStudio Setup\n\nYour TA will briefly review the (default) layout of the RStudio IDE. You should be able to identify/find the following:\n\nconsole\nterminal\nfile navigator\nenvironment\nhistory\n\nWe’ll use several R packages throughout the quarter. Some of these we will install on the go, but we can install several that we’ll rely on now.\n\n\n\n\n\n\nImportantAction\n\n\n\nInstall packages\nNavigate to the console and copy-paste the following commands. You only need to do this once. This will take a minute or two to complete.\n\n\n\n# package install list \nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/scripts/package-installs.R'\nsource(url)\n\n# clear environment\nrm(list = ls())\n\n\n\nCreate a local project\nProjects are a means of keeping your work organized. When you create a project in a directory on your local machine, RStudio keeps track of project metadata, history, and the working environment so that every time you open the project you see whatever you had open when you last closed it.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a new project:\n\nSelect File &gt; New project\nCreate the project in a new directory as a subdirectory of your class folder\nName it example-project\n\nComment: when naming files it’s good practice to avoid spaces, special characters, and the like. A naming convention we try to follow: choose a descriptive name comprising 1-3 words or common abbreviations separated by hyphens.\n\n\nTake a moment to observe the file navigator. It should consist of a single example-project.Rproj file.\n\n\nAdd content\nWe may as well populate the project with a few files – so let’s add a dataset and write a short script, as if we’re just starting a data analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nRetrieve data and store a local copy\n\nOpen a new script: File &gt; New File &gt; R Script\nIn the navigator, create a folder called data and a folder called scripts\nCopy and paste the code chunk below into your script.\nExecute once, then save in the scripts folder as data-retrieval.R and close\n\n\n\n\nlibrary(tidyverse)\n\n# retrieve pollution data\nurl &lt;- 'https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/labs/lab1-setup/data/pollution.csv'\npollution &lt;- read_csv(url)\n\n# write as csv to file\nwrite_csv(pollution, file = 'data/pollution.csv')\n\n# clear environment\nrm(list = ls())\n\n\nNext, we’ll do a simple regression analysis.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate a script\n\nCreate a new script as before\nCopy-paste the code chunk below into your script\nExecute once and examine the results\nSave in the scripts folder as slr-analysis.R\n\n\n\n\nlibrary(tidyverse)\n\n# load data\npollution &lt;- read_csv('data/pollution.csv')\n\n# examine scatterplot with SLR fit\nggplot(pollution,\n       aes(x = log(SO2), y = Mort)) +\n  geom_point() +\n  geom_smooth(method = 'lm')\n\n\n\n\n\n\n\n# compute SLR fit\nfit &lt;- lm(Mort ~ log(SO2), data = pollution)\nbroom::tidy(fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1 (Intercept)    887.      17.6      50.4  1.37e-49\n2 log(SO2)        16.7      4.99      3.35 1.40e- 3\n\n# interpret\nfit_ci &lt;- confint(fit, parm = 'log(SO2)')*log(1.2)\n\npaste('With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between', \n      round(fit_ci[1], 2), \n      'and', \n      round(fit_ci[2], 2), \n      'per 100k', sep = ' ') %&gt;% \n  print()\n\n[1] \"With 95% confidence, every 20% increase in sulfur dioxide pollution is associated with an increase in two-year mortality rate between 1.23 and 4.87 per 100k\"\n\n\n\nCongrats on your first project! You can close the RStudio session now.\nWe’ll be using projects structured much like what you just set up, but with one catch: we’ll link up our RStudio projects with shared repositories so that we can all collaborate on the same set of project files."
+    "objectID": "materials/slides/week2-classdata.html#common-problems",
+    "href": "materials/slides/week2-classdata.html#common-problems",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Common problems",
+    "text": "Common problems\nSeveral issues arise very often in practice that compromise or complicate an analyst’s ability to make inferences (or predictions). Among them:\n\nscope of inference from the sample doesn’t match the study population\nsubjects/units are selected haphazardly or by convenience\nresearcher conflates sample size with number of observations, i.e., takes lots of measurements on few subjects/units"
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#github-repositories",
-    "title": "Course technology overview",
-    "section": "GitHub repositories",
-    "text": "GitHub repositories\n\nWe will be using repositories on GitHub throughout the course. A repository is simply a storage space for the files associated with a project.\nFor the activities in PSTAT 197A, you will work with several different groups over the course of the quarter. Each group will use a shared GitHub repository for the module you are completing together.\nAll course repositories should be created within the PSTAT 197 course GitHub organization rather than under an individual student’s personal GitHub account.\nBefore completing this activity, you should have received and accepted an invitation to join the course GitHub organization.\nFor now, your group will create a group sandbox repository that you can use to practice working collaboratively with Git and GitHub during our next class meeting.\n\n\n\n\n\n\nImportantAction\n\n\n\nCreate your group’s sandbox repository\n\nGo to the PSTAT 197 course organization on GitHub.\nOne person at your table should create a new repository in the organization.\nName the repository according to the naming convention provided by your instructor, such as sandbox-group-01.\nSet the repository to Public.\nDo not initialize it with any additional files unless instructed to do so.\nAfter creating the repository, add the other members of your table group as collaborators with permission to contribute to the repository.\nEach group member should confirm that they can access the repository on github.com.\n\nKeep the repository page open; you will need its URL shortly.\n\n\n\n\nGit and GitHub\nAt some point in time – possibly quite recently – you had to install Git on your local machine, as well as create a GitHub account. Git and GitHub are two different things.\nGit is version control software that enables you to systematically track and control file changes within a repository – a collection of files, possibly with some directory structure. (The definition of ‘repository’ is simply ‘storage place’.)\nGitHub is an online platform for hosting repositories remotely. A public repository can be viewed by anyone, but only people with appropriate permissions can directly contribute changes to it.\nThis allows multiple members of a group to collaborate on the same collection of files while Git keeps track of the changes that are made.\n\n\nlocal &lt;&gt; remote\nUsually remote repositories are not updated by directly editing files on github.com. Contributors generally need to execute code and test their changes on their own computers before sharing those changes with the rest of the group.\nInstead, contributors prepare changes on their own machines, where they can run and test their code, and then update the remote repository once their changes are ready.\nThis process involves communicating information between local and remote locations. For this purpose, each contributor needs a local copy of the remote repository.\n\n\nCloning a repository\nIn Git terminology, a clone is a local copy of a remote repository. Creating a clone copies the repository files to your computer and establishes the connection between the local and remote repositories so that changes can be sent to and received from GitHub.\nYou only need to create a clone once for each repository.\nTo clone a repository, all one needs is:\n\nthe remote repository URL;\nthe local destination where the clone will be created;\npermission to access the repository, if the repository is private.\n\nHere you’ll clone the group sandbox repository your group just created. You will need its URL. If you happened to close the page, you can find the repository by returning to the PSTAT 197 organization on github.com.\n\n\n\n\n\n\n\nImportantAction\n\n\n\nClone the sandbox repository\n\nOpen your GitHub client (GitKraken, GitHub Desktop, or similar) and ensure you are logged in to your GitHub account.\nFind the option to clone a repository.\nSelect or enter the URL of your group’s sandbox repository.\nChoose the location on your computer where you would like the local copy to be stored.\nComplete the cloning process.\nCheck your file navigator to confirm that the repository was copied to your computer.\n\nEvery member of the group should clone the same repository onto their own computer.\n\n\n\nAn alternative is to create the clone using a terminal command. In the terminal, navigate to the desired destination and enter:\ngit clone https://github.com/ORGANIZATION/REPONAME\nFor example:\ngit clone https://github.com/pstat-197a-fall2026/sandbox-group-01\n\n\n\n\n\n\nNoteRemarks\n\n\n\nOn terminal commands:\n\nIt’s recommended to manage Git actions through a visual client at first, as it’s much easier to see and understand what’s happening.\nHowever, if you know exactly what you’re doing, executing simple actions via Git in the terminal can be more efficient at times.\nFor example, you can keep a terminal open in RStudio and manage your repository workflow from there, without having to toggle between environments.\nTry experimenting with terminal commands from RStudio after you have a little experience with basic Git actions.\n\n\n\n\n\nRepositories for course modules\nYou will follow essentially the same process for each of the five PSTAT 197A modules.\nFor each module:\n\nYou will be assigned to a group for that module.\nOne member of the group will create a new public repository within the PSTAT 197 organization.\nThat student will add the other members of the group as collaborators.\nEvery group member will clone the same repository to their own computer.\nThe group will use that repository for its work on that module.\n\nYour groups may change from one module to another. A new repository should therefore be created for each module rather than continuing to use a repository belonging to a previous group.\nThese module groups are for practicing the skills you will need later in the capstone sequence; they are not your final capstone project groups."
+    "objectID": "materials/slides/week2-classdata.html#helpful-questions",
+    "href": "materials/slides/week2-classdata.html#helpful-questions",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Helpful questions",
+    "text": "Helpful questions\nThe following questions can help make an assessment of the scope of inference:\n\n(protocol) how were subjects/units chosen for measurement and how were measurements collected?\n(mechanism) was there any random selection mechanism?\n(exclusion) are there any subjects/units that couldn’t possibly have been chosen?\n(nonresponse) were any subjects/units selected but not measured?"
   },
   {
-    "objectID": "materials/labs/lab1-setup/lab1-setup.html#checklist",
-    "href": "materials/labs/lab1-setup/lab1-setup.html#checklist",
-    "title": "Course technology overview",
-    "section": "Checklist",
-    "text": "Checklist\nHave you completed all of the activity action items?\n\nInstall software: R, RStudio, Git, and a GitHub client\nCreate a GitHub account\nAccept the invitation to join the PSTAT 197 GitHub organization\nInstall R packages that will be used frequently\nCreate a local project in RStudio\nCreate or join your group’s sandbox repository\nClone the group sandbox repository"
+    "objectID": "materials/slides/week2-classdata.html#class-survey-data",
+    "href": "materials/slides/week2-classdata.html#class-survey-data",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Class survey data",
+    "text": "Class survey data\n\nsurvey distributed to all students offered enrollment in PSTAT197A fall 2026\n\\(n = 55\\) responses\nno random selection"
   },
   {
-    "objectID": "materials/slides/week1-github.html#announcementsreminders",
-    "href": "materials/slides/week1-github.html#announcementsreminders",
-    "title": "Basic GitHub actions",
-    "section": "Announcements/reminders",
-    "text": "Announcements/reminders\n\nToday, sit at your table from last time.\nAssignment for next class:\n\nread MDSR 9.1 – 9.2\nprepare a reading response"
+    "objectID": "materials/slides/week2-classdata.html#can-the-data-support-inference",
+    "href": "materials/slides/week2-classdata.html#can-the-data-support-inference",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Can the data support inference?",
+    "text": "Can the data support inference?\nFrom a previous year’s reading responses:\n\nIt depends on the question. If you want to draw conclusions about the pstat197a class specifically, this sample is the population and thus will have reliable data. If you want to draw conclusions about the pstat department as a whole, then this is a bad sample because it is likely biased and thus unreliable"
   },
   {
-    "objectID": "materials/slides/week1-github.html#objective-for-today",
-    "href": "materials/slides/week1-github.html#objective-for-today",
-    "title": "Basic GitHub actions",
-    "section": "Objective for today",
-    "text": "Objective for today\nLearn how to interact with GitHub repositories:\n\nretrieve and submit file changes;\nexamine repository updates;\nuse branches for parallel workflow;\nresolve conflicts."
+    "objectID": "materials/slides/week2-classdata.html#alternative-perspectives",
+    "href": "materials/slides/week2-classdata.html#alternative-perspectives",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Alternative perspectives",
+    "text": "Alternative perspectives\nThe comment points to two ways to view the data:\n\na census of PSTAT197A enrollees\na convenience sample of…\n\ncapstone applicants OR\nstudents qualified for capstones OR\nstudents interested in data science OR\nall UCSB students???"
   },
   {
-    "objectID": "materials/slides/week1-github.html#basic-git-actions",
-    "href": "materials/slides/week1-github.html#basic-git-actions",
-    "title": "Basic GitHub actions",
-    "section": "Basic Git actions",
-    "text": "Basic Git actions\n\nCommunication actions for moving file changes between locations"
+    "objectID": "materials/slides/week2-classdata.html#is-there-a-right-answer",
+    "href": "materials/slides/week2-classdata.html#is-there-a-right-answer",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Is there a right answer?",
+    "text": "Is there a right answer?\nEither way – census or convenience sample – excludes inference.\n\ncensus \\(\\longrightarrow\\) no inference needed\nconvenience \\(\\longrightarrow\\) no inference possible\n\n\nSo on a practical level, it won’t make much difference for designing an analysis of the survey data."
   },
   {
-    "objectID": "materials/slides/week1-github.html#branching-workflow",
-    "href": "materials/slides/week1-github.html#branching-workflow",
-    "title": "Basic GitHub actions",
-    "section": "Branching workflow",
-    "text": "Branching workflow\n\nTypical use of repository branches for development of new features"
+    "objectID": "materials/slides/week2-classdata.html#descriptive-analysis",
+    "href": "materials/slides/week2-classdata.html#descriptive-analysis",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Descriptive analysis",
+    "text": "Descriptive analysis\nAny analysis of survey data should be regarded as descriptive in nature:\n\nsummary statistics and/or models are not reliable measures of any broader population\nresults should be interpreted narrowly in terms of the sample at hand"
   },
   {
-    "objectID": "materials/slides/week1-github.html#activity-overview",
-    "href": "materials/slides/week1-github.html#activity-overview",
-    "title": "Basic GitHub actions",
-    "section": "Activity overview",
-    "text": "Activity overview\n\nMake individual changes to files and create ‘commits’\nCreate repository branches to enable you to work more efficiently in parallel.\nMerge branches with the main branch via pull request.\nCreate and resolve a merge conflict."
+    "objectID": "materials/slides/week2-classdata.html#a-general-approach",
+    "href": "materials/slides/week2-classdata.html#a-general-approach",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "A general approach",
+    "text": "A general approach\nStart simple and add complexity gradually.\nFrom simpler to more complex consider questions involving:\n\nSample characteristics\nSingle-variable summaries\nMultivariate summaries\nModel-based outputs (estimates, predictions, etc.)"
   },
   {
-    "objectID": "materials/slides/week1-github.html#setup",
-    "href": "materials/slides/week1-github.html#setup",
-    "title": "Basic GitHub actions",
-    "section": "Setup",
-    "text": "Setup\n\neveryone should work from their own laptop\nhave everyone open their GitHub client, the group repository in RStudio, and the group repository in the browser on github.com\nmake sure everyone in the group is working with the same repository in the PSTAT 197 GitHub organization\nmake sure each group member has cloned the group repository to their own computer"
+    "objectID": "materials/slides/week2-classdata.html#questions-of-interest",
+    "href": "materials/slides/week2-classdata.html#questions-of-interest",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Questions of interest",
+    "text": "Questions of interest\nSample characteristics\n\nHow do respondents describe their gender identity?\n\nSingle-variable summaries\n\nAmong the students offered a seat in PSTAT197, what fields of study are the students most interested in?\nWhat level of comfort do students interested in data analysis at UCSB have with mathematics?"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#welcome",
-    "href": "materials/slides/week0-intro.html#welcome",
-    "title": "Course orientation",
-    "section": "Welcome",
-    "text": "Welcome\nPSTAT197A is the first course in UCSB’s year-long data science capstone sequence.\n\nAudience: undergraduate students of any discipline with a basic background in data science and an interest in research\nAim: prepare for an independent research or project experience"
+    "objectID": "materials/slides/week2-classdata.html#questions-of-interest-1",
+    "href": "materials/slides/week2-classdata.html#questions-of-interest-1",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Questions of interest",
+    "text": "Questions of interest\nMultivariate summaries\n\nAre students who ranked themselves as strong in statistics, mathematics, and computing more likely or less likely to select an ‘industry’ project as the project type that they want to work on?\n\nModel-based outputs\n\nAre there distinct groups of students in the class defined by self-assessed proficiencies and/or comfort levels with mathematics, statistics, and programming?"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#capstone-projects",
-    "href": "materials/slides/week0-intro.html#capstone-projects",
-    "title": "Course orientation",
-    "section": "Capstone projects",
-    "text": "Capstone projects\nStudents are preparing for capstone projects in winter and spring. Course foci were chosen with this in mind.\n\nProjects are varied ➜ emphasize problem patterns over methodology\nProjects are collaborative ➜ emphasize teamwork and discussion\nProjects are specialized ➜ practice independent learning based on use cases\n\nRead about past projects at https://pstat197.github.io/"
+    "objectID": "materials/slides/week2-classdata.html#sample-characteristics",
+    "href": "materials/slides/week2-classdata.html#sample-characteristics",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Sample characteristics",
+    "text": "Sample characteristics\nAggregate summaries of all 55 respondents; personal information is not linked to shared records.\n\nClass standingGenderRaceData sharing\n\n\n\n\n\n\n\nClass Standing\nCount\nPercent\n\n\n\n\nSenior\n49\n89.1\n\n\nJunior\n5\n9.1\n\n\nJunior (senior credits)\n1\n1.8\n\n\n\n\n\n\n\n\n\n\n\n\nGender Identity\nCount\nPercent\n\n\n\n\nMale\n30\n54.5\n\n\nFemale\n23\n41.8\n\n\nAnother self-description\n1\n1.8\n\n\nPrefer not to say\n1\n1.8\n\n\n\n\n\n\n\n\n\n\n\n\nRace / Ethnicity\nCount\nPercent\n\n\n\n\nAsian\n37\n67.3\n\n\nCaucasian\n8\n14.5\n\n\nMultiracial\n6\n10.9\n\n\nPrefer not to say\n3\n5.5\n\n\nAmerican Indian or Alaska Native\n1\n1.8\n\n\n\n\n\n\n\nColumns: consent to share project preferences\nRows: consent to share background and preparation\n\n\n\n\n\nSkills consent\nYes\nNo\n\n\n\n\nYes\n49\n2\n\n\nNo\n0\n4"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#continuing-in-capstones",
-    "href": "materials/slides/week0-intro.html#continuing-in-capstones",
-    "title": "Course orientation",
-    "section": "Continuing in capstones",
-    "text": "Continuing in capstones\nContinuation in PSTAT197B-C during winter and spring:\n\nstudents admitted to this course in spring are not guaranteed a seat\nprogress to subsequent courses in the sequence will be based on your performance in this course"
+    "objectID": "materials/slides/week2-classdata.html#majors",
+    "href": "materials/slides/week2-classdata.html#majors",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Majors",
+    "text": "Majors\n\nPrimary majorSecond major"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#outcomes",
-    "href": "materials/slides/week0-intro.html#outcomes",
-    "title": "Course orientation",
-    "section": "Outcomes",
-    "text": "Outcomes\nI aim to support all of you in:\n\nusing modern software with version control for collaboration;\nrecognizing problem patterns based on data semantics and research questions;\nidentifying and accessing resources for independent learning given a problem of interest;\ncommunicating data analysis and/or research findings."
+    "objectID": "materials/slides/week2-classdata.html#response-timing",
+    "href": "materials/slides/week2-classdata.html#response-timing",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Response timing",
+    "text": "Response timing\n\nDeadline: October 4, 11:59 p.m. Pacific (dashed line). 54 on time; 1 late."
   },
   {
-    "objectID": "materials/slides/week0-intro.html#classroom-environment",
-    "href": "materials/slides/week0-intro.html#classroom-environment",
-    "title": "Course orientation",
-    "section": "Classroom environment",
-    "text": "Classroom environment\nWe are in an interactive classroom for a reason: to interact!\nLet’s acknowledge:\n\nPreparations and areas of expertise vary widely among the class\nIt’s okay not to know things\nIf you have a question, probably someone else does too"
+    "objectID": "materials/slides/week2-classdata.html#shared-data",
+    "href": "materials/slides/week2-classdata.html#shared-data",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Shared data",
+    "text": "Shared data\n\n51 respondents consented to share skills and experience.\n49 respondents consented to share project preferences.\n49 consented to both; use these respondents for joint analyses.\nConsent applies separately to each section. Summaries describe the corresponding subset."
   },
   {
-    "objectID": "materials/slides/week0-intro.html#resources",
-    "href": "materials/slides/week0-intro.html#resources",
-    "title": "Course orientation",
-    "section": "Resources",
-    "text": "Resources\nAll course content is hosted on our website\nhttps://pstat197.github.io/pstat197a/"
+    "objectID": "materials/slides/week2-classdata.html#privacy",
+    "href": "materials/slides/week2-classdata.html#privacy",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Privacy",
+    "text": "Privacy\nThe following information has been removed from the dataset distributed to the class:\n\npersonal information from section 1 of the survey\nlong text and free response answers, contain some personal details\neach section’s responses when the student did not consent to share that section\nindividual timestamps; only daily response counts are provided\ntype distinction between research experiences"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#modules",
-    "href": "materials/slides/week0-intro.html#modules",
-    "title": "Course orientation",
-    "section": "Modules",
-    "text": "Modules\nThe course is configured in modules defined by a dataset and questions (much like a project).\nA module typically comprises:\n\nOne session on data introduction (lecture/discussion)\nTwo sessions on problem patterns and related methodology (lecture)\nTwo labs with related examples (section meeting)\nOne session on sharing data analysis results (discussion)"
+    "objectID": "materials/slides/week2-classdata.html#single-variable-summaries",
+    "href": "materials/slides/week2-classdata.html#single-variable-summaries",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Single-variable summaries",
+    "text": "Single-variable summaries\nWhat level of comfort do students interested in data analysis at UCSB have with mathematics?\n\nComfortProficiency (numeric)Proficiency (factor)\n\n\n\n\n\n\n\nvariable\nmax\nmean\nmedian\nmin\n\n\n\n\nmath.comf\n5\n3.941177\n4\n2\n\n\nprog.comf\n5\n3.705882\n4\n2\n\n\nstat.comf\n5\n4.137255\n4\n3\n\n\n\n\n\n\n\n\n\n\n\n\nvariable\nmean\nmedian\n\n\n\n\nprog\n2.68\n3\n\n\nmath\n3.00\n3\n\n\nstat\n3.00\n3\n\n\n\n\n\n\n\n\n\n\n\n\nlevel\nmath\nprog\nstat\n\n\n\n\nbeg\n0\n3\n0\n\n\nint\n30\n32\n18\n\n\nadv\n21\n16\n33"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#module-content",
-    "href": "materials/slides/week0-intro.html#module-content",
-    "title": "Course orientation",
-    "section": "Module content",
-    "text": "Module content\nThe module datasets are currently as follows:\n\nClass intake survey data (exploratory/descriptive analysis)\nBiomarkers of autism (predictive modeling and variable selection)\nWeb fraud (text processing and deep learning)\nSoil temperatures (correlated data)"
+    "objectID": "materials/slides/week2-classdata.html#multivariable-summaries",
+    "href": "materials/slides/week2-classdata.html#multivariable-summaries",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Multivariable summaries",
+    "text": "Multivariable summaries\nAre students who ranked themselves as strong in statistics, mathematics, and computing more likely or less likely to select an ‘industry’ project as the project type that they want to work on?\n\nCountsProportions\n\n\nProficiency: beginner = 1, intermediate = 2, advanced = 3. Fixed score intervals keep tied scores together.\n\n\n\n\n\nmean.proficiency.fac\nboth\nind\nlab\n\n\n\n\n1.00–2.00\n3\n7\n1\n\n\n&gt;2.00–2.50\n4\n13\n1\n\n\n&gt;2.50–3.00\n4\n12\n4\n\n\n\n\n\n\n\n\n\n\n\n\nmean.proficiency.fac\nboth\nind\nlab\nn\n\n\n\n\n1.00–2.00\n0.273\n0.636\n0.091\n11\n\n\n&gt;2.00–2.50\n0.222\n0.722\n0.056\n18\n\n\n&gt;2.50–3.00\n0.200\n0.600\n0.200\n20"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#group-assignments",
-    "href": "materials/slides/week0-intro.html#group-assignments",
-    "title": "Course orientation",
-    "section": "Group assignments",
-    "text": "Group assignments\nYour working group for the first module will consist of the students currently at your table.\nGo around your table. Take turns answering the following:\n\nYour preferred name\nYour major\nA hobby you enjoy\nA fun fact about yourself\n\nFor the subsequent modules, your groups will be created via random assignment by the instructor."
+    "objectID": "materials/slides/week2-classdata.html#combinations",
+    "href": "materials/slides/week2-classdata.html#combinations",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Combinations",
+    "text": "Combinations\nConsider the distinct combinations of comfort and proficiency ratings (separately):\n\nProficiencyComfort\n\n\n\n\n\n\n\nprog\nmath\nstat\nn\n\n\n\n\n1\n2\n2\n2\n\n\n1\n2\n3\n1\n\n\n2\n2\n2\n10\n\n\n2\n2\n3\n12\n\n\n2\n3\n2\n3\n\n\n2\n3\n3\n7\n\n\n3\n2\n2\n3\n\n\n3\n2\n3\n2\n\n\n3\n3\n3\n11\n\n\n\n\n\n\n\n\n\n\n\n\nprog\nmath\nstat\nn\n\n\n\n\n2\n3\n4\n1\n\n\n3\n2\n3\n1\n\n\n3\n2\n4\n1\n\n\n3\n3\n3\n4\n\n\n3\n3\n4\n2\n\n\n3\n4\n3\n1\n\n\n3\n4\n4\n8\n\n\n3\n5\n4\n3\n\n\n3\n5\n5\n1\n\n\n4\n2\n4\n1\n\n\n4\n3\n3\n1\n\n\n4\n3\n5\n1\n\n\n4\n4\n3\n2\n\n\n4\n4\n4\n4\n\n\n4\n4\n5\n4\n\n\n4\n5\n4\n4\n\n\n4\n5\n5\n4\n\n\n5\n2\n4\n1\n\n\n5\n4\n4\n1\n\n\n5\n4\n5\n4\n\n\n5\n5\n5\n2"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#module-work",
-    "href": "materials/slides/week0-intro.html#module-work",
-    "title": "Course orientation",
-    "section": "Module Work",
-    "text": "Module Work\nFor each module, your group’s objective is to produce an analysis of the dataset:\n\nReproduce analysis presented/discussed in class meeting\nExtend the analysis by\n\napplying an alternative method that addresses the same question(s)\nor addressing a corollary question"
+    "objectID": "materials/slides/week2-classdata.html#clustering",
+    "href": "materials/slides/week2-classdata.html#clustering",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Clustering",
+    "text": "Clustering\nCan students be grouped based on combinations of preferences and comfort levels?\n\nCentersVisualizationMethodInterpretation\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nprog.prof\nmath.prof\nstat.prof\nprog.comf\nmath.comf\nstat.comf\nsize\ncluster\n\n\n\n\n2.059\n2.529\n2.588\n3.235\n4.294\n3.882\n17\n1\n\n\n1.846\n2.077\n2.385\n3.308\n2.692\n3.615\n13\n2\n\n\n2.667\n2.524\n2.857\n4.333\n4.429\n4.667\n21\n3\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClustering method, “k means”, groups data by nearest Euclidean distance to each of \\(k\\) centers. \\(k\\) is user-specified; the method finds the centers that minimize within-cluster variance.\n\n\nCluster labels depend on this year’s fitted centers. The summaries below update with the data.\n\nCluster 1 (n = 17): mean proficiency 2.39; mean comfort 3.80.\nCluster 2 (n = 13): mean proficiency 2.10; mean comfort 3.21.\nCluster 3 (n = 21): mean proficiency 2.68; mean comfort 4.48.\n\nProficiency uses scores 1–3; comfort uses the observed numeric ratings. K-means uses unscaled variables, so their scales affect the result. The clusters are descriptive."
   },
   {
-    "objectID": "materials/slides/week0-intro.html#vignettes",
-    "href": "materials/slides/week0-intro.html#vignettes",
-    "title": "Course orientation",
-    "section": "Vignettes",
-    "text": "Vignettes\nAt the end of the class, in place of a fifth module, you will create a vignette (short demonstration) on a topic of interest.\n\npresent a use case\nexplain methodology\ndemonstrate implementation with example code"
+    "objectID": "materials/slides/week2-classdata.html#assignment",
+    "href": "materials/slides/week2-classdata.html#assignment",
+    "title": "Sampling concepts and descriptive analysis",
+    "section": "Assignment",
+    "text": "Assignment\nYour task is to extend this analysis with your group by the assigned deadline.\n\nHere are some ideas:\n\nexplore variable associations further (e.g., coursework and self-evaluations)\nexperiment with clustering on different variable subsets or using different methods\nsummarize domain or area of interest variables (requires some text manipulation)"
   },
   {
-    "objectID": "materials/slides/week0-intro.html#expectations-and-assessments",
-    "href": "materials/slides/week0-intro.html#expectations-and-assessments",
-    "title": "Course orientation",
-    "section": "Expectations and assessments",
-    "text": "Expectations and assessments\n\n\nStudents are expected to:\n\nprepare for class meetings as directed;\nattend and actively participate in class and section meetings;\ncontribute meaningfully to group activities and assignments.\n\n\nStudents are assessed on:\n\nattendance, preparation, and participation;\nquality of submitted work;\nindividual contributions to group assignments;\noral interview/presentation."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#next-time",
-    "href": "materials/slides/week0-intro.html#next-time",
-    "title": "Course orientation",
+    "objectID": "materials/slides/week2-classdata.html#next-time",
+    "href": "materials/slides/week2-classdata.html#next-time",
+    "title": "Sampling concepts and descriptive analysis",
     "section": "Next time",
-    "text": "Next time\nWe’ll discuss:\n\ndata science as a discipline;\nthe research landscape;\nsystems and design thinking for data science."
-  },
-  {
-    "objectID": "materials/slides/week0-intro.html#checklist",
-    "href": "materials/slides/week0-intro.html#checklist",
-    "title": "Course orientation",
-    "section": "Checklist",
-    "text": "Checklist\nComplete all of the following before our next meeting.\n\nReview all content in the about section of the course webpage.\nInstall course software and create a GitHub account.\nSubmit your GitHub username via the GitHub assignment on Canvas.\nFill out capstone project intake form.\nRead Peng, R. D., & Parker, H. S. (2022). Perspective on data science. Annual Review of Statistics and Its Application, 9, 1-20. (access online via UCSB library).\nPrepare a reading response."
+    "text": "Next time\nMost of next meeting we’ll devote to planning your group’s task.\n\nDo a little brainstorming on your own\nCome with a few questions/ideas"
   },
   {
     "objectID": "materials/activities/github-basics.html",

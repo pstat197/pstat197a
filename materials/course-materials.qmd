@@ -40,17 +40,17 @@ bibliography: slides/refs.bib
     
     -   read (and follow along with) the [\[tutorial for connecting Git to RStudio](activities/connecting-github-rstudio.qmd)\]
 
-<!-- ### Week 2 -->
+### Week 2
 
-<!-- -   ***Tuesday meeting:*** Introducing class intake survey data [\[slides](slides/week2-classdata.qmd)\] -->
+-   ***Tuesday meeting:*** Introducing class intake survey data [\[slides](slides/week2-classdata.qmd)\]
 
-<!-- -   ***Section meeting:*** tidyverse basics [\[activity](labs/lab2-tidyverse/lab2-tidyverse.qmd)\] -->
+-   ***Section meeting:*** tidyverse basics [\[activity](labs/lab2-tidyverse/lab2-tidyverse.qmd)\]
 
 <!-- -   ***Thursday meeting:*** planning group work for analysis of survey data \[[slides](slides/week2-workshop.qmd)\] -->
 
-<!-- -   ***Assignments:*** -->
+-   ***Assignments:***
 
-<!--     -   first team assignment due Sunday, October 19, 11:59 PM PST \[[accept via GH classroom here](https://classroom.github.com/a/iG-05GhY)\] -->
+    -   first team assignment due **Tuesday, October 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/16vThEnYQQ5hMxhgU7-ZOEbbMuN4qrMEkyHEAdMbAF-A/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module0-class-survey)\].
 
 <!-- ## Module 1: biomarker identification -->
 
