@@ -1,9 +1,9 @@
 ---
 title: "Course syllabus"
 subtitle: "Data science capstone preparation"
-author: "PSTAT197A/CMPSC190DD"
+author: "PSTAT197A"
 author-title: "Course listing"
-date: "09/22/2025"
+date: "09/22/2026"
 date-format: "MMMM YYYY"
 published-title: "Updated"
 editor: visual
@@ -25,7 +25,7 @@ Section meetings are held on Wednesdays:
 
 ## Staff
 
-***Instructor**:*
+***Instructor:***
 
 -   *Dr. Tony Coburn.* Instructor for 2026-2027 capstone projects. Email: [tony_w_coburn\@ucsb.edu](mailto:tony_w_coburn@ucsb.edu)
 
@@ -34,6 +34,14 @@ Section meetings are held on Wednesdays:
 -   *Ronaldas Lencevicius.* Email: [ronaldas\@ucsb.edu](mailto:ronaldas@ucsb.edu)
 
 -   *Shruthi Ravindra Bharadwaj.* Email: [sbharadwaj\@ucsb.edu](mailto:sbharadwaj@ucsb.edu)
+
+## Office hours
+
+***Instructor:*** Wednesdays, 1:00 - 3:00 PM, South Hall 2431C
+
+***Ron:*** Tuesdays, 12:30 - 1:30 PM, South Hall 5431J
+
+***Shruthi:*** Wednesdays, 5:00 - 7:00 PM, South Hall 2421
 
 ## Expectations and assessments
 
