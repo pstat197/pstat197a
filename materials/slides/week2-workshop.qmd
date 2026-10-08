@@ -1,0 +1,424 @@
+---
+title: "Group assignment workshop"
+subtitle: "PSTAT197A Fall 2026"
+author: "Dr Coburn"
+institute: 'UCSB'
+bibliography: refs.bib
+format:
+  revealjs:
+    incremental: true
+    footer: 'PSTAT197A Fall 2026'
+    logo: 'img/ucsbds_hex.png'
+    fig-width: 4
+    fig-height: 2
+    fig-align: 'left'
+    slide-number: true
+execute:
+  message: false
+  warning: false
+  echo: false
+  cache: true
+---
+
+## Today
+
+-   finish discussing results from last time
+
+-   develop questions about our intake form data
+
+-   check which questions the shared data can answer
+
+-   leave with 2–3 questions and a plan for your group analysis
+
+## Assignment objective
+
+***Your task:*** prepare and present a descriptive analysis of the intake form responses addressing **2–3 questions or goals of your choosing**.
+
+-   extend the analysis we began in class
+
+-   choose questions that are easy to state but require some work to answer
+
+-   use summaries, visualizations, and exploratory models to describe patterns among the respondents
+
+## Outcomes
+
+The learning outcomes for this assignment are less focused on methodology:
+
+-   formulate questions and plan a simple analysis
+
+-   practice using a GitHub repo in a team project setting
+
+-   prepare a report that connects evidence to your questions
+
+-   learn one or more new-to-you data manipulation or modeling techniques
+
+## Your existing repository
+
+Use the **group repository you created on Tuesday**.
+
+-   open its RStudio project and pull the latest changes
+
+-   if you have not cloned it yet, clone that same repository
+
+-   review `README.md`, the data and metadata in `data`, and the examples in `scripts`
+
+-   locate the report template in `results/report.qmd`
+
+::: notes
+Keep this check brief. Students should not create another repository. Resolve individual access problems while the rest of the group begins brainstorming.
+:::
+
+## What can we describe?
+
+-   `background-clean.csv`: skills, comfort, coursework, and experience for **51 respondents**
+
+-   `interest-clean.csv`: project and programming language preferences, domains, and areas of interest for **49 respondents**
+
+-   join these files using `response_id` for analyses of the **49 respondents in both**
+
+-   `class-summary.csv` and `response-timing.csv`: aggregate summaries of **55 respondents**
+
+## Boundaries of the analysis
+
+-   describe the respondents represented in the relevant files
+
+-   demographic summaries cannot be linked to individual skills or preferences
+
+-   self-rated proficiency and comfort measure students' perceptions
+
+-   an observed association does not establish a cause
+
+. . .
+
+**Descriptive analysis can include modeling.** Explore models that help answer your questions, and interpret their results in terms of these respondents.
+
+## Modeling as descriptive analysis
+
+In class, we used **k-means clustering** on proficiency and comfort ratings to explore profiles of respondents.
+
+-   you are encouraged to extend that analysis or try another modeling approach
+
+-   a model can summarize several variables together or reveal patterns worth examining
+
+-   explain what the model adds to your question and how you interpret its output
+
+. . .
+
+Exploratory modeling is part of this assignment's scope. Its conclusions should remain descriptive.
+
+## Starting from Tuesday's analysis
+
+::: {.nonincremental}
+**As a group: 3 minutes**
+
+-   what pattern from the class analysis caught your attention?
+
+-   what did that summary leave unanswered?
+
+-   what comparison, additional variable, or model could help you explore it?
+
+Write down at least one possible extension.
+:::
+
+## Individual brainstorming
+
+::: {.nonincremental}
+**On your own: 4 minutes**
+
+Write down **three questions** you are curious about.
+
+-   consider preparation, comfort, experience, or project interests
+
+-   for each question, jot down why the answer would be interesting
+
+-   list the variables you think you would need and an analysis you might try
+
+Keep all your ideas for now. You will check feasibility together next.
+:::
+
+## Pooling ideas
+
+::: {.nonincremental}
+**With your group: 5 minutes**
+
+1.  Take turns sharing one idea at a time until everyone has contributed.
+2.  Record the ideas in a shared list.
+3.  Combine questions that address the same underlying theme.
+4.  Choose **3–4 candidates** to develop further.
+
+Consider both what interests you and what would add to the class analysis.
+:::
+
+## Starting with the example coursework question
+
+**Do students who have taken PSTAT 131 and PSTAT 134 rate themselves higher in programming proficiency?**
+
+. . .
+
+Before analyzing, your group needs to decide:
+
+-   does the comparison mean both courses versus everyone else, or both, one, and neither?
+
+-   what would higher self-rated proficiency look like in the data?
+
+-   any additional question(s) that might help you understand the pattern?
+
+## Developing the coursework question
+
+-   identify completion of each course from `courses` in `background-clean.csv`
+
+-   compare the distribution of `prog.prof` across the coursework groups, showing group sizes
+
+-   consider whether programming comfort shows a similar pattern
+
+-   optionally explore a model relating proficiency to coursework and other preparation
+
+. . .
+
+Describe the association you observe. These data cannot establish that taking the courses **caused** higher proficiency.
+
+::: notes
+Check the actual course labels before coding indicators. Keep missing course responses distinct from confirmed non-selection. Proficiency is ordered beginner/intermediate/advanced. An ordinal model is one possible extension, subject to checking the small sample and category counts.
+:::
+
+## What adds useful complexity?
+
+-   compare distributions rather than reporting just one average
+
+-   compare the same respondents across skill areas
+
+-   examine combinations of interests or preferences
+
+-   use a model to examine several variables together or summarize respondent profiles
+
+. . .
+
+Each additional step should help answer the question. Check group sizes before adding more subdivisions.
+
+## Possible directions
+
+Use these as starting points if your group is stuck:
+
+::: {style="font-size: 0.85em;"}
+
+-   how do programming language preferences differ across respondents’ programming proficiency levels and completed coursework?
+
+-   which application domains tend to be selected together? do those combinations differ between respondents who prefer industry versus research projects?
+
+-   how do respondents with and without a domain specialization differ in the breadth and types of data science interests they select?
+
+-   which application domains commonly appear together in respondents' selections?
+
+:::
+
+::: notes
+These are prompts, not assigned questions. Encourage groups to explain what they would learn and identify an extension beyond summaries already shown in class.
+:::
+
+## Extending the clustering example
+
+**What makes the respondent profiles distinct, and how much do they depend on our choices?**
+
+-   compare clusters based on proficiency alone, comfort alone, or both
+
+-   try a few values of $k$ and describe how the profiles change
+
+-   examine how scaling the variables affects the grouping
+
+-   summarize coursework or project preferences within the resulting clusters
+
+::: notes
+Students should explain cluster sizes and profiles, not just show a colored scatterplot. Coding proficiency as 1/2/3 assumes equal spacing, and the comfort ratings use a different scale. Scaling and variable choices change the distances used by k-means. A difference in a variable used to form clusters is expected by construction; variables not used to form them provide additional descriptive context. Do not frame one clustering as the discovery of definitive student types.
+:::
+
+## Refining your candidates
+
+::: {.nonincremental}
+**With your group: 6 minutes**
+
+For each candidate, write one sentence specifying:
+
+-   **who:** which respondents will the analysis describe?
+-   **what:** which measured variables will you use?
+-   **goal:** what association, profile, or comparison will you explore?
+
+Then explain what would make the answer useful or interesting.
+:::
+
+## Does the question fit the data?
+
+::: {.nonincremental}
+**Quick discussion**
+
+1.  How does programming comfort differ by gender?
+2.  Does research experience cause students to prefer research-lab projects?
+3.  Among respondents with both sections shared, how do project preferences vary by research experience?
+
+Which can the shared data address? What would you change about the others?
+:::
+
+::: notes
+1. Not answerable from these files: gender is aggregate-only and cannot be linked to comfort.
+2. Causal wording exceeds what this descriptive survey can establish. Reword as an association among respondents.
+3. Feasible using the respondent-level join, subject to checking category counts. Retain or explicitly account for Unsure and No preference.
+:::
+
+## Feasibility check
+
+::: {.nonincremental}
+**Open the data and metadata: 7 minutes**
+
+-   find the exact column names and files for each candidate
+
+-   inspect category labels, missing values, and group sizes
+
+-   identify needed joins, reshaping, or text processing, and any model inputs
+
+-   revise or set aside questions that the available data cannot answer
+
+**Result:** select 2–3 questions to investigate. You can refine them after trying an initial analysis.
+:::
+
+## Details that affect your plan
+
+-   `upper_div_courses` contains ranges, not exact course counts
+
+-   project `type = both` means **no preference**
+
+-   `research` combines supervised data-science and other research experience
+
+-   multiple-selection variables need special care: some option labels contain commas
+
+. . .
+
+Use the metadata to decide what each variable can support before writing code.
+
+## Trying an idea in R
+
+::: {.nonincremental}
+**With your group: 10 minutes**
+
+Choose one candidate question and try an initial analysis.
+
+-   adapt the class script to produce a relevant summary or fit an exploratory model
+
+-   for the coursework question, start by checking course groups and proficiency distributions
+
+-   for clustering, change one choice in the class example and inspect cluster sizes and profiles
+
+Record what you learned, what remains unclear, and what you want to try next.
+:::
+
+## What did the first attempt tell you?
+
+::: {.nonincremental}
+Discuss your initial results:
+
+-   does the output help answer your question?
+
+-   what pattern needs a closer look?
+
+-   did sparse groups, coding choices, or model behavior create a problem?
+
+-   should you refine the question, change the analysis, or explore a follow-up?
+
+An inconclusive result can still help you choose a better next step.
+:::
+
+## Your analysis plan
+
+::: {.nonincremental}
+**With your group: 6 minutes**
+
+::: {style="font-size: 0.85em;"}
+
+For each selected question, record:
+
+1.  Exact variables, files, and respondents included
+2.  Data preparation needed
+3.  Summaries, plots, or models to try and what their output would tell you
+4.  Key choices to check, such as denominators, coding, scaling, or number of clusters
+5.  One limitation you will need to discuss
+
+Save your notes in `scripts/analysis-plan.md` in the group repository.
+
+:::
+
+:::
+
+## A second pair of eyes
+
+::: {.nonincremental}
+**Exchange one question with another group: 4 minutes**
+
+Explain your question and proposed analysis in about a minute.
+
+The other group should ask:
+
+-   is it clear what you want to learn?
+-   can the available variables answer the question?
+-   will the proposed summaries or models actually answer it?
+-   is the scope manageable for this assignment?
+
+Use the feedback to revise your plan.
+:::
+
+## Dividing the work
+
+::: {.nonincremental}
+**With your group: 5 minutes**
+
+-   assign a lead and a reviewer for each question
+
+-   agree on script filenames and who will edit the shared report at each stage
+
+-   set an internal deadline for initial results and a time to review them together
+
+-   choose a communication channel and arrange your next meeting
+
+Record these decisions in your analysis plan and push it to GitHub.
+:::
+
+## Before you leave
+
+::: {.nonincremental}
+Your group should be able to show:
+
+-   2–3 descriptive questions grounded in the intake form data
+
+-   an analysis plan with variables, proposed methods, and limitations
+
+-   named responsibilities and internal deadlines
+
+-   the plan saved and pushed to your existing group repository
+
+If you finish early, extend your initial analysis or try a second approach to the same question.
+:::
+
+## Deliverable
+
+Your submission consists of work **committed and pushed to the group repository**, including:
+
+-   an updated `results/report.qmd` containing your write-up source
+
+-   a rendered `results/report.html`
+
+. . .
+
+Please push final commits by ***Friday, October 16, 11:59 p.m. Pacific.***
+
+. . .
+
+There is a **24-hour grace period**. Work submitted after **Saturday, October 17, 11:59 p.m. Pacific** will not receive review.
+
+## Resources
+
+-   lab 2 and in-class analysis: `scripts/week2-surveys.R`
+
+-   survey metadata and the assignment `README.md`
+
+-   course staff office hours and email
+
+-   [MDSR ch. 4](https://mdsr-book.github.io/mdsr2e/ch-dataI.html) on data wrangling
+
+-   [RStudio cheatsheets](https://www.rstudio.com/resources/cheatsheets/) and [tidyverse documentation](https://www.tidyverse.org/)

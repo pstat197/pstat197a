@@ -46,11 +46,11 @@ bibliography: slides/refs.bib
 
 -   ***Section meeting:*** tidyverse basics [\[activity](labs/lab2-tidyverse/lab2-tidyverse.qmd)\]
 
-<!-- -   ***Thursday meeting:*** planning group work for analysis of survey data \[[slides](slides/week2-workshop.qmd)\] -->
+-   ***Thursday meeting:*** planning group work for analysis of survey data \[[slides](slides/week2-workshop.qmd)\]
 
 -   ***Assignments:***
 
-    -   first team assignment due **Tuesday, October 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/16vThEnYQQ5hMxhgU7-ZOEbbMuN4qrMEkyHEAdMbAF-A/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module0-class-survey)\].
+    -   first team assignment due **Friday, October 16, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/16vThEnYQQ5hMxhgU7-ZOEbbMuN4qrMEkyHEAdMbAF-A/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module0-class-survey)\].
 
 <!-- ## Module 1: biomarker identification -->
 
