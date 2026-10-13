@@ -1,0 +1,576 @@
+---
+title: "Classification and cloud computing"
+subtitle: "PSTAT197A Fall 2026"
+author: "Dr. Coburn"
+institute: 'UCSB'
+bibliography: refs.bib
+format:
+  revealjs:
+    incremental: true
+    footer: 'PSTAT197A Fall 2026'
+    logo: 'img/ucsbds_hex.png'
+    fig-width: 4
+    fig-height: 2
+    fig-align: 'left'
+    slide-number: true
+execute:
+  message: false
+  warning: false
+  echo: false
+  cache: true
+---
+
+<!--
+INSTRUCTOR PLAN
+
+Allow approximately 20-25 minutes for the classification material, then
+reserve the remaining instructional time for the guest session and closing.
+This is a suggested allocation, not an assumption about the class length.
+
+The guest block below is deliberately open. Replace its placeholder slide
+with the guest professor's material. No particular ACCESS resource, setup
+procedure, computing example, or connection to Codespaces is assumed.
+
+Detailed review and code are retained after "Next time" as reference slides.
+They are not part of the planned live sequence.
+
+-->
+
+```{r}
+#| label: setup-biomarkers
+#| include: false
+library(tidyverse)
+library(randomForest)
+
+trim_fn <- function(x){
+  x[x > 3] <- 3
+  x[x < -3] <- -3
+  return(x)
+}
+
+# Retain the supplied preprocessing for this descriptive demonstration.
+# For predictive evaluation, estimate preprocessing using training data only.
+asd_clean <- read_csv('data/biomarker-clean.csv') %>%
+  select(-ados) %>%
+  mutate(across(.cols = -group, log10)) %>%
+  mutate(across(.cols = -group, ~ scale(.x)[, 1])) %>%
+  mutate(across(.cols = -group, trim_fn))
+
+asd_preds <- asd_clean %>% select(-group)
+asd_resp <- asd_clean %>% pull(group) %>% factor()
+```
+
+## Announcements/reminders
+
+-   Next assignment posted on class website
+
+    -   Due 
+
+-   Any feedback on the first group assignment?
+
+## Today
+
+-   Brief review: selecting proteins and fitting a classifier
+
+-   Interpreting the resulting classification accuracy
+
+-   Guest session: cloud computing setup
+
+::: notes
+Keep the modeling review brief. Most students have encountered these methods
+in PSTAT 131. The reference slides contain additional explanation and code.
+:::
+
+## Random forests: recap
+
+Last time, we combined predictions from trees using a majority vote.
+
+-   Each tree uses a bootstrap sample of observations
+
+-   At each split, consider a random subset of predictors
+
+-   Combine predictions across many trees
+
+. . .
+
+For the biomarker analysis, we also use the forest to ***rank proteins by variable importance.***
+
+## Which proteins appear important?
+
+Gini importance summarizes the reduction in node impurity attributed to each predictor across the forest.
+
+```{r}
+#| label: fit-random-forest
+set.seed(102025)
+rf_out <- randomForest(x = asd_preds,
+                       y = asd_resp,
+                       ntree = 1000,
+                       importance = TRUE)
+```
+
+```{r}
+#| label: plot-importance
+#| fig-width: 6
+#| fig-height: 3
+#| fig-align: center
+rf_out$importance %>%
+  as_tibble(rownames = 'protein') %>%
+  slice_max(MeanDecreaseGini, n = 10, with_ties = FALSE) %>%
+  ggplot(aes(y = reorder(protein, MeanDecreaseGini),
+             x = MeanDecreaseGini)) +
+  geom_col() +
+  labs(x = 'Mean decrease in Gini index', y = 'Protein')
+```
+
+::: notes
+Spend about two minutes here. An importance score describes the fitted model.
+It does not establish a biological mechanism or provide a significance test.
+Correlated predictors can complicate interpretation of individual rankings.
+:::
+
+## Selecting a core panel
+
+For this example, compare the top 10 proteins from:
+
+-   multiple testing, ranked by adjusted p-value
+
+-   random forest variable importance
+
+$$
+\hat{S}^* = \hat{S}_{\text{testing}} \cap \hat{S}_{\text{forest}}
+$$
+
+```{r}
+#| label: select-panel
+tt_fn <- function(.df){
+  infer::t_test(.df,
+               formula = level ~ group,
+               alternative = 'two-sided',
+               order = c('ASD', 'TD'),
+               var.equal = FALSE)
+}
+
+test_results <- asd_clean %>%
+  pivot_longer(-group, names_to = 'protein', values_to = 'level') %>%
+  nest(data = c(group, level)) %>%
+  mutate(test = map(data, tt_fn)) %>%
+  unnest(test) %>%
+  mutate(p.adj = p.adjust(p_value, method = 'BY'))
+
+s1 <- test_results %>%
+  arrange(p.adj, p_value, protein) %>%
+  slice_head(n = 10) %>%
+  pull(protein)
+
+s2 <- rf_out$importance %>%
+  as_tibble(rownames = 'protein') %>%
+  arrange(desc(MeanDecreaseGini), protein) %>%
+  slice_head(n = 10) %>%
+  pull(protein)
+
+s_star <- intersect(s1, s2)
+if (length(s_star) == 0L) {
+  stop('The two top-10 lists have no overlap. Review the panel selection before rendering.')
+}
+knitr::kable(tibble(Protein = s_star))
+```
+
+::: notes
+The supplied code intersects two lists, so the text now consistently says
+two methods. Selecting the top 10 is a ranking rule, not a significance cutoff.
+The BY adjustment now uses p.adjust rather than a hand-computed approximation.
+:::
+
+## Logistic regression: recap
+
+Let $Y_i = 1$ indicate ASD and $Y_i = 0$ indicate TD.
+
+$$
+\log\left(\frac{p_i}{1-p_i}\right)
+= \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip}
+$$
+
+-   Predictors: proteins in the selected panel
+
+-   Output: estimated probability of ASD
+
+-   Classification rule for this example: predict ASD when $\hat{p}_i > 0.5$
+
+## Fitting the panel model
+
+```{r}
+#| label: fit-panel
+#| echo: true
+asd_sub <- asd_clean %>%
+  select(group, all_of(s_star)) %>%
+  mutate(group = (group == 'ASD'))
+
+fit <- glm(group ~ ., family = 'binomial', data = asd_sub)
+```
+
+. . .
+
+The modeling function is the same whether we include one protein or several.
+
+::: notes
+Use this as a short code walkthrough rather than a live coding exercise.
+The panel selection and model fit do not depend on anything in the guest block.
+:::
+
+## Measuring classification accuracy
+
+```{r}
+#| label: panel-predictions
+pred_df <- asd_sub %>%
+  modelr::add_predictions(fit, type = 'response') %>%
+  transmute(
+    group = factor(group, levels = c(FALSE, TRUE), labels = c('TD', 'ASD')),
+    pred,
+    pred_class = factor(pred > 0.5,
+                        levels = c(FALSE, TRUE), labels = c('TD', 'ASD'))
+  )
+
+table(Actual = pred_df$group, Predicted = pred_df$pred_class) %>%
+  knitr::kable()
+```
+
+-   **Sensitivity:** proportion of ASD observations classified as ASD
+
+-   **Specificity:** proportion of TD observations classified as TD
+
+-   **Accuracy:** proportion of all observations classified correctly
+
+## What do these results tell us?
+
+```{r}
+#| label: panel-metrics
+class_metrics <- yardstick::metric_set(
+  yardstick::sensitivity, yardstick::specificity, yardstick::accuracy
+)
+
+class_metrics(pred_df, truth = group, estimate = pred_class,
+              event_level = 'second') %>%
+  select(.metric, .estimate) %>%
+  knitr::kable(digits = 3)
+```
+
+***These are training results.*** We used these observations to select proteins, fit the model, and calculate accuracy.
+
+. . .
+
+To evaluate predictions for new subjects, repeat preprocessing and protein selection within the training portion of each split, then evaluate on held-out observations.
+
+::: notes
+Ask briefly why holding out data only after selecting the proteins would still
+leak information. Save an extended design discussion for Thursday.
+:::
+
+# Cloud computing
+
+## Guest session: setup
+
+*Guest lecture material to be added here.*
+
+<!-- BEGIN GUEST MATERIAL
+
+Replace the placeholder above and insert as many slides as needed here.
+This block reserves the remaining instructional time after the 20-25 minute
+classification introduction, allowing a brief closing at the end.
+
+END GUEST MATERIAL -->
+
+## Next time
+
+-   Cloud computing: hands-on use
+
+-   Variable selection via regularized estimation
+
+-   Design assessment of the Hewitson analysis
+
+    -   ***Mini assignment:*** sketch a diagram representing the data analysis in the paper; come prepared to share
+
+. . .
+
+Section this week: office hours for setup troubleshooting and questions.
+
+<!-- End of the live sequence. Reference slides follow. -->
+
+<!-- # Reference slides {.appendix} -->
+
+<!-- ## Random forest settings -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- rf_out <- randomForest(x = asd_preds, -->
+<!--                        y = asd_resp, -->
+<!--                        ntree = 1000, -->
+<!--                        importance = TRUE) -->
+<!-- ``` -->
+
+<!-- Settings include the number of trees, predictors considered ***at each split***, bootstrap sample size, and node size. -->
+
+<!-- For classification, the default `mtry` is $\lfloor\sqrt{p}\rfloor$. -->
+
+<!-- The default bootstrap sample has $n$ draws with replacement. Default classification trees grow to purity where possible, subject to the data and stopping rules. -->
+
+<!-- ## Measuring split quality -->
+
+<!-- If $p_k$ is the proportion of observations in class $k$, two measures of node impurity are: -->
+
+<!-- -   Gini index: $1 - \sum_{k=1}^K p_k^2$ -->
+
+<!-- -   Entropy: $-\sum_{k=1}^K p_k\log_2 p_k$ -->
+
+<!-- . . . -->
+
+<!-- Smaller values indicate greater homogeneity. -->
+
+<!-- For child-node proportions $w_L$ and $w_R$, the reduction in impurity is -->
+
+<!-- $$ -->
+<!-- h(\text{parent}) - \left[w_L h(\text{left}) + w_R h(\text{right})\right]. -->
+<!-- $$ -->
+
+<!-- ## Interpreting importance -->
+
+<!-- Counting how often a variable appears in a tree ignores the quality of its splits. -->
+
+<!-- Gini importance accumulates weighted decreases in Gini impurity attributed to a predictor and averages across trees. -->
+
+<!-- -   Larger values indicate a greater contribution to reducing impurity -->
+
+<!-- -   Correlated predictors can share or compete for importance -->
+
+<!-- -   Importance does not establish causation or statistical significance -->
+
+<!-- ## Random forest classification results -->
+
+<!-- ```{r} -->
+<!-- rf_out$confusion %>% knitr::kable() -->
+<!-- ``` -->
+
+<!-- The confusion matrix returned by `randomForest()` uses ***out-of-bag*** predictions. -->
+
+<!-- Each observation receives votes from trees whose bootstrap samples excluded it. -->
+
+<!-- . . . -->
+
+<!-- These results differ from the logistic model's training predictions. They also do not validate the complete preprocessing and panel-selection procedure on new data. -->
+
+<!-- ## Code: multiple testing {.scrollable} -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- tt_fn <- function(.df){ -->
+<!--   infer::t_test(.df, -->
+<!--                formula = level ~ group, -->
+<!--                alternative = 'two-sided', -->
+<!--                order = c('ASD', 'TD'), -->
+<!--                var.equal = FALSE) -->
+<!-- } -->
+
+<!-- test_results <- asd_clean %>% -->
+<!--   pivot_longer(-group, names_to = 'protein', values_to = 'level') %>% -->
+<!--   nest(data = c(group, level)) %>% -->
+<!--   mutate(test = map(data, tt_fn)) %>% -->
+<!--   unnest(test) %>% -->
+<!--   mutate(p.adj = p.adjust(p_value, method = 'BY')) -->
+
+<!-- s1 <- test_results %>% -->
+<!--   arrange(p.adj, p_value, protein) %>% -->
+<!--   slice_head(n = 10) %>% -->
+<!--   pull(protein) -->
+<!-- ``` -->
+
+<!-- ## Code: core panel -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- s2 <- rf_out$importance %>% -->
+<!--   as_tibble(rownames = 'protein') %>% -->
+<!--   arrange(desc(MeanDecreaseGini), protein) %>% -->
+<!--   slice_head(n = 10) %>% -->
+<!--   pull(protein) -->
+
+<!-- s_star <- intersect(s1, s2) -->
+<!-- s_star -->
+<!-- ``` -->
+
+<!-- The intersection requires agreement between the two ranking methods. Its membership can vary across samples. -->
+
+<!-- ## The Bernoulli distribution -->
+
+<!-- $$ -->
+<!-- Y \sim \operatorname{Bernoulli}(p) -->
+<!-- \quad\Longleftrightarrow\quad -->
+<!-- P(Y=y)=p^y(1-p)^{1-y},\qquad y\in\{0,1\}. -->
+<!-- $$ -->
+
+<!-- This gives $P(Y=1)=p$ and $P(Y=0)=1-p$. -->
+
+<!-- -   $\mathbb{E}(Y)=p$ -->
+
+<!-- -   $\operatorname{Var}(Y)=p(1-p)$ -->
+
+<!-- ## Logistic regression model and interpretation -->
+
+<!-- For conditionally independent observations, -->
+
+<!-- $$ -->
+<!-- Y_i\mid X_i=x_i\sim\operatorname{Bernoulli}(p_i), -->
+<!-- \qquad -->
+<!-- \log\left(\frac{p_i}{1-p_i}\right)=\beta_0+\sum_{j=1}^p\beta_jx_{ij}. -->
+<!-- $$ -->
+
+<!-- For an additive model, a one-unit increase in $x_j$, holding other predictors fixed, changes: -->
+
+<!-- -   log-odds by $\beta_j$ -->
+
+<!-- -   odds by a factor of $e^{\beta_j}$ -->
+
+<!-- The assumed linear relationship is on the ***log-odds scale***. -->
+
+<!-- ## The model, visually -->
+
+<!-- $$ -->
+<!-- p_i=\frac{1}{1+e^{-x_i^T\beta}} -->
+<!-- $$ -->
+
+<!-- ```{r} -->
+<!-- #| fig-width: 6 -->
+<!-- #| fig-height: 3 -->
+<!-- #| fig-align: center -->
+<!-- fx <- function(x, a, b){ -->
+<!--   1/(1 + exp(-(a + x*b))) -->
+<!-- } -->
+<!-- curve(fx(x, 0, 1), from = -10, to = 10, -->
+<!--       xlab = 'x', ylab = 'P(Y = 1)') -->
+<!-- ``` -->
+
+<!-- ## Maximum likelihood -->
+
+<!-- Maximum likelihood selects parameters that maximize the likelihood of the observed outcomes given the predictors. -->
+
+<!-- Equivalently, minimize the negative log-likelihood: -->
+
+<!-- $$ -->
+<!-- \hat{\beta}=\arg\min_\beta\{-\ell(\beta;x,y)\}. -->
+<!-- $$ -->
+
+<!-- `glm()` fits the model using iteratively reweighted least squares. -->
+
+<!-- ## Fitting with one predictor -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- # Use asd_clean so DERM need not belong to the selected core panel. -->
+<!-- asd_one <- asd_clean %>% -->
+<!--   select(group, DERM) %>% -->
+<!--   mutate(group = (group == 'ASD')) -->
+
+<!-- fit_one <- glm(group ~ DERM, family = 'binomial', data = asd_one) -->
+<!-- fit_one %>% broom::tidy() %>% knitr::kable(digits = 3) -->
+<!-- ``` -->
+
+<!-- ## One-predictor fit, visually -->
+
+<!-- ```{r} -->
+<!-- #| fig-width: 5 -->
+<!-- #| fig-height: 3 -->
+<!-- #| fig-align: center -->
+<!-- #| fig-cap: Proportion of subjects in the ASD group within DERM bins (points) and fitted probability (curve). -->
+<!-- asd_one %>% -->
+<!--   mutate(derm_fct = cut_number(DERM, n = 7)) %>% -->
+<!--   group_by(derm_fct) %>% -->
+<!--   summarize(derm_avg = mean(DERM), asd_prop = mean(group), -->
+<!--             .groups = 'drop') %>% -->
+<!--   ggplot(aes(x = derm_avg, y = asd_prop)) + -->
+<!--   geom_point() + -->
+<!--   geom_function(fun = ~ fx(.x, coef(fit_one)[1], coef(fit_one)[2])) + -->
+<!--   labs(x = 'DERM level', y = 'P(ASD)') -->
+<!-- ``` -->
+
+<!-- ## Panel model coefficients {.scrollable} -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- fit %>% broom::tidy() %>% knitr::kable(digits = 3) -->
+<!-- ``` -->
+
+<!-- These coefficients describe a model fitted after selecting predictors using the same data. Ordinary coefficient p-values do not account for that selection. -->
+
+<!-- ## Accuracy calculations -->
+
+<!-- |          | Predicted TD        | Predicted ASD       | -->
+<!-- |----------|---------------------|---------------------| -->
+<!-- | True TD  | True negative (TN)  | False positive (FP) | -->
+<!-- | True ASD | False negative (FN) | True positive (TP)  | -->
+
+<!-- -   Sensitivity: $TP/(TP+FN)$ -->
+
+<!-- -   Specificity: $TN/(TN+FP)$ -->
+
+<!-- -   Accuracy: $(TP+TN)/(TP+TN+FP+FN)$ -->
+
+<!-- ## Practice: calculate the metrics -->
+
+<!-- Calculate sensitivity, specificity, and accuracy from this table. -->
+
+<!-- ```{r} -->
+<!-- tbl <- table(Actual = pred_df$group, Predicted = pred_df$pred_class) -->
+<!-- knitr::kable(addmargins(tbl)) -->
+<!-- ``` -->
+
+<!-- Then compare your results with `yardstick` on the next slide. -->
+
+<!-- ## Using `yardstick::metric_set()` -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- class_metrics <- yardstick::metric_set( -->
+<!--   yardstick::sensitivity, -->
+<!--   yardstick::specificity, -->
+<!--   yardstick::accuracy -->
+<!-- ) -->
+
+<!-- class_metrics(pred_df, -->
+<!--               truth = group, -->
+<!--               estimate = pred_class, -->
+<!--               event_level = 'second') -->
+<!-- ``` -->
+
+<!-- The factor levels are `TD`, then `ASD`, so `event_level = 'second'` treats ASD as positive. -->
+
+<!-- ## ROC analysis -->
+
+<!-- Lowering the threshold tends to increase sensitivity and reduce specificity. Raising it tends to do the reverse. -->
+
+<!-- ```{r} -->
+<!-- #| fig-width: 4 -->
+<!-- #| fig-height: 3 -->
+<!-- #| fig-align: center -->
+<!-- pred_df %>% -->
+<!--   yardstick::roc_curve(truth = group, pred, event_level = 'second') %>% -->
+<!--   ggplot(aes(x = 1 - specificity, y = sensitivity)) + -->
+<!--   geom_path() + -->
+<!--   geom_abline(slope = 1, intercept = 0, linetype = 'dashed') + -->
+<!--   labs(x = '1 - specificity', y = 'Sensitivity') -->
+<!-- ``` -->
+
+<!-- This curve uses the same training predictions as the earlier metrics. -->
+
+<!-- ## Other accuracy metrics -->
+
+<!-- -   Precision: $TP/(TP+FP)$, the proportion of predicted positives that are positive -->
+
+<!-- -   False discovery proportion: $FP/(TP+FP)$ for the observed classifications -->
+
+<!-- -   F1 score: $2TP/(2TP+FP+FN)$, the harmonic mean of precision and recall -->
+
+<!-- -   AUROC: area under the ROC curve -->
+
+<!-- The choice of metric should reflect the consequences of different errors. -->
