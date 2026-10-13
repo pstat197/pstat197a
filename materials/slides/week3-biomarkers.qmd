@@ -22,7 +22,7 @@ execute:
 
 ## Announcements/reminders
 
--   first group assignment due Sunday 10/19 11:59pm PST
+-   first group assignment due Friday 10/16 11:59pm PST
 
     -   your GitHub repository will be your submission
     -   commits will be one measure of individual contribution
