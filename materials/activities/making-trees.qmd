@@ -1,229 +1,290 @@
 ---
-title: "Activity: making trees"
-editor: visual
-code-copy: true
-execute:
-  message: false
-  warning: false
-  echo: true
-  cache: false
+title: "Activity: Making Trees"
+output:
+  html_document:
+    toc: false
+    df_print: paged
 ---
 
-For the purposes of this activity we'll use data from the 1994 census (there are fewer variables than the proteomics data and sometimes a little variety is nice).
-
-::: callout-important
-## Action
-
-On the group workstation at your table, have one person open a new R script and copy-paste the chunk below to load the data.
-
-You will not need to store a copy of your work (unless you want to) -- so the script is just to be able to perform some simple calculations during class.
-:::
-
-```{r}
-library(tidyverse)
-
-# data location
-url <- "http://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
-
-# import
-census <- read_csv(url,
-                   col_names = c("age", 
-                                 "workclass", 
-                                 "fnlwgt", 
-                                 "education",
-                                 "education_1",
-                                 "marital_status",
-                                 "occupation",
-                                 "relationship",
-                                 "race",
-                                 "sex",
-                                 "capital_gain",
-                                 "capital_loss",
-                                 "hours_per_week",
-                                 "native_country",
-                                 "income")) %>%
-  mutate(income = factor(income)) %>%
-  select(-fnlwgt, -education_1)
-
-census %>% head(4)
+```{r setup, include=FALSE}
+# This is a classroom handout: code is displayed for students to copy into
+# their own R script, but is not run when the handout is knitted.
+knitr::opts_chunk$set(echo = TRUE, eval = FALSE,
+                      message = FALSE, warning = FALSE)
 ```
 
-Your group's job is to build a tree to classify high earners and low earners based on a bootstrap sample and a random subset of predictors.
+For this activity, we'll use data derived from the 1994 U.S. Census (the *Adult* dataset from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/2/adult)). There are fewer variables than in our proteomics data, and a little variety is nice.
 
-The `income` variable is the response or variable of interest; the rest are potential predictors.
+**Action: Get set up**
 
-```{r}
-# inspect repsonse
-census %>% pull(income) %>% str()
+On the group workstation at your table **or** on one of your laptops, have one person open a new R script. Copy and run the following code to load the data.
+
+You don't need to save your work (unless you want to). The script is just a convenient way to perform calculations during class.
+
+```{r load-data}
+library(tidyverse)
+
+# Data location
+url <- "https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"
+
+# Import the data
+census <- read_csv(
+  url,
+  col_names = c("age",
+                "workclass",
+                "fnlwgt",
+                "education",
+                "education_1",
+                "marital_status",
+                "occupation",
+                "relationship",
+                "race",
+                "sex",
+                "capital_gain",
+                "capital_loss",
+                "hours_per_week",
+                "native_country",
+                "income"),
+  show_col_types = FALSE
+) %>%
+  mutate(income = factor(income, levels = c("<=50K", ">50K"))) %>%
+  select(-fnlwgt, -education_1)
+
+head(census, 4)
+```
+
+Your group's task is to build a small **classification tree** that predicts whether someone earns more than $50,000 per year. You'll use a sample of observations drawn with replacement and just two randomly selected predictors.
+
+The `income` variable is the **response**; the other variables are possible **predictors**. The response has two categories:
+
+- `<=50K`: $50,000 or less per year (low income for this activity)
+- `>50K`: more than $50,000 per year (high income for this activity)
+
+```{r inspect-response}
+str(census$income)
 ```
 
 ## Building a tree
 
-### Step 1: resample the data
+### Step 1: Resample the data
 
-First, draw a sample with replacement from the observations. This is known as a *bootstrap* sample. We'll keep this relatively small to simplify matters.
+We'll first draw a small sample **with replacement**. This uses the same idea as bootstrap sampling, but we'll deliberately take only 200 observations to make the activity manageable.
 
-::: callout-important
-## Action
+**Action: Draw your sample**
 
-**Draw a bootstrap sample**
+Copy the code below into your R script and **run it once**. Keep this sample for the entire activity.
 
-Copy the code chunk below and execute once.
-
-```{r}
-# resample data
+```{r resample}
 census_boot <- census %>%
-  sample_n(size = 200, replace = T)
+  slice_sample(n = 200, replace = TRUE)
 ```
-:::
 
-You will build your tree using this data.
+### Step 2: Select predictors at random
 
-### Step 2: select predictors at random
+We'll also limit your tree to two predictors so you can make the splitting decisions by hand.
 
-Next draw a set of predictors at random. We'll also keep this set small so that you can develop the tree 'by hand'.
+**Action: Select two predictors**
 
-::: callout-important
-## Action
+Copy and run the code below **once, without modification**.
 
-**Select two random predictors**
-
-Copy and paste the code chunk below into your script and execute once without modification.
-
-```{r}
-# retrieve column names
-possible_predictors <- census %>% 
+```{r sample-predictors}
+# All columns other than the response are possible predictors
+possible_predictors <- census %>%
   select(-income) %>%
-  colnames()
+  names()
 
-# grab 2 columns at random
+# Draw two predictor names at random
 predictors <- sample(possible_predictors,
-                     size = 2, 
-                     replace = F)
+                     size = 2,
+                     replace = FALSE)
 
-# select these columns from the bootstrap sample
-train <- census_boot %>% 
-  select(c(income, any_of(predictors)))
+predictors
+
+# Keep only the response and your two selected predictors
+train <- census_boot %>%
+  select(income, all_of(predictors))
+
+head(train)
 ```
-:::
 
-You will build your tree using only these predictors from the bootstrap sample as *training* data.
+From now on, use **`train`**, not the full `census` data, when deciding where to split. Use **only your two assigned predictors**.
 
-### Step 3a: find your first split
+### Step 3a: Find your first split
 
-Now your job is to choose exactly one of the predictors to make a binary split of the data.
+Choose one of your two predictors and use it to divide the observations into **two groups**.
 
--   for categorical variables, determine which categories you will classify as high-income vs. low-income
+For a **continuous (numeric) predictor**, choose a cutoff. For example, one group could have `age >= 35`, and the other could have `age < 35`.
 
--   for continuous variables, choose a cutoff value so that any observation greater/less than the cutoff is classified as a high/low (or vice-versa) earner
+For a **categorical predictor**, choose which categories go together in one group and put all remaining categories in the other group.
 
-***You do not need to make quantitatively rigorous choices.*** Try to make a choice that you think is reasonable, but don't agonize over it. The code below might help you decide which variable to use and how to make the split: use it to inspect each of the two variables and decide which one better distinguishes the income groups.
+Your goal is to make one group with a **higher proportion of high earners** and another with a **lower proportion of high earners**. Ideally, the first group will actually have a majority of high earners, but that might not be possible with your two random predictors.
 
-```{r}
-# comment out -- don't overwrite your bootstrap sample!
-census_boot <- census %>% 
-  sample_n(size = 200, replace = T)
+**You do not need to optimize the split mathematically.** Use the following code as a guide, make a reasonable choice, and move on.
 
-# for continuous variables
-census_boot %>%
-  ggplot(aes(x = age, # replace with predictor name 
-             y = income)) +
-  geom_jitter(height = 0.1) +
-  geom_vline(xintercept = 35) # adjust cutoff
+#### If your predictor is continuous
 
-census_boot %>%
-  ggplot(aes(x = age, # replace with predictor name
-           y = ..density..)) +
-  geom_density(aes(color = income, fill = income),
-               alpha = 0.5) +
-  geom_vline(xintercept = 35) # adjust cutoff
+Replace `age` with one of your selected continuous predictors. You can change `35` to experiment with different cutoffs.
 
+```{r inspect-continuous}
+# Visualize the relationship between a predictor and income
+train %>%
+  ggplot(aes(x = age, y = income)) +
+  geom_jitter(height = 0.1, width = 0) +
+  geom_vline(xintercept = 35)
+
+# Check the income proportions on each side of the proposed cutoff
 cutoff <- 35
 
-# for categorical variables
-census_boot %>%
-  group_by(workclass, income) %>%
-  count() %>%
-  spread(income, n) %>%
-  mutate_all(~ replace_na(.x, 0)) %>%
-  mutate(high.inc = `<=50K` > `>50K`)
-
-# pick out categories that are majority high income
-highinc_categories <- census_boot %>%
-  group_by(workclass, # replace with predictor name
-           income) %>%
-  count() %>%
-  spread(income, n) %>%
-  mutate_all(~ replace_na(.x, 0)) %>%
-  mutate(high.inc = `<=50K` < `>50K`) %>%
-  filter(high.inc == T) %>%
-  pull(workclass) # replace with predictor name
+train %>%
+  mutate(side = if_else(age >= cutoff,
+                        "At or above cutoff",
+                        "Below cutoff")) %>%
+  count(side, income) %>%
+  group_by(side) %>%
+  mutate(prop = n / sum(n)) %>%
+  ungroup()
 ```
 
-::: callout-important
-## Action
+These are **within-group** proportions: compare the proportion earning `>50K` on one side of the cutoff with that on the other side. If the larger values are *less* associated with high income, reverse which side you call the higher-income side.
 
-**Make your first split**
+#### If your predictor is categorical
 
-1.  Choose whichever of the two predictors you think best distinguishes the high income and low income groups.
-2.  Find a cutoff value if the variable is continuous, or the categories that you will classify as high income if the variable is categorical.
-3.  If categorical, store a vector of the category names that are classified as high income (see code above). If continuous, store the cutoff value.
-4.  Write down the rule.
-:::
+Replace `workclass` with one of your selected categorical predictors. The table shows how often each income category occurs within each predictor category.
 
-### Step 3b: find your second split
+```{r inspect-categorical}
+category_summary <- train %>%
+  count(workclass, income) %>%
+  pivot_wider(names_from = income,
+              values_from = n,
+              values_fill = 0) %>%
+  mutate(prop_high = `>50K` / (`<=50K` + `>50K`),
+         majority_high = `>50K` > `<=50K`) %>%
+  arrange(desc(prop_high))
 
-Now filter the data to just those rows classified as (but not necessarily actually) high income based on your first split.
+category_summary
 
-```{r}
-# continuous case -- example
-census_boot_sub <- census_boot %>%
-  filter(age > cutoff)
+# Identify categories with a majority of high-income observations
+highinc_categories <- category_summary %>%
+  filter(majority_high) %>%
+  pull(workclass)
 
-# categorical case -- example
-census_boot_sub <- census_boot %>%
-  filter(workclass %in% highinc_categories)
+highinc_categories
 ```
 
-::: callout-important
-## Action
+The vector `highinc_categories` contains categories where more than half the sampled observations earn `>50K`.
 
-**Find a second split**
+**What if there aren't any?** If `highinc_categories` is empty, that's fine. Instead, choose one or more categories with relatively **high proportions** of `>50K` observations. For example, you can choose the category at the top of your table:
 
-1.  Repeat step 3a but with the filtered data `census_boot_sub` instead of the full bootstrap sample.
-2.  Write down the rule.
-:::
-
-### Step 4: draw the tree
-
-We could in theory keep creating binary splits until all observations are correctly classified. However, since we're doing this by hand and just for illustration purposes, we'll stop after two splits -- it'll be more of a sapling than a fully grown tree.
-
-::: callout-important
-## Action
-
-**Make a diagram**
-
-Draw your tree on your group's whiteboard. It should have just one 'root' node and just three 'leaf' nodes.
-:::
-
-## Classifying a new observation
-
-Use your tree to determine how to classify the following observation:
-
-```{r}
-census %>%
-  sample_n(size = 1) %>%
-  t() %>%
-  knitr::kable()
+```{r categorical-fallback}
+# Run this ONLY if highinc_categories was empty,
+# or replace it with your own selected categories.
+highinc_categories <- category_summary %>%
+  slice(1) %>%
+  pull(workclass)
 ```
+
+Either way, `highinc_categories` should contain the categories you decide to put on the **higher-income side** of the first split. The remaining categories go on the lower-income side.
+
+**Action: Make your first split**
+
+1. Choose whichever of your two predictors seems to distinguish income groups more clearly.
+2. If continuous, select a cutoff and decide which side has the higher proportion of high earners. If categorical, select the categories for the higher-income side.
+3. Save the cutoff in `cutoff` **or** save the selected category names in `highinc_categories`, as appropriate.
+4. Write down your splitting rule and indicate which branch has the higher proportion of high earners.
+
+### Step 3b: Split the lower-income side again
+
+Your first split separated observations into a higher-income side and a lower-income side. But it probably didn't separate high earners from low earners perfectly: some actual high earners are likely in the lower-income side.
+
+Let's look for a second split **within that lower-income side**. Importantly, we're following the **first splitting rule**, not filtering on the actual `income` values.
+
+First, make a subset containing only the observations on the lower-income side of your first split. Use **one** of the following examples, depending on your first predictor.
+
+```{r filter-low-continuous}
+# CONTINUOUS first split: example assumes age >= cutoff
+# was the higher-income side.
+# Replace age with your chosen predictor, and reverse the
+# inequality if necessary.
+low_branch <- train %>%
+  filter(age < cutoff)
+```
+
+```{r filter-low-categorical}
+# CATEGORICAL first split: the selected categories were
+# the higher-income side, so keep all OTHER categories.
+# Replace workclass with your chosen predictor.
+low_branch <- train %>%
+  filter(!(workclass %in% highinc_categories))
+```
+
+Notice the `!` in the categorical example: it keeps the categories **not** assigned to the higher-income branch.
+
+```{r inspect-low-branch}
+# Check the actual income classes in this subset
+low_branch %>%
+  count(income)
+```
+
+**Action: Find your second split**
+
+1. Repeat the exploration from Step 3a, but use **`low_branch` instead of `train`**.
+2. You may use **either** of your two assigned predictors, including the predictor you used for the first split.
+3. Choose another binary split that you think separates high earners and low earners within this subset. Make sure it actually produces two nonempty groups.
+4. Write down the second splitting rule. For each resulting group, determine whether `<=50K` or `>50K` is the majority class. The two groups **do not have to have different majority classes**.
+
+If you use a categorical predictor again, make a **new** category vector for the second split (for example, `highinc_categories_2`) rather than overwriting the one used in the first split.
+
+### Step 4: Draw your tree
+
+We'll stop after two splits. Your tree should have one **root node**, two **internal splitting decisions** in total (the root decision and one more decision on the lower-income side), and **three terminal (leaf) nodes**.
+
+A leaf predicts whichever income category is **most common among the training observations that reach that leaf**. This means the two leaves created by your second split might both predict `<=50K`—and that's okay.
+
+**Action: Draw your tree on your group's whiteboard**
+
+- At the root, write your first predictor and splitting rule.
+- On the higher-income side of that split, draw a terminal leaf.
+- On the lower-income side, draw your second splitting rule with its two terminal leaves.
+- Label **all three leaves** with their predicted class (`<=50K` or `>50K`), based on the majority class in each leaf.
+
+As a quick check, your diagram should have **exactly two splits and three leaves**. You can use `count(income)` on the observations in a leaf to check its majority class.
+
+## Classifying an observation
+
+Let's use your tree to predict the income category of one randomly selected person from the original data. This is practice **following the decision rules**, not an evaluation of out-of-sample accuracy.
+
+```{r classify-new}
+new_person <- census %>%
+  slice_sample(n = 1)
+
+# Show only the two predictors your group was allowed to use
+new_person %>%
+  select(all_of(predictors))
+```
+
+**Action: Classify the observation**
+
+Follow your first rule, then your second rule **if the observation goes down the lower-income branch**. Record the income class predicted by the terminal leaf it reaches. **Make your prediction before revealing the actual income.**
+
+```{r check-prediction}
+# Check whether your predicted category was correct
+new_person %>%
+  select(income)
+```
+
+Did your tree predict the correct class? If not, does that necessarily mean your tree was constructed incorrectly?
 
 ## Algorithmic considerations
 
-You just did a loose version of what's known as *recursive partitioning --* repeatedly splitting the data. That's a specific method of constructing a tree.
+You just constructed a simplified **classification tree** using *recursive partitioning*: repeatedly dividing observations according to rules involving predictor variables.
 
-How did you decide which of your two variables to use? Could you write code to make the same choice automatically? This, it turns out, is the main challenge in fully automating the process. The recursive partitioning algorithm requires two things:
+Discuss with your group: How did you decide which predictor and split to use? Could you write code to make the same decision automatically? When should an algorithm stop splitting? And if you had more than two splits available, **which leaf would you split next**?
 
-1.  a criterion by which one split is considered 'better' than another
-2.  a stopping rule
+An automated tree-building algorithm needs at least two things:
 
-It is fairly simple to compute the best cutoff (or categorical mapping) for a given predictor -- one can do a brute-force search for the split that minimizes misclassifications. However, when there are many possible variables to split on, a criterion is needed to determine the best choice. You can read about how this is done in [MDSR 11.1.1](https://mdsr-book.github.io/mdsr2e/ch-learningI.html#decision-trees).
+1. **A criterion for choosing splits.** Classification-tree algorithms commonly use a measure of impurity such as **Gini impurity** or **entropy**, rather than relying on intuition or simply looking for groups with a high-income majority. A split can improve class separation even when both resulting groups predict the same class.
+2. **A stopping rule.** Continuing to split until the training data are classified as well as possible can produce a tree that overfits. Depending on the predictors, it may not even be possible to classify every training observation correctly.
+
+One final simplification: we drew a small sample with replacement and selected **two predictors once** for the whole activity. In a random forest, trees are generally built from bootstrap samples, and random subsets of candidate predictors are selected **again at each split**, not just once at the beginning.
+
+You can read more about how trees are constructed in [MDSR, Section 11.1.1](https://mdsr-book.github.io/mdsr2e/ch-learningI.html#decision-trees).

@@ -1,13 +1,13 @@
 ---
 title: "Random forests"
-subtitle: "PSTAT197A/CMPSC190DD Fall 2025"
+subtitle: "PSTAT197A Fall 2026"
 author: "Dr. Coburn"
 institute: 'UCSB'
 bibliography: refs.bib
 format: 
   revealjs:
     incremental: true
-    footer: 'PSTAT197A/CMPSC190DD Fall 2025'
+    footer: 'PSTAT197A Fall 2026'
     logo: 'img/ucsbds_hex.png'
     fig-width: 4
     fig-height: 2
@@ -210,19 +210,19 @@ If we do the correlation analysis this way, do the identified proteins pass mult
 
 ```{r}
 # do these pass multiple testing?
-m <- ncol(asd_clean) - 1
-hm <- log(m) + 1/(2*m) - digamma(1)
-
+# Compare unadjusted, BH, and BY p-values
 ados_slr %>%
-  mutate(rank = row_number(),
-         p.adj = p.value*m*hm/rank) %>%
-  slice_min(p.value, n = 10) %>%
-  select(protein, p.value, p.adj)
+  mutate(
+    p.BH = p.adjust(p.value, method = "BH"),
+    p.BY = p.adjust(p.value, method = "BY")
+  ) %>%
+  arrange(p.value) %>%
+  slice_head(n = 10)
 ```
 
 -   probably just introducing selection noise
 
--   but also, this result diverges considerably from the paper (?)
+-   this result diverges considerably from the paper
 
 ## Aside: correlation test {.scrollable}
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Activity: making trees – PSTAT 197A</title>
+<title>Activity: Making Trees – PSTAT 197A</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-4469d617958d98ac575a98bb526105ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-bcb4737e8fbcf1e9dfc00b59f8305558.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -122,13 +122,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#building-a-tree" id="toc-building-a-tree" class="nav-link active" data-scroll-target="#building-a-tree">Building a tree</a>
   <ul class="collapse">
-  <li><a href="#step-1-resample-the-data" id="toc-step-1-resample-the-data" class="nav-link" data-scroll-target="#step-1-resample-the-data">Step 1: resample the data</a></li>
-  <li><a href="#step-2-select-predictors-at-random" id="toc-step-2-select-predictors-at-random" class="nav-link" data-scroll-target="#step-2-select-predictors-at-random">Step 2: select predictors at random</a></li>
-  <li><a href="#step-3a-find-your-first-split" id="toc-step-3a-find-your-first-split" class="nav-link" data-scroll-target="#step-3a-find-your-first-split">Step 3a: find your first split</a></li>
-  <li><a href="#step-3b-find-your-second-split" id="toc-step-3b-find-your-second-split" class="nav-link" data-scroll-target="#step-3b-find-your-second-split">Step 3b: find your second split</a></li>
-  <li><a href="#step-4-draw-the-tree" id="toc-step-4-draw-the-tree" class="nav-link" data-scroll-target="#step-4-draw-the-tree">Step 4: draw the tree</a></li>
+  <li><a href="#step-1-resample-the-data" id="toc-step-1-resample-the-data" class="nav-link" data-scroll-target="#step-1-resample-the-data">Step 1: Resample the data</a></li>
+  <li><a href="#step-2-select-predictors-at-random" id="toc-step-2-select-predictors-at-random" class="nav-link" data-scroll-target="#step-2-select-predictors-at-random">Step 2: Select predictors at random</a></li>
+  <li><a href="#step-3a-find-your-first-split" id="toc-step-3a-find-your-first-split" class="nav-link" data-scroll-target="#step-3a-find-your-first-split">Step 3a: Find your first split</a></li>
+  <li><a href="#step-3b-split-the-lower-income-side-again" id="toc-step-3b-split-the-lower-income-side-again" class="nav-link" data-scroll-target="#step-3b-split-the-lower-income-side-again">Step 3b: Split the lower-income side again</a></li>
+  <li><a href="#step-4-draw-your-tree" id="toc-step-4-draw-your-tree" class="nav-link" data-scroll-target="#step-4-draw-your-tree">Step 4: Draw your tree</a></li>
   </ul></li>
-  <li><a href="#classifying-a-new-observation" id="toc-classifying-a-new-observation" class="nav-link" data-scroll-target="#classifying-a-new-observation">Classifying a new observation</a></li>
+  <li><a href="#classifying-an-observation" id="toc-classifying-an-observation" class="nav-link" data-scroll-target="#classifying-an-observation">Classifying an observation</a></li>
   <li><a href="#algorithmic-considerations" id="toc-algorithmic-considerations" class="nav-link" data-scroll-target="#algorithmic-considerations">Algorithmic considerations</a></li>
   </ul>
 </nav>
@@ -138,7 +138,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Activity: making trees</h1>
+<h1 class="title">Activity: Making Trees</h1>
 </div>
 
 
@@ -155,348 +155,240 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>For the purposes of this activity we’ll use data from the 1994 census (there are fewer variables than the proteomics data and sometimes a little variety is nice).</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Action
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>On the group workstation at your table, have one person open a new R script and copy-paste the chunk below to load the data.</p>
-<p>You will not need to store a copy of your work (unless you want to) – so the script is just to be able to perform some simple calculations during class.</p>
-</div>
-</div>
+<p>For this activity, we’ll use data derived from the 1994 U.S. Census (the <em>Adult</em> dataset from the <a href="https://archive.ics.uci.edu/dataset/2/adult">UCI Machine Learning Repository</a>). There are fewer variables than in our proteomics data, and a little variety is nice.</p>
+<p><strong>Action: Get set up</strong></p>
+<p>On the group workstation at your table <strong>or</strong> on one of your laptops, have one person open a new R script. Copy and run the following code to load the data.</p>
+<p>You don’t need to save your work (unless you want to). The script is just a convenient way to perform calculations during class.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data location</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"http://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data location</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># import</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(url,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"age"</span>, </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"workclass"</span>, </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"fnlwgt"</span>, </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"education"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"education_1"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"marital_status"</span>,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"occupation"</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"relationship"</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"race"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"sex"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"capital_gain"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"capital_loss"</span>,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"hours_per_week"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"native_country"</span>,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"income"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">factor</span>(income)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>fnlwgt, <span class="sc">-</span>education_1)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>census <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 13
-    age workclass   education marital_status occupation relationship race  sex  
-  &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;      &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;
-1    39 State-gov   Bachelors Never-married  Adm-cleri… Not-in-fami… White Male 
-2    50 Self-emp-n… Bachelors Married-civ-s… Exec-mana… Husband      White Male 
-3    38 Private     HS-grad   Divorced       Handlers-… Not-in-fami… White Male 
-4    53 Private     11th      Married-civ-s… Handlers-… Husband      Black Male 
-# ℹ 5 more variables: capital_gain &lt;dbl&gt;, capital_loss &lt;dbl&gt;,
-#   hours_per_week &lt;dbl&gt;, native_country &lt;chr&gt;, income &lt;fct&gt;</code></pre>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the data</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>census <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  url,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"age"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                <span class="st">"workclass"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"fnlwgt"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                <span class="st">"education"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>                <span class="st">"education_1"</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>                <span class="st">"marital_status"</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>                <span class="st">"occupation"</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                <span class="st">"relationship"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"race"</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"sex"</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"capital_gain"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"capital_loss"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"hours_per_week"</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"native_country"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"income"</span>),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_col_types =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income =</span> <span class="fu">factor</span>(income, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"&lt;=50K"</span>, <span class="st">"&gt;50K"</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>fnlwgt, <span class="sc">-</span>education_1)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(census, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<p>Your group’s job is to build a tree to classify high earners and low earners based on a bootstrap sample and a random subset of predictors.</p>
-<p>The <code>income</code> variable is the response or variable of interest; the rest are potential predictors.</p>
+<p>Your group’s task is to build a small <strong>classification tree</strong> that predicts whether someone earns more than $50,000 per year. You’ll use a sample of observations drawn with replacement and just two randomly selected predictors.</p>
+<p>The <code>income</code> variable is the <strong>response</strong>; the other variables are possible <strong>predictors</strong>. The response has two categories:</p>
+<ul>
+<li><code>&lt;=50K</code>: $50,000 or less per year (low income for this activity)</li>
+<li><code>&gt;50K</code>: more than $50,000 per year (high income for this activity)</li>
+</ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect repsonse</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>census <span class="sc">%&gt;%</span> <span class="fu">pull</span>(income) <span class="sc">%&gt;%</span> <span class="fu">str</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> Factor w/ 2 levels "&lt;=50K","&gt;50K": 1 1 1 1 1 1 1 2 2 2 ...</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(census<span class="sc">$</span>income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="building-a-tree" class="level2">
 <h2 class="anchored" data-anchor-id="building-a-tree">Building a tree</h2>
 <section id="step-1-resample-the-data" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-resample-the-data">Step 1: resample the data</h3>
-<p>First, draw a sample with replacement from the observations. This is known as a <em>bootstrap</em> sample. We’ll keep this relatively small to simplify matters.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Action
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Draw a bootstrap sample</strong></p>
-<p>Copy the code chunk below and execute once.</p>
+<h3 class="anchored" data-anchor-id="step-1-resample-the-data">Step 1: Resample the data</h3>
+<p>We’ll first draw a small sample <strong>with replacement</strong>. This uses the same idea as bootstrap sampling, but we’ll deliberately take only 200 observations to make the activity manageable.</p>
+<p><strong>Action: Draw your sample</strong></p>
+<p>Copy the code below into your R script and <strong>run it once</strong>. Keep this sample for the entire activity.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># resample data</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>census_boot <span class="ot">&lt;-</span> census <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> T)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>census_boot <span class="ot">&lt;-</span> census <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-<p>You will build your tree using this data.</p>
 </section>
 <section id="step-2-select-predictors-at-random" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-select-predictors-at-random">Step 2: select predictors at random</h3>
-<p>Next draw a set of predictors at random. We’ll also keep this set small so that you can develop the tree ‘by hand’.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Action
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Select two random predictors</strong></p>
-<p>Copy and paste the code chunk below into your script and execute once without modification.</p>
+<h3 class="anchored" data-anchor-id="step-2-select-predictors-at-random">Step 2: Select predictors at random</h3>
+<p>We’ll also limit your tree to two predictors so you can make the splitting decisions by hand.</p>
+<p><strong>Action: Select two predictors</strong></p>
+<p>Copy and run the code below <strong>once, without modification</strong>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># retrieve column names</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>possible_predictors <span class="ot">&lt;-</span> census <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>income) <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>()</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># grab 2 columns at random</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>predictors <span class="ot">&lt;-</span> <span class="fu">sample</span>(possible_predictors,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> <span class="dv">2</span>, </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">replace =</span> F)</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># select these columns from the bootstrap sample</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span> </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">c</span>(income, <span class="fu">any_of</span>(predictors)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All columns other than the response are possible predictors</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>possible_predictors <span class="ot">&lt;-</span> census <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>income) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw two predictor names at random</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>predictors <span class="ot">&lt;-</span> <span class="fu">sample</span>(possible_predictors,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">size =</span> <span class="dv">2</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">replace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>predictors</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only the response and your two selected predictors</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income, <span class="fu">all_of</span>(predictors))</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-</div>
-<p>You will build your tree using only these predictors from the bootstrap sample as <em>training</em> data.</p>
+<p>From now on, use <strong><code>train</code></strong>, not the full <code>census</code> data, when deciding where to split. Use <strong>only your two assigned predictors</strong>.</p>
 </section>
 <section id="step-3a-find-your-first-split" class="level3">
-<h3 class="anchored" data-anchor-id="step-3a-find-your-first-split">Step 3a: find your first split</h3>
-<p>Now your job is to choose exactly one of the predictors to make a binary split of the data.</p>
+<h3 class="anchored" data-anchor-id="step-3a-find-your-first-split">Step 3a: Find your first split</h3>
+<p>Choose one of your two predictors and use it to divide the observations into <strong>two groups</strong>.</p>
+<p>For a <strong>continuous (numeric) predictor</strong>, choose a cutoff. For example, one group could have <code>age &gt;= 35</code>, and the other could have <code>age &lt; 35</code>.</p>
+<p>For a <strong>categorical predictor</strong>, choose which categories go together in one group and put all remaining categories in the other group.</p>
+<p>Your goal is to make one group with a <strong>higher proportion of high earners</strong> and another with a <strong>lower proportion of high earners</strong>. Ideally, the first group will actually have a majority of high earners, but that might not be possible with your two random predictors.</p>
+<p><strong>You do not need to optimize the split mathematically.</strong> Use the following code as a guide, make a reasonable choice, and move on.</p>
+<section id="if-your-predictor-is-continuous" class="level4">
+<h4 class="anchored" data-anchor-id="if-your-predictor-is-continuous">If your predictor is continuous</h4>
+<p>Replace <code>age</code> with one of your selected continuous predictors. You can change <code>35</code> to experiment with different cutoffs.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the relationship between a predictor and income</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> income)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>, <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">35</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the income proportions on each side of the proposed cutoff</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>train <span class="sc">%&gt;%</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">side =</span> <span class="fu">if_else</span>(age <span class="sc">&gt;=</span> cutoff,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"At or above cutoff"</span>,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Below cutoff"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(side, income) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(side) <span class="sc">%&gt;%</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>These are <strong>within-group</strong> proportions: compare the proportion earning <code>&gt;50K</code> on one side of the cutoff with that on the other side. If the larger values are <em>less</em> associated with high income, reverse which side you call the higher-income side.</p>
+</section>
+<section id="if-your-predictor-is-categorical" class="level4">
+<h4 class="anchored" data-anchor-id="if-your-predictor-is-categorical">If your predictor is categorical</h4>
+<p>Replace <code>workclass</code> with one of your selected categorical predictors. The table shows how often each income category occurs within each predictor category.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>category_summary <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(workclass, income) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> income,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> n,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop_high =</span> <span class="st">`</span><span class="at">&gt;50K</span><span class="st">`</span> <span class="sc">/</span> (<span class="st">`</span><span class="at">&lt;=50K</span><span class="st">`</span> <span class="sc">+</span> <span class="st">`</span><span class="at">&gt;50K</span><span class="st">`</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">majority_high =</span> <span class="st">`</span><span class="at">&gt;50K</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="st">`</span><span class="at">&lt;=50K</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(prop_high))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>category_summary</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Identify categories with a majority of high-income observations</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>highinc_categories <span class="ot">&lt;-</span> category_summary <span class="sc">%&gt;%</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(majority_high) <span class="sc">%&gt;%</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(workclass)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>highinc_categories</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The vector <code>highinc_categories</code> contains categories where more than half the sampled observations earn <code>&gt;50K</code>.</p>
+<p><strong>What if there aren’t any?</strong> If <code>highinc_categories</code> is empty, that’s fine. Instead, choose one or more categories with relatively <strong>high proportions</strong> of <code>&gt;50K</code> observations. For example, you can choose the category at the top of your table:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this ONLY if highinc_categories was empty,</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or replace it with your own selected categories.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>highinc_categories <span class="ot">&lt;-</span> category_summary <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(workclass)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Either way, <code>highinc_categories</code> should contain the categories you decide to put on the <strong>higher-income side</strong> of the first split. The remaining categories go on the lower-income side.</p>
+<p><strong>Action: Make your first split</strong></p>
+<ol type="1">
+<li>Choose whichever of your two predictors seems to distinguish income groups more clearly.</li>
+<li>If continuous, select a cutoff and decide which side has the higher proportion of high earners. If categorical, select the categories for the higher-income side.</li>
+<li>Save the cutoff in <code>cutoff</code> <strong>or</strong> save the selected category names in <code>highinc_categories</code>, as appropriate.</li>
+<li>Write down your splitting rule and indicate which branch has the higher proportion of high earners.</li>
+</ol>
+</section>
+</section>
+<section id="step-3b-split-the-lower-income-side-again" class="level3">
+<h3 class="anchored" data-anchor-id="step-3b-split-the-lower-income-side-again">Step 3b: Split the lower-income side again</h3>
+<p>Your first split separated observations into a higher-income side and a lower-income side. But it probably didn’t separate high earners from low earners perfectly: some actual high earners are likely in the lower-income side.</p>
+<p>Let’s look for a second split <strong>within that lower-income side</strong>. Importantly, we’re following the <strong>first splitting rule</strong>, not filtering on the actual <code>income</code> values.</p>
+<p>First, make a subset containing only the observations on the lower-income side of your first split. Use <strong>one</strong> of the following examples, depending on your first predictor.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CONTINUOUS first split: example assumes age &gt;= cutoff</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># was the higher-income side.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace age with your chosen predictor, and reverse the</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># inequality if necessary.</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>low_branch <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&lt;</span> cutoff)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CATEGORICAL first split: the selected categories were</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the higher-income side, so keep all OTHER categories.</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace workclass with your chosen predictor.</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>low_branch <span class="ot">&lt;-</span> train <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(workclass <span class="sc">%in%</span> highinc_categories))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Notice the <code>!</code> in the categorical example: it keeps the categories <strong>not</strong> assigned to the higher-income branch.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the actual income classes in this subset</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>low_branch <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Action: Find your second split</strong></p>
+<ol type="1">
+<li>Repeat the exploration from Step 3a, but use <strong><code>low_branch</code> instead of <code>train</code></strong>.</li>
+<li>You may use <strong>either</strong> of your two assigned predictors, including the predictor you used for the first split.</li>
+<li>Choose another binary split that you think separates high earners and low earners within this subset. Make sure it actually produces two nonempty groups.</li>
+<li>Write down the second splitting rule. For each resulting group, determine whether <code>&lt;=50K</code> or <code>&gt;50K</code> is the majority class. The two groups <strong>do not have to have different majority classes</strong>.</li>
+</ol>
+<p>If you use a categorical predictor again, make a <strong>new</strong> category vector for the second split (for example, <code>highinc_categories_2</code>) rather than overwriting the one used in the first split.</p>
+</section>
+<section id="step-4-draw-your-tree" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-draw-your-tree">Step 4: Draw your tree</h3>
+<p>We’ll stop after two splits. Your tree should have one <strong>root node</strong>, two <strong>internal splitting decisions</strong> in total (the root decision and one more decision on the lower-income side), and <strong>three terminal (leaf) nodes</strong>.</p>
+<p>A leaf predicts whichever income category is <strong>most common among the training observations that reach that leaf</strong>. This means the two leaves created by your second split might both predict <code>&lt;=50K</code>—and that’s okay.</p>
+<p><strong>Action: Draw your tree on your group’s whiteboard</strong></p>
 <ul>
-<li><p>for categorical variables, determine which categories you will classify as high-income vs.&nbsp;low-income</p></li>
-<li><p>for continuous variables, choose a cutoff value so that any observation greater/less than the cutoff is classified as a high/low (or vice-versa) earner</p></li>
+<li>At the root, write your first predictor and splitting rule.</li>
+<li>On the higher-income side of that split, draw a terminal leaf.</li>
+<li>On the lower-income side, draw your second splitting rule with its two terminal leaves.</li>
+<li>Label <strong>all three leaves</strong> with their predicted class (<code>&lt;=50K</code> or <code>&gt;50K</code>), based on the majority class in each leaf.</li>
 </ul>
-<p><strong><em>You do not need to make quantitatively rigorous choices.</em></strong> Try to make a choice that you think is reasonable, but don’t agonize over it. The code below might help you decide which variable to use and how to make the split: use it to inspect each of the two variables and decide which one better distinguishes the income groups.</p>
+<p>As a quick check, your diagram should have <strong>exactly two splits and three leaves</strong>. You can use <code>count(income)</code> on the observations in a leaf to check its majority class.</p>
+</section>
+</section>
+<section id="classifying-an-observation" class="level2">
+<h2 class="anchored" data-anchor-id="classifying-an-observation">Classifying an observation</h2>
+<p>Let’s use your tree to predict the income category of one randomly selected person from the original data. This is practice <strong>following the decision rules</strong>, not an evaluation of out-of-sample accuracy.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># comment out -- don't overwrite your bootstrap sample!</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>census_boot <span class="ot">&lt;-</span> census <span class="sc">%&gt;%</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> T)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># for continuous variables</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>census_boot <span class="sc">%&gt;%</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="co"># replace with predictor name </span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> income)) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">35</span>) <span class="co"># adjust cutoff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="making-trees_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>new_person <span class="ot">&lt;-</span> census <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Show only the two predictors your group was allowed to use</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>new_person <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">all_of</span>(predictors))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>census_boot <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> age, <span class="co"># replace with predictor name</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> ..density..)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">color =</span> income, <span class="at">fill =</span> income),</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">35</span>) <span class="co"># adjust cutoff</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="making-trees_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">&lt;-</span> <span class="dv">35</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for categorical variables</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>census_boot <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workclass, income) <span class="sc">%&gt;%</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(income, n) <span class="sc">%&gt;%</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">replace_na</span>(.x, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high.inc =</span> <span class="st">`</span><span class="at">&lt;=50K</span><span class="st">`</span> <span class="sc">&gt;</span> <span class="st">`</span><span class="at">&gt;50K</span><span class="st">`</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 4
-# Groups:   workclass [8]
-  workclass        `&lt;=50K` `&gt;50K` high.inc
-  &lt;chr&gt;              &lt;int&gt;  &lt;int&gt; &lt;lgl&gt;   
-1 ?                      8      1 TRUE    
-2 Federal-gov            7      1 TRUE    
-3 Local-gov              9      3 TRUE    
-4 Private              121     23 TRUE    
-5 Self-emp-inc           2      0 TRUE    
-6 Self-emp-not-inc       9      5 TRUE    
-7 State-gov              8      2 TRUE    
-8 Without-pay            1      0 TRUE    </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pick out categories that are majority high income</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>highinc_categories <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(workclass, <span class="co"># replace with predictor name</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>           income) <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(income, n) <span class="sc">%&gt;%</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">replace_na</span>(.x, <span class="dv">0</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">high.inc =</span> <span class="st">`</span><span class="at">&lt;=50K</span><span class="st">`</span> <span class="sc">&lt;</span> <span class="st">`</span><span class="at">&gt;50K</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(high.inc <span class="sc">==</span> T) <span class="sc">%&gt;%</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(workclass) <span class="co"># replace with predictor name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Action
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Make your first split</strong></p>
-<ol type="1">
-<li>Choose whichever of the two predictors you think best distinguishes the high income and low income groups.</li>
-<li>Find a cutoff value if the variable is continuous, or the categories that you will classify as high income if the variable is categorical.</li>
-<li>If categorical, store a vector of the category names that are classified as high income (see code above). If continuous, store the cutoff value.</li>
-<li>Write down the rule.</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="step-3b-find-your-second-split" class="level3">
-<h3 class="anchored" data-anchor-id="step-3b-find-your-second-split">Step 3b: find your second split</h3>
-<p>Now filter the data to just those rows classified as (but not necessarily actually) high income based on your first split.</p>
+<p><strong>Action: Classify the observation</strong></p>
+<p>Follow your first rule, then your second rule <strong>if the observation goes down the lower-income branch</strong>. Record the income class predicted by the terminal leaf it reaches. <strong>Make your prediction before revealing the actual income.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># continuous case -- example</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>census_boot_sub <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(age <span class="sc">&gt;</span> cutoff)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># categorical case -- example</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>census_boot_sub <span class="ot">&lt;-</span> census_boot <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(workclass <span class="sc">%in%</span> highinc_categories)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check whether your predicted category was correct</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>new_person <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Action
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Find a second split</strong></p>
-<ol type="1">
-<li>Repeat step 3a but with the filtered data <code>census_boot_sub</code> instead of the full bootstrap sample.</li>
-<li>Write down the rule.</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="step-4-draw-the-tree" class="level3">
-<h3 class="anchored" data-anchor-id="step-4-draw-the-tree">Step 4: draw the tree</h3>
-<p>We could in theory keep creating binary splits until all observations are correctly classified. However, since we’re doing this by hand and just for illustration purposes, we’ll stop after two splits – it’ll be more of a sapling than a fully grown tree.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Action
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Make a diagram</strong></p>
-<p>Draw your tree on your group’s whiteboard. It should have just one ‘root’ node and just three ‘leaf’ nodes.</p>
-</div>
-</div>
-</section>
-</section>
-<section id="classifying-a-new-observation" class="level2">
-<h2 class="anchored" data-anchor-id="classifying-a-new-observation">Classifying a new observation</h2>
-<p>Use your tree to determine how to classify the following observation:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>census <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_n</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">age</td>
-<td style="text-align: left;">60</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">workclass</td>
-<td style="text-align: left;">Private</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">education</td>
-<td style="text-align: left;">Some-college</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">marital_status</td>
-<td style="text-align: left;">Married-civ-spouse</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">occupation</td>
-<td style="text-align: left;">Sales</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">relationship</td>
-<td style="text-align: left;">Husband</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">race</td>
-<td style="text-align: left;">White</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">sex</td>
-<td style="text-align: left;">Male</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">capital_gain</td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">capital_loss</td>
-<td style="text-align: left;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">hours_per_week</td>
-<td style="text-align: left;">40</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">native_country</td>
-<td style="text-align: left;">United-States</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">income</td>
-<td style="text-align: left;">&gt;50K</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p>Did your tree predict the correct class? If not, does that necessarily mean your tree was constructed incorrectly?</p>
 </section>
 <section id="algorithmic-considerations" class="level2">
 <h2 class="anchored" data-anchor-id="algorithmic-considerations">Algorithmic considerations</h2>
-<p>You just did a loose version of what’s known as <em>recursive partitioning –</em> repeatedly splitting the data. That’s a specific method of constructing a tree.</p>
-<p>How did you decide which of your two variables to use? Could you write code to make the same choice automatically? This, it turns out, is the main challenge in fully automating the process. The recursive partitioning algorithm requires two things:</p>
+<p>You just constructed a simplified <strong>classification tree</strong> using <em>recursive partitioning</em>: repeatedly dividing observations according to rules involving predictor variables.</p>
+<p>Discuss with your group: How did you decide which predictor and split to use? Could you write code to make the same decision automatically? When should an algorithm stop splitting? And if you had more than two splits available, <strong>which leaf would you split next</strong>?</p>
+<p>An automated tree-building algorithm needs at least two things:</p>
 <ol type="1">
-<li>a criterion by which one split is considered ‘better’ than another</li>
-<li>a stopping rule</li>
+<li><strong>A criterion for choosing splits.</strong> Classification-tree algorithms commonly use a measure of impurity such as <strong>Gini impurity</strong> or <strong>entropy</strong>, rather than relying on intuition or simply looking for groups with a high-income majority. A split can improve class separation even when both resulting groups predict the same class.</li>
+<li><strong>A stopping rule.</strong> Continuing to split until the training data are classified as well as possible can produce a tree that overfits. Depending on the predictors, it may not even be possible to classify every training observation correctly.</li>
 </ol>
-<p>It is fairly simple to compute the best cutoff (or categorical mapping) for a given predictor – one can do a brute-force search for the split that minimizes misclassifications. However, when there are many possible variables to split on, a criterion is needed to determine the best choice. You can read about how this is done in <a href="https://mdsr-book.github.io/mdsr2e/ch-learningI.html#decision-trees">MDSR 11.1.1</a>.</p>
+<p>One final simplification: we drew a small sample with replacement and selected <strong>two predictors once</strong> for the whole activity. In a random forest, trees are generally built from bootstrap samples, and random subsets of candidate predictors are selected <strong>again at each split</strong>, not just once at the beginning.</p>
+<p>You can read more about how trees are constructed in <a href="https://mdsr-book.github.io/mdsr2e/ch-learningI.html#decision-trees">MDSR, Section 11.1.1</a>.</p>
 
 
 </section>

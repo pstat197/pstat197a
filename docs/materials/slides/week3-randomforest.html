@@ -194,7 +194,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Random forests</h1>
-  <p class="subtitle">PSTAT197A/CMPSC190DD Fall 2025</p>
+  <p class="subtitle">PSTAT197A Fall 2026</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -255,8 +255,8 @@ Dr.&nbsp;Coburn
 # Groups:   group [2]
   group  ados
   &lt;chr&gt; &lt;dbl&gt;
-1 ASD      18
-2 ASD      10
+1 ASD      20
+2 ASD       6
 3 TD       NA
 4 TD       NA</code></pre>
 </div>
@@ -377,24 +377,24 @@ Dr.&nbsp;Coburn
 <p>If we do the correlation analysis this way, do the identified proteins pass multiple testing significance thresholds?</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 3
-   protein          p.value  p.adj
-   &lt;chr&gt;              &lt;dbl&gt;  &lt;dbl&gt;
- 1 CO8A1            0.00131 0.0145
- 2 C5b, 6 Complex   0.00290 0.0342
- 3 Thrombospondin-1 0.00635 0.112 
- 4 ILT-2            0.00664 0.0641
- 5 TRAIL R4         0.00933 1.29  
- 6 HCE000414        0.00950 0.916 
- 7 C1r              0.0110  0.242 
- 8 GM-CSF           0.0110  0.124 
- 9 Angiogenin       0.0130  0.142 
-10 HCG              0.0149  0.159 </code></pre>
+<pre><code># A tibble: 10 × 5
+   protein          estimate p.value  p.BH  p.BY
+   &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 CO8A1               0.391 0.00131 0.990     1
+ 2 C5b, 6 Complex     -0.401 0.00290 0.990     1
+ 3 Thrombospondin-1    0.317 0.00635 0.990     1
+ 4 ILT-2              -0.546 0.00664 0.990     1
+ 5 TRAIL R4            0.353 0.00933 0.990     1
+ 6 HCE000414          -0.278 0.00950 0.990     1
+ 7 C1r                -0.341 0.0110  0.990     1
+ 8 GM-CSF              0.345 0.0110  0.990     1
+ 9 Angiogenin         -0.314 0.0130  0.990     1
+10 HCG                 0.306 0.0149  0.990     1</code></pre>
 </div>
 </div>
 <ul>
 <li class="fragment"><p>probably just introducing selection noise</p></li>
-<li class="fragment"><p>but also, this result diverges considerably from the paper (?)</p></li>
+<li class="fragment"><p>this result diverges considerably from the paper</p></li>
 </ul>
 </section>
 <section id="aside-correlation-test" class="slide level2 scrollable">
@@ -594,7 +594,7 @@ Dr.&nbsp;Coburn
   <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="img/ucsbds_hex.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>PSTAT197A/CMPSC190DD Fall 2025</p>
+<p>PSTAT197A Fall 2026</p>
 </div>
 </div></div>
 
