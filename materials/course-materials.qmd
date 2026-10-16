@@ -70,7 +70,9 @@ bibliography: slides/refs.bib
 
     -   read @hewitson2021blood
     
-    -   second team assignment will be due **Friday, October 30, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1BSsl1FtXu83OOwElCNxNuGs3LhOga6dcVtgzAbx3DWQ/edit?usp=sharing)\]
+    -   fill out [\[self/peer evaluation form about group work on Module 0](https://forms.gle/3bahKUYxb2EcafB66)\], **due Tuesday, October 20th, 11:59 PM PST**.
+    
+    -   second team assignment will be due **Friday, October 30th, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1BSsl1FtXu83OOwElCNxNuGs3LhOga6dcVtgzAbx3DWQ/edit?usp=sharing)\]
 
 <!-- -   prepare a [reading response](https://forms.gle/Ya6ugnW8F1ndXDvS8) -->
 
