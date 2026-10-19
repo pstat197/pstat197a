@@ -40,10 +40,9 @@ This schedule is tentative and may be adjusted at the discretion of the instruct
 |            |                            |                                                   |                                                 |                                  |
 |            |                            | -   on multiclass classification                  | -   measuring classification accuracy           |                                  |
 +------------+----------------------------+---------------------------------------------------+-------------------------------------------------+----------------------------------+
-| 7          | Module 3: soil temperature | 3.1 Discussion/lecture:                           | 3.2 Lecture:                                    |                                  |
-|            |                            | -   time series analysis                          |                                                 |                                  |
-|            |                            |                                                   | -   on time                                     |                                  |
-|            |                            | -   sharing results of biomarker analysis;        |.                                                |                                  |
+| 7          | Module 3: soil temperature | 3.1 Discussion/lecture: - time series analysis    | 3.2 Lecture:                                    |                                  |
+|            |                            |                                                   |                                                 |                                  |
+|            |                            | -   sharing results of biomarker analysis;        | -   on time .                                   |                                  |
 |            |                            |                                                   |                                                 |                                  |
 |            |                            | -   introducing soil temperature data             |                                                 |                                  |
 +------------+----------------------------+---------------------------------------------------+-------------------------------------------------+----------------------------------+

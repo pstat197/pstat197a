@@ -20,6 +20,7 @@ execute:
   cache: true
 ---
 
+```{=html}
 <!--
 INSTRUCTOR PLAN
 
@@ -35,6 +36,7 @@ Detailed review and code are retained after "Next time" as reference slides.
 They are not part of the planned live sequence.
 
 -->
+```
 
 ```{r}
 #| label: setup-biomarkers
@@ -62,11 +64,9 @@ asd_resp <- asd_clean %>% pull(group) %>% factor()
 
 ## Announcements/reminders
 
--   Next assignment posted on class website
+-   Module 1 template repository uploaded to GitHub organization
 
-    -   Due 
-
--   Any feedback on the first group assignment?
+    -   Due Friday, October 30th, 11:59 PM
 
 ## Today
 
@@ -77,8 +77,7 @@ asd_resp <- asd_clean %>% pull(group) %>% factor()
 -   Guest session: cloud computing setup
 
 ::: notes
-Keep the modeling review brief. Most students have encountered these methods
-in PSTAT 131. The reference slides contain additional explanation and code.
+Keep the modeling review brief. Most students have encountered these methods in PSTAT 131. The reference slides contain additional explanation and code.
 :::
 
 ## Random forests: recap
@@ -123,9 +122,7 @@ rf_out$importance %>%
 ```
 
 ::: notes
-Spend about two minutes here. An importance score describes the fitted model.
-It does not establish a biological mechanism or provide a significance test.
-Correlated predictors can complicate interpretation of individual rankings.
+Spend about two minutes here. An importance score describes the fitted model. It does not establish a biological mechanism or provide a significance test. Correlated predictors can complicate interpretation of individual rankings.
 :::
 
 ## Selecting a core panel
@@ -176,9 +173,7 @@ knitr::kable(tibble(Protein = s_star))
 ```
 
 ::: notes
-The supplied code intersects two lists, so the text now consistently says
-two methods. Selecting the top 10 is a ranking rule, not a significance cutoff.
-The BY adjustment now uses p.adjust rather than a hand-computed approximation.
+The supplied code intersects two lists, so the text now consistently says two methods. Selecting the top 10 is a ranking rule, not a significance cutoff. The BY adjustment now uses p.adjust rather than a hand-computed approximation.
 :::
 
 ## Logistic regression: recap
@@ -213,8 +208,7 @@ fit <- glm(group ~ ., family = 'binomial', data = asd_sub)
 The modeling function is the same whether we include one protein or several.
 
 ::: notes
-Use this as a short code walkthrough rather than a live coding exercise.
-The panel selection and model fit do not depend on anything in the guest block.
+Use this as a short code walkthrough rather than a live coding exercise. The panel selection and model fit do not depend on anything in the guest block.
 :::
 
 ## Measuring classification accuracy
@@ -261,8 +255,7 @@ class_metrics(pred_df, truth = group, estimate = pred_class,
 To evaluate predictions for new subjects, repeat preprocessing and protein selection within the training portion of each split, then evaluate on held-out observations.
 
 ::: notes
-Ask briefly why holding out data only after selecting the proteins would still
-leak information. Save an extended design discussion for Thursday.
+Ask briefly why holding out data only after selecting the proteins would still leak information. Save an extended design discussion for Thursday.
 :::
 
 # Cloud computing
@@ -271,6 +264,7 @@ leak information. Save an extended design discussion for Thursday.
 
 *Guest lecture material to be added here.*
 
+```{=html}
 <!-- BEGIN GUEST MATERIAL
 
 Replace the placeholder above and insert as many slides as needed here.
@@ -278,6 +272,7 @@ This block reserves the remaining instructional time after the 20-25 minute
 classification introduction, allowing a brief closing at the end.
 
 END GUEST MATERIAL -->
+```
 
 ## Next time
 
@@ -300,12 +295,19 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## Random forest settings -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: true -->
+
 <!-- #| eval: false -->
+
 <!-- rf_out <- randomForest(x = asd_preds, -->
+
 <!--                        y = asd_resp, -->
+
 <!--                        ntree = 1000, -->
+
 <!--                        importance = TRUE) -->
+
 <!-- ``` -->
 
 <!-- Settings include the number of trees, predictors considered ***at each split***, bootstrap sample size, and node size. -->
@@ -329,7 +331,9 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- For child-node proportions $w_L$ and $w_R$, the reduction in impurity is -->
 
 <!-- $$ -->
+
 <!-- h(\text{parent}) - \left[w_L h(\text{left}) + w_R h(\text{right})\right]. -->
+
 <!-- $$ -->
 
 <!-- ## Interpreting importance -->
@@ -347,7 +351,9 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## Random forest classification results -->
 
 <!-- ```{r} -->
+
 <!-- rf_out$confusion %>% knitr::kable() -->
+
 <!-- ``` -->
 
 <!-- The confusion matrix returned by `randomForest()` uses ***out-of-bag*** predictions. -->
@@ -361,42 +367,69 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## Code: multiple testing {.scrollable} -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: true -->
+
 <!-- #| eval: false -->
+
 <!-- tt_fn <- function(.df){ -->
+
 <!--   infer::t_test(.df, -->
+
 <!--                formula = level ~ group, -->
+
 <!--                alternative = 'two-sided', -->
+
 <!--                order = c('ASD', 'TD'), -->
+
 <!--                var.equal = FALSE) -->
+
 <!-- } -->
 
 <!-- test_results <- asd_clean %>% -->
+
 <!--   pivot_longer(-group, names_to = 'protein', values_to = 'level') %>% -->
+
 <!--   nest(data = c(group, level)) %>% -->
+
 <!--   mutate(test = map(data, tt_fn)) %>% -->
+
 <!--   unnest(test) %>% -->
+
 <!--   mutate(p.adj = p.adjust(p_value, method = 'BY')) -->
 
 <!-- s1 <- test_results %>% -->
+
 <!--   arrange(p.adj, p_value, protein) %>% -->
+
 <!--   slice_head(n = 10) %>% -->
+
 <!--   pull(protein) -->
+
 <!-- ``` -->
 
 <!-- ## Code: core panel -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: true -->
+
 <!-- #| eval: false -->
+
 <!-- s2 <- rf_out$importance %>% -->
+
 <!--   as_tibble(rownames = 'protein') %>% -->
+
 <!--   arrange(desc(MeanDecreaseGini), protein) %>% -->
+
 <!--   slice_head(n = 10) %>% -->
+
 <!--   pull(protein) -->
 
 <!-- s_star <- intersect(s1, s2) -->
+
 <!-- s_star -->
+
 <!-- ``` -->
 
 <!-- The intersection requires agreement between the two ranking methods. Its membership can vary across samples. -->
@@ -404,9 +437,13 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## The Bernoulli distribution -->
 
 <!-- $$ -->
+
 <!-- Y \sim \operatorname{Bernoulli}(p) -->
+
 <!-- \quad\Longleftrightarrow\quad -->
+
 <!-- P(Y=y)=p^y(1-p)^{1-y},\qquad y\in\{0,1\}. -->
+
 <!-- $$ -->
 
 <!-- This gives $P(Y=1)=p$ and $P(Y=0)=1-p$. -->
@@ -420,9 +457,13 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- For conditionally independent observations, -->
 
 <!-- $$ -->
+
 <!-- Y_i\mid X_i=x_i\sim\operatorname{Bernoulli}(p_i), -->
+
 <!-- \qquad -->
+
 <!-- \log\left(\frac{p_i}{1-p_i}\right)=\beta_0+\sum_{j=1}^p\beta_jx_{ij}. -->
+
 <!-- $$ -->
 
 <!-- For an additive model, a one-unit increase in $x_j$, holding other predictors fixed, changes: -->
@@ -436,18 +477,29 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## The model, visually -->
 
 <!-- $$ -->
+
 <!-- p_i=\frac{1}{1+e^{-x_i^T\beta}} -->
+
 <!-- $$ -->
 
 <!-- ```{r} -->
+
 <!-- #| fig-width: 6 -->
+
 <!-- #| fig-height: 3 -->
+
 <!-- #| fig-align: center -->
+
 <!-- fx <- function(x, a, b){ -->
+
 <!--   1/(1 + exp(-(a + x*b))) -->
+
 <!-- } -->
+
 <!-- curve(fx(x, 0, 1), from = -10, to = 10, -->
+
 <!--       xlab = 'x', ylab = 'P(Y = 1)') -->
+
 <!-- ``` -->
 
 <!-- ## Maximum likelihood -->
@@ -457,7 +509,9 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- Equivalently, minimize the negative log-likelihood: -->
 
 <!-- $$ -->
+
 <!-- \hat{\beta}=\arg\min_\beta\{-\ell(\beta;x,y)\}. -->
+
 <!-- $$ -->
 
 <!-- `glm()` fits the model using iteratively reweighted least squares. -->
@@ -465,39 +519,63 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## Fitting with one predictor -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: true -->
+
 <!-- # Use asd_clean so DERM need not belong to the selected core panel. -->
+
 <!-- asd_one <- asd_clean %>% -->
+
 <!--   select(group, DERM) %>% -->
+
 <!--   mutate(group = (group == 'ASD')) -->
 
 <!-- fit_one <- glm(group ~ DERM, family = 'binomial', data = asd_one) -->
+
 <!-- fit_one %>% broom::tidy() %>% knitr::kable(digits = 3) -->
+
 <!-- ``` -->
 
 <!-- ## One-predictor fit, visually -->
 
 <!-- ```{r} -->
+
 <!-- #| fig-width: 5 -->
+
 <!-- #| fig-height: 3 -->
+
 <!-- #| fig-align: center -->
+
 <!-- #| fig-cap: Proportion of subjects in the ASD group within DERM bins (points) and fitted probability (curve). -->
+
 <!-- asd_one %>% -->
+
 <!--   mutate(derm_fct = cut_number(DERM, n = 7)) %>% -->
+
 <!--   group_by(derm_fct) %>% -->
+
 <!--   summarize(derm_avg = mean(DERM), asd_prop = mean(group), -->
+
 <!--             .groups = 'drop') %>% -->
+
 <!--   ggplot(aes(x = derm_avg, y = asd_prop)) + -->
+
 <!--   geom_point() + -->
+
 <!--   geom_function(fun = ~ fx(.x, coef(fit_one)[1], coef(fit_one)[2])) + -->
+
 <!--   labs(x = 'DERM level', y = 'P(ASD)') -->
+
 <!-- ``` -->
 
 <!-- ## Panel model coefficients {.scrollable} -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: true -->
+
 <!-- fit %>% broom::tidy() %>% knitr::kable(digits = 3) -->
+
 <!-- ``` -->
 
 <!-- These coefficients describe a model fitted after selecting predictors using the same data. Ordinary coefficient p-values do not account for that selection. -->
@@ -505,8 +583,11 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## Accuracy calculations -->
 
 <!-- |          | Predicted TD        | Predicted ASD       | -->
+
 <!-- |----------|---------------------|---------------------| -->
+
 <!-- | True TD  | True negative (TN)  | False positive (FP) | -->
+
 <!-- | True ASD | False negative (FN) | True positive (TP)  | -->
 
 <!-- -   Sensitivity: $TP/(TP+FN)$ -->
@@ -520,8 +601,11 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- Calculate sensitivity, specificity, and accuracy from this table. -->
 
 <!-- ```{r} -->
+
 <!-- tbl <- table(Actual = pred_df$group, Predicted = pred_df$pred_class) -->
+
 <!-- knitr::kable(addmargins(tbl)) -->
+
 <!-- ``` -->
 
 <!-- Then compare your results with `yardstick` on the next slide. -->
@@ -529,18 +613,29 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- ## Using `yardstick::metric_set()` -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: true -->
+
 <!-- #| eval: false -->
+
 <!-- class_metrics <- yardstick::metric_set( -->
+
 <!--   yardstick::sensitivity, -->
+
 <!--   yardstick::specificity, -->
+
 <!--   yardstick::accuracy -->
+
 <!-- ) -->
 
 <!-- class_metrics(pred_df, -->
+
 <!--               truth = group, -->
+
 <!--               estimate = pred_class, -->
+
 <!--               event_level = 'second') -->
+
 <!-- ``` -->
 
 <!-- The factor levels are `TD`, then `ASD`, so `event_level = 'second'` treats ASD as positive. -->
@@ -550,15 +645,25 @@ Section this week: office hours for setup troubleshooting and questions.
 <!-- Lowering the threshold tends to increase sensitivity and reduce specificity. Raising it tends to do the reverse. -->
 
 <!-- ```{r} -->
+
 <!-- #| fig-width: 4 -->
+
 <!-- #| fig-height: 3 -->
+
 <!-- #| fig-align: center -->
+
 <!-- pred_df %>% -->
+
 <!--   yardstick::roc_curve(truth = group, pred, event_level = 'second') %>% -->
+
 <!--   ggplot(aes(x = 1 - specificity, y = sensitivity)) + -->
+
 <!--   geom_path() + -->
+
 <!--   geom_abline(slope = 1, intercept = 0, linetype = 'dashed') + -->
+
 <!--   labs(x = '1 - specificity', y = 'Sensitivity') -->
+
 <!-- ``` -->
 
 <!-- This curve uses the same training predictions as the earlier metrics. -->

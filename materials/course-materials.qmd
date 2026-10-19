@@ -76,11 +76,11 @@ bibliography: slides/refs.bib
 
 <!-- -   prepare a [reading response](https://forms.gle/Ya6ugnW8F1ndXDvS8) -->
 
-<!-- ### Week 4 -->
+### Week 4
 
-<!-- -   ***Tuesday meeting:*** random forests cont'd; logistic regression \[[slides](slides/week4-logistic.qmd)\] -->
+-   ***Tuesday meeting:*** review of random forests, logistic regression; cloud computing and virtual machines \[[slides](slides/week4-logistic.qmd)\]
 
-<!-- -   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\] -->
+-   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\]
 
 <!-- -   ***Thursday meeting:*** LASSO regularization \[[slides](slides/week4-lasso.qmd)\] -->
 
