@@ -127,6 +127,7 @@ Spend about two minutes here. An importance score describes the fitted model. It
 
 ## Selecting a core panel
 
+::: {style="font-size: 0.85em;"}
 For this example, compare the top 10 proteins from:
 
 -   multiple testing, ranked by adjusted p-value
@@ -171,6 +172,7 @@ if (length(s_star) == 0L) {
 }
 knitr::kable(tibble(Protein = s_star))
 ```
+:::
 
 ::: notes
 The supplied code intersects two lists, so the text now consistently says two methods. Selecting the top 10 is a ranking rule, not a significance cutoff. The BY adjustment now uses p.adjust rather than a hand-computed approximation.
@@ -224,8 +226,8 @@ pred_df <- asd_sub %>%
                         levels = c(FALSE, TRUE), labels = c('TD', 'ASD'))
   )
 
-table(Actual = pred_df$group, Predicted = pred_df$pred_class) %>%
-  knitr::kable()
+table(Actual = pred_df$group, Predicted = pred_df$pred_class) #%>%
+#  knitr::kable()
 ```
 
 -   **Sensitivity:** proportion of ASD observations classified as ASD
