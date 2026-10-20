@@ -78,7 +78,7 @@ bibliography: slides/refs.bib
 
 ### Week 4
 
--   ***Tuesday meeting:*** review of random forests, logistic regression; cloud computing and virtual machines \[[slides](slides/week4-logistic.qmd)\]
+-   ***Tuesday meeting:*** review of random forests, logistic regression \[[slides](slides/week4-logistic.qmd)\]; cloud computing and virtual machines \[[slides](https://docs.google.com/presentation/d/1__cpeOmp3UxRWe38QVyk5c46o3lDiuRS4XKYfdu_AgE/edit?usp=sharing)\]
 
 -   ***Section meeting:*** logistic regression and classification metrics \[[activity](labs/lab4-logistic/lab4-logistic.qmd)\]
 
