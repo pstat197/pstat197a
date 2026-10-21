@@ -1,0 +1,555 @@
+---
+title: "Variable selection with the LASSO"
+subtitle: "PSTAT197A Fall 2026"
+author: "Dr. Coburn"
+institute: 'UCSB'
+bibliography: refs.bib
+format:
+  revealjs:
+    incremental: true
+    footer: 'PSTAT197A Fall 2026'
+    logo: 'img/ucsbds_hex.png'
+    fig-width: 5
+    fig-height: 4
+    fig-align: 'center'
+    slide-number: true
+execute:
+  message: false
+  warning: false
+  echo: false
+  cache: false
+---
+
+```{=html}
+<!--
+PLAN
+
+5 minutes for diagrams, 10-15 minutes for the analysis
+review, the remaining central block for Sang, and 5 minutes to close.
+
+OPTIONAL CONNECTIONS/SUGGESTIONS
+
+1. Run the biomarker LASSO example below in whichever environment you
+   choose. Students would already know the data and can focus on computing.
+2. Reproduce a fixed analysis: retain the same data, split, CV folds, settings,
+   and package versions; compare the selected proteins and predictions.
+3. Or repeat training-only CV with different fold assignments and compare selection frequencies.      Keep the test set untouched while exploring. This connects to panel stability.
+
+Implementation reference: glmnet package documentation,
+https://stat.ethz.ch/CRAN/web/packages/glmnet/glmnet.pdf
+-->
+```
+
+<!-- ## Announcements/reminders -->
+
+<!-- -   Office hour information is posted on Canvas -->
+
+## Today
+
+-   Review the design of the biomarker analysis
+
+-   Consider LASSO as an alternative approach to selecting proteins
+
+-   Guest session
+
+-   Return to the strengths and limitations of the analysis
+
+## Diagram sharing: 5 minutes
+
+With your table, share the diagrams you prepared.
+
+-   Identify where the analysis selects proteins
+
+-   Identify where it fits and evaluates the classifier
+
+-   Mark any point where evaluation data might influence an earlier decision
+
+. . .
+
+Choose one diagram to refer to during our closing discussion.
+
+## Design assessment
+
+Keep these questions in mind:
+
+-   ***Reproducibility:*** could someone rerun the analysis and obtain the same results?
+
+-   ***Transparency:*** can we identify the choices that affect the results?
+
+-   ***Replicability:*** would a new sample lead to a similar protein panel and predictive performance?
+
+::: notes
+Introduce the questions briefly. Save the broader discussion for after the guest block so it does not consume the reserved time.
+:::
+
+## An alternative analysis
+
+Our earlier approach separated:
+
+1.  selecting proteins
+2.  fitting logistic regression using the selected proteins
+
+. . .
+
+***LASSO combines variable selection and coefficient estimation.***
+
+It is useful here because we have many more candidate proteins than subjects.
+
+## LASSO: brief review
+
+For logistic regression, penalize the negative log-likelihood:
+
+$$
+(\hat{\beta}_0,\hat{\beta})=
+\arg\min_{\beta_0,\beta}
+\left\{-\ell(\beta_0,\beta;x,y)+\lambda\sum_{j=1}^{p}|\beta_j|\right\}.
+$$
+
+-   The penalty shrinks coefficients and can set some exactly to zero
+
+-   Larger $\lambda$ generally produces a sparser model
+
+-   The intercept is not penalized
+
+::: notes
+Treat this as review for students who took PSTAT 131. The reference slides provide a toy example and further explanation for those who need it.
+:::
+
+## Selecting the penalty
+
+Use cross-validation ***within the training data*** to compare penalty values.
+
+-   `lambda.min`: smallest mean cross-validated loss
+
+-   `lambda.1se`: largest penalty within one standard error of that minimum
+
+. . .
+
+For this example, use `lambda.1se` and then evaluate the chosen model on the held-out test set.
+
+The test set does not choose the penalty or the proteins.
+
+## The biomarker workflow
+
+1.  Split subjects into training and test sets
+
+2.  Use training data to tune the penalty and fit the LASSO classifier
+
+3.  Examine which proteins have nonzero coefficients
+
+4.  Evaluate the chosen model on the held-out subjects
+
+. . .
+
+***Scaling and other learned preprocessing belong inside the training procedure.***
+
+::: notes
+This is the handoff point. Feel free to use this familiar analysis if it is helpful. The complete example is in the reference section.
+:::
+
+# Guest session
+
+## Guest materials
+
+*Guest lecture material to be added here.*
+
+```{=html}
+<!-- BEGIN GUEST MATERIAL
+
+Reserve the main central portion of the meeting for this block.
+Leave approximately 5 minutes afterward for the closing discussion.
+
+END GUEST MATERIAL -->
+```
+
+## Returning to the analysis
+
+Look back at your diagram and discuss:
+
+-   What would another team need to reproduce your results?
+
+-   Which choices could change the selected protein panel?
+
+-   What evidence would support a claim about performance on new subjects?
+
+::: notes
+Keep this to about five minutes. If relevant, invite students to connect something from the guest session to these questions, without assuming that particular tools or examples were covered.
+:::
+
+## Some final thoughts
+
+-   Reproducing a computation and validating a predictive model address different questions
+
+-   Similar prediction accuracy can accompany different selected protein panels
+
+-   A small test set gives an uncertain estimate of future performance
+
+-   Neither variable selection nor classification accuracy alone establishes diagnostic usefulness
+
+## Concepts and skills
+
+-   Multiple testing and protein selection
+
+-   Classification using logistic regression and random forests
+
+-   LASSO regularization and cross-validation
+
+-   Reproducible analysis and evaluation on held-out data
+
+<!-- End of the planned live sequence. -->
+
+<!-- # Reference slides {.appendix} -->
+
+<!-- ## Why regularization? -->
+
+<!-- With more predictors than observations, ordinary unpenalized logistic regression does not provide a uniquely identified coefficient vector and may also suffer from separation. -->
+
+<!-- The LASSO penalty constrains coefficient size and can produce a sparse model. -->
+
+<!-- . . . -->
+
+<!-- Sparsity does not guarantee that the selected proteins are the true biological drivers or that selection will be stable across samples. -->
+
+<!-- ## Constrained and penalized forms -->
+
+<!-- One formulation constrains the coefficient vector: -->
+
+<!-- $$ -->
+
+<!-- \underset{\beta_0,\beta}{\operatorname{maximize}}\; -->
+
+<!-- \ell(\beta_0,\beta;x,y) -->
+
+<!-- \quad\text{subject to}\quad \sum_{j=1}^{p}|\beta_j|\leq t. -->
+
+<!-- $$ -->
+
+<!-- A corresponding penalized formulation is -->
+
+<!-- $$ -->
+
+<!-- \underset{\beta_0,\beta}{\operatorname{minimize}}\; -->
+
+<!-- -\ell(\beta_0,\beta;x,y)+\lambda\sum_{j=1}^{p}|\beta_j|. -->
+
+<!-- $$ -->
+
+<!-- The intercept is excluded from the constraint and penalty. -->
+
+<!-- LASSO: @tibshirani1996regression -->
+
+<!-- ## Toy example -->
+
+<!-- Simulate 250 observations with 13 predictors, of which three have nonzero coefficients. -->
+
+<!-- ```{r} -->
+
+<!-- #| label: toy-setup -->
+
+<!-- library(tidyverse) -->
+
+<!-- library(glmnet) -->
+
+<!-- library(rsample) -->
+
+<!-- library(yardstick) -->
+
+<!-- set.seed(102022) -->
+
+<!-- beta_true <- c(2, 3, 2, rep(0, 10)) %>% sample() -->
+
+<!-- n <- 250 -->
+
+<!-- x <- matrix(rnorm(n * 13), nrow = n) -->
+
+<!-- colnames(x) <- paste0('V', seq_len(ncol(x))) -->
+
+<!-- prob <- plogis(-0.5 + drop(x %*% beta_true)) -->
+
+<!-- y <- rbinom(n, size = 1, prob = prob) -->
+
+<!-- toy_cv <- cv.glmnet(x, y, family = 'binomial', alpha = 1, -->
+
+<!--                     nfolds = 5, type.measure = 'deviance') -->
+
+<!-- ``` -->
+
+<!-- Use cross-validation to compare penalties. The following figures show the coefficient paths and validation loss. -->
+
+<!-- ## Toy example: coefficient paths -->
+
+<!-- ```{r} -->
+
+<!-- #| fig-cap: Coefficient paths for the toy example. The dashed line marks lambda.1se. -->
+
+<!-- plot(toy_cv$glmnet.fit, xvar = 'lambda') -->
+
+<!-- abline(v = log(toy_cv$lambda.1se), lty = 2) -->
+
+<!-- ``` -->
+
+<!-- The horizontal axis uses $\log(\lambda)$, so larger penalties appear to the right. -->
+
+<!-- ## Toy example: cross-validation -->
+
+<!-- ```{r} -->
+
+<!-- #| fig-cap: Cross-validated binomial deviance with standard error bars. Dotted lines mark lambda.min and lambda.1se. -->
+
+<!-- plot(toy_cv) -->
+
+<!-- ``` -->
+
+<!-- Binomial deviance is a likelihood-based loss for binary outcomes. Smaller values indicate better predictive performance under this criterion. -->
+
+<!-- ## Toy example: coefficients {.scrollable} -->
+
+<!-- ```{r} -->
+
+<!-- #| label: toy-coefficients -->
+
+<!-- coef_min <- as.matrix(coef(toy_cv, s = 'lambda.min')) -->
+
+<!-- coef_1se <- as.matrix(coef(toy_cv, s = 'lambda.1se')) -->
+
+<!-- tibble(term = rownames(coef_1se), -->
+
+<!--        truth = c(-0.5, beta_true), -->
+
+<!--        lambda_min = coef_min[, 1], -->
+
+<!--        lambda_1se = coef_1se[, 1]) %>% -->
+
+<!--   knitr::kable(digits = 3) -->
+
+<!-- ``` -->
+
+<!-- Shrinkage changes coefficient magnitudes. The selected variables need not match the true set exactly. -->
+
+<!-- ## Biomarker example: data -->
+
+<!-- ```{r} -->
+
+<!-- #| label: biomarker-data -->
+
+<!-- #| echo: true -->
+
+<!-- biomarker <- read_csv('data/biomarker-clean.csv') %>% -->
+
+<!--   select(-ados) %>% -->
+
+<!--   mutate(group = factor(group, levels = c('TD', 'ASD'))) -->
+
+<!-- protein_names <- setdiff(names(biomarker), 'group') -->
+
+<!-- stopifnot(!anyNA(biomarker)) -->
+
+<!-- stopifnot(all(vapply(biomarker[protein_names], -->
+
+<!--                     function(z) is.numeric(z) && -->
+
+<!--                       all(is.finite(z) & z > 0), logical(1)))) -->
+
+<!-- ``` -->
+
+<!-- Use the same biomarker file as the earlier classes. The log transformation requires positive protein measurements. -->
+
+<!-- ## Biomarker example: partitioning -->
+
+<!-- ```{r} -->
+
+<!-- #| label: biomarker-split -->
+
+<!-- #| echo: true -->
+
+<!-- set.seed(101622) -->
+
+<!-- partitions <- initial_split(biomarker, prop = 0.8, strata = group) -->
+
+<!-- train_data <- training(partitions) -->
+
+<!-- test_data <- testing(partitions) -->
+
+<!-- # Fixed log transformation; do not scale the full dataset. -->
+
+<!-- x_train <- log(as.matrix(train_data[protein_names])) -->
+
+<!-- y_train <- as.integer(train_data$group == 'ASD') -->
+
+<!-- x_test <- log(as.matrix(test_data[protein_names])) -->
+
+<!-- y_test <- as.integer(test_data$group == 'ASD') -->
+
+<!-- ``` -->
+
+<!-- The test set remains outside penalty selection and model fitting. -->
+
+<!-- ## Biomarker example: cross-validation {.scrollable} -->
+
+<!-- ```{r} -->
+
+<!-- #| label: biomarker-cv -->
+
+<!-- #| echo: true -->
+
+<!-- # Balanced fold assignments within each outcome class. -->
+
+<!-- set.seed(102022) -->
+
+<!-- fold_id <- integer(length(y_train)) -->
+
+<!-- for (class_value in c(0L, 1L)) { -->
+
+<!--   idx <- which(y_train == class_value) -->
+
+<!--   fold_id[idx] <- sample(rep(1:5, length.out = length(idx))) -->
+
+<!-- } -->
+
+<!-- cv_out <- cv.glmnet(x_train, y_train, -->
+
+<!--                     family = 'binomial', alpha = 1, -->
+
+<!--                     foldid = fold_id, -->
+
+<!--                     type.measure = 'deviance', -->
+
+<!--                     standardize = TRUE) -->
+
+<!-- ``` -->
+
+<!-- `glmnet` handles standardization within each fit. Validation and test observations do not determine the scaling used to fit their prediction models. -->
+
+<!-- ## Biomarker example: penalty choice -->
+
+<!-- ```{r} -->
+
+<!-- #| fig-cap: Cross-validation within the biomarker training set. -->
+
+<!-- plot(cv_out) -->
+
+<!-- ``` -->
+
+<!-- The example uses `lambda.1se`. Choose the rule before examining test results. -->
+
+<!-- ## Biomarker example: selected proteins {.scrollable} -->
+
+<!-- ```{r} -->
+
+<!-- #| label: biomarker-panel -->
+
+<!-- #| echo: true -->
+
+<!-- coef_matrix <- as.matrix(coef(cv_out, s = 'lambda.1se')) -->
+
+<!-- selected <- tibble(term = rownames(coef_matrix), -->
+
+<!--                    estimate = coef_matrix[, 1]) %>% -->
+
+<!--   filter(term != '(Intercept)', estimate != 0) -->
+
+<!-- selected %>% knitr::kable(digits = 3) -->
+
+<!-- ``` -->
+
+<!-- An intercept-only model is possible if the chosen penalty sets every protein coefficient to zero. -->
+
+<!-- ## Biomarker example: test predictions -->
+
+<!-- ```{r} -->
+
+<!-- #| label: biomarker-predictions -->
+
+<!-- #| echo: true -->
+
+<!-- prob_test <- drop(predict(cv_out, newx = x_test, -->
+
+<!--                           s = 'lambda.1se', type = 'response')) -->
+
+<!-- pred_df <- tibble( -->
+
+<!--   truth = factor(y_test, levels = c(0, 1), labels = c('TD', 'ASD')), -->
+
+<!--   probability = prob_test, -->
+
+<!--   estimate = factor(as.integer(prob_test > 0.5), -->
+
+<!--                     levels = c(0, 1), labels = c('TD', 'ASD')) -->
+
+<!-- ) -->
+
+<!-- ``` -->
+
+<!-- This evaluates the penalized model directly, using a prespecified threshold of 0.5. -->
+
+<!-- ## Biomarker example: test results -->
+
+<!-- ```{r} -->
+
+<!-- #| label: biomarker-results -->
+
+<!-- panel <- metric_set(sensitivity, specificity, accuracy, roc_auc) -->
+
+<!-- panel(pred_df, truth = truth, estimate = estimate, probability, -->
+
+<!--       event_level = 'second') %>% -->
+
+<!--   select(.metric, .estimate) %>% -->
+
+<!--   knitr::kable(digits = 3) -->
+
+<!-- ``` -->
+
+<!-- ```{r} -->
+
+<!-- table(Actual = pred_df$truth, Predicted = pred_df$estimate) %>% -->
+
+<!--   knitr::kable() -->
+
+<!-- ``` -->
+
+<!-- These results describe one held-out split. Avoid drawing strong conclusions from small differences in accuracy. -->
+
+<!-- ## Optional extension: refitting -->
+
+<!-- One could fit an unpenalized logistic regression using only the proteins selected by LASSO. -->
+
+<!-- -   This changes the modeling procedure and can increase variance -->
+
+<!-- -   Separation can make unpenalized estimates unstable or non-finite -->
+
+<!-- -   Any decision to refit should be evaluated within training-data resampling -->
+
+<!-- . . . -->
+
+<!-- The example above keeps the penalty. Removing it is not a required final step. -->
+
+<!-- ## Optional extension: panel stability -->
+
+<!-- Repeat cross-validation with different fold assignments ***using the training data only***. -->
+
+<!-- For each run, record: -->
+
+<!-- -   the selected penalty and number of selected proteins -->
+
+<!-- -   which proteins receive nonzero coefficients -->
+
+<!-- . . . -->
+
+<!-- How often does each protein appear? Do correlated proteins substitute for one another? -->
+
+<!-- This explores sensitivity to fold assignment. Assessing stability across new samples requires an additional resampling design. -->
+
+<!-- ## Comparing analyses fairly -->
+
+<!-- For a comparison of LASSO with the earlier selection-plus-classification procedure: -->
+
+<!-- -   use the same outer training/test split -->
+
+<!-- -   perform all protein selection and tuning using training data -->
+
+<!-- -   apply the same evaluation metrics on held-out subjects -->
+
+<!-- . . . -->
+
+<!-- Tuesday's logistic regression training accuracy is not directly comparable to Thursday's held-out accuracy. -->
