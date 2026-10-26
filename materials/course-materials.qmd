@@ -88,13 +88,13 @@ bibliography: slides/refs.bib
 
 <!--     -   second group assignment due ***Friday, October 31, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/7cnheCWR)\] -->
 
-<!-- ## Module 2: fraud claims -->
+## Module 2: fraud claims
 
-<!-- *Objectives: introduce NLP techniques for converting text to data and web scraping tools in R; discuss dimension reduction techniques; introduce multiclass classification; learn to process text, fit multinomial logistic regression models, and train neural networks in R.* -->
+*Objectives: introduce NLP techniques for converting text to data and web scraping tools in R; discuss dimension reduction techniques; introduce multiclass classification; learn to process text, fit multinomial logistic regression models, and train neural networks in R.*
 
-<!-- ### Week 5 -->
+### Week 5
 
-<!-- -   ***Tuesday meeting:*** data introduction and basic NLP techniques \[[slides](slides/week5-text.qmd)\] -->
+-   ***Tuesday meeting:*** data introduction and basic NLP techniques \[[slides](slides/week5-text.qmd)\]
 
 <!-- -   ***Section meeting:*** string manipulation and text processing in R \[[activity](labs/lab5-text/lab5-text.qmd)\] -->
 
