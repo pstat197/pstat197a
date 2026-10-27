@@ -22,7 +22,7 @@ execute:
 
 ## Announcements/reminders
 
-Second group assignment due this Friday, October 31st by 11:59 PM
+Second group assignment due this Friday, October 30th by 11:59 PM
 
 <!-- Make sure to fill out attendance form -->
 
