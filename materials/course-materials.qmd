@@ -107,6 +107,10 @@ bibliography: slides/refs.bib
     -   @cambria2014jumping
 
     -   @khan2010review
+    
+-   ***Assignments:***
+
+    -   third team assignment (Module) due **Friday, October 16, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1ziCVN_s21Fr_a29snoFX9MveyxcZKjCREOYc9biVZCs/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module2-claims)\].
 
 <!-- ### Week 6 -->
 
