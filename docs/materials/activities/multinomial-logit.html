@@ -245,7 +245,7 @@ window.Quarto = {
 </section>
 <section id="activity-1-10-min" class="level2">
 <h2 class="anchored" data-anchor-id="activity-1-10-min">Activity 1 (10 min)</h2>
-<p>You’ll be given about ten minutes to do the following on your group’s workstation.</p>
+<p>You’ll be given about ten minutes to do the following. Each of you can do this on your individual laptops, but make sure to set seeds <em>before any steps that involve randomization</em>.</p>
 <ol type="1">
 <li>Partition the data into training and test sets.</li>
 <li><em>Using the training data,</em> find principal components that preserve <strong>at least 80%</strong> of the total variance and project the data onto those PCs.</li>
@@ -256,7 +256,7 @@ window.Quarto = {
 <p>This should be familiar from last week’s lab. Use the code chunk below to partition the data. <em>Do not change the RNG seed or split proportion!</em></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># partition data</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102925</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102926</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>partitions <span class="ot">&lt;-</span> claims <span class="sc">%&gt;%</span> <span class="fu">initial_split</span>(<span class="at">prop =</span> <span class="fl">0.8</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># separate DTM from labels</span></span>
@@ -318,7 +318,7 @@ Important
 <p>This part will guide you through the following steps.</p>
 <ol type="1">
 <li>Fit a logistic regression model with an elastic net penalty to the training data.</li>
-<li>Quantify classification accuracy on the test data using sensitivity, specificity, and AUROC.</li>
+<li>Quantify classification accuracy on the test data using sensitivity, specificity, and ROC AUC.</li>
 </ol>
 <section id="step-1-fit-a-regularized-logistic-regression" class="level3">
 <h3 class="anchored" data-anchor-id="step-1-fit-a-regularized-logistic-regression">Step 1: fit a regularized logistic regression</h3>
@@ -337,7 +337,7 @@ Important
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> alpha_enet)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># choose a strength (penalty/lambda value) by cross-validation</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102925</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102926</span>)</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>cvout <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(<span class="at">x =</span> x_train, </span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> y_train, </span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">family =</span> <span class="st">'binomial'</span>,</span>
@@ -442,7 +442,7 @@ Important
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">alpha =</span> alpha_enet)</span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># choose a strength by cross-validation</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102925</span>)</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">102926</span>)</span>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>cvout_multi <span class="ot">&lt;-</span> <span class="fu">cv.glmnet</span>(<span class="at">x =</span> x_train, </span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">y =</span> y_train_multi, </span>
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">family =</span> <span class="st">'multinomial'</span>,</span>

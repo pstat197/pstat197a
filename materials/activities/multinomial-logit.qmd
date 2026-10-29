@@ -47,7 +47,7 @@ claims
 
 ## Activity 1 (10 min)
 
-You'll be given about ten minutes to do the following on your group's workstation.
+You'll be given about ten minutes to do the following. Each of you can do this on your individual laptops, but make sure to set seeds *before any steps that involve randomization*.
 
 1.  Partition the data into training and test sets.
 2.  *Using the training data,* find principal components that preserve **at least 80%** of the total variance and project the data onto those PCs.
@@ -59,7 +59,7 @@ This should be familiar from last week's lab. Use the code chunk below to partit
 
 ```{r}
 # partition data
-set.seed(102925)
+set.seed(102926)
 partitions <- claims %>% initial_split(prop = 0.8)
 
 # separate DTM from labels
@@ -117,7 +117,7 @@ Briefly discuss with your table: what do you think the warning means?
 This part will guide you through the following steps.
 
 1.  Fit a logistic regression model with an elastic net penalty to the training data.
-2.  Quantify classification accuracy on the test data using sensitivity, specificity, and AUROC.
+2.  Quantify classification accuracy on the test data using sensitivity, specificity, and ROC AUC.
 
 ### Step 1: fit a regularized logistic regression
 
@@ -138,7 +138,7 @@ fit_reg <- glmnet(x = x_train,
                   alpha = alpha_enet)
 
 # choose a strength (penalty/lambda value) by cross-validation
-set.seed(102925)
+set.seed(102926)
 cvout <- cv.glmnet(x = x_train, 
                 y = y_train, 
                 family = 'binomial',
@@ -231,7 +231,7 @@ fit_reg_multi <- glmnet(x = x_train,
                   alpha = alpha_enet)
 
 # choose a strength by cross-validation
-set.seed(102925)
+set.seed(102926)
 cvout_multi <- cv.glmnet(x = x_train, 
                    y = y_train_multi, 
                    family = 'multinomial',
