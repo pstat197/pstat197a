@@ -110,6 +110,8 @@ bibliography: slides/refs.bib
     
 -   ***Assignments:***
 
+    -   fill out [\[self/peer evaluation form about group work on Module 1](https://forms.gle/FyaFoJG1bJ4wNQk7A)\], **due by Tuesday, November 3rd, 11:59 PM PST**. 
+
     -   third team assignment (Module 2) due **Friday, November 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1ziCVN_s21Fr_a29snoFX9MveyxcZKjCREOYc9biVZCs/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module2-claims)\].
 
 <!-- ### Week 6 -->
