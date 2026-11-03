@@ -114,11 +114,11 @@ bibliography: slides/refs.bib
 
     -   third team assignment (Module 2) due **Friday, November 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1ziCVN_s21Fr_a29snoFX9MveyxcZKjCREOYc9biVZCs/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module2-claims)\].
 
-<!-- ### Week 6 -->
+### Week 6
 
-<!-- -   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\] -->
+-   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\]
 
-<!-- -   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\] -->
+-   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\]
 
 <!-- -   ***Thursday meeting:*** NO CLASS -->
 
