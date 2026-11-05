@@ -112,31 +112,29 @@ bibliography: slides/refs.bib
 
     -   fill out [\[self/peer evaluation form about group work on Module 1](https://forms.gle/FyaFoJG1bJ4wNQk7A)\], **due by Tuesday, November 3rd, 11:59 PM PST**. 
 
-    -   third team assignment (Module 2) due **Friday, November 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1ziCVN_s21Fr_a29snoFX9MveyxcZKjCREOYc9biVZCs/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module2-claims)\].
-
 ### Week 6
 
 -   ***Tuesday meeting:*** feedforward neural networks \[[slides](slides/week6-nn.qmd)\]
 
 -   ***Section meeting:*** fitting neural nets with keras \[[activity](labs/lab6-nn/lab6-nn.qmd)\]
 
-<!-- -   ***Thursday meeting:*** NO CLASS -->
+-   ***Thursday meeting:*** finishing neural networks \[[slides](slides/week6-nn.qmd)\]
 
-<!-- -   ***Assignments:*** -->
+-   ***Assignments:***
 
 <!--     -   Midquarter assessments \[[form](https://forms.gle/MttSJWHXUWXWLArPA)\] -->
 
 <!--     -   Request winter add code \[[form](https://forms.gle/r6tMKRdTwKhUhataA)\] -->
 
-<!--     -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/67tXMm1cReS8gyx66) -->
+    -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/svxp7mNE5Koja3hj8) due **Tuesday, November 10, 11:59 PM PST**.
 
-<!--     -   third group assignment ***due Tuesday, November 18, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/I0qOjBA-)\] \[[group assignments](https://docs.google.com/spreadsheets/d/1lPgpTYq0tC2vU2LEjqoibphw6-CrEOILbFJQa_CkKFk/edit?usp=sharing)\] -->
+    -   third team assignment (Module 2) due **Friday, November 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1ziCVN_s21Fr_a29snoFX9MveyxcZKjCREOYc9biVZCs/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module2-claims)\].
 
-<!-- -   Optional further reading: -->
+-   Optional further reading:
 
-<!--     -   @alzubaidi2021review -->
+    -   @alzubaidi2021review
 
-<!--     -   @Goodfellow-et-al-2016 Ch. 6 (advanced) -->
+    -   @Goodfellow-et-al-2016 Ch. 6 (advanced)
 
 <!-- ## Module 3: soil temperatures -->
 
