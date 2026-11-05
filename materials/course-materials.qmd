@@ -122,12 +122,8 @@ bibliography: slides/refs.bib
 
 -   ***Assignments:***
 
-<!--     -   Midquarter assessments \[[form](https://forms.gle/MttSJWHXUWXWLArPA)\] -->
-
-<!--     -   Request winter add code \[[form](https://forms.gle/r6tMKRdTwKhUhataA)\] -->
-
     -   Read @emmert2020introductory (§1-5, §9) and prepare a [reading response](https://forms.gle/svxp7mNE5Koja3hj8) due **Tuesday, November 10, 11:59 PM PST**.
-
+    
     -   third team assignment (Module 2) due **Friday, November 13, 11:59 PM PST**. [\[Click here to see group memberships.](https://docs.google.com/spreadsheets/d/1ziCVN_s21Fr_a29snoFX9MveyxcZKjCREOYc9biVZCs/edit?usp=sharing)\] The [\[assignment module is available here.](https://github.com/pstat-197a-fall2026/module2-claims)\].
 
 -   Optional further reading:
