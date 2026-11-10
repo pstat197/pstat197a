@@ -84,6 +84,8 @@ bibliography: slides/refs.bib
 
 -   ***Thursday meeting:*** development containers in VS code \[[slides](https://raw.githubusercontent.com/pstat197/pstat197a/main/materials/PSTAT197A - Development Containers in Visual Studio Code.pdf)\]
 
+-   \[[**Video walkthrough**]](https://gauchocast.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=94310a09-2206-4ad1-bcd8-b4ec017d9576)\] for setting up development containers
+
 <!-- -   ***Assignments:*** -->
 
 <!--     -   second group assignment due ***Friday, October 31, 11:59pm PST*** \[[accept via GH classroom](https://classroom.github.com/a/7cnheCWR)\] -->
@@ -132,17 +134,17 @@ bibliography: slides/refs.bib
 
     -   @Goodfellow-et-al-2016 Ch. 6 (advanced)
 
-<!-- ## Module 3: soil temperatures -->
+## Module 3: soil temperatures
 
-<!-- *Objectives: build a forecasting model; introduce concepts of spatial and temporal correlation; discuss function approximation and curve fitting with regression techniques; fit elementary time series models and regression with AR errors; spatial interpolation.* -->
+*Objectives: build a forecasting model; introduce concepts of spatial and temporal correlation; discuss function approximation and curve fitting with regression techniques; fit elementary time series models and regression with AR errors; spatial interpolation.*
 
-<!-- ### Week 7 -->
+### Week 7
 
-<!-- -   ***Tuesday meeting:*** NO CLASS; VETERAN'S DAY -->
+-   ***Tuesday meeting:*** data introduction; function approximation using basis expansions \[[slides](slides/week7-curvefitting.qmd)\]
 
 <!-- -   ***Section meeting:*** curve fitting \[[activity](labs/lab7-curvefitting/lab7-curvefitting.qmd)\] -->
 
-<!-- -   ***Thursday meeting:*** data introduction; function approximation using basis expansions \[[slides](slides/week7-curvefitting.qmd)\] -->
+<!-- -   ***Thursday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\] -->
 
 <!-- -   Optional further reading (available through UCSB library) -->
 
@@ -152,21 +154,21 @@ bibliography: slides/refs.bib
 
 <!-- ### Week 8 -->
 
-<!-- -   ***Tuesday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\] -->
+<!-- -   ***Tuesday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
 
 <!-- -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\] -->
 
-<!-- -   ***Thursday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
+<!-- ## Module 4: vignettes -->
+
+<!-- *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.* -->
+
+<!-- -   ***Thursday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\] -->
 
 <!-- -   Optional further reading: -->
 
 <!--     -   8.1 -- 8.3 in @bivand2008applied -->
 
 <!--     -   Ch. 12 in @dorman2022introduction [[link](http://132.72.155.230:3838/r/spatial-interpolation-of-point-data.html)] -->
-
-<!-- ## Module 4: vignettes -->
-
-<!-- *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.* -->
 
 <!-- ### Week 9 -->
 
