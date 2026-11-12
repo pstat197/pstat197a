@@ -144,7 +144,7 @@ bibliography: slides/refs.bib
 
 <!-- -   ***Section meeting:*** curve fitting \[[activity](labs/lab7-curvefitting/lab7-curvefitting.qmd)\] -->
 
-<!-- -   ***Thursday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\] -->
+-   ***Thursday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\]
 
 <!-- -   Optional further reading (available through UCSB library) -->
 
@@ -158,9 +158,11 @@ bibliography: slides/refs.bib
 
 <!-- -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\] -->
 
-<!-- ## Module 4: vignettes -->
+## Module 4: vignettes
 
-<!-- *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.* -->
+*Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.*
+
+-   **Group assignments** \[[are now available here](https://docs.google.com/spreadsheets/d/1ylAg2syvXlL5FjLoq87L0tGkvWFLgbzRQVALVpCxkgc/edit?usp=sharing)\]. Vignette \[[guidelines are available here](vignette-guidelines.qmd)\].
 
 <!-- -   ***Thursday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\] -->
 

@@ -9,11 +9,11 @@ The overarching goal of creating vignettes is to provide starting points for lea
 
 This document sets expectations for the organization and content of vignette repositories.
 
-**Note that this is a group assignment. Your group assignments (generated at random) are [found here.](https://docs.google.com/spreadsheets/d/1ss_NodHXciODstgmDfgO-LiG4izYkdQ3u02fRae2V3o/edit?usp=sharing)**
+**Note that this is a group assignment. Your group assignments are [found here.](https://docs.google.com/spreadsheets/d/1ylAg2syvXlL5FjLoq87L0tGkvWFLgbzRQVALVpCxkgc/edit?usp=sharing)**
 
 ## Configuring your repository
 
-Create a public repository in the PSTAT197 workspace and add your groupmates as collaborators.
+Create a public repository in our PSTAT 197A GitHub Organization and add your groupmates as collaborators.
 
 Select options at the creation step to initialize the repository with:
 
@@ -124,6 +124,6 @@ Your work will be evaluated on:
 
 There are two deadlines associated with this project, a draft deadline and a final deadline.
 
--   *draft deadline* **Thursday, December 4, 3:30pm PST** (in class) -- be prepared to share a draft of your primary vignette document and explain it to a small group of other students
+-   *draft deadline* **Monday, November 30, 3:30pm PST** -- be prepared to share a draft of your primary vignette document and explain it to a small group of other students. This will be a presentation in front of the class; the presentation should take no longer than 7 to 8 minutes, with 2 to 3 minutes for questions. More details about the presentation will be discussed in class.
 
--   *final deadline* **Monday, December 8, 11:59pm PST** -- the repository and all contained files should be in final form ready for evaluation by course staff
+-   *final deadline* **Monday, December 7, 11:59pm PST** -- the repository and all contained files should be in their final form ready for evaluation by course staff
