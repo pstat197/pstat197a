@@ -146,6 +146,10 @@ bibliography: slides/refs.bib
 
 -   ***Thursday meeting:*** temporal correlation; a forecasting model \[[slides](slides/week7-forecasting.qmd)\]
 
+-   ***Assignments*** due by next class meeting:
+    
+    -   fill out [\[self/peer evaluation form about group work on Module 2](https://forms.gle/yLvQdezZF6WGA5Vx5)\], **due Tuesday, November 17th, 11:59 PM PST**. 
+
 <!-- -   Optional further reading (available through UCSB library) -->
 
 <!--     -   Sections 1.1, 1.2, and 2.3 in @shumway2017time -->
