@@ -173,6 +173,10 @@ bibliography: slides/refs.bib
 
 -   **Group assignments** \[[are now available here](https://docs.google.com/spreadsheets/d/1ylAg2syvXlL5FjLoq87L0tGkvWFLgbzRQVALVpCxkgc/edit?usp=sharing)\]. Vignette \[[guidelines are available here](vignette-guidelines.qmd)\].
 
+    -   Example vignettes are \[[all public repositories here](https://github.com/orgs/pstat197/repositories?q=visibility%3Apublic+archived%3Afalse)\] labeled "vignette."
+
+
+
 <!-- -   Optional further reading: -->
 
 <!--     -   8.1 -- 8.3 in @bivand2008applied -->
