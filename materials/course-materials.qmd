@@ -156,19 +156,22 @@ bibliography: slides/refs.bib
 
 <!--     -   @perperoglou2019review -->
 
-<!-- ### Week 8 -->
+### Week 8
 
-<!-- -   ***Tuesday meeting:*** spatial prediction \[[slides](slides/week8-spatial.qmd)\] -->
+-   ***Tuesday meeting:*** finishing forecasting; spatial prediction \[[slides](slides/week8-spatial.qmd)\]
 
 <!-- -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\] -->
+
+-   ***Thursday meeting:*** vignette workshopping 
+
+<!-- \[[slides](slides/week9-vignetteworkshopping.qmd)\] -->
+
 
 ## Module 4: vignettes
 
 *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.*
 
 -   **Group assignments** \[[are now available here](https://docs.google.com/spreadsheets/d/1ylAg2syvXlL5FjLoq87L0tGkvWFLgbzRQVALVpCxkgc/edit?usp=sharing)\]. Vignette \[[guidelines are available here](vignette-guidelines.qmd)\].
-
-<!-- -   ***Thursday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\] -->
 
 <!-- -   Optional further reading: -->
 
