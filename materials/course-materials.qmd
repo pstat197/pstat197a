@@ -162,9 +162,7 @@ bibliography: slides/refs.bib
 
 <!-- -   ***Section meeting:*** forecasting \[[activity](labs/lab8-forecasting/lab8-forecasting.qmd)\] -->
 
--   ***Thursday meeting:*** vignette workshopping 
-
-<!-- \[[slides](slides/week9-vignetteworkshopping.qmd)\] -->
+-   ***Thursday meeting:*** vignette workshopping \[[slides](slides/week9-vignetteworkshopping.qmd)\]
 
 
 ## Module 4: vignettes

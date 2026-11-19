@@ -1,0 +1,313 @@
+---
+title: "Vignette topic workshop"
+subtitle: "PSTAT197A Fall 2026"
+author: "Dr Coburn"
+institute: 'UCSB'
+format:
+  revealjs:
+    incremental: true
+    footer: 'PSTAT197A Fall 2026'
+    logo: 'img/ucsbds_hex.png'
+    fig-width: 4
+    fig-height: 2
+    fig-align: 'left'
+    slide-number: true
+execute:
+  message: false
+  warning: false
+  echo: false
+  cache: true
+---
+
+## Today
+
+-   generate and compare possible vignette topics
+
+-   work out what each topic could actually teach
+
+-   investigate example data, references, and implementation
+
+-   choose **one topic** and email me your group's selection **by the end of today**
+
+::: notes
+Allow approximately 5–6 minutes at the start of class for announcements and general questions. The timed activities below total 69 minutes.
+:::
+
+## What are we creating?
+
+A **method vignette** is a simple, reproducible example that helps someone learn a data science method or tool.
+
+Imagine a student encountering your topic during next term's capstone project:
+
+-   what would they need to understand first?
+-   what could they learn by working through your example?
+-   what should they be able to do afterward?
+
+. . .
+
+**Think of a starting point for learning, not a comprehensive survey of a subject.**
+
+## What your topic needs to support
+
+Your final public repository should include:
+
+1.  A `README.md` introducing the vignette, contributors, contents, and **at least two references** for further learning
+2.  A primary vignette explaining the method and walking through implementation step by step
+3.  At least one example dataset
+4.  An annotated script reproducing the results in the vignette end-to-end
+
+The vignette should read more like a **lab activity** than a research paper.
+
+## Two topics that sound similar may differ in scope
+
+**Broad:** Neural networks for text analysis
+
+**More focused:** Using a pretrained text embedding model to represent documents and compare their similarity
+
+. . .
+
+**Broad:** Geospatial analysis
+
+**More focused:** Reading spatial polygons in R and performing a spatial join with point observations
+
+. . .
+
+A strong topic gives you something specific to **explain, demonstrate, and reproduce** with example data.
+
+::: notes
+These are illustrative ways to narrow scope, not required topics. Students may work in R, Python, or another suitable environment. They should not assume a sophisticated algorithm is automatically a better choice.
+:::
+
+## Individual brainstorming
+
+::: {.nonincremental}
+**On your own: 4 minutes**
+
+Write down **2–3 possible topics**, including ideas you brought to class.
+
+For each, jot down:
+
+-   a method or tool you would teach
+-   one concrete task it could help someone accomplish
+-   why you think another capstone student might find it useful
+
+Keep the ideas tentative for now.
+:::
+
+## Pooling and narrowing ideas
+
+::: {.nonincremental}
+**With your group: 6 minutes**
+
+1.  Take turns sharing ideas; make sure everyone contributes.
+2.  Combine overlapping ideas where appropriate.
+3.  Select **2–3 candidates** to investigate more closely.
+
+Favor ideas that interest the group *and* could become a useful, self-contained tutorial.
+:::
+
+## From topic to learning goal
+
+A topic name alone is not a teaching plan.
+
+For each candidate, complete these sentences:
+
+-   **Our vignette will teach someone how to** ...
+-   **We will demonstrate this by** ...
+-   **After following it, a reader should be able to** ...
+
+. . .
+
+Try to name the *actual operation or workflow* a reader will learn—not only the field in which it is used.
+
+## Develop your candidates
+
+::: {.nonincremental}
+**With your group: 10 minutes**
+
+For **each** of your 2–3 candidates, sketch:
+
+1.  The specific method, tool, or workflow to teach
+2.  A realistic example question or task
+3.  The type of data needed to demonstrate it
+4.  The major implementation steps a reader would follow
+5.  One concept or common mistake you would need to explain
+
+**Result:** a few sentences outlining a possible vignette for each idea.
+:::
+
+## What might a reader actually do?
+
+**Example: Anomaly detection in time series**
+
+-   read and visualize a time-indexed dataset
+-   select and apply one detection method
+-   examine identified anomalies in the original series
+-   change a tuning choice and compare the results
+-   discuss what the method can and cannot establish
+
+. . .
+
+A good walkthrough makes the important choices visible, rather than simply running a package function once.
+
+::: notes
+This is a hypothetical vignette outline. It is not meant to prescribe a method, dataset, or particular package.
+:::
+
+## Find a starting point
+
+::: {.nonincremental}
+**With your group: 10 minutes**
+
+For your strongest **two** candidates, search for:
+
+-   a reliable tutorial, vignette, textbook section, or documentation page
+-   an example dataset you could use or adapt
+-   code, package documentation, or an implementation
+
+Record links and describe each resource.
+
+**Question:** Is there enough material to teach the topic *accurately*, and a manageable example you can make your own?
+:::
+
+## Using existing vignettes responsibly
+
+You **may** closely follow another tutorial or vignette if you **cite it** and either:
+
+-   apply the approach to **different data**, or
+-   do something **new** with the method or workflow
+
+. . .
+
+You **may not** assemble a collage of copied sources or simply rewrite an existing vignette.
+
+Finding your own example data is often a good way to ensure you must understand and adapt the code.
+
+::: notes
+Ask groups to keep their candidate references. We will briefly review references for sufficient originality, as discussed in class.
+:::
+
+## Feasibility and scope check {.smaller}
+
+::: {.nonincremental}
+**With your group: 9 minutes**
+
+Evaluate each leading candidate:
+
+-   **Teaching value:** What useful new skill will a reader gain?
+-   **Specificity:** Can you cover it coherently in a short, step-by-step example?
+-   **Data:** Can you access an appropriate dataset and share it in the repository?
+-   **Implementation:** Can your group run and explain the workflow end-to-end?
+-   **Originality:** How will it differ from the references you found?
+-   **Time:** Can you prepare a draft by **November 30**?
+
+Identify the main uncertainty or risk for each candidate.
+:::
+
+## When an idea is too ambitious
+
+Rather than attempting to teach an entire family of methods, consider limiting:
+
+-   the **method**: one approach rather than several
+-   the **task**: one use case rather than many
+-   the **data**: one accessible example dataset
+-   the **workflow**: a few steps that can be explained and reproduced
+
+. . .
+
+You can mention advanced variations or related methods as *next steps* without implementing them all.
+
+## Try the first step {.smaller}
+
+::: {.nonincremental}
+**With your group: 10 minutes**
+
+For your preferred candidate, attempt **one small, concrete step**:
+
+-   locate and inspect a potential example dataset, **or**
+-   install/load a relevant package and run a minimal example, **or**
+-   trace an existing tutorial and identify what you would need to adapt
+
+Write down what worked, what you still need to learn, and whether this changes your topic's scope.
+
+**You do not need to produce a working vignette today.** This is an early reality check.
+:::
+
+## A second pair of eyes {.smaller}
+
+::: {.nonincremental}
+**Exchange ideas with another group: 8 minutes**
+
+Each group: briefly describe your **two leading candidates** and the proposed examples.
+
+The other group should ask:
+
+-   What would I know how to do after following this vignette?
+-   Which step would be hardest for a beginner to understand?
+-   Is the example concrete enough to reproduce?
+-   Does the scope sound reasonable for the available time?
+
+Take notes on feedback that changes how you would frame either topic.
+:::
+
+## Select one topic {.smaller}
+
+::: {.nonincremental}
+**With your group: 7 minutes**
+
+Choose **one topic** for your vignette.
+
+Agree on:
+
+1.  A specific working title
+2.  The main skill or workflow you will teach
+3.  The example data or type of data you intend to use
+4.  One or two promising references
+5.  Your first concrete step toward a working example
+
+If your preferred topic has a major unresolved obstacle, choose the more feasible alternative or narrow its scope.
+:::
+
+## Email your topic {.smaller}
+
+::: {.nonincremental}
+**With your group: 5 minutes**
+
+Send **one email per group** by the end of today, **Thursday, November 19**.
+
+Include:
+
+-   group members and working topic/title
+-   1–2 sentences describing what the vignette will teach
+-   the planned example data or application
+-   references or resources you have identified so far
+
+The topic can be refined as you build the vignette; make your proposed focus clear enough for me to review.
+:::
+
+::: notes
+The details above are a suggested structure for communicating the topic, not new grading requirements. Have groups send the email before leaving if possible. Allocate any remaining moments to immediate questions.
+:::
+
+## What comes next?
+
+-   **Today, November 19:** email your group's topic
+-   **Monday, November 30, 3:30 p.m.:** draft vignette ready to share
+-   **December 1 and 3:** present the draft (**7–8 minutes**, plus **2–3 minutes** for questions)
+-   **Monday, December 7, 11:59 p.m.:** finalized public repository
+
+. . .
+
+Your short presentation should help classmates understand what your vignette teaches and give you feedback before you finalize it.
+
+## Before you leave
+
+Your group should have:
+
+-   selected one appropriately scoped data science topic
+-   identified a practical example and plausible resources
+-   described what a reader will learn
+-   considered feasibility, originality, and the draft deadline
+-   **emailed me your topic**
+
+If you finish early, test whether you can load your example data or run the first step of your planned workflow.

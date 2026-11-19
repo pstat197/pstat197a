@@ -108,7 +108,7 @@ Exploratory modeling is part of this assignment's scope. Its conclusions should 
 
 ## Starting from Tuesday's analysis
 
-::: {.nonincremental}
+::: nonincremental
 **As a group: 3 minutes**
 
 -   what pattern from the class analysis caught your attention?
@@ -122,7 +122,7 @@ Write down at least one possible extension.
 
 ## Individual brainstorming
 
-::: {.nonincremental}
+::: nonincremental
 **On your own: 4 minutes**
 
 Write down **three questions** you are curious about.
@@ -138,7 +138,7 @@ Keep all your ideas for now. You will check feasibility together next.
 
 ## Pooling ideas
 
-::: {.nonincremental}
+::: nonincremental
 **With your group: 5 minutes**
 
 1.  Take turns sharing one idea at a time until everyone has contributed.
@@ -200,7 +200,6 @@ Each additional step should help answer the question. Check group sizes before a
 Use these as starting points if your group is stuck:
 
 ::: {style="font-size: 0.85em;"}
-
 -   how do programming language preferences differ across respondents’ programming proficiency levels and completed coursework?
 
 -   which application domains tend to be selected together? do those combinations differ between respondents who prefer industry versus research projects?
@@ -208,7 +207,6 @@ Use these as starting points if your group is stuck:
 -   how do respondents with and without a domain specialization differ in the breadth and types of data science interests they select?
 
 -   which application domains commonly appear together in respondents' selections?
-
 :::
 
 ::: notes
@@ -233,7 +231,7 @@ Students should explain cluster sizes and profiles, not just show a colored scat
 
 ## Refining your candidates
 
-::: {.nonincremental}
+::: nonincremental
 **With your group: 6 minutes**
 
 For each candidate, write one sentence specifying:
@@ -247,7 +245,7 @@ Then explain what would make the answer useful or interesting.
 
 ## Does the question fit the data?
 
-::: {.nonincremental}
+::: nonincremental
 **Quick discussion**
 
 1.  How does programming comfort differ by gender?
@@ -258,14 +256,14 @@ Which can the shared data address? What would you change about the others?
 :::
 
 ::: notes
-1. Not answerable from these files: gender is aggregate-only and cannot be linked to comfort.
-2. Causal wording exceeds what this descriptive survey can establish. Reword as an association among respondents.
-3. Feasible using the respondent-level join, subject to checking category counts. Retain or explicitly account for Unsure and No preference.
+1.  Not answerable from these files: gender is aggregate-only and cannot be linked to comfort.
+2.  Causal wording exceeds what this descriptive survey can establish. Reword as an association among respondents.
+3.  Feasible using the respondent-level join, subject to checking category counts. Retain or explicitly account for Unsure and No preference.
 :::
 
 ## Feasibility check
 
-::: {.nonincremental}
+::: nonincremental
 **Open the data and metadata: 7 minutes**
 
 -   find the exact column names and files for each candidate
@@ -295,7 +293,7 @@ Use the metadata to decide what each variable can support before writing code.
 
 ## Trying an idea in R
 
-::: {.nonincremental}
+::: nonincremental
 **With your group: 10 minutes**
 
 Choose one candidate question and try an initial analysis.
@@ -311,7 +309,7 @@ Record what you learned, what remains unclear, and what you want to try next.
 
 ## What did the first attempt tell you?
 
-::: {.nonincremental}
+::: nonincremental
 Discuss your initial results:
 
 -   does the output help answer your question?
@@ -327,11 +325,10 @@ An inconclusive result can still help you choose a better next step.
 
 ## Your analysis plan
 
-::: {.nonincremental}
+:::: nonincremental
 **With your group: 6 minutes**
 
 ::: {style="font-size: 0.85em;"}
-
 For each selected question, record:
 
 1.  Exact variables, files, and respondents included
@@ -341,14 +338,12 @@ For each selected question, record:
 5.  One limitation you will need to discuss
 
 Save your notes in `scripts/analysis-plan.md` in the group repository.
-
 :::
-
-:::
+::::
 
 ## A second pair of eyes
 
-::: {.nonincremental}
+::: nonincremental
 **Exchange one question with another group: 4 minutes**
 
 Explain your question and proposed analysis in about a minute.
@@ -365,7 +360,7 @@ Use the feedback to revise your plan.
 
 ## Dividing the work
 
-::: {.nonincremental}
+::: nonincremental
 **With your group: 5 minutes**
 
 -   assign a lead and a reviewer for each question
@@ -381,7 +376,7 @@ Record these decisions in your analysis plan and push it to GitHub.
 
 ## Before you leave
 
-::: {.nonincremental}
+::: nonincremental
 Your group should be able to show:
 
 -   2–3 descriptive questions grounded in the intake form data
