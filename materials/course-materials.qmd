@@ -173,7 +173,7 @@ bibliography: slides/refs.bib
 
     -   Example vignettes are \[[all public repositories here](https://github.com/orgs/pstat197/repositories?q=visibility%3Apublic+archived%3Afalse)\] labeled "vignette."
 
-
+    -   Group topics and presentation times are \[[available here](https://docs.google.com/spreadsheets/d/1A4fP8d_bS3vRsXHwUBDbGa6INXabOzRjSjt7kotkSlw/edit?usp=sharing)\]
 
 <!-- -   Optional further reading: -->
 
