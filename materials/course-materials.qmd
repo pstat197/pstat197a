@@ -169,6 +169,14 @@ bibliography: slides/refs.bib
 
 *Objectives: learn independently about a method of choice and prepare a teaching vignette illustrating its use; create shared reference material potentially useful for project work.*
 
+### Week 9
+
+-   ***Tuesday meeting:*** group work on vignette assignments
+
+<!-- -   ***Section meeting:*** NO SECTION MEETING (Thanksgiving) -->
+
+<!-- -   ***Thursday meeting:*** NO CLASS (Thanksgiving) -->
+
 -   **Group assignments** \[[are now available here](https://docs.google.com/spreadsheets/d/1ylAg2syvXlL5FjLoq87L0tGkvWFLgbzRQVALVpCxkgc/edit?usp=sharing)\]. Vignette \[[guidelines are available here](vignette-guidelines.qmd)\].
 
     -   Example vignettes are \[[all public repositories here](https://github.com/orgs/pstat197/repositories?q=visibility%3Apublic+archived%3Afalse)\] labeled "vignette."
@@ -195,9 +203,11 @@ bibliography: slides/refs.bib
 
 <!--     -   final version due **Thursday, 12/11 11:59pm PST** -->
 
-<!-- ### Week 10 -->
+### Week 10
 
-<!-- -   ***Tuesday meeting:*** capstone project overviews \[[slides](slides/week10-projects.qmd)\] -->
+-   ***Tuesday meeting:*** Vignette draft presentations, day one
+
+<!-- capstone project overviews \[[slides](slides/week10-projects.qmd)\] -->
 
 <!-- -   ***Section meeting:*** office hours for vignette help -->
 
